@@ -1,7 +1,7 @@
 # VVRC 理論（Value Vector–Reaction Coefficient）
 
 **― 幸福・資本・人口の反応経済モデル ―**  
-ver. 1.0 – 2025
+ver. 0.1.0 – 2025
 
 ---
 

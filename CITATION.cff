@@ -12,7 +12,7 @@ abstract: >
 date-released: "2025-11-12"
 repository-code: "https://github.com/drive-force/vvrc_model"
 license: "CC-BY-4.0"
-version: "1.0"
+version: "0.1.0"
 keywords:
   - value vector
   - reaction coefficient
