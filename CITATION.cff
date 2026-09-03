@@ -13,14 +13,18 @@ abstract: >
   different K and observe or reference a different P. P is treated as a
   history-dependent expectation stock, while E[Delta K] is represented
   separately as an expectation flow for a specified interval rather than as a
-  required intermediate variable in action generation. For multi-actor actions,
-  an intra-period equilibrium is the point at which the actors' expected Delta K
-  are mutually consistent with the same transaction, contract, or joint action
-  becoming feasible; this condition does not apply to actions completed by a
-  single actor alone. Actions can change both K and P, while non-agentic changes
-  to K such as depreciation or natural loss are treated only as an exception
-  note. At aggregate scales, Delta P and Delta K can serve as principal proxies
-  when full action tracking is too costly.
+  required intermediate variable in action generation. In economic
+  projections, interactions among actors' expected Delta K and actions can be
+  mapped to existing microeconomic equilibrium processes, while aggregate
+  macroeconomic adjustment can be represented as interaction between the
+  previous interval's realized Delta K on the real side and current Delta P on
+  the nominal or expectation side. Delta P can serve as an intervention path
+  across observation scales; at the state level, interest-rate and money-supply
+  operations are representative mappings. These equilibrium mechanisms are not
+  defined as VFT-specific universal laws. Actions can change both K and P,
+  while non-agentic changes to K such as depreciation or natural loss are
+  treated only as an exception note. At aggregate scales, Delta P and Delta K
+  can serve as principal proxies when full action tracking is too costly.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
@@ -30,7 +34,8 @@ keywords:
   - resource dynamics
   - expectation stock
   - expectation flow
-  - intra-period equilibrium
+  - microeconomic equilibrium
+  - macroeconomic adjustment
   - nominal-real structure
   - action
   - measurement proxy
