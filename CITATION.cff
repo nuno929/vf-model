@@ -7,29 +7,30 @@ authors:
     affiliation: "Independent Researcher"
 abstract: >
   Value-Field Theory (VFT) is a structural framework for describing how
-  multidimensional real resource and capital states K and nominal or expectation
-  structures P across multiple actors form a value field whose attraction is
-  realized through the actors' actions and decisions A. Each actor's K represents
-  resources, capital, and degrees of freedom that the actor can access and use,
-  while each actor's P represents expectation structures that the actor can
-  observe or reference and that can affect decision-making. K, P, and A are not
-  assumed to be scalar variables or probability distributions. P is treated as
-  a history-dependent expectation stock, while E[Delta K] is represented
+  actor-relative, multidimensional real resource and capital states K and
+  nominal or expectation structures P form a value field whose attraction is
+  realized through actors' actions and decisions A. Each actor can access a
+  different K and observe or reference a different P. P is treated as a
+  history-dependent expectation stock, while E[Delta K] is represented
   separately as an expectation flow for a specified interval rather than as a
-  required intermediate variable in action generation. Actions can change both
-  K and P. Non-agentic changes in K, such as depreciation or natural loss, are
-  treated as a secondary exception rather than a separate core pathway. At
-  aggregate scales, Delta P and Delta K can serve as principal proxies when full
-  action tracking is too costly.
+  required intermediate variable in action generation. For multi-actor actions,
+  an intra-period equilibrium is the point at which the actors' expected Delta K
+  are mutually consistent with the same transaction, contract, or joint action
+  becoming feasible; this condition does not apply to actions completed by a
+  single actor alone. Actions can change both K and P, while non-agentic changes
+  to K such as depreciation or natural loss are treated only as an exception
+  note. At aggregate scales, Delta P and Delta K can serve as principal proxies
+  when full action tracking is too costly.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
   - value-field theory
   - multidimensional state
   - multi-actor system
-  - resource access
+  - resource dynamics
   - expectation stock
   - expectation flow
+  - intra-period equilibrium
   - nominal-real structure
   - action
   - measurement proxy
