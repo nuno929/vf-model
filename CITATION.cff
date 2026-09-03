@@ -6,41 +6,39 @@ authors:
     given-names: "T."
     affiliation: "Independent Researcher"
 abstract: >
-  Value-Field Theory (VFT) is a structural framework for describing how
-  actor-relative, multidimensional real resource and capital states K and
-  expectation-forming structures P shape actors' actions and decisions A. P
-  retains future outlooks, evaluations, preferences, credit, beliefs, and
-  related structures that generate expectations and action directions; the
-  term expectation stock refers to this expectation-generating role rather
-  than to a stored point expectation. Expected real change E[Delta K] is
-  represented separately as a flow formed from current K and P for a specified
-  target and interval. K, P, A, Delta K, and Delta P are actor-relative and are
-  not assumed to be scalar or probabilistic distributions. Actions can change
-  both K and P, while non-agentic changes to K such as depreciation or natural
-  loss are treated as an exception note. Interventions that affect P are first
-  represented as actions by an intervening actor and then as induced Delta P,
-  rather than as exogenous Delta P injections. In economic projections,
-  interactions among actors' expected Delta K and actions can be mapped to
-  existing microeconomic equilibrium processes. Aggregate expected real change
-  after cancelling transfers within a defined exchange scope can be projected
-  as expected total surplus without requiring scalarization of multidimensional
-  K. Macroeconomic adjustment is mapped to existing real-nominal adjustment
-  processes, while aggregate nominal indicators serve as proxies for the
-  collective manifestation of P. These equilibrium and measurement mechanisms
-  are not defined as VFT-specific universal laws.
+  Value-Field Theory (VFT) is a structural framework for describing how a
+  shared multidimensional real-resource world K, actor-specific accessible
+  portions K_i, and actor-specific expectation-forming states P_i condition
+  actions and decisions A_i. K is not treated as a separate resource world for
+  each actor; actor relativity enters through access to K, through P_i, and
+  through actor-specific expected interval changes E_i[Delta K]. P retains
+  future outlooks, evaluations, preferences, credit, beliefs, and related
+  structures. The term expectation stock refers to this expectation-generating
+  role rather than to a stored point expectation. E_i[Delta K] is represented
+  separately as an expected change over a specified target and interval, not as
+  a required intermediate variable in action generation and not as a rate flow.
+  Actions are a principal agentic route for changes in K and P, including
+  policy, communication, observation, and information reception. Small
+  non-agentic changes in P need not be denied, but are not modeled as separate
+  core paths unless they create meaningful observable differences. Economic
+  equilibrium, expected surplus aggregation, and real-nominal mappings are
+  treated as domain-specific projection candidates rather than VFT-specific
+  universal laws. Aggregate expected surplus requires an exchange/accounting
+  scope in which resource differences are made comparable and transfers can be
+  cancelled. Observable actions, Delta K, Delta P, and nominal-economic
+  indicators may be used as proxies subject to domain-specific measurement
+  assumptions.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
   - value-field theory
-  - multidimensional state
-  - multi-actor system
-  - resource dynamics
+  - multidimensional resource state
+  - shared resource world
+  - actor-specific access
   - expectation stock
-  - expectation flow
-  - expected total surplus
-  - microeconomic equilibrium
-  - macroeconomic adjustment
-  - nominal-real structure
+  - expected interval change
   - action
+  - resource dynamics
   - measurement proxy
+  - economic projection
   - social dynamics
