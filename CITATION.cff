@@ -7,20 +7,22 @@ authors:
     affiliation: "Independent Researcher"
 abstract: >
   Value-Field Theory (VFT) is a structural framework for describing how
-  real resource and capital states K and nominal or expectation structures P
-  form a value field whose attraction is realized as action A. At individual
-  and local scales, actions can often be observed directly, while at aggregate
+  multidimensional real resource and capital states K and nominal or expectation
+  structures P across multiple actors form a value field whose attraction is
+  realized through the actors' actions and decisions A. K, P, and A are not
+  assumed to be scalar variables or probability distributions. At individual
+  and local scales actions can often be observed directly, while at aggregate
   scales full action tracking is costly, so realized nominal change Delta P and
   realized real change Delta K can serve as principal proxies for aggregated
-  action and flow. The framework distinguishes expectation stock P from expected
-  real flow E[Delta K], and treats preference and rationality differences as
-  differences in the structure and magnitude of P.
+  action and flow. Aggregation, averaging, and distributional summaries are
+  treated as analysis choices rather than core ontological assumptions.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
   - value-field theory
+  - multidimensional state
+  - multi-actor system
   - resource dynamics
-  - expectation field
   - expectation stock
   - nominal-real structure
   - action
