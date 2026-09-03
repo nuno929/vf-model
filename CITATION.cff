@@ -11,26 +11,22 @@ abstract: >
   portions K_i, and actor-specific expectation-forming states P_i condition
   actions and decisions A_i. K is not treated as a separate resource world for
   each actor; actor relativity enters through access to K, through P_i, and
-  through actor-specific expected interval changes E_i[Delta K]. P retains
-  future outlooks, evaluations, preferences, credit, beliefs, and related
-  structures. The term expectation stock refers to this expectation-generating
-  role rather than to a stored point expectation. E_i[Delta K] is represented
-  separately as an actor-specific desired or expected resource change over a
-  specified target and interval, not as a required intermediate variable in
-  action generation and not as a rate flow. Realized Delta K is kept distinct:
-  constraints, interactions, institutions, and other actors can prevent the
-  expected change from being fully realized. Actions are a principal agentic
-  route for changes in K and P, including policy, communication, observation,
-  and information reception. Small non-agentic changes in P need not be denied,
-  but are not modeled as separate core paths unless they create meaningful
-  observable differences. Economic equilibrium, expected surplus aggregation,
-  and real-nominal mappings are treated as domain-specific projection
-  candidates rather than VFT-specific universal laws. Where exchange or
-  agreement makes heterogeneous expected resource changes comparable within a
-  common aggregation scope, aggregate E_i[Delta K] may be projected to expected
-  total surplus; this is distinct from realized aggregate Delta K. Observable
-  actions, Delta K, Delta P, and nominal-economic indicators may be used as
-  proxies subject to domain-specific measurement assumptions.
+  through actor-specific expectations E_i[Delta K]. Delta K denotes the realized
+  real-resource quantity difference over a defined target scope and interval.
+  The same Delta K type is used across micro and macro scales; what changes is
+  the actor set, time horizon, resource scope, and aggregation rule. E_i[Delta K]
+  is a rational expected interval change for the resource scope in which actor i
+  participates through production, consumption, or related action. Preferences,
+  desirability, credit, beliefs, and related structures remain in P_i rather than
+  being identified with E_i[Delta K]. Longer horizons and larger populations may
+  make aggregate expectations reflect persistent demand and supply structures,
+  but demand and supply are projection-level interpretations rather than core
+  definitions of E_i[Delta K]. Aggregate expected resource change can be written
+  as a compatible aggregation of E_i[Delta K]. Mapping this aggregation to
+  standard economic surplus requires additional valuation, utility, WTP/WTA, or
+  cost assumptions. Observable actions, Delta K, Delta P, and nominal-economic
+  indicators may be used as proxies subject to domain-specific measurement
+  assumptions.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
