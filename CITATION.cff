@@ -8,23 +8,26 @@ authors:
 abstract: >
   Value-Field Theory (VFT) is a structural framework for describing how
   actor-relative, multidimensional real resource and capital states K and
-  nominal or expectation structures P form a value field whose attraction is
-  realized through actors' actions and decisions A. Each actor can access a
-  different K and observe or reference a different P. P is treated as a
-  history-dependent expectation stock, while E[Delta K] is represented
-  separately as an expectation flow for a specified interval rather than as a
-  required intermediate variable in action generation. In economic
-  projections, interactions among actors' expected Delta K and actions can be
-  mapped to existing microeconomic equilibrium processes, while aggregate
-  macroeconomic adjustment can be represented as interaction between the
-  previous interval's realized Delta K on the real side and current Delta P on
-  the nominal or expectation side. Delta P can serve as an intervention path
-  across observation scales; at the state level, interest-rate and money-supply
-  operations are representative mappings. These equilibrium mechanisms are not
-  defined as VFT-specific universal laws. Actions can change both K and P,
-  while non-agentic changes to K such as depreciation or natural loss are
-  treated only as an exception note. At aggregate scales, Delta P and Delta K
-  can serve as principal proxies when full action tracking is too costly.
+  expectation-forming structures P shape actors' actions and decisions A. P
+  retains future outlooks, evaluations, preferences, credit, beliefs, and
+  related structures that generate expectations and action directions; the
+  term expectation stock refers to this expectation-generating role rather
+  than to a stored point expectation. Expected real change E[Delta K] is
+  represented separately as a flow formed from current K and P for a specified
+  target and interval. K, P, A, Delta K, and Delta P are actor-relative and are
+  not assumed to be scalar or probabilistic distributions. Actions can change
+  both K and P, while non-agentic changes to K such as depreciation or natural
+  loss are treated as an exception note. Interventions that affect P are first
+  represented as actions by an intervening actor and then as induced Delta P,
+  rather than as exogenous Delta P injections. In economic projections,
+  interactions among actors' expected Delta K and actions can be mapped to
+  existing microeconomic equilibrium processes. Aggregate expected real change
+  after cancelling transfers within a defined exchange scope can be projected
+  as expected total surplus without requiring scalarization of multidimensional
+  K. Macroeconomic adjustment is mapped to existing real-nominal adjustment
+  processes, while aggregate nominal indicators serve as proxies for the
+  collective manifestation of P. These equilibrium and measurement mechanisms
+  are not defined as VFT-specific universal laws.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
@@ -34,6 +37,7 @@ keywords:
   - resource dynamics
   - expectation stock
   - expectation flow
+  - expected total surplus
   - microeconomic equilibrium
   - macroeconomic adjustment
   - nominal-real structure
