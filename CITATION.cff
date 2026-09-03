@@ -1,21 +1,22 @@
 cff-version: 1.2.0
-title: "VVRC Theory: A Dynamic Equilibrium Model of Happiness, Capital, and Population"
-message: "If you use this theory or repository, please cite as below."
+title: "Value-Field Theory (VFT)"
+message: "If you use this theory or repository, please cite this repository."
 authors:
   - family-names: "Nuno"
-    given-names: "T. "
+    given-names: "T."
     affiliation: "Independent Researcher"
 abstract: >
-  VVRC (Value Vector–Reaction Coefficient) Theory defines a dynamic system linking
-  happiness (U), capital (K), and population (N) through mutual reaction coefficients.
-  It provides a theoretical framework for sustainable equilibrium in social systems.
-date-released: "2025-11-12"
-repository-code: "https://github.com/drive-force/vvrc_model"
+  Value-Field Theory (VFT) is a structural and dynamic framework for describing
+  how resources, realized resource changes, expectations and background fields,
+  preferences, and actions interact across observation scales. The framework
+  separates core dynamics, measurement and inverse inference, and projections
+  to existing economic and social concepts.
+repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
-version: "0.1.0"
 keywords:
-  - value vector
-  - reaction coefficient
-  - happiness economy
-  - dynamic equilibrium
-  - socio-economic modeling
+  - value-field theory
+  - resource dynamics
+  - expectation field
+  - preference vector
+  - social dynamics
+  - measurement theory
