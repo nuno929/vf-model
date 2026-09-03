@@ -7,16 +7,18 @@ authors:
     affiliation: "Independent Researcher"
 abstract: >
   Value-Field Theory (VFT) is a structural and dynamic framework for describing
-  how resources, realized resource changes, expectations and background fields,
-  preferences, and actions interact across observation scales. The framework
-  separates core dynamics, measurement and inverse inference, and projections
-  to existing economic and social concepts.
+  how resources, realized resource changes, expectation structures, and actions
+  interact across observation scales. The framework separates expectation stock
+  P from expected flow E[Delta K], treats preference and rationality differences
+  as differences in expectation structure, and separates core dynamics,
+  measurement and inverse inference, and projections to existing economic and
+  social concepts.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
   - value-field theory
   - resource dynamics
   - expectation field
-  - preference vector
+  - expectation stock
   - social dynamics
   - measurement theory
