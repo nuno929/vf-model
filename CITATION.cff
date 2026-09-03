@@ -10,12 +10,13 @@ abstract: >
   multidimensional real resource and capital states K and nominal or expectation
   structures P across multiple actors form a value field whose attraction is
   realized through the actors' actions and decisions A. K, P, and A are not
-  assumed to be scalar variables or probability distributions. At individual
-  and local scales actions can often be observed directly, while at aggregate
-  scales full action tracking is costly, so realized nominal change Delta P and
-  realized real change Delta K can serve as principal proxies for aggregated
-  action and flow. Aggregation, averaging, and distributional summaries are
-  treated as analysis choices rather than core ontological assumptions.
+  assumed to be scalar variables or probability distributions. P is treated as
+  a history-dependent expectation stock, while E[Delta K] is represented
+  separately as an expectation flow for a specified interval rather than as a
+  required intermediate variable in action generation. Actions can change both
+  K and P; K may also change through non-agentic depreciation or natural loss.
+  At aggregate scales, Delta P and Delta K can serve as principal proxies when
+  full action tracking is too costly.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
@@ -24,6 +25,7 @@ keywords:
   - multi-actor system
   - resource dynamics
   - expectation stock
+  - expectation flow
   - nominal-real structure
   - action
   - measurement proxy
