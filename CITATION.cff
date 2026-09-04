@@ -9,24 +9,27 @@ abstract: >
   Value-Field Theory (VFT) is a structural framework for describing how a
   shared multidimensional real-resource world K, actor-specific accessible
   portions K_i, and actor-specific expectation-forming states P_i condition
-  actions and decisions A_i. K is not treated as a separate resource world for
-  each actor; actor relativity enters through access to K, through P_i, and
-  through actor-specific expectations E_i[Delta K]. Delta K denotes the realized
-  real-resource quantity difference over a defined target scope and interval.
-  The same Delta K type is used across micro and macro scales; what changes is
-  the actor set, time horizon, resource scope, and aggregation rule. E_i[Delta K]
-  is a rational expected interval change for the resource scope in which actor i
-  participates through production, consumption, or related action. Preferences,
-  desirability, credit, beliefs, and related structures remain in P_i rather than
-  being identified with E_i[Delta K]. Longer horizons and larger populations may
-  make aggregate expectations reflect persistent demand and supply structures,
-  but demand and supply are projection-level interpretations rather than core
-  definitions of E_i[Delta K]. Aggregate expected resource change can be written
-  as a compatible aggregation of E_i[Delta K]. Mapping this aggregation to
-  standard economic surplus requires additional valuation, utility, WTP/WTA, or
-  cost assumptions. Observable actions, Delta K, Delta P, and nominal-economic
-  indicators may be used as proxies subject to domain-specific measurement
-  assumptions.
+  actions and decisions A_i. Delta K(S, tau) denotes the realized real-resource
+  quantity difference over a defined target scope S and interval tau. The same
+  Delta K type is used across micro and macro scales; what changes is the actor
+  set, time horizon, resource scope, and aggregation rule. E_i[Delta K(S, tau)]
+  denotes an actor-specific expected resource change where the relevant Delta K
+  is represented on a quantitative projection for which an expectation is
+  defined. Preferences, desirability, credit, beliefs, and related structures
+  remain in P_i rather than being identified with E_i[Delta K]. In economic
+  projections, K_i may represent budget, resource, or production constraints,
+  while P_i may contain expectations about prices, other actors, and future
+  conditions. Actor-specific expected production and consumption can then be
+  treated as signed E_i[Delta K] terms. Under a common scope, horizon, accounting
+  rule, and closed-boundary assumptions, their consistency may be represented by
+  an expectation-side equilibrium such as sum_i E_i[Delta K] approximately zero;
+  boundary terms such as inventories, imports, exports, or exogenous flows must
+  be included when relevant. Price, trade, contract, inventory, and credit
+  observables can update P_i and thereby support decentralized adjustment of
+  expectations and actions. This adjustment may be projected to the classical
+  invisible-hand idea, without implying that equilibrium is necessarily socially
+  optimal. Mapping aggregate expected resource change to standard economic
+  surplus requires additional valuation, utility, WTP/WTA, or cost assumptions.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
@@ -36,6 +39,8 @@ keywords:
   - actor-specific access
   - expectation stock
   - expected interval change
+  - expectation equilibrium
+  - decentralized adjustment
   - action
   - resource dynamics
   - measurement proxy
