@@ -10,7 +10,7 @@ License: **CC BY 4.0**
 
 価値場理論（Value-Field Theory; VFT）は、個人・組織・社会で生じる変化を、**共通の実資源状態 K と、各主体が保持する主観的な評価・期待状態 P の関係が、各主体の actor-side process / event A をどのように条件づけるか**として記述する構造的フレームワークである。
 
-VFT は現段階では、K / P から A を一意に予測する普遍的な選択則を与える理論ではない。複数主体・多次元の資源、評価・期待、行動・意思決定、変化を共通記法で扱うことを目的とする。
+VFT Core は、単独で経験的予測を与える仮説というより、**ontology / modeling language / common state representation** として位置づける。Core 自体は普遍的な選択則・更新則・均衡則・集約則を固定せず、反証可能な経験的制約は各 projection / empirical model が担う。
 
 **Core の目的は単独で行動を予測することではなく、各 projection が検証可能な制約・選択則・観測モデルを記述するための共通状態表現を与えることである。**
 
@@ -45,8 +45,8 @@ P を「期待 stock」と呼ぶ場合も、P 自体を特定時点の期待値�
 ```text
 K_t
 K_i,t = access / usability view derived from K_t
-P_t = {P_i,t}
-A_t = {A_i,t}
+P_t = (P_i,t)_{i in I}
+A_τ = (A_i,τ)_{i in I}
 ```
 
 と表す。
@@ -55,34 +55,46 @@ A_t = {A_i,t}
 - **K_i**：共通 K に対する主体 `i` のアクセス・利用・行使・参照可能性によって導かれる actor-relative view
 - **P_i**：主体 `i` の将来見通し・評価・選好・信用・信念等を保持する多次元の主観的評価・期待 state
 - **A_i**：主体 `i` 側で生じる process / event。外部行動、意思決定、観測、情報受容、解釈等を必要に応じて含む
-- **ΔK(S, τ)**：観測・会計仕様 `S` について区間 `τ` 内に実現した K の change descriptor
+- **ΔK(S, τ)**：観測・会計仕様 `S` について区間 `τ` 内に実現した K の interval change descriptor
 - **ΔP_i**：観測区間内に主体 `i` の P に実現した change descriptor / state transition
 - **E_i[ΔK(S, τ)]**：主体 `i` が対象範囲・区間について形成する期待実資源変化
+
+`P_t` / `A_τ` は集合ではなく actor identity を保持する indexed family として表す。
 
 `S` は、対象とする資源・主体に加えて、どの resource coordinates で測るか、どの accounting boundary を採るか、資源変換をどう記録するかを含む観測・会計仕様である。`τ` は時間区間を表す。文脈上明らかな場合は `ΔK(S, τ)` / `E_i[ΔK(S, τ)]` を `ΔK` / `E_i[ΔK]` と省略する。
 
 K / P / A は単一スカラーを前提としない。分布化・平均化・集約は、必要に応じて観測・分析時に行う操作であり、コアの存在論ではない。
 
-### 区間変化の記法
+### 区間変化の一般形
 
-`ΔK` は必ずしも算術的な差分を意味しない。観測・会計仕様 `S` に応じた状態表現と change operator を、概念的には
+`ΔK` は endpoint の算術差に限定しない。観測・会計仕様 `S` に応じて、区間内の state path と actor-side process / event を観測表現へ写すものとして、概念的には
 
 ```text
-Y_S(t) = M_S(K_t)
-ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1)) ∈ D_S
+Z_S(τ) = M_S((K_t)_{t in τ}, (A_t)_{t in τ})
+ΔK(S, τ) = δ_S(Z_S(τ)) ∈ D_S
 ```
 
 と書ける。`M_S` と `δ_S` は projection / measurement model 側で定める specification-local な写像・演算であり、Core の新しい原始変数ではない。
 
-加法的な quantitative projection が適用できる場合に限って、例えば
+この一般形により、`S` に応じて net stock change だけでなく、gross production、gross consumption、transaction volume、resource transformation 等の区間内過程を保持できる。
+
+endpoint のみを観測する場合は特殊ケースとして、
+
+```text
+Y_S(t) = M_S(K_t)
+ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1))
+```
+
+と置ける。
+
+さらに加法的な quantitative projection が適用できる場合には、
 
 ```text
 δ_S(y0, y1) = y1 - y0
-K_t1 = K_t0 + ΔK
-P_i,t1 = P_i,t0 + ΔP_i
+Y_S(t1) = Y_S(t0) + ΔK(S, τ)
 ```
 
-のような通常の差分表現を用いる。
+と書ける。**`K_t1 = K_t0 + ΔK` は、さらに `M_S = id` で K 自体が同じ加法空間にある特殊ケースに限る。**
 
 非加法的な P 成分では、`ΔP_i` は算術差ではなく、少なくとも
 
@@ -96,7 +108,7 @@ P_i,t0 -> P_i,t1
 
 Core は `E_i` に対応する確率測度・情報集合・期待形成式を普遍的に固定しない。具体的な expectation operator は projection / measurement model 側で定める。
 
-`ΔK` はミクロ用・マクロ用に数学的な同一型を要求しない。各 `S` に対して値域 `D_S` が異なりうる。個人・市場・社会・マクロの違いは、同じ **S-indexed change schema** に異なる観測・会計仕様を与えることで表す。
+`ΔK` はミクロ用・マクロ用に数学的な同一型を要求しない。各 `S` に対して値域 `D_S` が異なりうる。個人・市場・社会・マクロの違いは、同じ **S-indexed interval-change schema** に異なる観測・会計仕様を与えることで表す。
 
 `E[ΔK]` は rate としての flow ではなく、**特定対象・区間に対する期待区間変化**として扱う。
 
@@ -136,10 +148,10 @@ subjective representation in P
 A は単一の「社会全体の行為」を意味しない。
 
 ```text
-A_t = {A_i,t}_{i in I}
+A_τ = (A_i,τ)_{i in I}
 ```
 
-各 `A_i,t` は、主体 `i` 側で観測区間内に生じた一つ以上の process / event を含みうる。外部行動・意思決定と、観測・情報受容・解釈等の perception / update process は、必要な projection で区別する。
+各 `A_i,τ` は、主体 `i` 側で観測区間内に生じた一つ以上の process / event を含みうる。外部行動・意思決定と、観測・情報受容・解釈等の perception / update process は、必要な projection で区別する。
 
 区間内の順序が重要な場合はイベント順序を保持し、粗い時間粒度では順序を捨象した coarse-grained representation として扱う。
 
@@ -153,14 +165,19 @@ A_t = {A_i,t}_{i in I}
 
 ## 5. K / P の変化
 
-A は K / P を変化させる主要な actor-side process である。
+主体側の主要な時間型は、選択関数・更新関数を固定せず、概念的に
 
 ```text
-{A_i,t} -> change in K
-{A_i,t} -> {change in P_i}
+(K_t0, P_t0)
+      ↓ conditions
+A_(t0,t1]
+      ↓ realized interval processes
+(K_t1, P_t1)
 ```
 
-`K_i` は K から導かれる view であるため、権利・資格・契約・制度状態等を含む K の変化に応じて access / usability が変わりうる。`K_i` 専用の独立した差分変数は Core に置かない。
+と置く。これは因果・時間順序を示す typing であり、普遍的な状態遷移関数を意味しない。
+
+A は K / P を変化させる主要な actor-side process である。`K_i` は K から導かれる view であるため、権利・資格・契約・制度状態等を含む K の変化に応じて access / usability が変わりうる。`K_i` 専用の独立した差分変数は Core に置かない。
 
 政策変更、価格提示、契約条件変更、情報伝達、観測・情報受容・解釈等による P の変化も、必要に応じて A の経路として記述できる。
 
@@ -217,7 +234,7 @@ VFT 単独で記述するのは、各主体の予算・資源制約を満たし�
 
 これは「市場が均衡したから会計が合う」という意味ではなく、**同じ資源変化を同一会計境界で記録する限り、会計上の収支が整合する**という意味である。
 
-この会計整合を通じて、主体レベルの資源変化とマクロ観測を共通の `ΔK(S, τ)` schema 上で記述できる。
+path-aware な `ΔK(S, τ)` を用いることで、endpoint の net stock change がゼロでも、区間内の gross production / consumption / exchange / transformation を観測・会計仕様に応じて保持できる。
 
 ### ミクロ／マクロの接続面と評価・信用経済への射影可能性
 
