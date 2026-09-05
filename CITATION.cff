@@ -10,43 +10,52 @@ abstract: >
   representation for describing how a shared multidimensional real-resource
   world K, actor-specific access and usability views K_i, and actor-specific
   subjective evaluation and expectation states P_i condition actor-side
-  processes and events A_i. K_i is not required to be a set-theoretic subset
-  of K; it is a derived actor-relative access, usability, exercisability, or
-  referenceability view of the shared resource world. For another actor a,
-  P_j(a) denotes actor j's evaluation, belief, credit assessment, or expectation
-  about a, rather than a state held by a. Delta K(S,tau) is reserved for a
-  specification-indexed state or resource change descriptor. In general,
-  Y_S(t)=M_S(K_t) and Delta K(S,tau)=delta_S(Y_S(t0),Y_S(t1)) in D_S, where the
-  change operator need not be an arithmetic difference. Gross production,
+  processes and events A_i. Resource in VFT is not limited to physical goods;
+  externally instantiated and usable, exercisable, or referenceable information,
+  rights, qualifications, contracts, institutional conditions, and financial
+  claims may also be represented in K. K_i is not required to be a
+  set-theoretic subset of K; it is a derived actor-relative access, usability,
+  exercisability, or referenceability view of the shared resource world.
+  P_i is multidimensional and may contain conceptually distinct belief-like,
+  evaluative or preference-like, and relational or trust-like components
+  without introducing separate Core primitives. For another actor a, P_j(a)
+  denotes actor j's evaluation, belief, credit assessment, or expectation about
+  a, rather than a state held by a. Delta K(S,tau) is reserved for a
+  specification-indexed state or resource change descriptor. Gross production,
   consumption, transaction volume, transformation, and other interval activity
-  statistics are not folded into Delta K; when needed they are represented by
-  projection-local derived path functionals such as
-  H_S(tau)=h_S((K_t)_{t in tau},A_tau). A_tau contains interval actor-side
-  events or processes and may retain event ordering where required. Where an
-  expectation is defined, a quantitative representation q_S:D_S->V_S is
-  specified and E_i[Delta K(S,tau)] is shorthand for the expectation of
-  q_S(Delta K(S,tau)). Delta P_i is likewise a change descriptor or state
-  transition and need not be an arithmetic difference. Planned or chosen
-  resource changes are distinct from forecasts and may be represented by
-  projection-local variables such as x_i. Micro and macro observations refer
+  statistics are represented separately by projection-local derived path
+  functionals such as H_S(tau)=h_S((K_t)_{t in tau},A_tau). Where an expectation
+  is defined, E_i[Delta K(S,tau)] is shorthand for an expectation after a
+  quantitative representation q_S:D_S->V_S; candidate-action comparisons may
+  use action-contingent forecasts such as E_i[Delta K(S,tau)|A=a,I_i]. Planned
+  or chosen resource changes are distinct from forecasts and may be represented
+  by projection-local variables such as x_i. Micro and macro observations refer
   to the same common K and K transitions under different observation or
   accounting specifications S; a universal micro-to-macro aggregation map is
-  not required by the Core. Economic and social projections may additionally
-  test three functional optimization hypotheses: resource-realization through
-  action choice, sustainable activity-flow maximization through K/P
-  reconfiguration, and downside minimization of distributed P through resource
-  and action allocation. These are functions rather than ontological actor
-  types: a single autarkic actor may perform all three, while capitalist
-  institutions may distribute them primarily across individuals, firms, and
-  the state. The concrete objective functionals are projection-specific rather
-  than Core primitives. Economic budget feasibility, inter-agent compatibility,
-  market-equilibrium conditions, accounting identities, surplus,
-  decentralized adjustment, and reputation- or credit-economy models remain
-  domain-specific projection candidates rather than universal consequences of
-  the VFT Core. VFT does not fix a universal probability measure,
-  expectation-formation equation, action-selection rule, state-transition law,
-  compatibility condition, market-equilibrium condition, optimization
-  objective, or aggregation law.
+  not required by the Core. Above this ontology, VFT adopts three management
+  rationality axioms for decision-making: resource-realization, activity-flow,
+  and P-downside. They correspond respectively to resource-outcome realization,
+  continuity or expansion of activity processes, and prevention of P-side
+  deterioration that threatens system viability. The three axioms are not
+  ontological actor types and are not fixed one-to-one assignments. Any actor
+  may consider all three, while their priority, weight, or division varies with
+  context, role, institution, organizational structure, and time horizon. A
+  single autarkic actor may bear all three. At a coarse national-macro level in
+  capitalist institutions, individuals may be resource-realization-heavy,
+  firms activity-flow-heavy, and the state P-downside-heavy, without excluding
+  the other rationalities from any actor. Concrete objective functions,
+  priorities, constraints, and decision rules are projection-specific rather
+  than Core primitives. Utility and profit are therefore treated as possible
+  evaluation functions or performance indicators used in concrete decisions,
+  not as specializations of the axioms themselves. Economic budget feasibility,
+  inter-agent compatibility, market-equilibrium conditions, accounting
+  identities, surplus, decentralized adjustment, and reputation- or
+  credit-economy models remain domain-specific projection constructs rather
+  than universal consequences of the VFT Core. VFT does not fix a universal
+  probability measure, expectation-formation equation, deterministic
+  action-selection function, state-transition law, compatibility condition,
+  market-equilibrium condition, quantitative objective, rationality weighting
+  rule, or aggregation law.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
@@ -59,7 +68,8 @@ keywords:
   - state change descriptor
   - interval activity descriptor
   - expected realized change
-  - functional optimization
+  - rationality axioms
+  - context-dependent priorities
   - activity-flow
   - autarky
   - institutional division of functions
