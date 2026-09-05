@@ -123,20 +123,16 @@ P を広い主観的評価・期待構造として扱うと、情報、契約、
 
 実現変化を明示するため、K / P の状態変化を ΔK / ΔP として記述するようになった。
 
-現行では、
+現行では `ΔK(S,τ)` を K の state / resource change に予約し、観測仕様 `S` に応じて
 
 ```text
-{A_i,t} -> ΔK_t
-{A_i,t} -> {ΔP_i,t}
+Y_S(t) = M_S(K_t)
+ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1)) ∈ D_S
 ```
 
-を主要な主体的変化経路として扱う。
+と記述する。gross production / consumption / transaction volume 等の区間活動量は `ΔK` に含めず、必要な projection / measurement で `H_S(τ)` のような derived path functional として分離する。
 
-政策変更、価格提示、情報伝達、観測・情報受容等による P 変化も、原則として何らかの actor-side process / event A を介して記述できる。
-
-一方、記憶減衰等の微小・非主体的な P 変化の存在自体は否定しない。それが観測可能な A や P proxy に意味のある差を生じない限り、Core の主要経路として明示モデル化しない。
-
-K の減価償却、自然損耗、災害等も、必要な応用で考慮する。
+A は K / P を変化させる主要な actor-side process であるが、K の減価償却、自然損耗、災害等の非主体的変化もありうる。
 
 `K_i` は K から導かれる view であるため、K 上の権利・資格・契約・制度状態等が変われば `K_i` も変化しうる。現行 Core では `ΔK_i` を独立原始量として置かない。
 
@@ -154,7 +150,21 @@ E_i,t[ΔK] = f_i(K_i,t, P_i,t, ...)
 
 のように書く案も用いた。
 
-**これは履歴上の概念式であり、現行 Core では普遍的な期待形成関数 `f_i`、確率測度、情報集合を固定しない。** 現在は、quantitative projection 上で期待値が定義可能な場合のみ `E_i[ΔK(S, τ)]` を expectation operator として用いる。
+**これは履歴上の概念式であり、現行 Core では普遍的な期待形成関数 `f_i`、確率測度、情報集合を固定しない。**
+
+現在は `ΔK(S,τ) ∈ D_S` に対して quantitative representation
+
+```text
+q_S : D_S -> V_S
+```
+
+を projection / measurement 側で定め、記法上
+
+```text
+E_i[ΔK(S,τ)] := E_i[q_S(ΔK(S,τ))]
+```
+
+と略記する。
 
 また、`E[ΔK]` は plan / choice や desire ではなく、特定対象・区間について主体が見込む expected realized resource change として扱う。
 
@@ -170,6 +180,8 @@ VFT 独自の均衡則を作るのではなく、既存経済学の理論へ K /
 
 その後、**plan / choice と expected realized outcome は別物**と整理し、必要な economic projection では A に含まれる planned / chosen resource change を補助的に `x_i` と書き、予算制約・compatibility は `x_i` 側へ置く方針へ修正した。
 
+compatibility 自体も VFT Core から自動導出される条件ではなく、economic projection が追加する条件として扱う。
+
 VFT では消費と供給を別の存在論として置かない。
 
 また、過去には「主体間移転を相殺した後に残る期待実資源変化」を期待総余剰へ射影する案も検討したが、**これは現行方針では採用していない。** 現在は consumer surplus / producer surplus / total surplus へ接続する場合、valuation、utility、WTP / WTA、cost 等の追加 mapping を射影先で明示する。
@@ -180,7 +192,7 @@ VFT では消費と供給を別の存在論として置かない。
 
 前区間の資源変化と当期の主観状態側変化との相互作用を既存マクロ経済学へ接続することは、一つの射影候補であり、VFT がミクロ／マクロ一般の時間構造や集約則を定義するものではない。
 
-現行では、ミクロ／マクロで数学的に同一の `ΔK` 値型を要求せず、`ΔK(S, τ) ∈ D_S` という S-indexed schema を共通の observation / accounting 接続面として用いる。
+現行では、ミクロ／マクロで数学的に同一の `ΔK` 値型を要求せず、`ΔK(S, τ) ∈ D_S` という S-indexed state-change schema を共通の observation / accounting 接続面として用いる。gross flow / interval activity は必要に応じて `H_S` 側へ分離する。
 
 また、Core の K / P と経済学上の real / nominal は同一視せず、real / nominal は射影先でのみ用いる。
 
@@ -191,22 +203,22 @@ VFT では消費と供給を別の存在論として置かない。
 Core は、概念的には
 
 ```text
-K_t
-├─ {K_i,t}
-└─ {P_i,t}
-       ↓
-     {A_i,t}
-       ↓
-ΔK_t / {ΔP_i,t}
+K_t, (P_i,t)_i
+      ↓ conditions
+(A_i,τ)_i
+      ↓
+K_t1, (P_i,t1)_i
 ```
 
-という構造を記述する。
+という時間構造を記述する。
 
 一方、実証ではすべてを直接観測できるわけではない。
 
 外部に実現した action event は直接観測できる場合があるが、内部の意思決定、観測、解釈過程は proxy を要する場合がある。P も全構造を直接観測できるとは仮定しない。
 
-`ΔK` / `ΔP` は A の結果 proxy として利用できる場合があるが、A を一意に同定する量ではない。
+`ΔK` / `ΔP` は A の結果 proxy として利用できる場合があるが、A を一意に同定する量ではない。gross activity は必要に応じて `H_S` として別に観測する。
+
+P proxy が価格・金利・信用条件等の market outcome である場合は、target A / ΔK との時間順序、同時決定、post-treatment、outcome leakage を識別する必要がある。
 
 ---
 
@@ -217,18 +229,20 @@ K_t
 ```text
 common K_t
    ↓ derived access / usability
-{K_i,t}, {P_i,t}
+(K_i,t)_i, (P_i,t)_i
+        ↓ conditions
+      (A_i,τ)_i
         ↓
-      {A_i,t}
-        ↓
-ΔK(S, τ), {ΔP_i,t}
+K_t1, (P_i,t1)_i
 ```
 
 である。
 
-必要な quantitative projection では `E_i[ΔK(S, τ)]` を定義し、必要な economic projection では A に含まれる planned / chosen resource change を補助的に `x_i` と記述できる。
+K の state / resource change は `ΔK(S,τ)`、P の change / state transition は `ΔP_i` として表す。gross production / consumption / transaction volume 等は Core primitive にせず、必要な projection / measurement で `H_S(τ)` のような derived path functional として記述する。
 
-独立した X / V、普遍的な A 選択関数、P 更新関数、期待形成関数、独自の均衡式は Core に置かない。
+必要な quantitative projection では `q_S : D_S -> V_S` を定め、`E_i[ΔK(S,τ)]` を `E_i[q_S(ΔK(S,τ))]` の略記として使う。必要な economic projection では A に含まれる planned / chosen resource change を補助的に `x_i` と記述できる。
+
+独立した X / V、普遍的な A 選択関数、P 更新関数、期待形成関数、compatibility 条件、独自の均衡式は Core に置かない。
 
 ---
 
