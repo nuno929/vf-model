@@ -137,51 +137,34 @@ VFT ではミクロとマクロを別々の資源世界として置かない。*
 
 これは単に同じ記法を使うという意味ではなく、**観測対象として同じ K を共有することが接続の基礎**である。
 
-### 機能的最適化則
+### 3つの基本管理合理性
 
-VFT ontology は「個人・企業・国家」を別種の actor として固定しない。その上で、経済・社会 projection では次の3つを functional optimization hypothesis として分離できる。
+VFT ontology は「個人・企業・国家」を別種の actor として固定しない。その上で VFT の管理・経済記述では、組織・制度を維持し行動を成立させる合理性を、次の3則へ集約して扱う。
 
-#### 1. resource-realization
+1. **resource-realization rule**：主体は、自らの P と期待のもとで、望ましい resource change の実現へ向けて A を動かす。
+2. **activity-flow rule**：主体は、K / P の配置を再構成し、持続可能な A-flow を維持・拡張する。
+3. **P-downside rule**：主体群の P の大幅な負側・悪化側を抑えるよう、K / A を配分・調整する。
 
-主体は、自らの P と期待のもとで、望む／見込む `ΔK` の実現へ向けて A を選ぶ。
+この3則は、各 actor が現実に厳密な数理最適化を実行していることの実証命題ではなく、VFT 上で管理合理性を記述するための基本前提である。具体的な目的関数、制約、時間 horizon、計量表現は projection ごとに定める。
+
+必要な quantitative projection では、例えば
 
 ```text
+resource-realization:
 A_i* ∈ argmax_A R_i(A ; P_i, E_i[ΔK])
-```
 
-`R_i` は、どの A が主体の望む resource change の実現に寄与すると評価されるかを表す projection-local objective である。これは realized `ΔK` が必ず expectation と一致することを意味しない。
+activity-flow:
+(K_f*, P_f*) ∈ argmax_(feasible K_f,P_f) F_f(A-flow | K_f, P_f)
 
-#### 2. activity-flow
-
-主体は、K / P の配置を再構成し、持続可能な A-flow を最大化する。
-
-```text
-(K_f*, P_f*)
-  ∈ argmax_(feasible K_f,P_f)
-      F_f(A-flow | K_f, P_f)
-```
-
-企業はこの機能の典型的な担い手として読める。採用、設備投資、資金調達、R&D、組織再編、ブランド形成、契約構成等は、K / P 配置を変えて現在または将来の A-flow を増やす行為として記述できる。
-
-利益は A-flow から生じる resource/accounting outcome の一面であり、objective と自動的に同一視しない。短期的な資源減少・赤字を伴う投資や市場獲得も、将来 A-flow の拡張として説明できる。
-
-#### 3. P-downside
-
-主体群の P の大幅な負側・悪化側を抑えるよう、K / A を配分・調整する。
-
-```text
+P-downside:
 A_g* ∈ argmin_A L_g^-(P ; observable proxies)
 ```
 
-国家はこの機能の典型的な担い手として読める。P の真値は直接観測できず、支持率、失業、犯罪、景況感、出生、健康、移住、市場指標等の proxy 間に普遍的な加法則もない。そのため aggregate P の直接最大化より、明確に識別可能な負側・悪化側を抑える operational rule の方が置きやすい。
-
-この downside minimization は、国家が P の上方改善を目的にしないという意味ではない。**異質な P proxy を一つの加法的尺度へ統合できないため、下方の毀損を抑え、上方の改善を個々人・企業の分散的最適化へ委ねる**という制度的構造を表す。
-
-`R_i` / `F_f` / `L_g^-` は Core primitive ではなく、各 projection が具体化する objective functional である。
+のような objective functional を追加できる。`R_i` / `F_f` / `L_g^-` は3則そのものではなく、projection-specific な数理化である。
 
 ### 自給自足と制度的分業
 
-3つの最適化則は actor type ではなく機能なので、**市場や企業や国家が存在しない自給自足でも適用できる**。
+3則は actor type ではなく管理機能なので、**市場や企業や国家が存在しない自給自足でも適用できる**。
 
 ```text
 single actor
@@ -190,7 +173,7 @@ single actor
   └─ P-downside
 ```
 
-自給自足では単一 actor が、望む `ΔK` を目指して A を選び、K / P 配置を組み替えて A-flow を確保し、将来不安・欠乏等の P-downside を抑える。
+自給自足では単一 actor が、望む resource change を目指して A を動かし、K / P 配置を組み替えて A-flow を確保し、将来不安・欠乏等の P-downside を抑える。
 
 一方、資本主義ではこれらが概ね、
 
@@ -202,11 +185,11 @@ state        -> P-downside
 
 へ制度的に分業されると解釈できる。
 
-この見方では市場・企業・国家は理論の前提ではなく、**単一 actor 内でも成立する最適化機能が社会的に分化した制度形態**として後から説明される。
+この見方では市場・企業・国家は理論の前提ではなく、**単一 actor 内でも成立する3つの管理合理性が社会的に分化した制度形態**として後から説明される。
 
 ### マネジメント三階層としての解釈
 
-同じ3機能は、社会制度間の分業だけでなく、**一つの組織内部におけるマネジメント階層の合理性**として再帰的に現れる可能性がある。
+管理機能の階層的分化自体は近代企業に限らず、長期にわたる組織制度の中で反復して観察される。本節はその階層構造の存在を VFT が新規に予測するものではなく、**既知の実行・中間管理・統治の機能分化を VFT の3則へ還元して、その管理合理性を共通記述する**ことを目的とする。
 
 ```text
 operational / execution layer
@@ -219,9 +202,27 @@ governance layer
     -> P-downside
 ```
 
-実行層では、与えられた K / P のもとで期待する resource change の実現へ向けて A を選ぶ。管理層では、個別 A の実現よりも、K / P 配置を組み替えて複数の A が持続的に流れる状態を作ることが中心になる。統治層では、組織全体・利害関係者・構成員に分布する P の大幅な毀損、離反、不信、破綻期待等を抑えることが中心になる。
+- **operational / execution**：与えられた `K_i / P_i` のもとで実際の A を成立させ、望ましい resource change を具体化する。
+- **managerial**：複数主体・複数時点の A を接続し、組織として活動系列を維持するため K / P 配置を組み替える。
+- **governance**：組織全体・長期・複数 stakeholder を対象に、許容不能な P の毀損、不信、離反、破綻期待等と、それに伴う行動崩壊を抑える。
 
-この対応は役職名を固定するものではない。同一人物が複数階層の合理性を同時に担う場合もあり、小規模組織や自給自足では3機能が一主体へ重なる。組織が大きくなるにつれて、これらの最適化対象が分業・階層化されるという projection candidate として扱う。
+この対応は役職名を固定するものではない。同一人物が複数階層の合理性を同時に担う場合もあり、小規模組織や自給自足では3則が一主体へ重なる。組織が大きくなるにつれて、これらの管理対象が分業・階層化されると読む。
+
+### 効用最大化・利潤最大化との関係
+
+標準的な効用最大化は、**resource-realization rule を utility によってスカラー化した特殊な economic projection** として読める。
+
+主体の P に含まれる望ましさ・選好を `U_i` として resource outcome 上へ写像し、制約下で `U_i` を高める A / `x_i` を選ぶ場合、標準的な utility maximization に対応する。ここで `E_i[ΔK]` は forecast であり、desire そのものではない。望ましさは P 側、実現見込みは `E_i[ΔK]` 側として分離する。
+
+同様に profit maximization は、**activity-flow rule の一つの特殊射影**として扱える。対象 horizon と会計境界のもとで profit が sustained A-flow の十分な objective / proxy とみなせる場合に profit maximization へ落とせる。一方、短期的な資源減少・赤字を伴う投資、採用、R&D、市場獲得等は、将来 A-flow の拡張として説明できるため、activity-flow rule 自体を当期 profit maximization と同一視しない。
+
+### 需給モデルとの関係
+
+需給均衡は第4の管理則ではなく、**複数主体の resource-realization から生じる planned resource change の主体間整合**として扱う。
+
+各主体は P と期待のもとで A / `x_i` を選ぶ。市場・価格・取引条件等を通じて各 `x_i` が修正され、相互に実行可能な状態へ到達したとき、対象経済理論の追加条件のもとで market equilibrium と呼べる。
+
+したがって VFT 上の需給調整は、正式な `E_i[ΔK]` と realized `ΔK` の一致最大化ではない。`E_i[ΔK]` は forecast であり、需給の中心は planned change `x_i` 間の compatibility にある。ただし動学的には、**期待に基づいて選ばれた planned change が、他主体との相互作用を通じて実現可能な resource change へ調整される過程**として読める。
 
 ### 期待変化の集約と余剰
 
@@ -299,7 +300,7 @@ VFT は「評価そのものが資源である」と一律に定義せず、**�
 
 ### 効用
 
-効用は独立した普遍的原始量とはせず、特定理論・目的で K / P / quantitative expectation をスカラーへ射影する表現として扱う候補とする。
+効用は独立した普遍的原始量とはせず、特定理論・目的で P に含まれる望ましさ・選好を resource outcome 上のスカラーへ射影する表現として扱う。utility maximization は resource-realization rule の projection-specific な特殊形として位置づける。
 
 ---
 
@@ -381,7 +382,7 @@ A_i -> change in P_j   (i != j)
 12. ΔK / ΔP / H の操作化
 13. `q_S : D_S -> V_S`
 14. `E_i[ΔK]` の expectation operator / 推定方法
-15. functional optimization hypothesis を使う場合の actor / objective / feasible set / time horizon / alternative hypothesis
+15. 3つの管理合理性を quantitative objective へ落とす場合の objective / feasible set / time horizon
 16. planned / chosen change `x_i` の定義と符号規約
 17. 価格・会計換算規則
 18. 主体別予算制約
