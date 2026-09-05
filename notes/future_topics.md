@@ -1,288 +1,146 @@
 # 価値場理論 — 拡張・再検討ノート
 
-> この文書は Core 定義ではなく、今後の展望・具体化候補・再検討事項を保存するためのノートである。
+> この文書は Core 定義ではなく、今後の展望・具体化候補・再検討事項を保存する。
 
-## 1. 集約と分布化
+## 1. K と K_i
 
-Core では、K は共通の resource / capital state、`K_i` は主体ごとの ownership / attribution、`P_i` / `A_i` は主体ごとの state / process として扱う。
+Core では、K は physical / real-resource state、`K_i` は B/S 上の actor-indexed book-value capital position とする。
 
 今後の検討候補：
 
-- どの条件で分布化が有効か
-- 平均・代表主体で失われる情報
-- 多峰性・非対称性
-- ネットワーク構造をどこまで残すか
-- ownership distribution と resource distribution の違い
-- shared P の推定と集約
-- micro observable から macro observable を再構成する条件
+- K の標準 resource coordinates
+- ownership / holding / attribution の形式化
+- joint ownership / overlapping attribution
+- recognition / valuation rule
+- book value / market value / replacement value の差
+- financial asset / liability position の表現
 
 ---
 
-## 2. K と K_i の表現粒度
+## 2. P/L と B/S
 
-K は resource / capital、`K_i` は主体 `i` に所有・保有・帰属する resource / capital とする。
-
-`K_i` は actor-relative access / usability view ではない。また、K / K_i の完全な真値を主体本人や観測者が常に把握できるとは仮定しない。
+P/L は期間中の physical / economic flow の monetary representation、B/S は actor-specific monetary stock representation とする。
 
 今後の検討候補：
 
-- K の標準次元を設けるか
-- physical resource / capital / human capital / knowledge / money の分解
-- ownership / possession / control / attribution の境界
-- 共有資産・共同所有の表現
-- liabilities / claims / financial capital の扱い
-- stock / flow の境界
-- K_i の測定誤差と未把握資産・債務
-- Marxian capital concept や conventional accounting capital との対応
-
----
-
-## 3. P と shared P
-
-P は主体ごとの subjective evaluation / expectation state とする。
-
-P はどれだけ共有されても主観状態である。shared P は、指定 actor set の P の共通性・整合性・分布を表す projection-local な構造として扱う。
-
-今後の検討候補：
-
-- P の標準次元を設けるか
-- belief / valuation / preference / trust / norm-expectation の型区分
-- shared P の定義：平均、重なり、支持率、consensus、common belief 等のどれを使うか
-- P 最大化を使う場合の actor set / dimension / proxy
-- P 真値が直接観測不可であることを前提にした measurement model
-- 契約・制度・規範認識と P の関係
-- `P_j(a)` の評価者・評価対象の識別
-- market outcome を P proxy に使う際の endogeneity
-
----
-
-## 4. 契約・制度・法的効力
-
-契約・制度は resource / capital そのものとして K へ押し込まず、法的・制度的事実、主体の主観、実現 resource change を分けて扱う。
-
-今後の検討候補：
-
-- legal validity / enforceability をどの layer で記述するか
-- contract event / legal record / institutional rule の observable representation
-- 履行期待・執行期待を P へどう落とすか
-- 契約履行・違反・制裁が ΔK に与える経路
-- shared P と institution stability の関係
-
----
-
-## 5. ΔK records と会計
-
-Core では `H` を置かず、一つの A が生む複数の ΔK を record / history として保持する。
-
-```text
-A
-├─ ΔK_1
-├─ ΔK_2
-└─ ...
-```
-
-これを accounting projection に写像すると、一般化された仕訳として利用できる。
-
-今後の検討候補：
-
-- ΔK record の標準的な identity / timestamp / actor / owner / resource coordinate
-- gross activity と net state change の再構成
-- double-entry accounting との対応
-- stock-flow consistency
+- physical flow → monetary measurement `μ`
 - recognition timing
-- transfer と transformation の識別
-- internal transfer の相殺規則
-- resource destruction / depreciation / depletion の記帳
+- P/L classification
+- P/L closing → B/S の接続
+- capital transaction / dividend / revaluation と period profit の分離
+- consolidation / elimination rule
 
 ---
 
-## 6. valuation / surplus / accumulation
+## 3. ΔK
 
-surplus は物理的 primitive ではなく、実現した ΔK records を valuation / bookkeeping rule で共通尺度化して得る accounting residual とする。
+`ΔK` は physical K に実現した resource change とし、bookkeeping entry とは区別する。
 
 今後の検討候補：
 
-- unit of account の選択
-- physical quantity と monetary valuation の関係
-- historical cost / market value / replacement cost 等の差
-- surplus / profit / income / wealth change の相互関係
-- consumer / producer surplus との対応
-- surplus attribution / distribution
-- surplus distribution → K_i(t+1) → accumulation の動学
-- nominal / real の射影
+- heterogeneous resource coordinates の表現
+- gross flow と endpoint net change の関係
+- production / consumption / depreciation / depletion のイベント表現
+- ΔK の partial observability
+- physical flow と P/L entry の対応
 
 ---
 
-## 7. 使用価値・労働価値・交換価値
+## 4. surplus / accumulation
 
-マルクス経済学の理論骨子を、規範・政治的結論を前提にせず VFT 上へ射影する。
-
-### 使用価値
+surplus は指定 accounting boundary で P/L monetary amounts を aggregation / consolidation した period increment / residual とする。
 
 今後の検討候補：
 
-- K が特定 A / transformation を可能にする「機能」をどう表現するか
-- physical productivity / capability と subjective utility の分離
-- use-value の多目的性
-- scarcity と use-value の分離
-
-### 労働価値
-
-今後の検討候補：
-
-- labor activity / labor time の標準表現
-- skill / intensity / productivity 補正
-- socially necessary labor time の benchmark 定義
-- direct / indirect labor の追跡
-- labor-value と monetary valuation の関係
-- labor-value を「唯一の価値源泉」とする必要があるかの理論分離
-
-### 交換価値
-
-今後の検討候補：
-
-- price / exchange ratio / accounting valuation の区別
-- use-value / labor input / exchange value の相互変換を普遍式にしない条件
-- market institution / bargaining / monopoly power 等の影響
+- accounting boundary
+- internal transfer elimination
+- surplus / profit / income / wealth change の関係
+- surplus attribution / retention / distribution
+- surplus → B/S K_i → capital accumulation の動学
 
 ---
 
-## 8. 期待変化 E[ΔK]
+## 5. P と shared P
 
-`E_i[ΔK]` は expected realized resource / capital change として扱う。
+P は subjective evaluation / expectation state とし、shared P は actor set 上の共通性・整合性・分布として推定する。
 
 今後の検討候補：
 
-- 多次元 ΔK に対する expectation representation
-- probability / scenario / qualitative forecast の接続
-- action-contingent forecast の conditioning
-- planned change と expected realized change の乖離
-- P 内の belief / outlook から forecast をどう生成するか
-- forecast error と learning
+- P の標準次元
+- belief / valuation / preference / trust / norm expectation
+- shared P の推定
+- market outcome を proxy に用いる際の endogeneity
+- 契約・制度への履行・執行期待
 
 ---
 
-## 9. 3つの管理合理性公理
+## 6. 3つの管理合理性公理
 
-現行 VFT は、
-
-1. resource-realization
-2. activity-flow
-3. P-downside
-
-を意思決定合理性の公理系として採用する。
+3則は constitutive rationality assumptions とする。
 
 今後の検討候補：
 
-- 3則の独立性・完備性・最小性
+- 独立性・完備性・最小性
 - 第4の独立合理性が必要になる条件
-- context-dependent priority / weight / constraint
+- projection-specific objective / priority / weight / constraint / threshold
 - actor / institution / hierarchy 間の機能分担
-- same action が複数則へ寄与するときの識別
-- resource-realization と long-run accumulation の関係
-- activity-flow と going-concern / growth / contraction の関係
-- P-downside と shared P / system viability の関係
-
-### P-downside
-
-P の客観的真値は置かない。今後の具体化では、
-
-- 誰の P を対象にするか
-- どの P 次元を対象にするか
-- shared P をどう推定するか
-- downside / unacceptable region / threshold をどう定義するか
-- rights / minimum guarantee / satisficing 等とどう接続するか
-
-を扱う。
+- empirical falsifiability の設計
 
 ---
 
-## 10. 自給自足・制度的分業・組織階層
+## 7. Marxian projection
 
-自給自足では単一 actor が3則すべてを担える。
-
-国家レベルの資本主義社会を粗視化すると、典型的には
-
-```text
-individuals -> resource-realization heavy
-firms       -> activity-flow heavy
-state       -> P-downside heavy
-```
-
-と見える。
+VFT は Marxian categories を一般化構造上に載せるが、Marx 固有理論は追加条件を持つ specialization とする。
 
 今後の検討候補：
 
-- 資本主義以外での分業パターン
-- household / cooperative / family business / commune の比較
-- crisis / growth / contraction での priority shift
-- operational / managerial / governance の階層差
-- state weakness 時に R3 を誰が担うか
+- use-value の機能表現
+- labor activity / labor time
+- socially necessary labor time の定義
+- direct / indirect labor
+- exchange-value / price との接続
+- Marxian surplus value と generic accounting surplus の差
+- reproduction / accumulation の formalization
 
 ---
 
-## 11. ミクロ／マクロ接続
+## 8. action-contingent forecast
 
-VFT は同じ common K 上でミクロとマクロを接続する。
-
-```text
-micro:
-(K_i, P_i) -> A_i -> ΔK records
-
-              ↓ same common K
-
-macro:
-ownership distribution
-production / consumption
-surplus distribution
-capital accumulation
-shared P
-```
+`E_i[ΔK(S,τ) | a,I_i]` の `|a` は action-contingent forecast の略記とする。
 
 今後の検討候補：
 
-- micro ΔK records から macro accounting aggregate を再構成する方法
-- ownership distribution と capital accumulation の接続
-- shared P と macro demand / investment / credit conditions の接続
-- distributional accounting
-- macro observable から micro structure をどこまで逆推定できるか
-- policy A → P_i → A_i → ΔK → macro aggregate の識別
+- causal semantics が必要な場合の `ΔK^a` 等への拡張
+- observational expectation との識別
+- scenario / qualitative forecast との接続
 
 ---
 
-## 12. 既存経済学との接続
-
-utility / profit は3則の特殊化ではなく、decision evaluation の指標・関数として扱う。
+## 9. ミクロ／マクロ
 
 今後の検討候補：
 
-- utility と use-value の明示的分離
-- profit と surplus の分離
-- budget constraint / compatibility / market equilibrium の射影
-- supply / demand と planned resource change の関係
-- mainstream micro / macro と Marxian accounting structure の共通表現
-- real / nominal / physical / accounting のレイヤー分離
+- micro physical flow → macro physical aggregate
+- P/L consolidation
+- B/S capital distribution
+- ownership concentration
+- shared P と macro demand / investment / credit の関係
+- policy A → P_i → A_i → physical flow → P/L → B/S の識別
 
 ---
 
-## 13. 実証・計量化
+## 10. 実証・計量化
 
-今後の具体化候補：
-
-- K / K_i の partial observability
+- physical K / ΔK measurement
+- P/L event log
+- B/S K_i measurement
 - ownership / attribution measurement
-- P / shared P の proxy design
-- A / ΔK record の event log
-- valuation / bookkeeping mapping
+- P / shared P proxy
 - surplus / accumulation measurement
-- labor activity / labor-time measurement
+- labor-time measurement
 - use-value capability measurement
-- planned / expected / realized change の分離
-- actor/context ごとの3則 priority 推定
+- 3則の projection-specific estimation
 - micro / macro accounting consistency
-- ケーススタディ
-- パネルデータ
-- structural estimation / simulation
 
 ---
 

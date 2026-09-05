@@ -6,61 +6,45 @@ authors:
     given-names: "T."
     affiliation: "Independent Researcher"
 abstract: >
-  Value-Field Theory (VFT) is a structural framework for describing economic
-  and social change through a common resource-and-capital state K,
-  actor-specific owned or attributed resource-and-capital states K_i,
-  subjective evaluation and expectation states P_i, actor-side processes and
-  events A_i, and realized resource-and-capital changes Delta K. K_i denotes
-  ownership, holding, or attribution rather than an actor's subjective access
-  or usability belief; actors and observers are not assumed to know K_i
-  completely. P_i remains subjective even when similar expectations, norms,
-  contracts, or institutional beliefs are widely shared; shared P is therefore
-  treated as a collective pattern inferred from actor-specific P rather than an
-  objective social-value truth. Contracts and institutions are not folded into
-  K merely because they have external or legal existence. Their records and
-  events can be observed, their interpretation and expected enforcement can be
-  represented in P, and realized resource transfers caused by enforcement are
-  represented as Delta K. A single action may produce multiple Delta K records.
-  These records can be interpreted as a generalized bookkeeping trace of
-  resource and capital transformation. When heterogeneous realized changes are
-  mapped through a specified valuation and bookkeeping rule and aggregated
-  within an accounting boundary, the final residual can be represented as
-  surplus or deficit. Surplus is therefore a derived accounting quantity rather
-  than a physical primitive. No separate interval-activity variable is required
-  by the Core; gross activity can be reconstructed from action and Delta K event
-  histories when needed. Expected realized change E_i[Delta K] is kept distinct
-  from preference and planned change. Micro and macro descriptions refer to the
-  same common K: actor-level decisions and Delta K records alter ownership and
-  capital distributions, while macro projections aggregate the same records
-  under broader accounting boundaries. Economic projections can distinguish
-  use-value, labor-value measures, exchange value or price, surplus, and capital
-  accumulation without imposing a political or normative conclusion as a Core
-  axiom. Above this representation, VFT adopts three management rationality
-  axioms for decision-making: resource-realization, activity-flow, and
-  P-downside. Their priority and division vary by context, role, institution,
-  organizational structure, and time horizon. VFT does not fix a universal
-  probability measure, expectation-formation equation, deterministic
-  action-selection function, state-transition law, ownership rule, valuation
-  rule, surplus equation, market-equilibrium condition, rationality weighting
-  rule, or micro-to-macro aggregation law.
+  Value-Field Theory (VFT) distinguishes a physical or real-resource state K
+  from actor-indexed book-value capital positions K_i represented on balance
+  sheets in monetary units. K_i is not a subset or partition of K; it is an
+  actor-indexed monetary representation produced through ownership or
+  attribution, recognition, valuation, and bookkeeping. Subjective evaluation
+  and expectation states P_i condition actor-side processes and events A_i.
+  Realized Delta K refers to resource change on the physical side and is kept
+  distinct from accounting entries. Period physical and economic flows are
+  mapped into monetary units and represented on profit-and-loss accounts; those
+  monetary period amounts connect through closing, attribution, distribution,
+  and other accounting rules to balance-sheet capital positions K_i. Surplus is
+  therefore treated as an accounting-derived period increment or residual within
+  a specified accounting and consolidation boundary, rather than as a physical
+  primitive. Financial assets such as deposits, bonds, and receivables can be
+  represented as recognized and valued balance-sheet positions K_i without
+  treating their underlying contracts or legal relations themselves as physical
+  K. VFT adopts resource-realization, activity-flow, and P-downside as
+  constitutive rationality assumptions; empirically testable hypotheses arise
+  only after projection-specific objectives, priorities, constraints, thresholds,
+  or horizons are specified. Marxian categories such as use-value, labor,
+  exchange-value, surplus, and accumulation can be represented on VFT, while
+  Marx-specific value theory requires projection-specific conditions such as
+  socially necessary labor time. Micro and macro descriptions connect the same
+  physical K to monetary P/L and B/S representations through explicit
+  measurement, ownership, valuation, and consolidation rules.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
   - value-field theory
-  - resource and capital state
-  - ownership distribution
-  - subjective evaluation
-  - expectation state
-  - shared expectations
-  - realized resource change
-  - generalized bookkeeping
+  - physical resource state
+  - book-value capital
+  - balance sheet
+  - profit and loss
+  - monetary measurement
   - accounting surplus
+  - ownership attribution
+  - subjective expectation
+  - rationality axioms
   - use-value
   - labor-value
   - capital accumulation
-  - rationality axioms
-  - activity-flow
   - micro-macro linkage
-  - actor-side process
-  - economic projection
-  - social dynamics

@@ -8,229 +8,207 @@ License: **CC BY 4.0**
 
 ## 1. 概要
 
-価値場理論（Value-Field Theory; VFT）は、個人・組織・社会で生じる変化を、**共通の資源・資本 K、主体ごとの保有・帰属 K_i、各主体が保持する主観的な評価・期待状態 P_i、および actor-side process / event A_i** の関係として記述する構造的フレームワークである。
+価値場理論（Value-Field Theory; VFT）は、個人・組織・社会で生じる変化を、**実物・物理側の資源状態 K、主体別の簿価資本状態 K_i、主体ごとの主観的評価・期待状態 P_i、actor-side process / event A_i** の関係として記述する構造的フレームワークである。
 
-VFT Core は普遍的な deterministic choice function、状態遷移則、均衡則、会計則を固定しない。その上に、管理・意思決定を記述するための **3つの管理合理性公理**を置く。
-
-### K / K_i
-
-- **K**：資源・資本の状態
-- **K_i**：そのうち主体 `i` に所有・保有・帰属すると扱う資源・資本
-
-`K_i` は actor が「利用可能だと認識している K」ではない。その認識は P に属する。また、K / K_i の完全な真値を主体本人や観測者が常に把握できるとは仮定しない。
-
-K を「外部に実在するものすべて」へ拡張しない。契約、制度、規範、権利関係等を、それだけを理由に K へ含めず、K は resource / capital に限定する。
-
-### P
-
-各 `P_i,t` は、主体 `i` が保持する将来見通し、評価、選好、信用、信念、規範認識等からなる **subjective evaluation / expectation state** である。
-
-P は多数主体に共有されても主観状態であることをやめない。契約や制度も、経済行動を条件づける共有された規範認識・履行期待・執行期待等として P 側で扱いうる。共有 P は客観的な社会価値の真値ではなく、複数主体の P の共通性・整合性として記述・推定する。
-
-P の真値は直接観測できるとは仮定せず、必要な projection で proxy を用いる。
-
-### ΔK と期待値
-
-`ΔK` は、K の利用・移転・変換・消費・生成等の結果として**実現した資源・資本変化**を表す。
-
-主体は行為前に、その結果として生じる ΔK について期待を持ちうる。
+VFT は、実物世界と通貨・会計世界を同一視しない。
 
 ```text
-E_i[ΔK(S, τ)]
-```
-
-これは expected realized resource / capital change であり、desire / preference / plan とは区別する。
-
----
-
-## 2. コア変数
-
-```text
+physical / resource world
 K_t
-(K_i,t)_{i in I}
-P_t = (P_i,t)_{i in I}
-A_τ = (A_i,τ)_{i in I}
+  ↓ A_i
+physical flows / transformations
+  ↓ monetary measurement / bookkeeping
+P/L representation
+  ↓ period aggregation / closing / attribution
+B/S representation: (K_i,t)_i
 ```
 
-- **K**：共通の resource / capital state
-- **K_i**：主体 `i` に所有・保有・帰属する resource / capital
+- **K**：生産・消費・労働・利用・変換等の対象となる実物・物理側の resource state
+- **K_i**：主体 `i` の所有・保有・帰属を、B/S 上で通貨単位により定量表現した book-value capital position
 - **P_i**：主体 `i` の subjective evaluation / expectation state
 - **A_i**：主体 `i` 側で生じる process / event
-- **ΔK**：A 等の結果として実現した resource / capital change
-- **ΔP_i**：主体 `i` の P に実現した変化
+- **ΔK**：K に実現した resource change
+- **ΔP_i**：主体 `i` の主観状態 P_i に実現した変化
 - **E_i[ΔK]**：実現 ΔK について主体 `i` が形成する forecast
 
-### ΔK record と会計
+`K_i` は K の subset / partition ではない。common K に ownership / holding / attribution と monetary valuation / bookkeeping を適用した **actor-indexed monetary representation** であり、共同所有・重複帰属・複雑な attribution を排除しない。
 
-一つの A が複数の資源変化を生む場合、それぞれを ΔK record として保持する。
+---
+
+## 2. 実物側 K と会計側 K_i
+
+### K：実物・物理側
+
+K は、経済活動の対象となる資源状態を表す。設備、原材料、製品、土地、時間、身体、技能、知識、労働力、エネルギー等を projection に応じて含みうる。
+
+K を「外部に実在するものすべて」へ拡張しない。契約、制度、規範、権利関係、金融 claim の法的構造等は、それだけを理由に K へ含めない。
+
+### K_i：B/S 側の簿価資本
+
+`K_i` は、主体 `i` の資本 position を B/S 上の通貨単位で表現したものとする。
 
 ```text
-A
-├─ material       -10
-├─ labor input     -5
-├─ equipment wear  -2
-└─ product         +20
-```
-
-区間活動量を表すための独立変数 `H` は Core に置かない。gross activity が必要なら、区間内の A と ΔK records の系列を利用する。
-
-異質な ΔK はそのまま加算できない場合がある。指定した valuation / bookkeeping rule と accounting boundary で共通尺度へ写像し、差し引いた最終差分を surplus / deficit として扱える。
-
-```text
-realized ΔK records
+common K / economic events
+        ↓ ownership / attribution
         ↓ valuation / bookkeeping
-accounting entries
-        ↓ aggregation
-surplus / deficit
+      K_i  (B/S)
 ```
 
-surplus は K の primitive でも物理世界に独立して存在する物体でもなく、**実現した資源・資本変化の会計的派生量**である。
+したがって `K_i` は K の物理的 slice ではなく、K と経済事象を所有・帰属・評価・記帳した結果である。
+
+金融資産もこの層で扱う。例えば預金、債券、売掛債権等は、それを成立させる契約・法的権利そのものを K とみなすのではなく、**会計 projection が financial asset position として認識・評価した B/S 上の K_i** として表現できる。
 
 ---
 
-## 3. K / P / A の時間型
+## 3. P：主観的評価・期待 state
 
-主体側の主要な時間型は、普遍的な状態遷移関数を固定せず、
+各 `P_i,t` は、将来見通し、評価、選好、信用、信念、規範認識等からなる subjective state である。
+
+P は多数主体に共有されても主観状態である。shared P は複数主体の P の共通性・整合性・分布として記述・推定し、客観的な社会価値の真値とはみなさない。
+
+契約や制度についても、
+
+- 法的・制度的 event / record
+- その履行・執行・継続を主体がどう期待するかという P
+- 実際に生じた resource change / accounting effect
+
+を分けて扱う。
+
+---
+
+## 4. A / ΔK と P/L・B/S 接続
+
+A は生産、消費、交換、投資、労働、移転、契約、政策等の actor-side process / event を表す。
+
+`ΔK` は A 等により K に実現した resource change である。**ΔK は必ずしも `K(t1)-K(t0)` という単一の interval endpoint difference を意味しない。** 異質な資源については各 resource coordinate の実現変化として扱い、必要に応じて endpoint の net change を別途集約する。
+
+物理世界で生じた期間中の activity / flow は、通貨単位へ計量されることで P/L に接続する。
 
 ```text
-(K_t0, P_t0)
-      ↓ conditions
-A_(t0,t1]
-      ↓ realized processes / resource use
-(K_t1, P_t1)
+physical K
+   ↓ A
+physical flows / resource changes
+   ↓ monetary measurement μ
+P/L entries
+   ↓ period aggregation
+profit / loss / surplus measure
+   ↓ closing / attribution / distribution
+B/S positions K_i
 ```
 
-と置く。
+ここで、
 
-K には減価償却、自然損耗、災害等、A を介さない変化もありうる。
+- **P/L 側**：期間中に物理・実物世界で起きた activity / flow を通貨単位で表現する
+- **B/S 側**：主体別の資本 stock / position を抽象的な通貨単位で表現する
+- **monetary unit**：P/L と B/S を接続する共通の計量単位
+
+とする。
+
+surplus は物理世界の primitive ではない。指定した accounting boundary で P/L 上の通貨的増減を集約・相殺・計量した residual / increment として扱う。surplus の帰属・留保・分配は次期 `K_i` を変化させる。
 
 ---
 
-## 4. 3つの管理合理性公理
+## 5. 3つの管理合理性公理
 
-VFT の管理・意思決定記述では、合理性を次の3則へ集約する。
+VFT の意思決定合理性は次の3則へ集約する。
 
 1. **resource-realization rule**：望ましい resource / capital outcome の実現へ向けて A を動かす。
 2. **activity-flow rule**：必要な activity / process の流れを維持・拡張できるよう K / P / A を調整する。
 3. **P-downside rule**：P 側の大幅な毀損により主体・組織・系の A が成立しなくなることを防ぐ。
 
-3則は actor type ではなく、**意思決定合理性の公理系**である。同一 actor が3則を同時に考慮しうる。
+3則は経験的普遍法則ではなく、**VFT の decision model を構成する constitutive rationality assumptions** である。経験的に検証可能な仮説は、projection 側で objective / weight / constraint / threshold / horizon 等を具体化して形成する。
 
-3則の比重・優先順位は actor、文脈、制度、役割、組織構造、時間 horizon によって変わる。
-
-自給自足では単一 actor が3則をすべて担える。国家レベルの資本主義社会を粗視化すると、典型的には
-
-```text
-individuals -> resource-realization heavy
-firms       -> activity-flow heavy
-state       -> P-downside heavy
-```
-
-と分化して見えるが、固定的な actor-type assignment ではない。
+3則は actor type ではない。同一 actor が3則を同時に考慮し、文脈・制度・役割・時間 horizon に応じて比重・分担が変わる。
 
 ---
 
-## 5. 経済学への射影
+## 6. 経済学への射影
 
 ### plan / choice と forecast
 
-必要な economic projection では、A に含まれる planned / chosen net resource change を `x_i` と書ける。
+必要な economic projection では planned / chosen resource change を `x_i` と書ける。
 
 ```text
 x_i          = planned / chosen resource change
 E_i[ΔK(...)] = expected realized resource change
 ```
 
-予算制約・feasibility は plan / choice 側へ置き、forecast と区別する。
+`E_i[ΔK(S,τ) | a, I_i]` の `| a` は observational conditioning を意味せず、candidate action `a` を採った場合について主体が形成する **action-contingent forecast** の略記である。
 
-### compatibility / market equilibrium / 会計整合
+### Marxian categories
 
-- **inter-agent compatibility / feasibility**：各主体の plan が相互に実行可能・両立可能であること
-- **market equilibrium**：compatibility に加え、射影先理論の choice / optimality / best response / clearing 条件が成立すること
-- **会計整合**：同じ実現事象を同一 accounting boundary / rule で記帳した結果が整合すること
-- **定常状態**：対象 K の増減等について別途定める状態条件
+VFT は、Marxian economics が区別した use-value / labor / exchange-value / surplus / accumulation を一般化された構造上で表現できる。一方、Marx 固有の value theory は projection-specific な追加条件を必要とする。
 
-これらは別概念として扱う。
+- **use-value**：K が特定の A / transformation を可能にする機能・有用性
+- **labor measure**：labor activity / labor time による production flow の記述
+- **Marxian labor-value projection**：socially necessary labor time 等の追加条件を導入した specialization
+- **exchange-value / price**：market / monetary valuation
+- **surplus**：指定した P/L accounting boundary と monetary measurement に基づく期間増分
+- **accumulation / distribution**：surplus の帰属・留保・分配を通じた B/S 上の `K_i` の変化
 
-### 使用価値・労働価値・交換価値・余剰
-
-VFT は、マルクス経済学が区別した経済現象の骨格を、特定の政治的・規範的結論を前提にせず射影できる。
-
-- **使用価値**：K が特定目的の A / resource transformation を可能にする機能・有用性
-- **労働価値**：生産・変換過程へ投入された labor activity / labor time を価値記述の尺度として用いる射影
-- **交換価値・価格**：市場交換・会計上の valuation / representation
-- **余剰**：実現した複数の ΔK を指定した valuation / accounting rule で共通尺度化し、差し引いた最終 accounting residual
-
-使用価値、労働投入、価格、利益、余剰を一つの “value” に潰さず、同じ K / P / A / ΔK 構造上で比較する。
+したがって generic labor time をそのまま Marxian value と同一視せず、generic surplus をそのまま Marxian surplus value とも同一視しない。
 
 ### ミクロ／マクロ接続
 
-ミクロとマクロは別々の K ではない。
-
 ```text
-micro:
-(K_i, P_i) -> A_i -> ΔK records
+micro
+K, K_i, P_i
+    ↓
+   A_i
+    ↓
+physical flows
+    ↓ monetary measurement
+P/L_i
+    ↓ closing / attribution
+K_i(t+1)
 
-              ↓ same common K
+          ↓ aggregation / consolidation
 
-macro:
-ownership distribution / production / accumulation / shared P
+macro
+physical production / consumption
+capital-stock distribution
+aggregate P/L increment / surplus
+capital accumulation
+shared P
 ```
 
-個別主体の A_i が同じ K の構成・所有分布を変え、その結果を異なる accounting boundary / aggregation scope から観測することでミクロとマクロを接続する。
-
-surplus の帰属・分配が次期 K_i を変えるなら、個別主体の蓄積と社会全体の資本構成を同じ系列で追跡できる。
-
-### utility / profit / supply-demand
-
-utility / profit 等は3則の特殊化ではなく、具体的な意思決定を数量化・評価するときの関数・指標・proxy として扱う。
-
-price / supply / demand / market equilibrium は複数主体の planned change を相互調整する economic mechanism であり、第4の合理性公理ではない。
+ミクロとマクロは、同じ physical K と、そこから会計的に形成される主体別 P/L・B/S 表現を異なる scope で観測・集約することで接続する。
 
 ---
 
-## 6. 計測
+## 7. compatibility / equilibrium / accounting
 
-VFT は K / K_i / P / ΔK の完全観測を前提としない。
+- **inter-agent compatibility / feasibility**：各主体の plan が相互に実行可能・両立可能であること
+- **market equilibrium**：compatibility に加え、射影先理論の choice / optimality / best response / clearing 条件が成立すること
+- **accounting consistency**：同じ economic event を指定した recognition / valuation / consolidation rule で記帳した結果が整合すること
+- **steady state**：対象状態について別途定める動学条件
 
-- K / K_i：会計記録、資産台帳、物量観測等から部分的に把握
-- P_i：調査、発話、選択、信用・期待 proxy 等から推定
-- shared P：複数主体の P proxy の共通性・分布として推定
-- A_i：外部 event は直接観測できる場合があり、内部 decision / interpretation は proxy を要する
-- ΔK：記帳または利用後の最終結果からトレース
-- surplus：指定した会計・評価規則により ΔK records を集約して算出
+これらは別概念である。
 
 ---
 
-## 7. スケールと理論境界
+## 8. 理論境界
 
-個人・組織・社会・文明を、固定された独立実体ではなく、観測スケールと accounting / ownership boundary の違いとして扱う。
+VFT Core は以下を普遍的に固定しない。
 
-価値場理論は、以下を普遍的に固定しない。
-
-- K / P / A の単一スカラー化
-- K_i の普遍的な所有・帰属判定関数
-- K / P の完全観測可能性
-- A の普遍的 deterministic choice function
-- E[ΔK] の普遍的形成式・確率測度
-- ΔK records の普遍的会計・評価・集約則
-- surplus / profit / price / labor-value の普遍的換算式
-- 3則を数量化する具体的 objective / weight / priority rule
-- inter-agent compatibility / market equilibrium の普遍的条件
-- ミクロ／マクロの普遍的 aggregation rule
-- 特定の観測方法・proxy・統計手法
+- K の標準 resource coordinates
+- monetary measurement / valuation function
+- B/S 上の ownership / attribution / recognition rule
+- P/L / B/S の具体的 accounting standard
+- surplus の普遍的算出式
+- P の普遍的更新式
+- A の deterministic choice function
+- E[ΔK] の確率測度・期待形成式
+- 3則の objective / weight / priority / threshold
+- market equilibrium の普遍的条件
+- micro-to-macro aggregation / consolidation rule
 
 ---
 
-## 8. ドキュメント
-
-### Core
+## 9. ドキュメント
 
 - [モデルノート](docs/01_model_notes.md)
 - [計測](docs/02_measurement.md)
-
-### Notes / 今後の展望・応用
-
 - [背景・整理経緯](notes/background.md)
 - [既存概念・応用への射影](notes/projections.md)
 - [拡張・再検討ノート](notes/future_topics.md)
