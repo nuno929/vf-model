@@ -9,34 +9,40 @@ abstract: >
   Value-Field Theory (VFT) models economic and organizational activity through
   a physical or real-resource state K, actor-specific exchange-value and capital
   representations K_i, structured subjective states P_i, and actor-side actions
-  or processes A_i. The field is not an independent scalar value; it is the
-  actor-resource configuration of resources, subjective states, capital
-  representations, relations, and constraints that conditions, induces, and
-  reproduces action. VFT distinguishes realized use-value from exchange-value:
-  use-value quantity refers to utility realized through use over an interval,
-  while exchange-value is a comparative representation that may describe both
-  point-in-time positions and interval transactions. These two value semantics
-  are therefore not identified one-to-one with stock and flow. Delta K denotes
-  endpoint change in the physical resource state, while gross interval activity
-  remains in the action or event history. K_i is not a subset or partition of K
-  and is not identified with a balance sheet; formal ledgers, profit-and-loss
-  accounts, and balance sheets are accounting projections that may implement
-  actor-specific monetary representations under explicit recognition, valuation,
-  and accounting rules. Surplus is not a physical primitive but a difference or
-  residual that becomes defined after physical or use-value activity is mapped
-  into a comparable exchange-value scale. Subjective forecasts of resource-state
-  change are derived from the belief or expectation component of P_i and are
-  kept distinct from preference and plan. VFT defines a business entity as a
-  local action-generating field structure that continuously induces and
-  reproduces activity, allowing firms, NPOs, public businesses, and state or
-  municipal activities to be described without making profit maximization the
-  universal definition of business. Entrepreneurship and new-business
-  development can therefore be represented as field formation, while existing
-  business operation is field maintenance, reproduction, and improvement. VFT
-  retains resource-realization, activity-flow, and P-downside as constitutive
-  rationality assumptions and allows Marxian categories such as use-value,
-  labor, exchange-value, surplus, and accumulation to be represented through
-  projection-specific specializations.
+  or processes A_i. The field is not an independent scalar value; it is a
+  derived action-generating configuration over K, K_i, P_i, and
+  projection-specified relations and constraints. VFT distinguishes physical
+  capability, realized use experience, and exchange-value representation.
+  VFT-specific use-value quantity is defined as an interval-indexed subjective
+  outcome realized through actual resource use and attributed to that use
+  experience; it is not identified with physical stock or technical service
+  potential, and general reproducibility or interval additivity is not assumed.
+  Instantaneous rates may be introduced as limiting or differential
+  representations in specific projections without treating them as point-in-time
+  stock valuations. This interval form is P/L-like only as a temporal analogy.
+  Exchange-value is a comparative representation that may describe both
+  point-in-time positions and interval transactions. Endpoint resource change is
+  represented by a projection-defined difference operator delta_K, with ordinary
+  subtraction only as an additive special case, while gross interval activity
+  remains in action or event histories. Generic actor forecasts are represented
+  without imposing a probability measure or causal semantics in the Core and may
+  be specialized to conditional expectations in particular projections. K_i is
+  not a subset or partition of K and is not identified with a balance sheet;
+  formal ledgers, profit-and-loss accounts, and balance sheets are accounting
+  projections under explicit recognition, valuation, and accounting rules.
+  Surplus is not a physical primitive but a residual defined by mapping specified
+  economic changes into a comparable exchange-value scale under a specified
+  comparison boundary. VFT defines a business entity as a local action-generating
+  field structure that continuously induces and reproduces activity, allowing
+  firms, NPOs, public businesses, and state or municipal activities to be
+  described without making profit maximization the universal definition of
+  business. Entrepreneurship is treated as a type of business-oriented field
+  formation. VFT retains resource-realization, activity-flow, and P-downside as
+  constitutive rationality assumptions; resource-realization may include realized
+  use outcomes, while P-downside is defined through projection-specific
+  viability criteria rather than a universal ordering of subjective state. VFT
+  allows Marxian categories such as use-value, labor, exchange-value, surplus,
+  and accumulation to be represented through projection-specific specializations.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
