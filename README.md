@@ -10,18 +10,22 @@ License: **CC BY 4.0**
 
 価値場理論（Value-Field Theory; VFT）は、個人・組織・社会で生じる変化を、**実物・物理側の資源状態 K、主体別の交換価値・資本表現 K_i、主体ごとの主観的評価・期待状態 P_i、actor-side process / event A_i** の関係として記述する構造的フレームワークである。
 
-VFT における **field（場）** は独立した価値スカラーではない。ある時点における K、各主体の K_i / P_i と projection-specified な主体間・資源間の関係・制約から導かれる配置構造であり、**その配置が主体の A を条件づけ、誘発し、継続的に再生産する**ことを指す。
+VFT における **field（場）** は独立した価値スカラーではない。ある時点における K、各主体の K_i / P_i と projection-specified な主体間・資源間の関係・制約から導かれる **action-generating configuration** を指す。
 
 ```text
-field state
-K_t, (K_i,t)_i, (P_i,t)_i, projection-specified relations / constraints
-        ↓ induces / conditions
+F_t
+= configuration(K_t, (K_i,t)_i, (P_i,t)_i ; projection-specified relations / constraints)
+        ↓
+Γ_i(F_t) = feasible / inducible action set
+        ↓
       (A_i)_i
         ↓
 resource use / transformation / exchange / learning
         ↓
 K_t+1, K_i,t+1, P_i,t+1
 ```
+
+`F_t` や `Γ_i` は field の意味を示す derived notation であり、新たな universal state primitive や deterministic choice function を追加するものではない。
 
 VFT Core は、普遍的な deterministic choice function、会計則、均衡則、利益最大化則を固定しない。
 
@@ -33,8 +37,8 @@ VFT Core は、普遍的な deterministic choice function、会計則、均衡�
 - **K_i**：主体 `i` が保持する actor-specific exchange-value / capital stock representation
 - **P_i**：主体 `i` の structured subjective evaluation / expectation state
 - **A_i**：主体 `i` 側で生じる action / process / event
-- **ΔK**：区間端点における physical K の net state change
-- **E_i[ΔK]**：主体 `i` が形成する expected realized resource-state change
+- **ΔK_τ**：projection-defined endpoint resource-state difference
+- **ΔK̂_i(a; I_i)**：主体 `i` が action `a` と情報 `I_i` に基づいて形成する generic forecast of ΔK
 
 `K_i` は K の subset / partition ではない。common K と economic events に ownership / holding / attribution、recognition、valuation 等を適用した actor-indexed exchange-value / capital representation であり、共同所有・重複帰属・複雑な attribution を排除しない。
 
@@ -50,56 +54,64 @@ K を「外部に実在するものすべて」へ拡張しない。契約、制
 
 契約・制度そのものの客観状態が必要な projection では、institutional / legal state を projection-local に追加してよい。Core はその専用 state を必須 primitive としない。
 
+K の変化は A だけから生じるとは仮定しない。自然劣化、災害、偶発的故障等の exogenous / environmental process が必要な projection では `Ω_τ` 等を追加できる。
+
 ---
 
-## 4. 使用価値と交換価値の二重表現
+## 4. 使用価値と交換価値
 
-同一 resource は、主体にとって use-value side と exchange-value side の二重表現を持ちうる。
+同一 resource について、少なくとも次の表現を区別する。
 
 ```text
 same resource r
-├─ use-value      : 実際の利用を通じてどの程度の効用を実現したか
-└─ exchange-value : 他の resource / money とどの程度交換可能と評価されるか
+├─ physical state / capability      → K
+├─ realized use experience          → use-value quantity
+└─ comparative exchange representation → exchange-value / K_i
 ```
 
 ### use-value quantity
 
-VFT における **use-value quantity** は、resource stock 自体や technical service potential ではなく、**主体がある期間内にその resource を実際に利用・消費し、体験として実現した主観的効用量**を指す。
+VFT における **use-value quantity** は、resource stock 自体や technical service potential ではなく、**主体がある interval 内にその resource を実際に利用・消費し、その経験に帰属される形で realized した主観的効用量**を指す。
 
-したがって use-value quantity は resource に内在する固定量ではなく、**interval を指定しない時点量としては評価できない**。physical stock / capability は K として時点観測できるが、それは use-value quantity そのものではない。
+VFT は potential / capability と realized experience を混同しないため、use-value quantity を **interval-indexed outcome** として定義する。時点で観測できる physical stock / capability は K であり、瞬間的な快・満足等の subjective state を観測できるとしても、それ自体を当該 resource の use-value quantity とはみなさない。
 
-同じ主体・同じ resource・同じ利用量であっても、充足状態、利用順序、文脈、他の経験等によって体験結果は変わりうる。限界効用逓減もこの一例である。このため use-value quantity には一般的な再現性を仮定せず、実際の利用後にのみ realized value として観測できる。
-
-離散時間で時点 `t` を考える場合、`t` で直接参照できる use-value は前区間までに実現した flow である。
+同じ主体・同じ resource・同じ利用量であっても、充足状態、利用順序、文脈、他の経験等によって realized outcome は変わりうる。限界効用逓減もこの一例である。そのため、use-value quantity に一般的な再現性や interval 間の加法性を仮定しない。
 
 ```text
-previous interval
-actual use / consumption
+actual use over τ=(t0,t1]
         ↓
-realized subjective use-value
+subjective experience / fulfillment
         ↓
-P_i,t update / reference
-        ↓
-expected future use-value
+U^use_i(τ) = realized use-value quantity
 ```
 
-将来区間の use-value はまだ実現していないため、それ自体を時点 stock として保持するのではなく、P_i の belief / expectation として予測される。つまり **realized use-value は interval outcome、future use-value は P 上の expectation** と区別する。
+離散時間で時点 `t` を考える場合、時点 `t` で参照できるのは前区間までに realized した use-value outcome である。
 
-この意味で VFT-specific use-value quantity は **P/L-like** である。ここで P/L-like とする理由は、単に「flow に見える」からではなく、**主観的体験価値であるため point-in-time valuation が成立せず、区間内で realized した値としてしか評価できない**からである。これは時間形式についてのアナロジーであり、use-value quantity を会計上の P/L entry と同一視するものではない。
+```text
+U^use_i((t-1,t])
+        ↓
+reference / update of P_i,t
+        ↓
+expectation about future use
+```
+
+将来区間の use-value はまだ realized していないため、それ自体を use-value quantity として保持せず、P_i 上の belief / expectation として表現する。
+
+瞬間的な use-value rate を必要とする projection では、interval quantity の極限・微分的表現として導入してよい。ただし、それを point-in-time stock valuation とは扱わない。
+
+この時間形式は **P/L-like** である。すなわち VFT-specific use-value quantity は point-in-time stock ではなく、区間内に realized した outcome として評価される。P/L-like はあくまで時間形式についてのアナロジーであり、use-value quantity を会計上の P/L entry と同一視しない。
 
 ### exchange-value representation
 
-exchange-value は、resource を他の resource / money との比較関係から共通尺度へ写像した表現である。
+exchange-value は、resource を他の resource / money との比較関係から共通尺度へ写像した representation である。
 
 exchange-value は、時点の資本 position `K_i` としても、取引・売上・費用等の期間 event valuation としても現れうる。したがって **use-value / exchange-value と stock / flow を完全な一対一対応とはしない**。
 
-ただし VFT 固有の use-value quantity は interval realization としてのみ扱う。一方、異質な resource stock を共通交換尺度で比較・集計する場合、その評価は use-value quantity ではなく exchange-value representation に属する。
+ただし VFT-specific use-value quantity は interval realization としてのみ定義する。一方、異質な resource stock を共通交換尺度で比較・集計する場合、その評価は use-value quantity ではなく exchange-value representation に属する。
 
-### 複式簿記アナロジー
+### 会計アナロジー
 
-各主体が同一 resource を「利用可能性」と「交換可能性」の二側面から捉える構造は複式簿記を想起させる。
-
-ただし、これは **説明上のアナロジー** である。VFT は全主体が借方・貸方や会計恒等式を内的認知構造として保持すると仮定しない。個人では感覚的な利用可能量・交換可能量として、企業では在庫管理・評価・会計原則等によって形式化されうる。
+VFT は、同一 resource について physical capability、realized use experience、exchange-value representation を区別して記述する。このように複数の表現を併存させる構造は会計的な多面的記述を想起させるが、**借方・貸方や複式簿記との対応を Core の構造として仮定しない**。
 
 ---
 
@@ -109,9 +121,20 @@ exchange-value は、時点の資本 position `K_i` としても、取引・売�
 
 P はどれだけ共有されても主観状態である。shared P は複数主体の P の共通性・整合性・分布として扱い、客観的な社会価値の真値とはみなさない。
 
-`E_i[ΔK | a, I_i]` は P_i と別の主観世界ではなく、**P_i の belief / expectation component と情報集合 I_i から導出される action-contingent forecast** とする。desire / preference / plan とは区別する。
+`ΔK̂_i(a; I_i)` は P_i の belief / expectation component と情報集合 I_i から導出される generic action-contingent forecast であり、desire / preference / plan とは区別する。確率構造や causal model を採用する projection では、これを条件付き期待値等として specialize してよい。
 
-加工・変換によって同一由来の resource でも利用可能性は変化する。加工後の use-value は事前に確定した真値として存在するのではなく、利用後の体験として実現し、その結果が P_i を更新する。
+P_i に含まれる `valuation` と K_i の valuation は別物である。
+
+```text
+P_i valuation
+= subjective desirability / appraisal / belief-side evaluation
+
+K_i valuation
+= exchange-value representation produced under specified
+  recognition / comparison / unit-of-account / valuation rules
+```
+
+加工・変換によって同一由来の resource でも利用可能性は変化する。加工後 use-value quantity は加工時点で確定せず、後続 interval の実利用経験として realized し、その結果が P_i を更新する。
 
 ```text
 K_t
@@ -123,8 +146,6 @@ realized subjective use-value
 P_i,t -> P_i,t1
 ```
 
-この経路により、主体は「どの A がどの利用可能状態と体験結果を生むか」という期待を、前区間までの実現結果から更新する。
-
 ---
 
 ## 6. A と ΔK
@@ -133,13 +154,23 @@ A は、生産、消費、交換、投資、労働、移転、契約、政策、
 
 区間 `τ=(t0,t1]` の gross activity は A の event history として保持する。
 
-`ΔK` は記号どおり endpoint state change とする。
+`ΔK_τ` は endpoint resource-state difference を表し、一般形を projection-defined difference operator `δ_K` で書く。
 
 ```text
-ΔK_[t0,t1] = K_t1 - K_t0
+ΔK_τ := δ_K(K_t0, K_t1)
 ```
 
-したがって、同一区間に 100 入荷・100 出荷があれば gross activity は存在するが `ΔK = 0` になりうる。gross activity を表す追加 primitive は Core に置かない。
+K が additive vector space 等で表現される projection では、特殊形として、
+
+```text
+δ_K(K_t0, K_t1) = K_t1 - K_t0
+```
+
+と置ける。
+
+したがって、同一区間に 100 入荷・100 出荷があれば gross activity は存在する一方、additive stock projection では `ΔK = 0` になりうる。gross activity を表す追加 primitive は Core に置かない。
+
+また、K の endpoint difference は A だけに由来するとは限らない。必要な projection では `Ω_τ` 等の exogenous / environmental process を明示する。
 
 `ΔK` は会計仕訳ではない。
 
@@ -149,19 +180,19 @@ A は、生産、消費、交換、投資、労働、移転、契約、政策、
 
 surplus は physical primitive ではない。
 
-物理的・使用価値側で起きた input / output / transformation を exchange-value の比較可能な尺度へ写像し、その差分を認識・集計したときに初めて surplus / deficit が成立する。
+VFT Core では、**指定された comparison boundary の下で選択された economic changes を exchange-value の比較可能尺度へ写像し、その差分 / residual を surplus / deficit と呼ぶ**。
 
 ```text
-physical / use-value activity
-        ↓ exchange-value valuation
-comparable input / output values
-        ↓ comparison / accounting
+specified economic changes
+        ↓ exchange-value representation
+comparable values
+        ↓ comparison under a specified boundary
 surplus / deficit
 ```
 
-したがって余剰は単なる物理量の増加ではない。同じ物理対象でも、その利用法・交換可能性を認識できる主体とできない主体では value representation が異なりうる。機械が利用法を知らない主体には単なる箱・物体としてしか見えない、という例がこの差を示す。
+production input / output を対象にする projection では physical / use activity が主要入力になりうる。一方、formal accounting projection では contract / financial events や valuation-only events を含みうる。何を対象 change に含めるかによって production surplus / accounting income / valuation gain 等との関係は変わるため、Core では同一視しない。
 
-surplus の帰属・留保・分配は、次期の actor-specific exchange-value / capital position `K_i` を変える。
+surplus の帰属・留保・分配は、次期の actor-specific exchange-value / capital position `K_i` を変えうる。
 
 ---
 
@@ -227,9 +258,11 @@ field formation 自体は事業に限らない。起業はそのうち business-
 
 VFT の decision model は次の3則を constitutive rationality assumptions として置く。
 
-1. **resource-realization**：望ましい resource / capital outcome の実現へ向けて A を動かす
+1. **resource-realization**：resource の取得・保持・変換・利用を通じて、望ましい resource / capital / realized-use outcome の実現へ向けて A を動かす
 2. **activity-flow**：必要な activity / process の流れを維持・拡張し、必要なら新たな action-generating field を形成する
-3. **P-downside**：P 側の大幅な毀損により主体・組織・系の A が成立しなくなることを防ぐ
+3. **P-downside**：projection が指定した P component の変化によって、将来の action-generating viability が重大に損なわれることを回避する
+
+P-downside は P 全体に universal ordering を仮定しない。何を downside とみなすかは projection-specific な threshold / loss / viability criterion 等によって定める。
 
 3則は経験的普遍法則ではない。projection 側で objective / weight / constraint / threshold / horizon 等を具体化することで empirical hypothesis を形成する。
 
@@ -244,21 +277,27 @@ profit / utility は3則の特殊化ではなく、具体的な decision problem
 必要な economic projection では planned / chosen resource change を `x_i` と書ける。
 
 ```text
-x_i                  = planned / chosen resource change
-E_i[ΔK | a, I_i]     = action-contingent forecast of endpoint resource change
+x_i                    = planned / chosen resource change
+ΔK̂_i(a; I_i)          = generic action-contingent forecast of endpoint resource difference
 ```
 
-`| a` は observational conditioning の主張ではなく、「candidate action a を採った場合」の forecast を表す略記である。
+Core は probability measure や causal semantics を固定しない。確率・因果構造を採用する projection では、例えば、
+
+```text
+ΔK̂_i(a; I_i) = E_i[ΔK | do(a), I_i]
+```
+
+のように specialize できる。
 
 ### Marxian categories
 
 VFT は Marxian economics が区別した use-value / labor / exchange-value / surplus / accumulation を一般化された構造上で表現する。
 
-- use-value：主体が期間内の実利用を通じて体験として実現した主観的効用量
+- use-value：主体が interval 内の実利用を通じて体験として realized した主観的効用量
 - labor measure：labor activity / labor time による production activity の記述
 - Marxian labor-value projection：socially necessary labor time 等の追加条件を導入した specialization
 - exchange-value / price：resource 間の比較・market / monetary valuation
-- surplus：exchange-value の比較可能尺度上で成立する差分 / residual
+- surplus：指定 boundary と exchange-value scale の下で成立する差分 / residual
 - accumulation / distribution：surplus 等の帰属・留保・分配による K_i の変化
 
 VFT-specific use-value quantity は Marxian use-value と自動的に同一視しない。VFT Core 自体を Marx 固有の labor-value theory / surplus-value theory とも同一視しない。
@@ -269,9 +308,10 @@ VFT-specific use-value quantity は Marxian use-value と自動的に同一視�
 
 ```text
 micro
-field_i -> A_i -> resource activity
-              -> realized use-value over interval -> P_i update
-              -> exchange valuation -> K_i update
+field_i -> Γ_i(F_t) -> A_i -> resource activity
+                         -> ΔK
+                         -> realized use-value over interval -> P_i update
+                         -> exchange valuation -> K_i update
 
                      ↓ external reporting / aggregation where needed
 
@@ -301,17 +341,19 @@ field formation / dissolution
 ## 14. Core で固定しないもの
 
 - K の標準 resource coordinates
+- `δ_K` の標準 difference rule
 - institutional / legal state の普遍 primitive
-- use-value の標準効用関数・代替可能性
+- exogenous / environmental process の標準表現
+- use-value の標準効用関数・代替可能性・加法性
 - exchange-value / monetary valuation function
 - K_i の標準 representation / accounting implementation
-- P の標準内部次元
+- P の標準内部次元・universal ordering
 - P の普遍的更新式
 - A の deterministic choice function
 - gross activity の追加 primitive
-- E[ΔK] の確率測度・期待形成式
-- surplus の普遍的算出式
-- 3則の objective / weight / priority / threshold
+- generic forecast `ΔK̂` の確率測度・期待形成式・causal semantics
+- surplus の普遍的算出式・対象 economic changes
+- 3則の objective / weight / priority / threshold / viability criterion
 - market equilibrium の普遍的条件
 - micro-to-macro aggregation rule
 
