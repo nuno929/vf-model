@@ -45,18 +45,46 @@ K の完全観測は前提とせず、resource coordinates と観測単位は pr
 
 ## 4. use-value の計測
 
-VFT における use-value quantity は、resource stock 自体ではなく、期間内の利用・消費・充足を通じて実現した効用量である。
+VFT における use-value quantity は、resource stock 自体ではなく、**主体がある interval 内に resource を実際に利用・消費し、その体験として ex post に realized した主観的効用量**である。
 
-physical stock / capability 自体は K として時点観測できるが、限界効用逓減等により stock 量だけから実現効用量は一意に決まらない。
+physical stock / capability 自体は K として時点観測できるが、それは use-value quantity ではない。
+
+同じ主体・同じ resource・同じ利用量でも、充足状態、利用順序、文脈、他の経験等によって体験結果は変わりうる。限界効用逓減はその一例である。したがって **use-value quantity に一般的な再現性を仮定しない**。
+
+use-value は利用前に真値として直接観測できず、actual use / consumption 後の subjective outcome としてのみ評価する。
+
+```text
+actual use over τ=(t0,t1]
+        ↓
+subjective experience / fulfillment
+        ↓
+realized use-value U^use_i(τ)
+```
+
+離散時間で時点 `t` を置く場合、時点 `t` で直接参照できる use-value は前区間までに realized した値である。
+
+```text
+U^use_i((t-1,t])
+        ↓
+reference / update of P_i,t
+        ↓
+expectation about future use
+```
+
+将来区間について観測できる use-value quantity はまだ存在しない。将来の利用結果について主体が持つものは P_i 上の belief / expectation である。
 
 したがって use-value quantity の計測では少なくとも、
 
+- actor
 - interval
 - actual use / consumption
-- utility proxy
+- subjective utility / experience proxy
+- reference timing
 - 必要に応じて substitute / complement / use category
 
 を指定する。
+
+異なる interval 間・主体間で use-value proxy を比較する場合、それが同一尺度上で再現可能な真値を測っているとは仮定せず、projection-specific な比較可能性を別途定義する。
 
 ---
 
@@ -71,7 +99,7 @@ point-in-time valuation -> capital / asset position
 interval valuation      -> transaction / revenue / expense etc.
 ```
 
-したがって exchange-value を stock 専用とはしない。
+したがって exchange-value を stock 専用とはしない。一方、**VFT-specific use-value quantity は interval realization としてのみ扱う**。
 
 異質な resource stock を共通交換尺度で比較・集計する評価は exchange-value representation として扱う。
 
@@ -89,7 +117,18 @@ shared P は actor set 上の共通性・整合性・分布として推定する
 
 `E_i[ΔK | a, I_i]` は P_i の belief / expectation component と情報集合から導出される forecast とする。
 
-加工・変換後の実現 use-value が P_i 更新を引き起こす経路を観測する場合、期待時点・実現時点・更新時点を区別する。
+use-value と P の時系列を観測する場合、
+
+```text
+P_i,t        : future use への expectation
+A / use      : interval experience
+U^use_i(τ)   : ex post realized subjective use-value
+P_i,t+1      : realized experience を反映した updated state
+```
+
+を区別する。
+
+加工・変換によって resource の利用可能性が変わっても、その加工後 use-value quantity は加工時点ではなく、後続 interval の実利用後に realized する。
 
 ---
 
@@ -162,7 +201,7 @@ accounting identity は当該 projection の representation rule として検証
 
 ## 10. field / business の計測
 
-field は、K / K_i / P_i / relations / constraints が A をどの程度誘発・再生産するかという配置構造として扱う。
+field は、K / K_i / P_i と projection-specified relations / constraints が A をどの程度誘発・再生産するかという配置構造として扱う。
 
 直接1変数へ縮約することは Core では要求しない。
 
@@ -178,7 +217,7 @@ business / organization projection では、例えば、
 
 等を観測できる。
 
-起業は新しい action-generating field の形成、新規事業開発は既存 field から新しい field を形成・分岐させる過程として測る。
+起業は business-oriented field formation の一類型、新規事業開発は既存 field から business-oriented field を形成・分岐させる過程として測る。
 
 profit はその一指標であり、business existence の定義変数とはしない。
 
@@ -194,12 +233,14 @@ profit はその一指標であり、business existence の定義変数とはし
 
 ## 12. Marxian projection の計測
 
-- use-value：期間内の realized utility / use
+- VFT-specific use-value quantity：主体が interval 内の実利用を通じて ex post に realized した主観的効用量
 - labor measure：labor activity / labor time
 - Marxian labor-value：socially necessary labor time 等の追加条件を伴う specialization
 - exchange-value / price：resource 間の comparison / market / monetary valuation
 - generic surplus：exchange-value 上の差分 / residual
 - Marxian surplus value：Marx 固有条件を含む specialization
+
+VFT-specific use-value quantity と Marxian use-value を自動的に同一視しない。
 
 ---
 
@@ -218,7 +259,7 @@ profit はその一指標であり、business existence の定義変数とはし
 1. K の resource coordinates
 2. A の event unit / ordering
 3. ΔK の endpoint interval
-4. use-value の utility proxy / interval
+4. use-value の actor / realized interval / subjective proxy / reference timing
 5. exchange-value / valuation rule
 6. K_i の representation rule
 7. P / shared P の proxy
