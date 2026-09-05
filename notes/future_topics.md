@@ -59,7 +59,7 @@ P は主体ごとの subjective evaluation / expectation state として Core �
 
 ## 4. ΔK / ΔP と scope S
 
-Core では `ΔK(S, τ)` を、観測・会計仕様 `S` について時間区間 `τ=[t0,t1]` 内に実現した K の change descriptor として扱う。
+Core では `ΔK(S, τ)` を、観測・会計仕様 `S` について時間区間 `τ=[t0,t1]` 内に実現した K の **interval change descriptor** として扱う。
 
 `S` は単なる対象集合ではなく、少なくとも以下を含む。
 
@@ -68,14 +68,21 @@ Core では `ΔK(S, τ)` を、観測・会計仕様 `S` について時間区�
 - accounting boundary
 - transformation convention
 
-一般形として、
+一般形として、区間内の state path と actor-side process / event を観測表現へ写し、
+
+```text
+Z_S(τ) = M_S((K_t)_{t in τ}, (A_t)_{t in τ})
+ΔK(S, τ) = δ_S(Z_S(τ)) ∈ D_S
+```
+
+を用いる。endpoint のみを観測する場合は、
 
 ```text
 Y_S(t) = M_S(K_t)
-ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1)) ∈ D_S
+ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1))
 ```
 
-を用いる。`δ_S` は必ずしも算術差ではなく、加法的 quantitative projection の場合にのみ `y1-y0` とする。
+を特殊ケースとして使う。加法的 quantitative projection の場合には `δ_S(y0,y1)=y1-y0` とできる。
 
 `ΔP_i` も一般には算術差ではなく、P の change descriptor / state transition とする。
 
@@ -83,8 +90,9 @@ Y_S(t) = M_S(K_t)
 
 - `S` の標準的な記述形式
 - `M_S` / `δ_S` の型付け
+- path-aware / endpoint-only の使い分け
+- gross flow と net stock change の関係
 - change descriptor の最小インターフェース
-- 各応用で始点・終点を比較可能にする表現
 - 加法表現を採用できる条件
 - 非加法成分の quantitative projection
 - 個別実現変化と集約 `ΔK` の会計対応
@@ -102,6 +110,7 @@ Y_S(t) = M_S(K_t)
 今後の検討候補：
 
 - expectation operator の確率測度・情報集合
+- quantitative representation `q_S : D_S -> V_S` を明示する必要性
 - planned resource change と expected realized resource change の区別
 - ex-ante feasible action / contingent plan と expected outcome の区別
 - state-wise / almost-sure feasibility
@@ -179,13 +188,13 @@ p · x_i <= 0
 
 VFT はミクロ／マクロで数学的に同一の `ΔK` 値型を要求しない。
 
-中心課題は、主体レベルの期待・A・実現変化を、共通の `S` / `τ` / accounting rule のもとで `ΔK(S, τ)` へ接続し、**S-indexed change schema** として市場・産業・社会・マクロ観測量へ拡張することである。
+中心課題は、主体レベルの期待・A・実現変化を、共通の `S` / `τ` / accounting rule のもとで `ΔK(S, τ)` へ接続し、**S-indexed interval-change schema** として市場・産業・社会・マクロ観測量へ拡張することである。
 
 今後の検討候補：
 
-- 個人の realized change をどの会計規則で `ΔK` へ接続するか
+- 個人の realized interval process をどの会計規則で `ΔK` へ接続するか
 - `S` の拡張と aggregation rule の関係
-- stock-flow consistent なミクロ／マクロ接続
+- gross flow / net stock change をともに扱う stock-flow consistent なミクロ／マクロ接続
 - 個人期待と集計マクロ変数の識別
 - 政策 A → K 上の制度条件 → ΔP_i → A_i → ΔK の経路
 - macro observable から micro structure をどこまで逆推定できるか
@@ -252,6 +261,18 @@ rights / contract / credit conditions in K
 ## 12. A の観測と順序
 
 A の外部 action event は直接観測できる場合がある一方、内部 decision / observation / interpretation は proxy を要する場合がある。
+
+Core の temporal typing は、
+
+```text
+(K_t0, P_t0)
+      ↓ conditions
+A_(t0,t1]
+      ↓ realized interval processes
+(K_t1, P_t1)
+```
+
+とする。これは普遍的な選択関数・更新関数ではなく、時間順序の型付けである。
 
 今後の具体化候補：
 
@@ -328,9 +349,12 @@ P が観察後の residual state にならないよう、projection / empirical 
 - K / P 識別
 - `P_j(a)` の評価者・評価対象の識別
 - A の直接観測と潜在 decision の proxy
+- temporal typing の操作化
 - event / persistent K state / subjective P representation の識別
 - ΔK / ΔP の generic change mapping
+- path-aware / endpoint-only の使い分け
 - `M_S` / `δ_S` の操作化
+- gross flow / net stock change の同時計測
 - `E[ΔK]` の expectation operator / 推定
 - `S` / `τ` の定義
 - planned / expected / realized change の分離
