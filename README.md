@@ -46,7 +46,7 @@ VFT Core は、普遍的な choice function、会計則、均衡則、利益最�
 - **ΔK_τ**：projection-defined endpoint resource-state difference
 - **Ŷ_i,t(a; I_i,t)**：主体 `i` が candidate action `a` と時点 `t` の情報に基づいて形成する generic outcome forecast
 
-K は physical resources を含むが、それに限定しない。時間、技能、知識、労働能力等の real-resource / capability coordinates も projection に応じて含みうる。
+K は physical resources を含むが、それに限定しない。available time budget / remaining workable capacity、技能、知識、労働能力等の real-resource / capability coordinates も projection に応じて含みうる。
 
 `K_i` は K の subset / partition ではない。common K と economic events に ownership / holding / attribution、recognition、valuation 等を適用した actor-indexed exchange-value / capital representation であり、共同所有・重複帰属・複雑な attribution を排除しない。
 
@@ -56,7 +56,9 @@ K は physical resources を含むが、それに限定しない。時間、技�
 
 ## 3. K：real-resource / capability state
 
-K は設備、原材料、製品、土地、エネルギー等の physical resources に加え、時間、身体、技能、知識、労働力・人的能力等の capability coordinates を projection に応じて含みうる。
+K は設備、原材料、製品、土地、エネルギー等の physical resources に加え、available time budget / remaining workable capacity、身体、技能、知識、労働能力等の capability coordinates を projection に応じて含みうる。
+
+calendar time `t` はモデル上の index であり K の resource coordinate ではない。また、interval `τ` 内に実際に投入された labor time / hours worked は K_t の stock ではなく、A / labor measure 側の interval activity として扱う。
 
 K を external world state 全体へ拡張しない。契約、制度、規範、法的権利関係等は、それだけを理由に K へ含めない。
 
@@ -168,7 +170,7 @@ K_i valuation
 
 ## 6. A・shared realized event・ΔK
 
-A は主体ごとの **actor-side action / process record** とする。生産、消費、交換、投資、労働、移転、契約、政策、探索、学習等を必要な粒度で記述する。
+A は主体ごとの **actor-side action / process record** とする。生産、消費、交換、投資、労働、移転、契約、政策、探索、学習等を必要な粒度で記述する。interval `τ` 内の actual labor time / hours worked も、必要な labor projection では A / labor measure として記述する。
 
 ### multi-actor event identity
 
@@ -245,7 +247,8 @@ business actor / organization
 = decision / ownership / accounting / action attribution の主体
 
 business field F^biz
-= business activity を継続的に可能化・誘発・再生産する局所 action-generating configuration
+= actor-resource transformation / exchange / service / beneficiary relation 等を
+  反復可能にする局所 action-generating configuration
 
 business
 = F^biz を中心として継続する activity system
@@ -267,17 +270,17 @@ profit / surplus は business existence の定義条件ではなく exchange-val
 
 ## 10. 3つの管理合理性公理
 
-VFT の decision projection は次の3則を constitutive rationality assumptions として置く。
+VFT の management / decision rationality は、次の3則を**必須の構成公理**として持つ。
 
 1. **resource-realization**：resource / capital / realized-use outcome の望ましい実現
 2. **activity-flow**：必要な activity / process の継続・拡張、必要なら field formation / renewal
 3. **P-downside**：projection が指定した将来 P component / action-generating viability の重大な downside を回避
 
-3則は `Ŷ_i,t(a;I_i,t)` の outcome components を projection-specific objective / constraint / threshold / comparison rule で評価し、`Γ_i^adm` を形成する段階に接続する。
+3公理は `Ŷ_i,t(a;I_i,t)` の outcome components を projection-specific objective / constraint / threshold / comparison rule で評価し、`Γ_i^adm` を形成する段階に接続する。
 
-P-downside は P 全体に universal ordering を仮定しない。VFT decision projection を名乗る場合、採用した rationality dimension ごとに admissibility / exclusion condition または比較規則を **ex ante** に明示する。
+3公理はすべて構成条件であり、任意に採否を選ぶ dimension ではない。一方、その評価・判断・実行は単一 actor に集中する必要はなく、複数 actor、役割、組織階層、制度へ分業・分散してよい。VFT decision projection では3公理それぞれについて admissibility / exclusion condition または比較規則を **ex ante** に明示する。
 
-profit / utility は3則の特殊化ではなく、具体的 decision problem の metric / objective / proxy として使いうる。
+P-downside は P 全体に universal ordering を仮定しない。profit / utility は3公理の特殊化ではなく、具体的 decision problem の metric / objective / proxy として使いうる。
 
 ---
 
@@ -298,7 +301,7 @@ compatibility / market equilibrium / accounting consistency / steady state は�
 VFT は use-value / labor / exchange-value / surplus / accumulation の区別を一般化構造上で保持する。
 
 - VFT-specific use-value quantity / realized-use outcome：主体が interval 内の実利用を通じて realized した主観的 outcome
-- labor measure：labor activity / labor time
+- labor measure：interval 内に実際に投入された labor activity / labor time
 - Marxian labor-value：socially necessary labor time 等の追加条件を持つ specialization
 - exchange-value / price：resource 間の comparison / market / monetary valuation
 - exchange-value residual / surplus：指定 boundary と exchange-value scale 上の差分
@@ -353,7 +356,7 @@ macro states / distributions / field formation-dissolution
 - generic outcome bundle `Y_i^proj` の標準 coordinates
 - generic forecast `Ŷ_i` の確率測度・期待形成式・causal semantics
 - exchange-value residual の普遍的算出式
-- 3則の objective / weight / priority / threshold / viability criterion
+- 3公理の projection-specific operationalization と actor / role 間の分業形態
 - market equilibrium の普遍的条件
 - micro-to-macro aggregation rule
 
