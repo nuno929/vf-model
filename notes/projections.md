@@ -17,8 +17,8 @@ VFT の経済射影では、
 ```text
 physical K
    ↓ A_i
-physical flows / ΔK
-   ↓ monetary measurement
+physical / use-value flow
+   ↓ exchange / monetary measurement
 P/L_i
    ↓ closing / attribution / distribution
 B/S_i = K_i
@@ -28,7 +28,32 @@ B/S_i = K_i
 
 ---
 
-## 2. 契約・制度・金融資産
+## 2. 使用価値 / 交換価値
+
+同一 resource は use-value side と exchange-value side の二重表現を持ちうる。
+
+### use-value
+
+resource が主体の A / transformation をどのように可能にし、期間内でどの程度効用を実現するかという側。
+
+物理的 stock は時点で数えられるが、主体にとっての効用量は stock だけから一意に決まらず、限界効用の逓減等により期間中の利用・消費・充足との関係で評価される。
+
+### exchange-value
+
+resource を他の resource / money と比較可能な共通尺度へ写像した側。
+
+時点 stock を共通尺度化して比較・集計する場合、その表現は exchange-value 側とみなす。
+
+```text
+use-value      ≈ flow-oriented / P/L-like
+exchange-value ≈ stock-oriented / B/S-like
+```
+
+この対応は複式簿記を想起させるが、あくまで説明上のアナロジーであり、借方・貸方等を VFT Core の普遍構造とはしない。
+
+---
+
+## 3. 契約・制度・金融資産
 
 契約・制度・法的権利関係それ自体は K の resource quantity としない。
 
@@ -38,25 +63,43 @@ B/S_i = K_i
 
 ---
 
-## 3. P/L / B/S / surplus
+## 4. P/L / B/S / surplus
 
 P/L は期間中の physical / economic flow を monetary unit で表現する。B/S は actor-specific capital stock / position を monetary unit で表現する。
 
+帳簿そのものは actor-specific であり、主体ごとに recognition / valuation / bookkeeping が異なりうる。財務報告・統計はその外部 representation である。
+
 ```text
-physical flow
-   ↓ μ
+physical / use-value flow
+   ↓ exchange-value measurement
 P/L monetary amounts
-   ↓ aggregation / consolidation
+   ↓ comparison / aggregation
 surplus / deficit
    ↓ attribution / retention / distribution
 B/S K_i
 ```
 
-surplus は physical primitive ではなく accounting-derived period increment / residual である。
+surplus は physical primitive ではなく、exchange-value の共通尺度へ写像した input / output 等の差分として成立する accounting-derived period increment / residual である。
 
 ---
 
-## 4. 3つの管理合理性公理
+## 5. P 更新
+
+加工・変換によって同一由来の resource でも利用可能性が変わり、使用価値が変わる。
+
+```text
+K_t
+ ↓ A
+K_t1
+ ↓ changed use possibilities / realized use-value
+P_i update
+```
+
+主体は、A が K をどのような利用可能状態へ変えるかについて期待を持ち、実現した結果を受けて P_i を更新する。
+
+---
+
+## 6. 3つの管理合理性公理
 
 1. resource-realization
 2. activity-flow
@@ -68,7 +111,7 @@ surplus は physical primitive ではなく accounting-derived period increment 
 
 ---
 
-## 5. plan / forecast / equilibrium
+## 7. plan / forecast / equilibrium
 
 必要な economic projection では planned / chosen resource change を `x_i` と書く。
 
@@ -83,19 +126,11 @@ compatibility / market equilibrium / accounting consistency / steady state は�
 
 ---
 
-## 6. Marxian categories
+## 8. Marxian categories
 
 VFT は Marxian economics が区別した use-value / labor / exchange-value / surplus / accumulation を一般化された構造上で表現できる。
 
 ただし、Marx 固有の value theory は projection-specific specialization である。
-
-### use-value
-
-K が特定の A / transformation を可能にする機能・有用性として扱う。
-
-```text
-use-value ≠ subjective utility ≠ price
-```
 
 ### labor
 
@@ -103,13 +138,9 @@ labor activity / labor time は physical / productive flow の一部として記
 
 Marxian labor-value を構成する場合は socially necessary labor time 等の追加条件を導入する。
 
-### exchange-value / price
-
-market / monetary valuation として扱う。
-
 ### surplus
 
-generic surplus は指定 P/L accounting boundary における monetary increment / residual とする。
+generic surplus は exchange-value に写像された input / output 等の差分を、指定 accounting boundary で計量した monetary increment / residual とする。
 
 Marxian surplus value と同一視するには Marx 固有の追加条件が必要である。
 
@@ -119,42 +150,43 @@ surplus の attribution / retention / distribution が次期 B/S 上の `K_i` �
 
 ---
 
-## 7. ミクロ／マクロ
+## 9. ミクロ／マクロ
 
 ```text
 micro
-K, K_i, P_i -> A_i -> physical flow -> P/L_i -> K_i(t+1)
+K, K_i, P_i -> A_i -> physical/use-value flow -> P/L_i -> K_i(t+1)
 
-                         ↓ aggregation / consolidation
+                         ↓ external reporting / aggregation
 
 macro
 physical production / consumption
-aggregate P/L increment / surplus
+aggregate exchange-value increment / surplus
 capital-stock distribution
 capital accumulation
 shared P
 ```
 
-同じ physical K と monetary representations を異なる scope で観測・集約することで接続する。
+主体ごとの帳簿自体が共通化されることは仮定しない。外部 reporting / statistical transformation を介して macro representation を構成する。
 
 ---
 
-## 8. 射影時に明示するもの
+## 10. 射影時に明示するもの
 
 1. K の resource coordinates
 2. actor set
 3. A の event unit
 4. ΔK の観測単位
-5. monetary measurement / valuation rule
-6. P/L recognition / classification
-7. B/S ownership / attribution / recognition
-8. K_i の book-value rule
-9. P / shared P の proxy
-10. E[ΔK] の推定法
-11. accounting boundary / consolidation rule
-12. surplus の算出・帰属・分配
-13. Marxian specialization を使う場合の追加条件
-14. micro / macro aggregation rule
+5. use-value の期間・効用 proxy
+6. exchange-value / monetary measurement rule
+7. P/L recognition / classification
+8. B/S ownership / attribution / recognition
+9. K_i の book-value rule
+10. P / shared P の proxy
+11. E[ΔK] の推定法
+12. accounting boundary
+13. surplus の算出・帰属・分配
+14. Marxian specialization を使う場合の追加条件
+15. micro / macro reporting / aggregation rule
 
 ---
 
