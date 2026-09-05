@@ -22,7 +22,7 @@ K は共通の実資源世界を参照する。
 
 K の候補指標には、利用可能な現金残高、行使可能な金融請求権、受取可能額、earning capacity、設備・在庫・インフラ、時間、人員、技能、知識、情報、利用可能な信用枠、権限・アクセス可能な手段等がある。
 
-期間所得そのものは通常 flow であり、K の stock/state と同一視しない。期間中に実現した所得受取は K の transition / `ΔK` 側で扱い、受取可能な請求権や earning capacity 等を K 側へ置く。
+期間所得そのものは通常 flow であり、K の stock/state と同一視しない。期間中に実現した所得受取は K の interval transition / `ΔK` 側で扱い、受取可能な請求権や earning capacity 等を K 側へ置く。
 
 金融資源は、名目上の評価額そのものではなく、実際に行動可能性を増やす利用可能な資源・権利として K / `K_i` へ操作化する。
 
@@ -84,7 +84,7 @@ subjective representation in P
 
 ---
 
-## 5. A の観測可能性
+## 5. A の観測可能性と時間型
 
 A は各主体側で生じる actor-side process / event を表す。
 
@@ -93,6 +93,18 @@ A は各主体側で生じる actor-side process / event を表す。
 一方、内部の意思決定、観測、情報受容、解釈等は直接観測できない場合があり、proxy を要する。
 
 観測・情報受容・解釈を A に含める場合も、それらが必ず能動的行為であることを意味しない。P 更新を記述する actor-side process として必要な範囲で含める。
+
+時間順序は、選択則・更新則を固定せず、概念的には
+
+```text
+(K_t0, P_t0)
+      ↓ conditions
+A_(t0,t1]
+      ↓ realized interval processes
+(K_t1, P_t1)
+```
+
+とする。これは temporal typing であり、普遍的な状態遷移関数を意味しない。
 
 ---
 
@@ -109,22 +121,34 @@ A は各主体側で生じる actor-side process / event を表す。
 
 例えば一つの消費行為が、在庫減少、現金移転、身体への摂取、別形態の資源への変換等を同時に生む場合、どの座標と会計境界で `ΔK` を測るかを `S` で固定する。
 
-一般には、観測仕様に対応する状態表現と change operator を
+一般形では、区間内の state path と actor-side process / event を観測表現へ写し、
 
 ```text
-Y_S(t) = M_S(K_t)
-ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1)) ∈ D_S
+Z_S(τ) = M_S((K_t)_{t in τ}, (A_t)_{t in τ})
+ΔK(S, τ) = δ_S(Z_S(τ)) ∈ D_S
 ```
 
 と考える。`M_S` と `δ_S` は measurement / projection 側で定める specification-local な写像・演算であり、Core の新しい原始変数ではない。
 
-`ΔK` は必ずしも算術差分を意味しない。加法的な quantitative projection が適用できる場合にのみ、
+この path-aware な一般形により、endpoint の net stock change がゼロでも、`S` に応じて gross production、gross consumption、transaction volume、resource transformation 等を保持できる。
+
+endpoint のみを観測する場合は特殊ケースとして、
 
 ```text
-δ_S(y0, y1) = y1 - y0
+Y_S(t) = M_S(K_t)
+ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1))
 ```
 
 と置ける。
+
+加法的な quantitative projection が適用できる場合には、
+
+```text
+δ_S(y0, y1) = y1 - y0
+Y_S(t1) = Y_S(t0) + ΔK(S, τ)
+```
+
+と書ける。`K_t1 = K_t0 + ΔK` は、さらに `M_S = id` で K 自体が同じ加法空間にある特殊ケースに限る。
 
 `ΔP_i` も一般には算術差ではなく、主体 `i` の P に実現した change descriptor / state transition を表す。非加法的な場合は少なくとも
 
@@ -134,7 +158,7 @@ P_i,t0 -> P_i,t1
 
 として扱い、数量化が必要な場合だけ measurement mapping を追加する。
 
-`ΔK` はミクロ用・マクロ用に数学的な同一型を要求しない。`S` に応じて `D_S`、座標、単位、集約規則等は異なりうるが、**S-indexed change schema** は共通に保つ。
+`ΔK` はミクロ用・マクロ用に数学的な同一型を要求しない。`S` に応じて `D_S`、座標、単位、集約規則等は異なりうるが、**S-indexed interval-change schema** は共通に保つ。
 
 ---
 
@@ -173,12 +197,13 @@ VFT は、複数主体の `K_i` / `P_i` / `A_i` を自動的に一主体・一�
 5. A の観測単位とイベント順序
 6. `τ`
 7. `S` の resource coordinates / accounting boundary / transformation convention
-8. `M_S` / `δ_S` または対応する change mapping
-9. ΔK / ΔP の集約規則
-10. 共有資源・重複アクセスの扱い
-11. 情報損失
+8. path-aware / endpoint-only のどちらを用いるか
+9. `M_S` / `δ_S` または対応する change mapping
+10. ΔK / ΔP の集約規則
+11. 共有資源・重複アクセスの扱い
+12. 情報損失
 
-ミクロからマクロへの接続でも、新しい `ΔK_macro` の型を置く必要はなく、異なる `S` / `τ` / 集約規則を与えた同じ S-indexed change schema として扱う。
+ミクロからマクロへの接続でも、新しい `ΔK_macro` の型を置く必要はなく、異なる `S` / `τ` / 集約規則を与えた同じ S-indexed interval-change schema として扱う。
 
 ---
 
@@ -269,14 +294,15 @@ rights / contract / credit conditions in K
 10. `S` / `S_i`
 11. `τ`
 12. resource coordinates / accounting boundary / transformation convention
-13. `M_S` / `δ_S` または対応する change mapping
-14. 集約・会計・換算規則
-15. 欠測・測定誤差
-16. `E[ΔK]` を適用する quantitative projection
-17. expectation operator / 推定方法
-18. compatibility を扱う場合の予算制約・価格・取引条件
-19. market equilibrium と呼ぶ場合の choice / optimality / clearing 条件
-20. P の採用次元と事前固定した検証条件
-21. 他者評価を扱う場合の評価者 `j` と評価対象 `a` の区別
+13. path-aware / endpoint-only の選択
+14. `M_S` / `δ_S` または対応する change mapping
+15. 集約・会計・換算規則
+16. 欠測・測定誤差
+17. `E[ΔK]` を適用する quantitative projection
+18. expectation operator / 推定方法
+19. compatibility を扱う場合の予算制約・価格・取引条件
+20. market equilibrium と呼ぶ場合の choice / optimality / clearing 条件
+21. P の採用次元と事前固定した検証条件
+22. 他者評価を扱う場合の評価者 `j` と評価対象 `a` の区別
 
-目的は、**共通の実資源世界 K と、主体ごとのアクセス状態 K_i・主観的評価／期待状態 P_i・期待区間変化 E_i[ΔK(S, τ)] を混同せず、S-indexed change schema をミクロからマクロまで観測・会計仕様に応じて接続し、A / ΔP / proxy / compatibility / equilibrium と使い分けること**にある。
+目的は、**共通の実資源世界 K と、主体ごとのアクセス状態 K_i・主観的評価／期待状態 P_i・期待区間変化 E_i[ΔK(S, τ)] を混同せず、S-indexed interval-change schema をミクロからマクロまで観測・会計仕様に応じて接続し、A / ΔP / proxy / compatibility / equilibrium と使い分けること**にある。
