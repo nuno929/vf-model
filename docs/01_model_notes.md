@@ -6,7 +6,7 @@
 
 VFT は、**physical / real-resource state K、actor-specific exchange-value / capital representation K_i、structured subjective state P_i、actor-side process / event A_i** の関係として経済・事業活動を記述する。
 
-VFT における field は独立したスカラー V ではない。K、(K_i)_i、(P_i)_i と projection-specified な主体間・資源間の関係・制約から導かれる配置構造であり、その配置が A を条件づけ、誘発し、再生産することを指す。
+VFT における field は独立したスカラー V ではない。K、(K_i)_i、(P_i)_i、主体間・資源間の関係・制約が形成する配置構造であり、その配置が A を条件づけ、誘発し、再生産することを指す。
 
 ---
 
@@ -24,7 +24,7 @@ K_t
 - `P_i,t`：structured subjective evaluation / expectation state
 - `A_i,τ`：actor-side action / process / event
 
-field はこれらを単純に足した新変数ではない。**K / K_i / P_i と projection-specified relations / constraints から導かれる action-generating configuration** である。
+field はこれらを単純に足した新変数ではなく、A を発生させる actor-resource 間の配置・関係構造である。
 
 ---
 
@@ -269,7 +269,7 @@ valuation-only events ────────┘
 
 ### field
 
-field は、K、(K_i)_i、(P_i)_i と projection-specified relations / constraints から導かれる **action-generating configuration** である。
+field は、K、(K_i)_i、(P_i)_i、主体間・資源間の関係・制約がつくる **action-generating configuration** である。
 
 ```text
 field_t
@@ -290,16 +290,14 @@ profit / surplus は事業の定義条件ではなく、exchange-value 側で活
 ### field formation
 
 ```text
-起業           = business-oriented field formation の一類型
-新規事業開発   = 既存 field から business-oriented field を形成・分岐させる活動
-既存事業運営   = 成立済み business field の維持・再生産・改善
+起業           = 新しい action-generating field の形成
+新規事業開発   = 既存 field から新しい field を形成・分岐させる活動
+既存事業運営   = 成立済み field の維持・再生産・改善
 ```
-
-field formation 自体は、研究チーム、政治団体、コミュニティ等の形成にも起こりうる。起業はそのうち business-oriented な field formation として扱う。
 
 既存事業では既存の顧客・商品・価格・組織・収益構造があるため profit / surplus を含む既存評価関数で運営を説明しやすい。
 
-一方、起業時にはそれら自体が未形成である。したがって起業を「既存 profit function の最大化」とだけ定義すると、事業体そのものの成立を説明できない。
+一方、起業時にはそれら自体が未形成である。したがって起業を「既存 profit function の最大化」とだけ定義すると、事業体そのものの成立を説明できない。VFT はこれを field formation として扱う。
 
 ---
 
