@@ -190,7 +190,7 @@ A_(t0,t1]
 
 A は K / P を変化させる主要な actor-side process である。`K_i` は K から導かれる view であるため、権利・資格・契約・制度状態等を含む K の変化に応じて access / usability が変わりうる。`K_i` 専用の独立した差分変数は Core に置かない。
 
-政策変更、価格提示、契約条件変更、情報伝達、観測・情報受容・解釈等による P の変化も、必要に応じて A の経路として記述できる。
+政策変更、価格提示、契約条件変更、情報伝達、観測・情報受容、解釈等による P の変化も、必要に応じて A の経路として記述できる。
 
 P と A の因果関係を検証する projection で、`A_(t0,t1]` 内の情報受容・解釈等が途中で P を更新し、その後の decision / action に影響する場合は、**区間を分割するか event ordering を保持する**。`P_t0 -> A_(t0,t1]` と粗く書いたまま途中の P 更新を事前状態として扱わない。
 
@@ -277,15 +277,17 @@ rights / contract / credit conditions in K
 
 このように、公開評価情報、他者が保持する評価・信用、実際に行使可能な信用枠・請求権・取引アクセスを区別することで、いわゆる**評価経済・信用経済**における波及を同一状態表現上で射影できる可能性がある。
 
-### 機能的最適化則の候補
+### 3つの基本管理合理性
 
-VFT の ontology 自体は主体を「個人・企業・国家」という別種の存在として固定しない。その上で、経済・社会 projection では、次の3つを **functional optimization hypothesis** として分離できる。
+VFT の ontology 自体は主体を「個人・企業・国家」という別種の存在として固定しない。その上で、管理・経済記述では次の3則を基本的な管理合理性として置く。
 
-1. **resource-realization function**：主体は、自らが形成する期待・評価のもとで、望む／見込む `ΔK` の実現へ向けて A を選ぶ。
-2. **activity-flow function**：主体は、K / P の配置を再構成し、持続可能な A-flow を最大化する。
-3. **P-downside function**：主体群の P の大幅な負側・悪化側を抑えるよう、K / A を配分・調整する。
+1. **resource-realization rule**：主体は、自らの P と期待のもとで、望ましい resource change の実現へ向けて A を動かす。
+2. **activity-flow rule**：主体は、K / P の配置を再構成し、持続可能な A-flow を維持・拡張する。
+3. **P-downside rule**：主体群の P の大幅な負側・悪化側を抑えるよう、K / A を配分・調整する。
 
-概念的な最適化記法としては、projection-local な objective を用いて、
+この3則は、各 actor が現実に厳密な数理最適化を行っていることを経験的に証明した命題ではなく、**VFT 上で管理合理性を記述するための基本前提**として扱う。具体的な目的関数、制約、時間 horizon、計量表現は projection-specific である。
+
+必要な quantitative projection では、例えば
 
 ```text
 resource-realization:
@@ -298,15 +300,23 @@ P-downside:
 A_g* ∈ argmin_A L_g^-(P ; observable proxies)
 ```
 
-のように書ける。`R_i` / `F_f` / `L_g^-` は Core primitive ではなく、各 projection が具体化する objective functional である。
+のような objective functional を追加できる。`R_i` / `F_f` / `L_g^-` は3則そのものではなく、各 projection が具体化する数理表現である。
 
-ここで「個人・企業・国家」は最適化機能の典型的な担い手であって、機能そのものと同一ではない。**自給自足では単一 actor が3つの最適化機能をすべて担いうる。** 一方、資本主義では概ね、個人が resource-realization、企業が A-flow、国家が P-downside を重点的に担う制度的分業として記述できる。
+ここで「個人・企業・国家」は3則の典型的な担い手であって、機能そのものと同一ではない。**自給自足では単一 actor が3つの管理合理性をすべて担いうる。** 一方、資本主義では概ね、個人が resource-realization、企業が activity-flow、国家が P-downside を重点的に担う制度的分業として記述できる。
 
-企業の利益は A-flow の結果として生じる resource/accounting outcome の一面であり、短期的な `ΔK` の悪化を伴う投資・採用・R&D・市場獲得等も、将来 A-flow の拡張として記述できる。このため profit maximization より広い企業行動を扱える。
+企業の利益は A-flow の結果として生じる resource/accounting outcome の一面であり、短期的な `ΔK` の悪化を伴う投資・採用・R&D・市場獲得等も、将来 A-flow の拡張として記述できる。このため activity-flow rule は当期 profit maximization より広い企業行動を扱える。
 
 国家側で P の単一最大化を直接置きにくいのは、P の真値が直接観測できず、支持率・失業・犯罪・景況感・出生・健康・移住・市場指標等の proxy 間に普遍的な加法則がないためである。個々の悪化や負側は比較的識別しやすいため、operational rule として downside minimization を置き、上方の改善は個々人・企業の分散的努力へ委ねる形をとりうる。
 
-この3則は現段階では VFT Core の普遍法則ではなく、**同一 actor 内にも制度的分業にも適用できる explanatory projection** として扱う。
+### 効用最大化・利潤最大化・需給との関係
+
+標準的な **utility maximization は resource-realization rule を utility によってスカラー化した特殊射影**として読める。P に含まれる望ましさ・選好を resource outcome 上の `U_i` へ写像し、制約下で `U_i` を高める A / `x_i` を選ぶ場合、標準的な効用最大化に対応する。`E_i[ΔK]` は forecast であって desire そのものではないため、望ましさは P 側、実現見込みは `E_i[ΔK]` 側として分離する。
+
+同様に **profit maximization は activity-flow rule の特殊射影**として扱える。対象 horizon と会計境界のもとで profit が sustained A-flow の十分な objective / proxy とみなせる場合に profit maximization へ落とせるが、activity-flow rule 自体を当期 profit maximization と同一視しない。
+
+需給均衡は第4の管理則ではなく、**複数主体の resource-realization から生じる planned resource change `x_i` の compatibility** として扱う。各主体が P と期待のもとで選んだ `x_i` が市場・価格・取引条件等を通じて相互に実行可能な状態へ調整され、射影先理論の追加条件が成立した場合に market equilibrium と呼べる。
+
+したがって需給調整は、正式な `E_i[ΔK]` と realized `ΔK` の一致最大化ではない。ただし動学的には、**期待に基づいて選ばれた planned change が、他主体との相互作用を通じて実現可能な resource change へ調整される過程**として読める。
 
 ### 期待変化の集約と余剰
 
@@ -364,7 +374,7 @@ P proxy の admissibility では少なくとも、
 - `E[ΔK]` を A 生成の必須中間変数とすること
 - A の普遍的選択則
 - `H_S` 等の区間活動量の普遍的定義
-- functional optimization hypothesis の具体的 objective function
+- 3則を数量化する具体的 objective function / constraints / horizon
 - inter-agent compatibility の普遍的条件
 - market equilibrium の普遍的 choice / optimality / clearing 条件
 - ミクロ／マクロの普遍的集約・導出則
