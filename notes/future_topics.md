@@ -138,15 +138,17 @@ E_i[ΔK(S, τ)] := E_i[q_S(ΔK(S, τ))]
 
 ---
 
-## 6. 機能的最適化則
+## 6. 3つの基本管理合理性
 
-経済・社会 projection では、主体種別ではなく以下の3つの機能を optimization hypothesis として置く候補がある。
+VFT の管理・経済記述では、組織・制度を維持し行動を成立させる合理性を次の3則へ集約して扱う。
 
-1. **resource-realization**：P / expectation のもとで、望む／見込む `ΔK` の実現へ向けて A を選ぶ
-2. **activity-flow**：K / P の配置を再構成して持続可能な A-flow を最大化する
+1. **resource-realization**：P / expectation のもとで、望ましい resource change の実現へ向けて A を動かす
+2. **activity-flow**：K / P の配置を再構成して持続可能な A-flow を維持・拡張する
 3. **P-downside**：主体群の P の大幅な負側・悪化側を抑えるよう K / A を配分・調整する
 
-概念記法：
+3則は「現実に厳密な目的関数最大化が行われていること」の実証命題ではなく、VFT 上で管理合理性を記述するための基本前提として扱う。
+
+必要な quantitative projection では、例えば
 
 ```text
 A_i* ∈ argmax_A R_i(A ; P_i, E_i[ΔK])
@@ -158,27 +160,27 @@ A_i* ∈ argmax_A R_i(A ; P_i, E_i[ΔK])
 A_g* ∈ argmin_A L_g^-(P ; observable proxies)
 ```
 
-`R_i` / `F_f` / `L_g^-` は Core primitive ではなく projection-local objective functional とする。
+のような objective functional を追加できる。`R_i` / `F_f` / `L_g^-` は3則そのものではなく projection-specific な数理化である。
 
 今後の検討候補：
 
-- resource-realization で「望む」と「見込む」をどう分離するか
-- `R_i` が P と E[ΔK] をどの型で参照するか
-- A-flow の定義、単位、異質な A 間の比較可能性
+- resource-realization で「望ましい帰結」と「見込まれる帰結」を P と `E_i[ΔK]` にどう分離するか
+- `R_i` が P と `E_i[ΔK]` をどの型で参照するか
+- A-flow を event count と同一視せず、`H_S` 等の path functional としてどう定義するか
 - sustainable A-flow の horizon / viability constraint
 - activity-flow と profit / revenue / throughput / market share の関係
 - 短期的な ΔK 悪化を許容する intertemporal 条件
 - P-downside の loss functional と downside の閾値
 - 異質な P proxy 間で加法則を仮定しない optimization の形式
 - 個人間 P の比較可能性・加減算可能性の条件
-- 単一 actor が複数機能を同時に最適化する場合の trade-off
+- 単一 actor が複数機能を同時に担う場合の trade-off
 - 機能分業が成立する条件
 - 機能間の conflict / coordination
-- 3則が falsifiable な予測をどこまで生むか
+- 各機能に追加した projection-specific objective がどのような検証可能な予測を生むか
 
 ### 自給自足と制度的分業
 
-3機能は actor type ではないため、自給自足では単一 actor が全部を担いうる。
+3則は actor type ではないため、自給自足では単一 actor が全部を担いうる。
 
 ```text
 single actor
@@ -187,20 +189,20 @@ single actor
   └─ P-downside
 ```
 
-資本主義では概ね、individual / firm / state に重点が分化する候補がある。
+資本主義では概ね、individual / firm / state に重点が分化する。
 
 今後の検討候補：
 
-- 自給自足 household / family unit で3則をどう観測するか
+- 自給自足 household / family unit で3則がどう遂行されるか
 - household production と firm production の境界
-- 市場形成前後で最適化機能の分業がどう変わるか
+- 市場形成前後で管理機能の分業がどう変わるか
 - 資本主義以外の制度での分業パターン
 - 国家機能が弱い社会で P-downside を誰が担うか
 - cooperative / commune / family business の複合機能
 
 ### マネジメント階層への再帰
 
-同じ3機能は、一つの組織内部で **operational / managerial / governance** の三階層合理性として現れる可能性がある。
+実行・中間管理・統治に相当する階層的な機能分化は、近代企業だけでなく長期にわたる組織制度で反復して観察される。VFT が新たに三階層の存在を予測するのではなく、**既知の階層的管理構造の合理性を3則へ還元して共通記述する**。
 
 ```text
 operational / execution
@@ -213,7 +215,11 @@ governance
     -> P-downside
 ```
 
-これは役職や組織図を Core に固定する主張ではなく、組織規模や分業の進展に応じて、同一 actor 内に重なっていた最適化機能が階層的に分離されるという projection candidate である。
+- operational：与えられた `K_i / P_i` のもとで A を成立させ、望ましい resource change を具体化する
+- managerial：複数主体・複数時点の A を接続し、活動系列を維持するため K / P 配置を組み替える
+- governance：組織全体・長期・複数 stakeholder を対象に、許容不能な P の毀損やそれに伴う行動崩壊を抑える
+
+これは役職や組織図を固定する主張ではなく、小規模組織・owner-manager・自給自足では同一 actor に3則が重なり、規模や分業の進展に応じて管理対象が階層的に分化するという読みである。
 
 今後の検討候補：
 
@@ -221,8 +227,17 @@ governance
 - 管理層が individual resource-realization と organization-level activity-flow を同時に担う場合の conflict
 - governance 層の P-downside が従業員・顧客・株主・取引先等のどの P を対象にするか
 - 組織規模の拡大に伴う機能分化・再統合の条件
-- flat organization / owner-manager / family business で3機能が重なる場合の記述
-- 同じ三階層構造が企業以外の行政・非営利・プロジェクト・共同体でも成立するか
+- flat organization / owner-manager / family business で3則が重なる場合の記述
+- 同じ三階層構造が企業以外の行政・非営利・プロジェクト・共同体でどう現れるか
+
+### 既存経済学への特殊射影
+
+- utility maximization を resource-realization のスカラー化として扱える条件
+- profit maximization を activity-flow の十分な objective / proxy とみなせる条件
+- utility / profit への射影で失われる P / K / A-flow の情報
+- 需給調整を複数主体の planned change `x_i` の compatibility として記述する条件
+- 価格変化による `P_i -> x_i` の更新と market clearing の動学
+- forecast `E_i[ΔK]` と desire / planned change `x_i` を混同しない定式化
 
 ---
 
@@ -400,9 +415,10 @@ P が観察後の residual state にならないよう、projection / empirical 
 - gross flow / net stock change の同時計測
 - `q_S : D_S -> V_S` の操作化
 - `E[ΔK]` の expectation operator / 推定
-- functional optimization hypothesis の objective / constraints / horizon
-- 自給自足と制度的分業の比較実証
-- マネジメント三階層における最適化機能の分化・重複の比較実証
+- 3則を quantitative model へ落とす場合の objective / constraints / horizon
+- 自給自足と制度的分業における3則の遂行・分担・重複の比較
+- マネジメント三階層とVFT三則の対応関係の比較事例研究
+- 各管理階層における三則の遂行・分担・重複と管理成果の比較
 - planned / expected / realized change の分離
 - compatibility / market equilibrium / accounting identity の同時計測
 - common K に基づく micro / macro observation consistency
