@@ -4,11 +4,12 @@
 
 ## 1. K / K_i
 
-Core では、K は physical / real-resource state、K_i は actor-specific exchange-value / capital representation とする。
+Core では、K は real-resource / capability state、K_i は actor-specific exchange-value / capital representation とする。
 
 今後の検討候補：
 
-- K の標準 resource coordinates
+- K の標準 resource / capability coordinates
+- physical resource と capability coordinate の境界
 - ownership / holding / attribution の形式化
 - joint ownership / overlapping attribution
 - K_i の vector / object representation
@@ -20,9 +21,9 @@ K_i を B/S そのものとは定義しない。
 
 ---
 
-## 2. use-value / exchange-value
+## 2. realized-use outcome / exchange-value
 
-VFT-specific use-value quantity は interval-indexed realized outcome として、exchange-value は比較可能な representation として扱う。
+VFT-specific realized-use outcome は interval-indexed outcome、exchange-value は比較可能な representation として扱う。
 
 今後の検討候補：
 
@@ -30,13 +31,23 @@ VFT-specific use-value quantity は interval-indexed realized outcome として�
 - resource-use episode への attribution rule
 - path dependence / sequence dependence
 - interval 間の非加法性
-- 瞬間的 use-value rate の微分的表現
 - substitute / complement / use category
-- physical stock / capability と realized use の接続
+- resource capability と realized use の接続
 - exchange-value の comparison scale
 - exchange-value の point-in-time / interval representation
-- VFT-specific use-value と Marxian use-value の関係
+- VFT-specific realized-use outcome と Marxian use-value の関係
 - P/L-like analogy の適用範囲
+
+### instantaneous rate
+
+一般の non-additive interval outcome から rate を自動導出しない。
+
+今後の検討候補：
+
+- cumulative realized-use process `C_i(t)` を導入する必要性
+- `C_i(t)` の加法性 / absolute continuity 等の正則性条件
+- rate representation が必要になる projection
+- interval outcome と instantaneous state / rate の識別
 
 ---
 
@@ -45,21 +56,21 @@ VFT-specific use-value quantity は interval-indexed realized outcome として�
 Core では actor-side A records と multi-actor shared event identity を区別する。
 
 ```text
-event_id(A_i) = event_id(A_j) = e
-E_τ^shared := deduplicate( ⋃_i A_i,τ , by = event_id )
+E_e^shared
+:= reconcile({ A_i,e | i ∈ participants(e) })
 ```
 
-`E_τ^shared` は derived view であり universal state primitive ではない。
-
-`ΔK_τ := δ_K(K_t0,K_t1)` とし、`δ_K` を projection-defined difference operator とする。
+`E^shared` は derived view であり universal state primitive ではない。
 
 今後の検討候補：
 
 - A record の標準 schema
 - event identity / participant / role semantics
+- participant-side records の reconciliation rule
 - partial participation / nested event
 - transaction / contract / policy event の identity rule
-- macro aggregation における deduplication
+- event-count deduplication と resource-flow aggregation の分離
+- cross-system event reconciliation
 - heterogeneous K coordinates に対する `δ_K` の標準候補
 - `Ω_τ` 等の exogenous / environmental process の標準化要否
 - A と Ω の識別
@@ -67,15 +78,16 @@ E_τ^shared := deduplicate( ⋃_i A_i,τ , by = event_id )
 
 ---
 
-## 4. field / feasibility / inducibility
+## 4. field / feasibility / availability / admissibility
 
 field は K / K_i / P_i と projection-specified relations / constraints から導かれる action-generating configuration とする。
 
 ```text
-F_t := configuration(...)
-Γ_i^feas(F_t) := feasible action set
-Γ_i^ind(F_t)  := inducible / behaviorally available action set
-Γ_i^ind(F_t) ⊆ Γ_i^feas(F_t)
+Γ_i^feas(F_t)  := feasible action set
+Γ_i^avail(F_t) := cognitively / behaviorally available action set
+Γ_i^adm(F_t)   := admissible action set
+
+Γ_i^adm ⊆ Γ_i^avail ⊆ Γ_i^feas
 ```
 
 今後の検討候補：
@@ -83,19 +95,19 @@ F_t := configuration(...)
 - field boundary
 - actor-resource graph / relation structure
 - `Γ_i^feas` の formalization
-- `Γ_i^ind` の formalization
-- feasibility と behavioral availability の empirical discrimination
-- consideration-set / choice-set models との接続
+- `Γ_i^avail` の formalization
+- consideration-set / option-awareness model との接続
+- `Γ_i^adm` の admissibility / exclusion rule
+- final choice / intention state を Core 外でどう表すか
+- feasibility / availability / admissibility の empirical discrimination
 - field stability / resilience
 - field formation / dissolution
 - multiple overlapping fields
 - organization / business / market / institution の field representation
 
-`Γ_i^ind` は realized action を見て事後的に定義しない。
-
 ---
 
-## 5. P / outcome forecast
+## 5. P / outcome forecast / evaluation
 
 P は structured subjective state とする。
 
@@ -103,7 +115,7 @@ Core の generic forecast は、
 
 ```text
 Y_i^proj(τ) := projection-selected outcome bundle
-Ŷ_i(a;I_i)  := forecast of Y_i^proj under candidate action a
+Ŷ_i,t(a;I_i,t) := forecast of Y_i^proj under candidate action a
 ```
 
 とする。
@@ -112,21 +124,23 @@ Y_i^proj(τ) := projection-selected outcome bundle
 
 - outcome bundle の coordinate selection rule
 - ΔK / K_i / realized use / P / activity outcome の dependency
-- belief / expectation component の形式化
+- current P belief / expectation component の形式化
+- current P preference / valuation component の形式化
+- forecast generation と evaluation の empirical discrimination
+- forecasted future `P̂_i,t1(a)` の扱い
 - shared P の推定
 - forecast horizon / information set
-- probabilistic forecast / distributional forecast
+- probabilistic / distributional forecast
 - causal specialization
 - forecast calibration / uncertainty
-- forecast と preference / desirability の分離
 
-Core は outcome bundle の標準 coordinates、probability measure、causal semantics を固定しない。
+P primitive を分割する必要性は未確定だが、decision-time の役割差は明示する。
 
 ---
 
 ## 6. institutional / legal state
 
-契約・制度・法的権利関係を physical K に押し込まない。
+契約・制度・法的権利関係を K に押し込まない。
 
 今後の検討候補：
 
@@ -153,7 +167,7 @@ P/L・B/S・複式簿記は Core の普遍因果層ではなく formal accountin
 - P/L / B/S identities
 - actor-specific ledger と external reporting の関係
 - consolidation / elimination
-- shared event identity と accounting entry identity の関係
+- shared event reconciliation と accounting entry identity の関係
 - statistical transformation
 
 ---
@@ -168,7 +182,7 @@ Core-level の中立的差分を exchange-value residual として記述し、su
 - comparison / accounting boundary
 - recognition timing
 - internal transfer elimination
-- shared event deduplication
+- shared event reconciliation
 - production surplus / profit / income / valuation gain / wealth change の関係
 - surplus attribution / retention / distribution
 - K_i accumulation dynamics
@@ -176,23 +190,30 @@ Core-level の中立的差分を exchange-value residual として記述し、su
 
 ---
 
-## 9. business / entrepreneurship
+## 9. business actor / business field / entrepreneurship
 
-business entity は、一定の目的・機能に向けた A を継続的に誘発・再生産する局所 field structure とする。
+Core では business actor と business field を別型として扱う。
 
-起業は business-oriented field formation の一類型とする。
+```text
+business actor / organization = actor i
+business field F^biz          = recurring business activity を再生産する local field
+business                      = F^biz を中心とする activity system
+```
 
 今後の検討候補：
 
-- business boundary
+- organization / actor boundary
+- business field boundary
+- actor-field membership / control relation
+- 一法人・複数 business fields
+- 複数 actor・単一 business field
 - recurring action set
-- feasible / inducible action range
-- activity continuity
 - resource replenishment
 - participant / customer / beneficiary relations
 - field formation threshold
 - 起業と新規事業開発の識別
 - existing-business optimization と field formation の差
+- business field persistence / death
 - NPO / public business / state business への適用
 
 profit maximization は business existence の普遍定義とはしない。
@@ -203,7 +224,7 @@ profit maximization は business existence の普遍定義とはしない。
 
 3則は constitutive rationality assumptions とする。
 
-Core では各 dimension を `Ŷ_i(a;I_i)` の outcome components と projection-specific comparison / admissibility rules に接続する。
+Core では各 dimension を `Ŷ_i,t(a;I_i,t)` の outcome components と projection-specific comparison / admissibility rules に接続し、`Γ_i^adm` を形成する段階へ置く。
 
 今後の検討候補：
 
@@ -240,8 +261,8 @@ Core では各 dimension を `Ŷ_i(a;I_i)` の outcome components と projection
 
 今後の検討候補：
 
-- actor-side A records → shared realized events
-- shared events → macro physical aggregate
+- actor-side A records → reconciled shared events
+- shared events → macro physical / resource aggregates
 - event identity の cross-system reconciliation
 - exogenous process Ω の macro treatment
 - K_i distribution / capital concentration
@@ -254,19 +275,22 @@ Core では各 dimension を `Ŷ_i(a;I_i)` の outcome components と projection
 
 ## 13. 実証・計量化
 
-- physical K measurement
+- real-resource / capability K measurement
 - projection-defined `δ_K` measurement
-- `Γ^feas` / `Γ^ind` operationalization
+- `Γ^feas` / `Γ^avail` / `Γ^adm` operationalization
 - actor-side A records
-- shared event identity / deduplication
+- shared event identity / reconciliation
 - exogenous Ω measurement where required
 - realized-use / attribution measurement
+- optional cumulative process `C_i(t)` / rate estimation
 - exchange-value measurement
 - K_i measurement
 - P / shared P proxy
+- current belief / valuation role discrimination
 - generic outcome bundle `Y_i^proj`
 - generic forecast `Ŷ_i` estimation
 - exchange-value residual / surplus measurement
+- business actor / business field boundary measurement
 - field continuity / formation proxy
 - P-downside viability criterion estimation
 - rationality-dimension exclusion rule estimation
