@@ -198,6 +198,32 @@ single actor
 - 国家機能が弱い社会で P-downside を誰が担うか
 - cooperative / commune / family business の複合機能
 
+### マネジメント階層への再帰
+
+同じ3機能は、一つの組織内部で **operational / managerial / governance** の三階層合理性として現れる可能性がある。
+
+```text
+operational / execution
+    -> resource-realization
+
+managerial
+    -> activity-flow
+
+governance
+    -> P-downside
+```
+
+これは役職や組織図を Core に固定する主張ではなく、組織規模や分業の進展に応じて、同一 actor 内に重なっていた最適化機能が階層的に分離されるという projection candidate である。
+
+今後の検討候補：
+
+- 実行・管理・統治の境界を actor / objective / time horizon のどこで定義するか
+- 管理層が individual resource-realization と organization-level activity-flow を同時に担う場合の conflict
+- governance 層の P-downside が従業員・顧客・株主・取引先等のどの P を対象にするか
+- 組織規模の拡大に伴う機能分化・再統合の条件
+- flat organization / owner-manager / family business で3機能が重なる場合の記述
+- 同じ三階層構造が企業以外の行政・非営利・プロジェクト・共同体でも成立するか
+
 ---
 
 ## 7. 会計的予算制約
@@ -376,6 +402,7 @@ P が観察後の residual state にならないよう、projection / empirical 
 - `E[ΔK]` の expectation operator / 推定
 - functional optimization hypothesis の objective / constraints / horizon
 - 自給自足と制度的分業の比較実証
+- マネジメント三階層における最適化機能の分化・重複の比較実証
 - planned / expected / realized change の分離
 - compatibility / market equilibrium / accounting identity の同時計測
 - common K に基づく micro / macro observation consistency
