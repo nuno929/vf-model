@@ -33,13 +33,15 @@ Y_S(t) = M_S(K_t)
 
 として表す。`δ_S` は必ずしも算術差ではなく、加法的 quantitative projection の場合にのみ `δ_S(y0,y1)=y1-y0` と置く。
 
+一般形で `Y_S(t0)=Y_S(t1)=y` なら `δ_S(y,y)` を no-change descriptor とみなす。**加法的な在庫 projection では**、生産100・消費100で在庫が元に戻る場合 `ΔK(S,τ)=0` となる。
+
 一方、gross production、gross consumption、transaction volume 等の区間活動量は `ΔK` へ含めず、必要に応じて
 
 ```text
-H_S(τ) = h_S((K_t)_{t in τ}, (A_t)_{t in τ})
+H_S(τ) = h_S((K_t)_{t in τ}, A_τ)
 ```
 
-のような derived path functional として分離する。`H_S` は Core の primitive ではない。
+のような derived path functional として分離する。`A_τ` は区間内 actor-side event / process と必要な event ordering を保持する。`H_S` は Core の primitive ではない。
 
 期待値を取る場合は quantitative representation を
 
@@ -115,27 +117,92 @@ compatibility 自体も economic projection 側の条件であり、VFT Core か
 
 対象 scope の net state change は `ΔK`、gross production / consumption / transaction volume / transformation 等は必要に応じて `H_S` として分離して記録する。
 
-例えば、生産100・消費100で在庫が元に戻る場合、在庫について `ΔK=0` でも、production / consumption を表す `H_S` はそれぞれ100となりうる。
+加法的な在庫 projection では、生産100・消費100で在庫が元に戻る場合 `ΔK=0` でも、production / consumption を表す `H_S` はそれぞれ100となりうる。
 
 市場が不均衡でも会計恒等式は成立しうる一方、市場が均衡していても資本蓄積・在庫変化・投資等によって `ΔK` は非ゼロになりうる。また、定常的な在庫のもとでも `H_S` は非ゼロになりうる。
 
-### ミクロ／マクロの接続面
+### ミクロ／マクロの共通 K 接続
 
-VFT はミクロとマクロで数学的に同一の `ΔK` 値型を要求しない。
-
-主体レベルの state change と interval activity を、共通の観測・会計規則のもとで `ΔK(S, τ)` / `H_S(τ)` として記録し、`S` / `τ` / aggregation rule を拡張することで、市場・産業・社会・マクロの観測単位へ接続する。
+VFT ではミクロとマクロを別々の資源世界として置かない。**両者は同じ common K と同じ K transition を異なる観測・会計仕様 `S` から記述したもの**である。
 
 ```text
-individual K_i / P_i / A_i
-          ↓
-state change + interval activity
-          ↓ common observation / accounting schema
-   ΔK(S, τ) / H_S(τ)
-          ↓ broader S / τ / aggregation
-macro-scale observation
+                 common K
+                /        \
+          S_micro        S_macro
+             ↓              ↓
+      micro observation  macro observation
 ```
 
-中心的な可能性は、ミクロからマクロを自動導出することではなく、**異なるスケールの state change / activity を共通の observation / accounting interface 上で記述できること**にある。
+したがって、存在論的な接続のために `micro -> macro` の普遍的 aggregation map を要求しない。micro observable から macro observable を再構成する場合にのみ、projection-local な aggregation / coarsening rule を追加する。
+
+これは単に同じ記法を使うという意味ではなく、**観測対象として同じ K を共有することが接続の基礎**である。
+
+### 機能的最適化則
+
+VFT ontology は「個人・企業・国家」を別種の actor として固定しない。その上で、経済・社会 projection では次の3つを functional optimization hypothesis として分離できる。
+
+#### 1. resource-realization
+
+主体は、自らの P と期待のもとで、望む／見込む `ΔK` の実現へ向けて A を選ぶ。
+
+```text
+A_i* ∈ argmax_A R_i(A ; P_i, E_i[ΔK])
+```
+
+`R_i` は、どの A が主体の望む resource change の実現に寄与すると評価されるかを表す projection-local objective である。これは realized `ΔK` が必ず expectation と一致することを意味しない。
+
+#### 2. activity-flow
+
+主体は、K / P の配置を再構成し、持続可能な A-flow を最大化する。
+
+```text
+(K_f*, P_f*)
+  ∈ argmax_(feasible K_f,P_f)
+      F_f(A-flow | K_f, P_f)
+```
+
+企業はこの機能の典型的な担い手として読める。採用、設備投資、資金調達、R&D、組織再編、ブランド形成、契約構成等は、K / P 配置を変えて現在または将来の A-flow を増やす行為として記述できる。
+
+利益は A-flow から生じる resource/accounting outcome の一面であり、objective と自動的に同一視しない。短期的な資源減少・赤字を伴う投資や市場獲得も、将来 A-flow の拡張として説明できる。
+
+#### 3. P-downside
+
+主体群の P の大幅な負側・悪化側を抑えるよう、K / A を配分・調整する。
+
+```text
+A_g* ∈ argmin_A L_g^-(P ; observable proxies)
+```
+
+国家はこの機能の典型的な担い手として読める。P の真値は直接観測できず、支持率、失業、犯罪、景況感、出生、健康、移住、市場指標等の proxy 間に普遍的な加法則もない。そのため aggregate P の直接最大化より、明確に識別可能な負側・悪化側を抑える operational rule の方が置きやすい。
+
+この downside minimization は、国家が P の上方改善を目的にしないという意味ではない。**異質な P proxy を一つの加法的尺度へ統合できないため、下方の毀損を抑え、上方の改善を個々人・企業の分散的最適化へ委ねる**という制度的構造を表す。
+
+`R_i` / `F_f` / `L_g^-` は Core primitive ではなく、各 projection が具体化する objective functional である。
+
+### 自給自足と制度的分業
+
+3つの最適化則は actor type ではなく機能なので、**市場や企業や国家が存在しない自給自足でも適用できる**。
+
+```text
+single actor
+  ├─ resource-realization
+  ├─ activity-flow
+  └─ P-downside
+```
+
+自給自足では単一 actor が、望む `ΔK` を目指して A を選び、K / P 配置を組み替えて A-flow を確保し、将来不安・欠乏等の P-downside を抑える。
+
+一方、資本主義ではこれらが概ね、
+
+```text
+individuals  -> resource-realization
+firms        -> activity-flow
+state        -> P-downside
+```
+
+へ制度的に分業されると解釈できる。
+
+この見方では市場・企業・国家は理論の前提ではなく、**単一 actor 内でも成立する最適化機能が社会的に分化した制度形態**として後から説明される。
 
 ### 期待変化の集約と余剰
 
@@ -288,23 +355,24 @@ A_i -> change in P_j   (i != j)
 5. 他者評価を扱う場合の評価者 `j` と評価対象 `a`
 6. A の観測単位と event ordering
 7. 時間窓 `τ`
-8. temporal typing
+8. temporal typing と actor-side channel の範囲
 9. `S` / `S_i` の resource coordinates / accounting boundary / transformation convention
 10. `M_S` / `δ_S` または対応する state-change mapping
 11. `H_S` を使う場合の `h_S` / path functional
 12. ΔK / ΔP / H の操作化
 13. `q_S : D_S -> V_S`
 14. `E_i[ΔK]` の expectation operator / 推定方法
-15. planned / chosen change `x_i` の定義と符号規約
-16. 価格・会計換算規則
-17. 主体別予算制約
-18. compatibility を扱う場合の相互両立条件
-19. market equilibrium と呼ぶ場合の choice / optimality / best response / clearing 条件
-20. 会計恒等式の境界
-21. surplus へ射影する場合の valuation / utility / WTP / WTA / cost mapping
-22. P の採用次元・proxy・事前固定した検証条件
-23. 評価・信用を扱う場合の public information → `P_j(a)` → K / `K_a` 経路
-24. 情報損失
+15. functional optimization hypothesis を使う場合の actor / objective / feasible set / time horizon / alternative hypothesis
+16. planned / chosen change `x_i` の定義と符号規約
+17. 価格・会計換算規則
+18. 主体別予算制約
+19. compatibility を扱う場合の相互両立条件
+20. market equilibrium と呼ぶ場合の choice / optimality / best response / clearing 条件
+21. 会計恒等式の境界
+22. surplus へ射影する場合の valuation / utility / WTP / WTA / cost mapping
+23. P の採用次元・proxy・事前固定した検証条件
+24. 評価・信用を扱う場合の public information → `P_j(a)` → K / `K_a` 経路
+25. 情報損失
 
 ---
 
