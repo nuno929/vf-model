@@ -4,56 +4,72 @@
 
 本ノートは、価値場理論（Value-Field Theory; VFT）の Core を README より形式的に整理する。
 
-VFT は、**実物・物理側の資源状態 K、主体別の簿価資本状態 K_i、主体ごとの主観的評価・期待状態 P_i、actor-side process / event A_i** を同一の因果・会計構造で記述する。
+VFT は、**physical / real-resource state K、actor-specific exchange-value / capital representation K_i、structured subjective state P_i、actor-side process / event A_i** の関係として経済・事業活動を記述する。
 
-Core は、実物世界と通貨・会計世界を区別する。ただし独立した「二つの宇宙」を置くのではなく、物理・実物側の activity / flow を monetary measurement / bookkeeping によって抽象的な通貨単位へ写像し、P/L と B/S を接続する。
+VFT における field は独立したスカラー V ではない。K、(K_i)_i、(P_i)_i、主体間・資源間の関係・制約が形成する配置構造であり、その配置が A を条件づけ、誘発し、再生産することを指す。
 
 ---
 
-## 2. K：実物・物理側の resource state
-
-`K_t` は、時点 `t` に存在する実物・物理側の resource state を表す。
+## 2. Core state / process
 
 ```text
 K_t
+(K_i,t)_{i in I}
+(P_i,t)_{i in I}
+(A_i,τ)_{i in I}
 ```
+
+- `K_t`：physical / real-resource state
+- `K_i,t`：actor-specific exchange-value / capital stock representation
+- `P_i,t`：structured subjective evaluation / expectation state
+- `A_i,τ`：actor-side action / process / event
+
+field はこれらを単純に足した新変数ではなく、A を発生させる actor-resource 間の配置・関係構造である。
+
+---
+
+## 3. K：physical / real-resource state
+
+`K_t` は時点 `t` の実物・物理側 resource state を表す。
 
 対象 projection に応じて、設備、土地、原材料、製品、時間、身体、技能、知識、労働力、エネルギー等を含みうる。
 
-K は「外部に実在するものすべて」ではない。契約、制度、規範、法的権利関係、金融 claim の法的構造等を、それだけを理由に K へ含めない。
+K は external world state 全体ではない。契約、制度、規範、法的権利関係等を、それだけを理由に K へ含めない。
 
-K の利用・変換・消費・生成等は A を通じて起こり、その結果として resource change が実現する。
+institutional / legal state が必要な projection では、`C_t` 等を projection-local に追加してよい。Core はそれを必須 primitive としない。
 
 ---
 
-## 3. K_i：B/S 側の actor-indexed book-value capital
+## 4. K_i：actor-specific exchange-value / capital representation
 
-`K_i,t` は、主体 `i` に帰属する資本 position を B/S 上の通貨単位で定量表現したものとする。
+`K_i,t` は主体 `i` が保持する exchange-value / capital stock representation である。
 
 ```text
-common physical / economic state
+common K / economic events
         ↓ ownership / holding / attribution
-        ↓ recognition / valuation / bookkeeping
+        ↓ recognition / valuation
       K_i,t
 ```
 
-### K と K_i の型
+`K_i` は K の subset でも、互いに素な partition でもない。共同所有・重複帰属・複雑な claim / attribution を排除しない。
 
-`K_i` は K の subset でも、K の互いに素な partition でもない。
+### accounting projection との関係
 
-`(K_i)_i` は、common K と economic events に対して ownership / holding / attribution rule と monetary valuation / bookkeeping rule を適用した **actor-indexed representation** である。
+`K_i` を B/S そのものとは定義しない。
 
-したがって、共同所有・重複帰属・連結契約・複雑な資本構成を排除しない。`K_i` の変化は、common K の物理量が同じだけ変化したことを意味しない。
+企業会計等の formal accounting projection では、`K_i` を ledger / B/S 上の monetary positions として形式化できる。ただし B/S は assets / liabilities / equity 等を含む制度的 accounting representation であり、`K_i ≡ B/S_i` とは置かない。
+
+正式な B/S projection を採用する場合、accounting identity はその representation の定義条件として従う。これは全主体の普遍的認知公理ではない。
 
 ### 金融資産との境界
 
-預金、債券、売掛債権等は、その根拠となる契約・法的権利関係そのものを K とみなすのではなく、会計 projection が financial asset position として認識・評価した **B/S 上の K_i** として表現できる。
+預金、債券、売掛債権等は、その根拠となる契約・法的権利関係そのものを physical K とみなすのではなく、recognized exchange-value / financial position として K_i / accounting projection 上に表現できる。
 
 ---
 
-## 4. 使用価値と交換価値
+## 5. 使用価値と交換価値
 
-VFT では、同一の physical resource を少なくとも二つの value representation から扱う。
+同一 physical resource `r` は、主体にとって use-value / exchange-value の二重表現を持ちうる。
 
 ```text
 same resource r
@@ -61,49 +77,69 @@ same resource r
 └─ exchange-value representation
 ```
 
-### 使用価値
+### 5.1 use-value quantity
 
-使用価値は、resource `r` が主体の A / transformation をどのように可能にし、期間内でどの程度効用を実現するかに関係する。
+VFT における use-value quantity は、resource stock 自体や technical service potential ではなく、**期間内の利用・消費・充足を通じて実現した効用量**を指す。
 
-物理的な保有 stock は時点で数えられるが、その stock 量だけから主体にとっての効用量は一意に決まらない。限界効用の逓減等により、実現効用は期間中の利用・消費・充足に依存する。この意味で使用価値は **flow-oriented** である。
+physical stock / capability 自体は K として時点観測できる。しかし、限界効用逓減等により同じ stock 量でも期間内に実現する効用量は一意に決まらない。そのため use-value quantity は flow-oriented に計量する。
 
-個別用途の代替可能性や効用関数を Core では固定しない。
+個別用途の効用関数、substitute / complement、代替可能性は Core では固定しない。
 
-### 交換価値
+### 5.2 exchange-value representation
 
-交換価値は、異質な resource を他の resource / money との比較関係から共通尺度へ写像した量である。
+exchange-value は、resource を他の resource / money との比較関係から共通尺度へ写像した representation である。
 
-交換価値は比較可能な尺度へ変換されることで、時点の stock / position として表現・集計できる。この意味で交換価値は **stock-oriented** である。
+exchange-value は、
 
-使用価値を時点 stock として共通尺度化・比較評価した場合、その表現は exchange-value representation へ移ったものとして扱う。
+- point-in-time capital / asset position
+- interval transaction / revenue / expense valuation
 
-### 複式簿記との関係
+の双方に現れうる。
 
-使用価値と交換価値の二重表現は、同一対象を二つの側面から保持するという意味で複式簿記を想起させる。
+したがって use-value / exchange-value と stock / flow を完全な一対一対応とはしない。
 
-ただしこれは **説明上のアナロジー** であり、VFT は全主体が借方・貸方や会計恒等式を内的に保持すると仮定しない。
+一方、異質な resource stock を共通交換尺度で比較・集計した評価は、use-value quantity ではなく exchange-value representation に属する。
 
-個人は利用可能量・交換可能量を感覚的に保持しうる一方、企業は在庫管理・評価・会計原則等によってより形式的に保持しうる。
+### 5.3 複式簿記アナロジー
+
+同一 resource を「利用可能性」と「交換可能性」の二側面から保持する構造は複式簿記を想起させるが、これは説明上のアナロジーである。
+
+VFT は、全主体が借方・貸方や会計恒等式を内的に保持すると仮定しない。個人では感覚的な利用可能量・交換可能量、企業では在庫管理・valuation / accounting 等として形式化の程度が異なりうる。
 
 ---
 
-## 5. P：subjective evaluation / expectation state
+## 6. P：structured subjective state
 
-各 `P_i,t` は、主体 `i` の将来見通し、評価、選好、信用、信念、期待、規範認識等を含む subjective state である。
+各 `P_i,t` は、少なくとも概念上、
 
-```text
-P_t = (P_i,t)_{i in I}
-```
+- belief / expectation
+- preference / valuation
+- trust / reputation
+- norm recognition
+
+等を含む structured subjective state である。
+
+primitive を内部 component ごとに分割することは Core では要求しない。
 
 P はどれだけ共有されても主観状態である。shared P は複数主体の P の共通性・整合性・分布として扱い、客観的な社会価値の真値とはみなさない。
 
-P の完全観測は前提とせず、projection ごとに proxy を用いる。
+### forecast との関係
 
-契約・制度は、それ自体を K の resource quantity へ押し込まず、法的・制度的 event / record、主体の履行・執行期待 P、実際に生じた resource / accounting effect を分けて扱う。
+`E_i[ΔK | a, I_i]` は、P_i の belief / expectation component と情報集合 I_i から導出される action-contingent forecast である。
+
+したがって、
+
+```text
+forecast = derived from belief / expectation
+preference / desirability = P_i の別 component
+plan / choice = A / x_i 側
+```
+
+と区別する。
 
 ### 加工・変換と P 更新
 
-同一由来の資源でも、A による加工・変換後には利用可能性が変わり、使用価値も変化する。
+同一由来 resource でも、A による加工・変換後には利用可能性・使用価値が変わる。
 
 ```text
 K_t
@@ -113,171 +149,144 @@ K_t1
 P_i,t -> P_i,t1
 ```
 
-主体は、どの A が K をどのような利用可能状態へ変えるかについて期待を持つ。実現した加工結果・使用価値は、その期待を更新し、次の A を条件づける。
+主体は A が K をどのような利用可能状態へ変えるかについて期待を持ち、実現結果からその期待を更新する。
 
 ---
 
-## 6. A：actor-side process / event
+## 7. A：actor-side process / event
 
-A は各主体側で生じる process / event を表す。
+A は各主体側で生じる action / process / event を表す。
 
-```text
-A_τ = (A_i,τ)_{i in I}
-```
+生産、消費、交換、投資、労働、移転、契約、政策、探索、学習、情報伝達等を必要な粒度で A として記述する。
 
-生産、消費、交換、投資、労働、移転、契約締結、政策、情報伝達等を必要な粒度で A として記述する。
+区間中の gross activity は A の event history / sequence から記述する。独立した interval-flow primitive は Core に追加しない。
 
 ---
 
-## 7. ΔK：物理・実物側の realized resource change
+## 8. ΔK：endpoint resource-state change
 
-`ΔK` は、A 等により K に実現した resource change を表す。
-
-重要なのは、**ΔK は会計仕訳ではない**という点である。会計仕訳は、物理・実物側で起きた activity / change を monetary measurement と recognition rule によって帳簿へ写像した表現である。
-
-また `ΔK` は必ずしも単一の
+`ΔK` は記号どおり endpoint state change とする。
 
 ```text
-K_t1 - K_t0
+ΔK_[t0,t1] = K_t1 - K_t0
 ```
 
-を意味しない。異質な resource coordinates では、それぞれの resource change を記述し、endpoint net difference が必要な場合だけ対象 projection で集約する。
+ここで差は対象 projection が定める K coordinates 上の state difference を意味する。
+
+例えば同一区間で、
+
+```text
++100 入荷
+-100 出荷
+```
+
+という gross activity があっても、endpoint stock が同一なら `ΔK = 0` になりうる。
+
+したがって、
+
+```text
+A history ≠ ΔK
+```
+
+である。
+
+`ΔK` は会計仕訳でもない。
 
 ---
 
-## 8. P/L と B/S
+## 9. exchange-value / surplus / accounting
 
-VFT では、P/L と B/S を同じ会計帳簿として一括りにせず、表現対象を分ける。
+surplus は physical primitive ではない。
 
-### P/L 側
-
-P/L が表現する対象は、期間中に物理・実物世界で起きた activity / flow である。
+物理・使用価値側で生じた input / output / transformation を exchange-value の比較可能尺度へ写像し、その差分を認識・集計したときに surplus / deficit が成立する。
 
 ```text
-K_t0
- ↓ A
-production / consumption / labor / depreciation / exchange / transfer
- ↓ monetary measurement μ
-P/L entries
-```
-
-P/L statement 自体は通貨単位で記帳されるが、その対象は期間中の physical / economic flow である。
-
-この意味で、使用価値の実現を期間フローからみる構造は **P/L-like** である。
-
-### B/S 側
-
-B/S は、主体別の資本 stock / position を抽象的な通貨単位で表現する。
-
-```text
-B/S_i(t) ≡ K_i,t
-```
-
-この意味で、交換価値を比較可能な時点 stock として表現する構造は **B/S-like** である。
-
-### 主体別帳簿
-
-帳簿そのものは actor-specific であり、主体ごとに recognition / valuation / bookkeeping が異なりうる。
-
-財務報告や統計は、その個別帳簿から外部向けに構成される別 representation であり、帳簿そのものが共通化されることを意味しない。
-
-### P/L と B/S の接続
-
-P/L と B/S は、同じ抽象的通貨単位量によって接続する。
-
-```text
-physical flows
-    ↓ monetary / exchange-value measurement
-P/L monetary amounts
-    ↓ period aggregation / closing / attribution / distribution
-B/S monetary positions K_i
-```
-
-期間損益は B/S 上の資本増減へ寄与するが、増資、配当、資本取引、評価差等があるため、P/L の期間損益と B/S の `ΔK_i` を普遍的に同一視しない。
-
----
-
-## 9. surplus
-
-surplus は K の physical primitive ではない。
-
-余剰は、physical / use-value flow の input / output 等を **exchange-value の共通尺度へ写像して比較したときに成立する差分**である。
-
-```text
-physical / use-value flow
-      ↓ exchange-value measurement
-input / output monetary amounts
-      ↓ comparison / accounting
+physical / use-value activity
+        ↓ exchange-value valuation
+comparable input / output values
+        ↓ comparison / accounting
 surplus / deficit
-      ↓ attribution / retention / distribution
-B/S positions K_i(t+1)
 ```
 
-したがって surplus は単なる物理量の増加ではない。同じ physical K でも、主体・知識・交換体系・valuation rule が異なれば exchange-value と surplus は異なりうる。
+したがって surplus は単なる物理的増加ではない。同じ physical K でも、主体の知識、交換体系、valuation rule、recognition boundary が異なれば exchange-value / surplus は異なりうる。
 
-機械が、その利用法を知らない主体には単なる物体としてしか認識されないように、resource の物理的存在だけでは use-value / exchange-value / surplus は一意に決まらない。
+### accounting projection
 
----
-
-## 10. 時間型と因果経路
-
-VFT の主要経路は概念的に、
+P/L・B/S・複式簿記は Core の普遍因果層ではなく、exchange-value を制度的に記録する formal accounting projection である。
 
 ```text
-K_t, (K_i,t)_i, (P_i,t)_i
-          ↓ conditions
-        (A_i,τ)_i
-          ↓
-physical activity / ΔK
-          ↓ changed use-value / realized outcome
-       P_i update
-          ↓ exchange / monetary measurement
-       P/L_i(τ)
-          ↓ closing / attribution / distribution
-       (K_i,t1)_i
+physical/resource events ─────┐
+contract/financial events ────┼→ recognition / valuation → accounting entries
+valuation-only events ────────┘
+                                      ↓
+                                   P/L / B/S
 ```
 
-と置く。
+- P/L：recognized interval events の monetary / exchange-value representation
+- B/S：recognized point-in-time positions の monetary / exchange-value representation
+- ledger：actor-specific accounting record
+
+帳簿そのものは actor-specific であり、主体ごとに recognition / valuation / bookkeeping が異なりうる。external financial reporting / consolidation / statistics は個別帳簿とは別 representation である。
 
 ---
 
-## 11. E[ΔK]
+## 10. field と事業体
 
-`E_i[ΔK(S,τ)]` は、主体 `i` が将来の realized resource change について形成する forecast を表す。
+### field
 
-`E_i[ΔK]` は desire / preference / plan ではない。望ましさや選好は P_i に属する。
-
-candidate action ごとの forecast は必要に応じて、
+field は、K、(K_i)_i、(P_i)_i、主体間・資源間の関係・制約がつくる **action-generating configuration** である。
 
 ```text
-E_i[ΔK(S,τ) | a, I_i]
+field_t
+  ↓ induces / conditions
+A_i
 ```
 
-と書ける。ここで `| a` は observational conditioning を意味せず、candidate action `a` を採った場合についての **action-contingent forecast** の略記である。
+field の存在意義は「値が存在すること」ではなく、特定の action set を成立・誘発させることにある。
+
+### 事業体
+
+事業体は、利益最大化主体としてではなく、**一定の目的・機能に向けた A を継続的に誘発・再生産する局所的 field structure** として定義する。
+
+この定義により、営利企業、NPO、協同組合、公共事業、国家・自治体の事業等を同じ型で扱える。
+
+profit / surplus は事業の定義条件ではなく、exchange-value 側で活動継続・蓄積を評価する重要指標の一つである。
+
+### field formation
+
+```text
+起業           = 新しい action-generating field の形成
+新規事業開発   = 既存 field から新しい field を形成・分岐させる活動
+既存事業運営   = 成立済み field の維持・再生産・改善
+```
+
+既存事業では既存の顧客・商品・価格・組織・収益構造があるため profit / surplus を含む既存評価関数で運営を説明しやすい。
+
+一方、起業時にはそれら自体が未形成である。したがって起業を「既存 profit function の最大化」とだけ定義すると、事業体そのものの成立を説明できない。VFT はこれを field formation として扱う。
 
 ---
 
-## 12. 3つの管理合理性公理
+## 11. 3つの管理合理性公理
 
 VFT の decision model は次の3則を constitutive rationality assumptions として置く。
 
 1. **resource-realization**：望ましい resource / capital outcome の実現へ向けて A を動かす
-2. **activity-flow**：必要な activity / process の流れを維持・拡張できるよう K / P / A を調整する
+2. **activity-flow**：必要な activity / process の流れを維持・拡張し、必要なら新しい action-generating field を形成する
 3. **P-downside**：P 側の大幅な毀損により主体・組織・系の A が成立しなくなることを防ぐ
 
-3則は経験的普遍法則ではない。経験的に検証可能な仮説は、projection 側で objective / priority / weight / constraint / threshold / horizon 等を具体化して形成する。
+3則は経験的普遍法則ではない。projection 側で objective / priority / weight / constraint / threshold / horizon 等を具体化して empirical hypothesis を形成する。
+
+profit / utility は3則の特殊化ではなく、具体的 decision problem の metric / objective / proxy として使いうる。
 
 ---
 
-## 13. 経済学への射影
+## 12. 経済学への射影
 
-### plan / choice と forecast
-
-必要な economic projection では、planned / chosen resource change を `x_i` と書ける。
+### plan / forecast
 
 ```text
-x_i          = planned / chosen resource change
-E_i[ΔK(...)] = expected realized resource change
+x_i                  = planned / chosen resource change
+E_i[ΔK | a, I_i]     = action-contingent forecast of endpoint resource change
 ```
 
 budget feasibility は plan / choice 側へ置き、forecast と区別する。
@@ -286,72 +295,64 @@ budget feasibility は plan / choice 側へ置き、forecast と区別する。
 
 - compatibility / feasibility：主体間 plan が相互に実行可能であること
 - market equilibrium：compatibility に射影先理論の choice / optimality / clearing 等を加えたもの
-- accounting consistency：指定 accounting rule による記帳・連結が整合すること
+- accounting consistency：指定 accounting representation の recognition / valuation / identity / closing rule が整合すること
 - steady state：対象状態について別途定める動学条件
 
 これらは別概念である。
 
 ### Marxian categories
 
-VFT は、Marxian economics が区別した use-value / labor / exchange-value / surplus / accumulation を一般化された構造上で表現できる。
+VFT は use-value / labor / exchange-value / surplus / accumulation の区別を一般化構造上で保持する。
 
-ただし Marx 固有の value theory は、socially necessary labor time 等の追加条件を置く **projection-specific specialization** として扱う。
-
-- use-value：K が特定 A / transformation を可能にし、期間内で実現される利用・効用側の価値
-- labor measure：physical / productive flow としての labor activity / labor time
-- Marxian labor-value：SNLT 等を追加した specialized projection
-- exchange-value / price：異質な resource を比較可能にする market / monetary valuation
-- surplus：exchange-value へ写像された input / output 等の差分として成立する accounting increment
-- Marxian surplus value：Marx 固有の追加条件を満たす specialized interpretation
-- accumulation：surplus の帰属・留保・分配による B/S 上の K_i の変化
+- use-value：期間内の利用を通じて実現される効用側 value quantity
+- labor measure：labor activity / labor time
+- Marxian labor-value：socially necessary labor time 等の追加条件を持つ specialization
+- exchange-value / price：resource 間の比較・market / monetary valuation
+- surplus：exchange-value の比較可能尺度上で成立する差分 / residual
+- Marxian surplus value：Marx 固有条件を持つ specialized interpretation
+- accumulation：surplus 等の帰属・留保・分配による K_i の変化
 
 ---
 
-## 14. ミクロ／マクロ接続
-
-ミクロとマクロは、同じ physical K と、そこから形成される主体別 monetary representations を異なる scope で観測・集約することで接続する。
+## 13. ミクロ／マクロ接続
 
 ```text
 micro
-K, K_i, P_i -> A_i -> physical/use-value flow -> P/L_i -> K_i(t+1)
+field_i -> A_i -> resource activity
+              -> ΔK
+              -> realized use-value -> P_i update
+              -> exchange valuation -> K_i update
 
-                         ↓ external reporting / aggregation
+                     ↓ external reporting / aggregation where needed
 
 macro
 physical production / consumption
-aggregate exchange-value increment / surplus
-capital-stock distribution
+exchange-value distribution / surplus
 capital accumulation
 shared P
+field formation / dissolution
 ```
 
-主体ごとの帳簿自体が共通化されることは仮定しない。macro measure は reporting / statistical transformation を介した別 representation である。
+主体ごとの帳簿そのものが共通化されることは仮定しない。
 
 ---
 
-## 15. Core で固定しないもの
+## 14. Core で固定しないもの
 
 - K の標準 resource coordinates
-- use-value の具体的効用関数・代替可能性
-- exchange-value の monetary measurement / valuation function
-- ownership / attribution / recognition rule
-- 具体的 accounting standard
-- P/L と B/S の closing rule
-- surplus の普遍的算出式
+- institutional / legal state の普遍 primitive
+- use-value の標準効用関数・代替可能性
+- exchange-value / monetary valuation function
+- K_i の標準 accounting implementation
+- P の標準内部次元
 - P の普遍的更新式
 - A の deterministic choice function
+- gross activity の追加 primitive
 - E[ΔK] の確率測度・期待形成式
-- 3則の具体的 objective / weight / priority / threshold
+- surplus の普遍的算出式
+- 3則の objective / weight / priority / threshold
 - market equilibrium の普遍的条件
-- micro-to-macro reporting / aggregation rule
-
----
-
-## 16. 関連ノート
-
-- [計測](02_measurement.md)
-- [既存概念・応用への射影](../notes/projections.md)
-- [拡張・再検討ノート](../notes/future_topics.md)
+- micro-to-macro aggregation rule
 
 ---
 
