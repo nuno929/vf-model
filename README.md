@@ -83,15 +83,17 @@ Y_S(t1) = Y_S(t0) + ΔK(S, τ)
 
 と書ける。`K_t1 = K_t0 + ΔK` は、さらに `M_S = id` で K 自体が同じ加法空間にある特殊ケースに限る。
 
+一般形で始点と終点の state representation が同じ場合は、`δ_S(y,y)` をその仕様における no-change descriptor とみなす。**加法的な在庫 projection では**、生産 100・消費 100 で在庫が元に戻る場合 `ΔK(S,τ)=0` となる。
+
 一方、gross production、gross consumption、transaction volume、resource transformation のような**区間中の活動量・flow statistic** は `ΔK` へ含めず、必要な projection / measurement で derived path functional として分離する。例えば、
 
 ```text
-H_S(τ) = h_S((K_t)_{t in τ}, (A_t)_{t in τ})
+H_S(τ) = h_S((K_t)_{t in τ}, A_τ)
 ```
 
-と書ける。`H_S` は Core の新しい state / primitive ではなく、区間 path から導出する観測・会計量である。
+と書ける。`A_τ` 自体が区間内の actor-side event / process を保持し、必要な場合は event ordering を保持する。`H_S` は Core の新しい state / primitive ではなく、区間 path から導出する観測・会計量である。
 
-したがって、生産 100・消費 100 で在庫が元に戻る場合、在庫についての `ΔK` は 0 でも、production / consumption を表す `H_S` はそれぞれ 100 と記録できる。
+したがって上の加法的在庫例でも、production / consumption を表す `H_S` はそれぞれ 100 と記録できる。
 
 非加法的な P 成分では、`ΔP_i` は算術差ではなく、少なくとも
 
@@ -184,7 +186,7 @@ A_(t0,t1]
 (K_t1, P_t1)
 ```
 
-と置く。これは因果・時間順序を示す typing であり、普遍的な状態遷移関数を意味しない。
+と置く。これは **actor-side channel の因果・時間順序を示す typing** であり、普遍的な状態遷移関数を意味しない。
 
 A は K / P を変化させる主要な actor-side process である。`K_i` は K から導かれる view であるため、権利・資格・契約・制度状態等を含む K の変化に応じて access / usability が変わりうる。`K_i` 専用の独立した差分変数は Core に置かない。
 
@@ -192,7 +194,7 @@ A は K / P を変化させる主要な actor-side process である。`K_i` は
 
 P と A の因果関係を検証する projection で、`A_(t0,t1]` 内の情報受容・解釈等が途中で P を更新し、その後の decision / action に影響する場合は、**区間を分割するか event ordering を保持する**。`P_t0 -> A_(t0,t1]` と粗く書いたまま途中の P 更新を事前状態として扱わない。
 
-一方、記憶減衰等の微小・非主体的な P の変化の存在自体を否定する必要はない。K にも減価償却・老朽化・自然消耗・災害等、A を介さない非主体的変化がありうる。必要な応用で考慮する。
+一方、記憶減衰等の微小・非主体的な P の変化や、減価償却・老朽化・自然消耗・災害等の A を介さない K の変化もありうる。これらは上の actor-side channel 図に含めず、必要な projection で扱う。
 
 ---
 
@@ -241,9 +243,21 @@ p · x_i <= 0
 
 例えば在庫の net change は `ΔK`、gross production / consumption / transaction volume は `H_S` として分ける。市場が不均衡でも会計恒等式は成立しうる一方、市場が均衡していても `ΔK` や `H_S` は非ゼロになりうる。
 
-### ミクロ／マクロの接続面と評価・信用経済への射影可能性
+### ミクロ／マクロの共通 K 接続
 
-VFT が現時点で与えるのは、ミクロからマクロを自動的に導出する普遍的集約則ではなく、**異なるスケールの state change と interval activity を共通の observation / accounting schema 上で記述する接続面**である。
+VFT ではミクロとマクロを別々の資源世界として置かない。**両者は同じ common K と同じ K transition を、異なる観測・会計仕様 `S` から記述したもの**である。
+
+```text
+                 common K
+                /        \
+          S_micro        S_macro
+             ↓              ↓
+      micro observation  macro observation
+```
+
+したがって、存在論的な接続のために `micro -> macro` の普遍的 aggregation map を要求しない。micro observable から macro observable を再構成する場合にのみ、projection-local な aggregation / coarsening rule を追加する。
+
+### 評価・信用経済への射影可能性
 
 評価・信用経済では、評価対象と評価者を区別する。主体 `a` の評判・信用は一つの `P_a` として存在するのではなく、評価者 `j` ごとの `P_j(a)` として表現される。
 
@@ -263,7 +277,36 @@ rights / contract / credit conditions in K
 
 このように、公開評価情報、他者が保持する評価・信用、実際に行使可能な信用枠・請求権・取引アクセスを区別することで、いわゆる**評価経済・信用経済**における波及を同一状態表現上で射影できる可能性がある。
 
-これらは現時点では VFT Core の普遍則ではなく、VFT の共通状態表現を用いた projection / empirical modeling の候補である。
+### 機能的最適化則の候補
+
+VFT の ontology 自体は主体を「個人・企業・国家」という別種の存在として固定しない。その上で、経済・社会 projection では、次の3つを **functional optimization hypothesis** として分離できる。
+
+1. **resource-realization function**：主体は、自らが形成する期待・評価のもとで、望む／見込む `ΔK` の実現へ向けて A を選ぶ。
+2. **activity-flow function**：主体は、K / P の配置を再構成し、持続可能な A-flow を最大化する。
+3. **P-downside function**：主体群の P の大幅な負側・悪化側を抑えるよう、K / A を配分・調整する。
+
+概念的な最適化記法としては、projection-local な objective を用いて、
+
+```text
+resource-realization:
+A_i* ∈ argmax_A R_i(A ; P_i, E_i[ΔK])
+
+activity-flow:
+(K_f*, P_f*) ∈ argmax_(feasible K_f,P_f) F_f(A-flow | K_f, P_f)
+
+P-downside:
+A_g* ∈ argmin_A L_g^-(P ; observable proxies)
+```
+
+のように書ける。`R_i` / `F_f` / `L_g^-` は Core primitive ではなく、各 projection が具体化する objective functional である。
+
+ここで「個人・企業・国家」は最適化機能の典型的な担い手であって、機能そのものと同一ではない。**自給自足では単一 actor が3つの最適化機能をすべて担いうる。** 一方、資本主義では概ね、個人が resource-realization、企業が A-flow、国家が P-downside を重点的に担う制度的分業として記述できる。
+
+企業の利益は A-flow の結果として生じる resource/accounting outcome の一面であり、短期的な `ΔK` の悪化を伴う投資・採用・R&D・市場獲得等も、将来 A-flow の拡張として記述できる。このため profit maximization より広い企業行動を扱える。
+
+国家側で P の単一最大化を直接置きにくいのは、P の真値が直接観測できず、支持率・失業・犯罪・景況感・出生・健康・移住・市場指標等の proxy 間に普遍的な加法則がないためである。個々の悪化や負側は比較的識別しやすいため、operational rule として downside minimization を置き、上方の改善は個々人・企業の分散的努力へ委ねる形をとりうる。
+
+この3則は現段階では VFT Core の普遍法則ではなく、**同一 actor 内にも制度的分業にも適用できる explanatory projection** として扱う。
 
 ### 期待変化の集約と余剰
 
@@ -321,6 +364,7 @@ P proxy の admissibility では少なくとも、
 - `E[ΔK]` を A 生成の必須中間変数とすること
 - A の普遍的選択則
 - `H_S` 等の区間活動量の普遍的定義
+- functional optimization hypothesis の具体的 objective function
 - inter-agent compatibility の普遍的条件
 - market equilibrium の普遍的 choice / optimality / clearing 条件
 - ミクロ／マクロの普遍的集約・導出則
