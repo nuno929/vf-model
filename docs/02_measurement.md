@@ -4,7 +4,7 @@
 
 本書は VFT Core を実証・観測・会計へ落とす際の境界を整理する。
 
-計測上は、physical K、actor-specific K_i、structured subjective state P_i、A の event history、endpoint change ΔK、use-value realization、exchange-value representation を区別する。
+計測上は、physical K、actor-specific K_i、structured subjective state P_i、A の event history、projection-defined endpoint difference ΔK、use-value realization、exchange-value representation を区別する。
 
 ---
 
@@ -15,6 +15,8 @@ K は physical / real-resource state である。
 候補 observable には原材料量、製品量、設備、稼働、労働時間、エネルギー使用、土地、時間、技能・人的能力等がある。
 
 K の完全観測は前提とせず、resource coordinates と観測単位は projection ごとに定める。
+
+A を通らない K 変化を扱う必要がある場合、自然劣化、災害、偶発故障等を `Ω_τ` 等の exogenous / environmental process として projection-local に観測する。
 
 ---
 
@@ -33,6 +35,19 @@ K の完全観測は前提とせず、resource coordinates と観測単位は pr
 
 `K_i` は K の subset / partition ではない。
 
+### valuation の境界
+
+`P_i` 上の valuation と `K_i` 上の valuation を区別する。
+
+```text
+P_i valuation
+= subjective desirability / appraisal / belief-side evaluation
+
+K_i valuation
+= exchange-value representation under specified
+  recognition / comparison / unit-of-account / valuation rules
+```
+
 ### accounting implementation
 
 企業会計等では K_i を ledger / B/S 上の monetary positions として形式化できるが、`K_i ≡ B/S` とはしない。
@@ -45,13 +60,11 @@ K の完全観測は前提とせず、resource coordinates と観測単位は pr
 
 ## 4. use-value の計測
 
-VFT における use-value quantity は、resource stock 自体ではなく、**主体がある interval 内に resource を実際に利用・消費し、その体験として ex post に realized した主観的効用量**である。
+VFT における use-value quantity は、resource stock 自体ではなく、**主体がある interval 内に resource を実際に利用・消費し、その経験に帰属される形で ex post に realized した主観的効用量**である。
 
-physical stock / capability 自体は K として時点観測できるが、それは use-value quantity ではない。
+physical stock / capability 自体は K として時点観測できるが、それは use-value quantity ではない。瞬間的な快・満足等を観測できても、それ自体を当該 resource の use-value quantity と同一視しない。
 
-同じ主体・同じ resource・同じ利用量でも、充足状態、利用順序、文脈、他の経験等によって体験結果は変わりうる。限界効用逓減はその一例である。したがって **use-value quantity に一般的な再現性を仮定しない**。
-
-use-value は利用前に真値として直接観測できず、actual use / consumption 後の subjective outcome としてのみ評価する。
+同じ主体・同じ resource・同じ利用量でも、充足状態、利用順序、文脈、他の経験等によって realized outcome は変わりうる。限界効用逓減はその一例である。したがって **use-value quantity に一般的な再現性や interval 間の加法性を仮定しない**。
 
 ```text
 actual use over τ=(t0,t1]
@@ -61,7 +74,7 @@ subjective experience / fulfillment
 realized use-value U^use_i(τ)
 ```
 
-離散時間で時点 `t` を置く場合、時点 `t` で直接参照できる use-value は前区間までに realized した値である。
+離散時間で時点 `t` を置く場合、時点 `t` で参照できる use-value は前区間までに realized した outcome である。
 
 ```text
 U^use_i((t-1,t])
@@ -71,7 +84,9 @@ reference / update of P_i,t
 expectation about future use
 ```
 
-将来区間について観測できる use-value quantity はまだ存在しない。将来の利用結果について主体が持つものは P_i 上の belief / expectation である。
+将来区間について realized use-value quantity はまだ存在しない。将来の利用結果について主体が持つものは P_i 上の belief / expectation である。
+
+瞬間 rate を必要とする projection では interval quantity の極限・微分的表現を導入できるが、point-in-time stock valuation として扱わない。
 
 したがって use-value quantity の計測では少なくとも、
 
@@ -79,12 +94,15 @@ expectation about future use
 - interval
 - actual use / consumption
 - subjective utility / experience proxy
+- attribution to the resource/use episode
 - reference timing
 - 必要に応じて substitute / complement / use category
 
 を指定する。
 
 異なる interval 間・主体間で use-value proxy を比較する場合、それが同一尺度上で再現可能な真値を測っているとは仮定せず、projection-specific な比較可能性を別途定義する。
+
+この interval-indexed な時間形式を P/L-like と呼びうるが、会計上の P/L entry と同一視しない。
 
 ---
 
@@ -103,7 +121,7 @@ interval valuation      -> transaction / revenue / expense etc.
 
 異質な resource stock を共通交換尺度で比較・集計する評価は exchange-value representation として扱う。
 
-複式簿記は use / exchange の二重表現を説明するアナロジーとしてのみ用い、普遍的認知構造とはしない。
+VFT は physical capability / realized use experience / exchange-value representation を別表現として保持するが、これを借方・貸方や複式簿記の普遍対応とはしない。
 
 ---
 
@@ -115,7 +133,7 @@ interval valuation      -> transaction / revenue / expense etc.
 
 shared P は actor set 上の共通性・整合性・分布として推定する。
 
-`E_i[ΔK | a, I_i]` は P_i の belief / expectation component と情報集合から導出される forecast とする。
+Core の generic forecast は `ΔK̂_i(a; I_i)` とし、P_i の belief / expectation component と情報集合から導出される forecast とする。確率・因果モデルを採用する projection では、条件付き期待値等として具体化してよい。
 
 use-value と P の時系列を観測する場合、
 
@@ -138,11 +156,19 @@ A は生産、消費、交換、投資、労働、移転、契約、政策、探
 
 区間中の gross activity は A の event history として記録する。
 
-`ΔK` は endpoint state change とする。
+`ΔK_τ` は projection-defined endpoint resource-state difference とする。
 
 ```text
-ΔK_[t0,t1] = K_t1 - K_t0
+ΔK_τ := δ_K(K_t0, K_t1)
 ```
+
+K が additive vector space 等で表現される projection では、
+
+```text
+δ_K(K_t0, K_t1) = K_t1 - K_t0
+```
+
+を特殊形として使える。
 
 したがって gross activity と ΔK は別 observable である。
 
@@ -150,7 +176,7 @@ A は生産、消費、交換、投資、労働、移転、契約、政策、探
 +100 inflow
 -100 outflow
 => gross activity exists
-=> endpoint ΔK may be 0
+=> additive stock projection では endpoint ΔK may be 0
 ```
 
 `ΔK` は accounting entry ではない。
@@ -159,27 +185,30 @@ A は生産、消費、交換、投資、労働、移転、契約、政策、探
 
 ## 8. surplus の計測
 
-surplus は physical primitive ではなく、exchange-value の比較可能尺度上で成立する差分 / residual である。
+surplus は physical primitive ではなく、**指定された economic changes を exchange-value の比較可能尺度へ写像し、specified comparison boundary の下で取る差分 / residual** とする。
 
 ```text
-physical / use-value activity
-   ↓ valuation / recognition
-comparable exchange values
-   ↓ comparison / accounting
+specified economic changes
+   ↓ exchange-value representation
+comparable values
+   ↓ comparison under specified boundary
 surplus / deficit
 ```
 
 少なくとも、
 
 1. actor set / scope
-2. comparison / accounting boundary
-3. unit of account
-4. recognition timing
-5. valuation rule
-6. internal transaction treatment
-7. attribution / distribution rule
+2.対象 economic changes
+3. comparison / accounting boundary
+4. unit of account
+5. recognition timing
+6. valuation rule
+7. internal transaction treatment
+8. attribution / distribution rule
 
 を明示する。
+
+production input / output、contract / financial events、valuation-only events のどれを含めるかによって、production surplus / accounting income / valuation gain 等との関係は変わる。Core では同一視しない。
 
 ---
 
@@ -201,13 +230,21 @@ accounting identity は当該 projection の representation rule として検証
 
 ## 10. field / business の計測
 
-field は、K / K_i / P_i と projection-specified relations / constraints が A をどの程度誘発・再生産するかという配置構造として扱う。
+field は、K / K_i / P_i と projection-specified relations / constraints から導かれる action-generating configuration として扱う。
 
-直接1変数へ縮約することは Core では要求しない。
+必要に応じて、
+
+```text
+F_t := configuration(...)
+Γ_i(F_t) := feasible / inducible action correspondence
+```
+
+という derived notation を用いる。直接1変数へ縮約することや deterministic choice function を Core では要求しない。
 
 business / organization projection では、例えば、
 
 - recurring action set
+- feasible / inducible action range
 - activity continuity
 - resource replenishment
 - participant retention
@@ -227,6 +264,10 @@ profit はその一指標であり、business existence の定義変数とはし
 
 3則は constitutive rationality assumptions とする。
 
+- resource-realization では resource / capital outcome に加えて realized-use outcome を含めうる。
+- activity-flow では recurring activity と field formation / renewal を観測する。
+- P-downside では P 全体の上下を仮定せず、projection-specific な loss / threshold / viability criterion を指定する。
+
 経験的には、projection-specific な objective / priority / weight / constraint / threshold / horizon が action / outcome をどの程度説明するかを検証する。
 
 ---
@@ -237,7 +278,7 @@ profit はその一指標であり、business existence の定義変数とはし
 - labor measure：labor activity / labor time
 - Marxian labor-value：socially necessary labor time 等の追加条件を伴う specialization
 - exchange-value / price：resource 間の comparison / market / monetary valuation
-- generic surplus：exchange-value 上の差分 / residual
+- generic surplus：指定 boundary と exchange-value scale 上の差分 / residual
 - Marxian surplus value：Marx 固有条件を含む specialization
 
 VFT-specific use-value quantity と Marxian use-value を自動的に同一視しない。
@@ -258,17 +299,19 @@ VFT-specific use-value quantity と Marxian use-value を自動的に同一視�
 
 1. K の resource coordinates
 2. A の event unit / ordering
-3. ΔK の endpoint interval
-4. use-value の actor / realized interval / subjective proxy / reference timing
-5. exchange-value / valuation rule
-6. K_i の representation rule
-7. P / shared P の proxy
-8. E[ΔK] の推定法
-9. surplus の comparison / accounting boundary
-10. accounting projection を用いる場合の recognition / identity rule
-11. field / business continuity の proxy
-12. micro / macro reporting / aggregation rule
-13. 欠測・測定誤差・情報損失
+3. `δ_K` の endpoint difference rule
+4. exogenous K change を扱う場合の `Ω` 等の定義
+5. use-value の actor / realized interval / subjective proxy / attribution / reference timing
+6. exchange-value / valuation rule
+7. K_i の representation rule
+8. P / shared P の proxy
+9. generic forecast `ΔK̂` の推定法
+10. surplus の対象 economic changes / comparison boundary
+11. accounting projection を用いる場合の recognition / identity rule
+12. field / business continuity / inducibility の proxy
+13. P-downside の projection-specific viability criterion
+14. micro / macro reporting / aggregation rule
+15. 欠測・測定誤差・情報損失
 
 ---
 
