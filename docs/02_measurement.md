@@ -22,7 +22,7 @@ K は共通の実資源世界を参照する。
 
 K の候補指標には、利用可能な現金残高、行使可能な金融請求権、受取可能額、earning capacity、設備・在庫・インフラ、時間、人員、技能、知識、情報、利用可能な信用枠、権限・アクセス可能な手段等がある。
 
-期間所得そのものは通常 flow であり、K の stock/state と同一視しない。期間中に実現した所得受取は K の interval transition / `ΔK` 側で扱い、受取可能な請求権や earning capacity 等を K 側へ置く。
+期間所得そのものは通常 flow であり、K の stock/state と同一視しない。期間中に実現した所得受取は state transition または interval activity として扱い、受取可能な請求権や earning capacity 等を K 側へ置く。
 
 金融資源は、名目上の評価額そのものではなく、実際に行動可能性を増やす利用可能な資源・権利として K / `K_i` へ操作化する。
 
@@ -38,7 +38,18 @@ K の候補指標には、利用可能な現金残高、行使可能な金融請
 
 候補 proxy には、調査された期待・信念・選好・評価、発話、契約に対する信用、評判・ブランド評価、価格、金利、スプレッド、信用条件等がある。
 
-価格・金利・信用条件等は P そのものではなく、P と K / A / 制度・市場過程等の相互作用から生じる observable として扱う。
+価格・金利・スプレッド・信用条件等は P そのものではなく、P と K / A / 制度・市場過程等の相互作用から生じる observable でありうる。
+
+### P proxy admissibility
+
+market outcome 等を P の proxy として用いる場合は、同時決定・post-treatment・outcome leakage を避けるため、少なくとも以下を確認する。
+
+1. proxy が target `A` / `ΔK` より前に観測されたものか
+2. 同時決定の場合、joint structural / measurement model を明示しているか
+3. target outcome を使って latent P を事後的に構成していないか
+4. proxy validity を別データ、独立測定、または追加制約で検証できるか
+
+`P_t -> A_t -> price_t` のような構造が想定されるのに、同じ `price_t` から `P_t` を復元して `A_t` を説明する、といった循環を避ける。
 
 ### 理論変数と observable の分離
 
@@ -106,11 +117,13 @@ A_(t0,t1]
 
 とする。これは temporal typing であり、普遍的な状態遷移関数を意味しない。
 
+P → A の時間的・因果的関係を検証する projection で、A 区間内の information reception / interpretation 等が途中で P を更新し、その後の decision / action に影響する場合は、**区間を分割するか event ordering を保持する**。途中更新後の P を初期 `P_t0` と同一視しない。
+
 ---
 
-## 6. ΔK / ΔP の観測
+## 6. ΔK / ΔP と区間活動量の観測
 
-観測・会計仕様 `S` と時間区間 `τ=[t0,t1]` を明示した実資源変化を `ΔK(S, τ)` とする。
+観測・会計仕様 `S` と時間区間 `τ=[t0,t1]` を明示した K の state / resource change を `ΔK(S, τ)` とする。
 
 `S` は少なくとも以下を含む。
 
@@ -119,36 +132,39 @@ A_(t0,t1]
 3. accounting boundary
 4. transformation convention
 
-例えば一つの消費行為が、在庫減少、現金移転、身体への摂取、別形態の資源への変換等を同時に生む場合、どの座標と会計境界で `ΔK` を測るかを `S` で固定する。
+### state change `ΔK`
 
-一般形では、区間内の state path と actor-side process / event を観測表現へ写し、
-
-```text
-Z_S(τ) = M_S((K_t)_{t in τ}, (A_t)_{t in τ})
-ΔK(S, τ) = δ_S(Z_S(τ)) ∈ D_S
-```
-
-と考える。`M_S` と `δ_S` は measurement / projection 側で定める specification-local な写像・演算であり、Core の新しい原始変数ではない。
-
-この path-aware な一般形により、endpoint の net stock change がゼロでも、`S` に応じて gross production、gross consumption、transaction volume、resource transformation 等を保持できる。
-
-endpoint のみを観測する場合は特殊ケースとして、
+観測仕様に対応する state representation を
 
 ```text
 Y_S(t) = M_S(K_t)
-ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1))
+ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1)) ∈ D_S
 ```
 
-と置ける。
+とする。`M_S` と `δ_S` は measurement / projection 側で定める specification-local な写像・演算であり、Core の新しい原始変数ではない。
 
-加法的な quantitative projection が適用できる場合には、
+`ΔK` は必ずしも算術差分を意味しない。加法的な quantitative projection が適用できる場合にのみ、
 
 ```text
 δ_S(y0, y1) = y1 - y0
 Y_S(t1) = Y_S(t0) + ΔK(S, τ)
 ```
 
-と書ける。`K_t1 = K_t0 + ΔK` は、さらに `M_S = id` で K 自体が同じ加法空間にある特殊ケースに限る。
+と置ける。`K_t1 = K_t0 + ΔK` は、さらに `M_S = id` で K 自体が同じ加法空間にある特殊ケースに限る。
+
+### interval activity `H_S`
+
+gross production、gross consumption、transaction volume、resource transformation 等は state change そのものではないため、`ΔK` へ含めない。必要な measurement / projection では、
+
+```text
+H_S(τ) = h_S((K_t)_{t in τ}, (A_t)_{t in τ})
+```
+
+のような derived path functional / interval activity descriptor として分離する。
+
+`H_S` は Core の新しい primitive / state ではない。
+
+例えば、生産 100・消費 100 で在庫が元に戻る場合、在庫について `ΔK=0` でも、production / consumption を表す `H_S` はそれぞれ 100 と記録できる。
 
 `ΔP_i` も一般には算術差ではなく、主体 `i` の P に実現した change descriptor / state transition を表す。非加法的な場合は少なくとも
 
@@ -158,7 +174,7 @@ P_i,t0 -> P_i,t1
 
 として扱い、数量化が必要な場合だけ measurement mapping を追加する。
 
-`ΔK` はミクロ用・マクロ用に数学的な同一型を要求しない。`S` に応じて `D_S`、座標、単位、集約規則等は異なりうるが、**S-indexed interval-change schema** は共通に保つ。
+`ΔK` はミクロ用・マクロ用に数学的な同一型を要求しない。`S` に応じて `D_S`、座標、単位、集約規則等は異なりうるが、**S-indexed state-change schema** は共通に保つ。区間活動量は必要に応じて別の `H_S` として定義する。
 
 ---
 
@@ -174,11 +190,23 @@ A は P を変化させる主要な actor-side process である。
 
 ## 8. E[ΔK] の位置づけ
 
-主体 `i` が対象 `S`・区間 `τ` について形成する期待実資源変化を `E_i[ΔK(S, τ)]` とする。
+`ΔK(S, τ)` の値域 `D_S` は非数量・非加法でありうるため、期待値を取る場合は quantitative representation を明示する。
 
-`E[...]` は expectation operator として、対象となる `ΔK` が quantitative projection 上で表現され、期待値が定義可能な場合に用いる。
+```text
+q_S : D_S -> V_S
+```
 
-Core は `E_i` に対応する確率測度・情報集合・期待形成式を普遍的に固定しない。具体的な expectation operator の定義は対象 projection / measurement model で与える。
+`V_S` は対象 projection で expectation が定義可能な quantitative value space とする。
+
+記法上、
+
+```text
+E_i[ΔK(S, τ)] := E_i[q_S(ΔK(S, τ))]
+```
+
+と略記する。左辺は generic change descriptor 自体へ直接 expectation operator を掛ける意味ではない。
+
+Core は `q_S` の具体形、`E_i` に対応する確率測度・情報集合・期待形成式を普遍的に固定しない。具体的な quantitative representation / expectation operator は対象 projection / measurement model で与える。
 
 `E[...]` は主体が形成する見込み値・期待値を表し、主体の望みそのものではない。選好・望ましさ・評価は P に保持され、期待形成や A に影響しうる。
 
@@ -197,13 +225,14 @@ VFT は、複数主体の `K_i` / `P_i` / `A_i` を自動的に一主体・一�
 5. A の観測単位とイベント順序
 6. `τ`
 7. `S` の resource coordinates / accounting boundary / transformation convention
-8. path-aware / endpoint-only のどちらを用いるか
-9. `M_S` / `δ_S` または対応する change mapping
-10. ΔK / ΔP の集約規則
-11. 共有資源・重複アクセスの扱い
-12. 情報損失
+8. `M_S` / `δ_S` または対応する state-change mapping
+9. `H_S` を使う場合の path functional
+10. `q_S` を使う場合の quantitative representation
+11. ΔK / ΔP / H の集約規則
+12. 共有資源・重複アクセスの扱い
+13. 情報損失
 
-ミクロからマクロへの接続でも、新しい `ΔK_macro` の型を置く必要はなく、異なる `S` / `τ` / 集約規則を与えた同じ S-indexed interval-change schema として扱う。
+ミクロからマクロへの接続でも、新しい `ΔK_macro` の型を置く必要はなく、異なる `S` / `τ` / 集約規則を与えた同じ S-indexed state-change schema として扱う。gross flow / interval activity は必要に応じて `H_S` 側で集約する。
 
 ---
 
@@ -227,12 +256,12 @@ p · x_i <= 0
 
 以下は別概念として扱う。
 
-- **主体間整合 / compatibility**：各主体の予算・資源制約を満たした `x_i` が、価格・取引条件等のもとで相互に実行可能・両立可能であること
+- **主体間整合 / compatibility**：economic projection が追加する条件として、各主体の予算・資源制約を満たした `x_i` が、価格・取引条件等のもとで相互に実行可能・両立可能であること
 - **market equilibrium**：上記 compatibility に加え、射影先の理論が choice / optimality / best response / market-clearing 等の条件を与えた状態
-- **会計整合**：同じ資源変化を同一会計境界・換算規則で記録した結果が収支上整合すること
+- **会計整合**：同じ state change / interval activity を同一会計境界・換算規則で記録した結果が収支上整合すること
 - **定常状態**：対象 scope の K が区間を通じて実質的に増減しない等、別途定める状態条件
 
-したがって、VFT 単独の compatibility を market equilibrium と同一視しない。
+compatibility 自体も VFT Core から自動導出されるものではなく、economic projection 側の追加条件である。
 
 ---
 
@@ -242,11 +271,12 @@ P が観察後の residual state にならないよう、各 projection / empiri
 
 1. 採用する P の次元
 2. 各次元の observable / proxy
-3. P と A / E[ΔK] の mapping
-4. 検証対象となる事前予測または識別条件
-5. 代替説明と比較する基準
+3. proxy admissibility
+4. P と A / E[ΔK] の mapping
+5. 検証対象となる事前予測または識別条件
+6. 代替説明と比較する基準
 
-観察された A の差を説明するために事後的に任意の P 次元を追加することは避ける。
+観察された A の差を説明するために事後的に任意の P 次元や proxy を追加することは避ける。
 
 ---
 
@@ -286,23 +316,26 @@ rights / contract / credit conditions in K
 2. 共通 K の対象範囲
 3. 各主体の K へのアクセス・利用可能性
 4. P に用いる proxy と対象範囲
-5. K / P の識別原則
-6. A を直接観測する範囲
-7. 内部 decision / observation の proxy
-8. ΔK / ΔP を結果 proxy として使う範囲
-9. 理論変数と observable の measurement mapping
-10. `S` / `S_i`
-11. `τ`
-12. resource coordinates / accounting boundary / transformation convention
-13. path-aware / endpoint-only の選択
-14. `M_S` / `δ_S` または対応する change mapping
-15. 集約・会計・換算規則
-16. 欠測・測定誤差
-17. `E[ΔK]` を適用する quantitative projection
-18. expectation operator / 推定方法
-19. compatibility を扱う場合の予算制約・価格・取引条件
-20. market equilibrium と呼ぶ場合の choice / optimality / clearing 条件
-21. P の採用次元と事前固定した検証条件
-22. 他者評価を扱う場合の評価者 `j` と評価対象 `a` の区別
+5. P proxy admissibility
+6. K / P の識別原則
+7. A を直接観測する範囲
+8. 内部 decision / observation の proxy
+9. temporal typing / event ordering
+10. ΔK / ΔP を結果 proxy として使う範囲
+11. interval activity `H_S` を使う範囲
+12. 理論変数と observable の measurement mapping
+13. `S` / `S_i`
+14. `τ`
+15. resource coordinates / accounting boundary / transformation convention
+16. `M_S` / `δ_S` または対応する state-change mapping
+17. `h_S` / `H_S` を使う場合の path functional
+18. `q_S` / `V_S`
+19. 集約・会計・換算規則
+20. 欠測・測定誤差
+21. expectation operator / 推定方法
+22. compatibility を扱う場合の予算制約・価格・取引条件
+23. market equilibrium と呼ぶ場合の choice / optimality / clearing 条件
+24. P の採用次元と事前固定した検証条件
+25. 他者評価を扱う場合の評価者 `j` と評価対象 `a` の区別
 
-目的は、**共通の実資源世界 K と、主体ごとのアクセス状態 K_i・主観的評価／期待状態 P_i・期待区間変化 E_i[ΔK(S, τ)] を混同せず、S-indexed interval-change schema をミクロからマクロまで観測・会計仕様に応じて接続し、A / ΔP / proxy / compatibility / equilibrium と使い分けること**にある。
+目的は、**state change `ΔK`、interval activity `H_S`、subjective state `P_i`、planned change `x_i`、expected realized change `E_i[ΔK]` を混同せず、観測・会計・因果上の位置を明示すること**にある。
