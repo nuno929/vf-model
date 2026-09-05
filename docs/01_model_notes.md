@@ -10,6 +10,8 @@ VFT Core は、単独で経験的予測を与える仮説というより、**ont
 
 Core の目的は単独で行動を予測することではなく、各 projection が検証可能な制約・選択則・観測モデルを記述するための共通状態表現を与えることである。
 
+その上に、管理・意思決定を記述するための **3つの管理合理性公理**を置く。これは Core ontology の原始変数や普遍的な deterministic choice function ではなく、**意思決定が何を合理性の対象として考慮するかを定める上位原則**である。
+
 ---
 
 ## 2. K：共通の実資源世界
@@ -21,6 +23,8 @@ K_t
 ```
 
 K は多次元であり、時間、身体、技能、知識、情報、関係、設備、資金、インフラ、権利、制度上利用可能な手段等を含みうる。
+
+本理論でいう resource は物的資源に限定されない。**外部に実在し、行使・利用・参照可能で actor の行為可能性に関係する情報、権利、資格、契約、制度状態、金融請求権等も K に含みうる。**
 
 一方、各主体がその全てへ同じようにアクセスできるわけではない。主体 `i` が時点 `t` に実際にアクセス・利用・行使・参照可能な範囲を `K_i,t` とする。
 
@@ -48,9 +52,23 @@ P_t = (P_i,t)_{i in I}
 
 `P_t` は集合ではなく actor identity を保持する indexed family として扱う。
 
+P は一つの未分化スカラーではなく、少なくとも概念上は異なる型の成分を含みうる。
+
+```text
+P_i
+├─ epistemic / belief-like components
+├─ evaluative / preference-like components
+├─ relational / trust-like components
+└─ other projection-specific components
+```
+
+これは独立 primitive を追加する意味ではない。必要な projection が P のどの成分を使うかを型として区別するための整理である。
+
 他主体 `a` について主体 `j` が保持する評価・信用・見通し等を区別して表す必要がある場合は、`P_j(a)` と書く。これは評価対象 `a` の P ではなく、**評価者 `j` の `P_j` に含まれる `a` についての主観状態**である。
 
-P を「期待 stock」と呼ぶ場合も、P 自体を特定時点の期待値とみなすためではない。**将来価値への期待・評価や行動を生成する側の蓄積構造であることに着目した呼称**である。
+P を「期待 stock」と呼ぶ場合も、P 自体を特定時点・対象に対する数値期待値とみなすためではない。**将来価値への期待・評価や行動を生成する側の蓄積構造であることに着目した呼称**である。
+
+P 内の belief / outlook と、特定の scope・時間窓・candidate action に対して数量化された forecast は区別する。後者は必要な場合に `E_i[ΔK]` として projection する。
 
 P は履歴依存性を持ち、過去の期待、その実現結果、信用、評価、制度、経験等を通じて形成・強化・修正されうる。ただし、経験に裏付けられない初期的な選好・信念・見通しもありうるため、過去履歴だけから完全に決定されるとはしない。
 
@@ -218,11 +236,84 @@ E_i[ΔK(S, τ)] := E_i[q_S(ΔK(S, τ))]
 
 同じ対象区間について「10ほしいが2しか実現しないと見込む」場合、`E_i[ΔK]` は見込み値側を表し、「10ほしい」という選好・評価は P 側に属する。
 
+候補 action を比較する quantitative projection では、必要に応じて action-contingent forecast を
+
+```text
+E_i[ΔK(S, τ) | A = a, I_i]
+```
+
+のように明示する。`I_i` は projection-specific な情報集合を表す。conditioning / causal semantics の具体形は対象モデルで定める。
+
 `E[ΔK]` を A 生成の普遍的な必須中間変数とはしない。
 
 ---
 
-## 9. 経済学への射影
+## 9. 3つの管理合理性公理
+
+VFT の管理・意思決定記述では、合理性を次の3則へ集約する。
+
+1. **resource-realization rule**：望ましい resource outcome / state change の実現へ向けて A を動かす。
+2. **activity-flow rule**：K / P / A の配置を調整し、必要な activity / process の流れを維持・拡張する。
+3. **P-downside rule**：主体・組織・系の行動成立を阻害するほどの P の負側・毀損を抑える。
+
+3則は actor type ではなく、**意思決定合理性の公理系**である。個人・企業・国家、現場・管理・統治をそれぞれ一則へ固定的に割り当てるものではない。同一 actor が同時に3則すべてを考慮しうる。
+
+3則が直接扱う管理対象は、概念的に以下のように区別する。
+
+```text
+resource-realization -> outcome / resource-state realization
+activity-flow        -> process / activity continuity and expansion
+P-downside            -> viability / breakdown prevention on the P side
+```
+
+同じ A が複数則に寄与することはありうる。したがって A 自体を排他的に3分類するのではなく、**その意思決定がどの管理対象を、どの程度の優先度で制御しようとしているか**を区別する。
+
+### 文脈依存の比重
+
+各 actor が3則へ置く比重・優先順位は、文脈、役割、組織構造、制度、時間 horizon により変わる。
+
+quantitative projection では必要に応じて、
+
+```text
+w_i,c = (w_R, w_F, w_D)
+```
+
+のような context `c` に依存する priority / weight を導入できる。ただしこれは Core primitive ではなく、線形加重和や `Σw=1` を普遍的に要求しない。lexicographic priority、constraint、threshold 等でもよい。
+
+### 意思決定の共通型
+
+3則をもとに具体的な意思決定を記述する場合、candidate action が将来の K / P / A-flow / ΔK 等をどう変えるかを評価する。
+
+```text
+current K / P
+    + candidate action a
+          ↓
+induced / expected future trajectory
+(K', P', A-flow, ΔK, ...)
+          ↓
+R1 / R2 / R3 に照らした評価
+          ↓
+decision
+```
+
+必要な quantitative model では、各則に対応する projection-specific な評価 `J_R(a)`, `J_F(a)`, `J_D(a)` と、それらを文脈に応じて統合する decision rule を置ける。
+
+```text
+A_i* ∈ argmax_{a ∈ feasible actions}
+       Φ_i(J_R(a), J_F(a), -J_D(a); w_i,c)
+```
+
+`J_R` / `J_F` / `J_D` / `Φ_i` / `w_i,c` は3則そのものではなく、対象 projection における数理化である。これにより、K / P を直接 control variable として最適化するのではなく、**A を選択し、その A が誘導する将来状態・trajectory を評価する**形を保つ。
+
+### P-downside の位置づけ
+
+P-downside は「P が観測しにくいから」だけで導入するのではない。局所的な resource-realization / activity-flow が進んでも、主体群の不信、離反、破綻期待、将来不安等が大きく悪化すれば、その後の A 自体が成立しにくくなり、組織・制度・社会の viability が損なわれうる。
+
+したがって R3 は、**P 側の毀損が action system の成立条件を壊すことを防ぐ管理合理性**として置く。異質な P proxy 間に普遍的加法則がないことは、その具体的操作化で単純な aggregate-P maximization より downside / threshold / viability constraint が使いやすい理由の一つであり、R3 の唯一の論拠ではない。
+
+---
+
+## 10. 経済学への射影
 
 経済均衡は VFT 固有の普遍則として定義しない。以下は既存経済学への射影候補である。
 
@@ -269,36 +360,29 @@ p · x_i <= 0
 
 VFT ではミクロとマクロを別の資源世界として置かない。両者は **同じ common K と同じ K transition を異なる `S` から記述したもの**である。micro observable から macro observable を再構成する場合のみ、projection-local な aggregation / coarsening rule を追加する。
 
-### 機能的最適化則の候補
+### マクロでの制度的分業
 
-Core は主体種別ごとの普遍的選択則を固定しない。その上で、経済・社会 projection では以下の3つを **functional optimization hypothesis** として分離できる。
-
-1. **resource-realization function**：主体は、自らの P と期待のもとで、望む／見込む `ΔK` の実現へ向けて A を選ぶ。
-2. **activity-flow function**：主体は、K / P の配置を再構成し、持続可能な A-flow を最大化する。
-3. **P-downside function**：主体群の P の大幅な負側・悪化側を抑えるよう、K / A を配分・調整する。
-
-概念的には、projection-local objective を用いて
+3則は actor type と一対一対応しないが、**国家レベルのマクロな資本主義社会を粗視化すると、主たる比重が概ね次のように分化して見える**。
 
 ```text
-resource-realization:
-A_i* ∈ argmax_A R_i(A ; P_i, E_i[ΔK])
-
-activity-flow:
-(K_f*, P_f*) ∈ argmax_(feasible K_f,P_f) F_f(A-flow | K_f, P_f)
-
-P-downside:
-A_g* ∈ argmin_A L_g^-(P ; observable proxies)
+individuals -> resource-realization heavy
+firms       -> activity-flow heavy
+state       -> P-downside heavy
 ```
 
-のように書ける。`R_i` / `F_f` / `L_g^-` は Core primitive ではなく、各 projection が具体化する objective functional である。
+これは individual が R2/R3 を、firm が R1/R3 を、state が R1/R2 を持たないという意味ではない。各 actor は3則を持ちうるが、制度的な分業によって主担当・比重が異なるという解釈である。
 
-この3つは「個人・企業・国家」という ontological actor type ではなく**最適化機能**である。自給自足では単一 actor が3機能をすべて担いうる。資本主義では、概ね個人が resource-realization、企業が activity-flow、国家が P-downside を重点的に担う制度的分業として記述できる。
+自給自足では単一 actor が3則を同時に担う。企業内部でも operational / managerial / governance の各層で比重が分化しうるが、役職と3則を固定的に同一視しない。
 
-企業の利益は A-flow から生じる resource/accounting outcome の一面であり、短期的な資源減少を伴う投資・採用・R&D・市場獲得も、将来 A-flow の拡張として説明できる。この意味で activity-flow hypothesis は単純な短期 profit maximization より広い。
+### 既存経済学との関係
 
-国家については P の真値を直接観測できず、異質な proxy 間に普遍的加法則がないため、aggregate P の直接最大化よりも、明確に識別できる負側・悪化側を抑える downside rule の方が operational に置きやすい。上方の改善は個人・企業の分散的最適化へ委ねられうる。
+utility / profit 等は3則の特殊化そのものではなく、**3則をもとに具体的な意思決定を数量化するときに使われる評価関数・指標・proxy** として位置づける。
 
-これらは現段階では Core の普遍法則ではなく、**同一 actor 内にも制度的分業にも適用できる explanatory projection** として扱う。
+- utility は、resource-realization を考える際に候補 outcome の望ましさをスカラー化する一つの方法である。
+- profit は、activity-flow を考える際に用いうる accounting / performance 指標の一つである。特に going-concern の文脈で sustained activity と整合する場合に強い proxy になりうるが、R2 自体を profit maximization と同一視しない。
+- price / supply / demand / market equilibrium は、複数主体が各自の文脈依存の3則配分のもとで形成した planned change `x_i` を相互に調整する仕組みとして扱う。
+
+国家レベルの典型的分業では、需要側の個人は resource-realization の比重が高く、供給側の企業は activity-flow の比重が高いことが多い。市場はそれらを含む planned change 間の compatibility を調整する。したがって需給均衡は第4の管理則ではない。
 
 ### 評価・信用経済への射影可能性
 
@@ -320,23 +404,9 @@ rights / contract / credit conditions in K
 
 公開レビュー・rating はアクセス可能な情報として K、主体 `j` が主体 `a` に対して形成する評価・信用は `P_j(a)`、その結果として `a` に実際に付与された信用枠・請求権・契約上の権利等は K / `K_a` として区別する。
 
-### 期待変化の集約と余剰
-
-異なる主体の `E_i[ΔK(S_i, τ)]` を集約する場合は、各 `S_i`、`q_S`、会計・換算規則が比較可能であることを明示する。同一の共通 scope に対する複数主体の予測 `E_i[ΔK(S, τ)]` は、単純和して aggregate resource change と解釈しない。
-
-標準経済学上の consumer surplus / producer surplus / total surplus と対応づける場合は、対象理論側で valuation、utility、WTP / WTA、cost 等との mapping を追加的に明示する。
-
-### マクロ政策への射影
-
-政策金利の変更、通貨供給量の操作、制度変更等は、まず政策主体の A として扱う。その A が K 上の制度・契約条件等を変化させ、各主体の観測・解釈を通じて `P_i` の変化を誘発しうる。
-
-前区間までに実現した `ΔK` と、当期 A が誘発する主観状態側の変化との相互作用を既存マクロ経済学へ対応させることは、一つの射影候補である。
-
-Core の K / P を経済学上の real / nominal と同一視しない。K は resource / capability side、P は subjective evaluation / expectation side として置き、real / nominal の語は経済学への具体的射影でのみ用いる。
-
 ---
 
-## 10. 計測
+## 11. 計測
 
 A のうち外部に実現した action event は直接観測できる場合がある。一方、内部の意思決定、観測、情報受容、解釈等は直接観測できず、proxy を要する場合がある。
 
@@ -353,13 +423,13 @@ P proxy の admissibility では少なくとも、
 
 `ΔK` / `ΔP` は A の結果 proxy として利用できる場合があるが、複数の A が相殺・重複しうるため、A を一意に同定する量ではない。gross activity を観測する場合は `H_S` 等の path functional と state change `ΔK` を区別する。
 
-機能的最適化則を検証する場合は、どの actor がどの機能を担うか、objective の proxy、制約集合、時間窓、代替仮説を事前に固定する。法人格や制度上の名称だけで個人則・企業則・国家則を自動的に割り当てない。
+3則を用いた意思決定モデルを計測する場合は、actor ごとの比重・優先順位、candidate action、action-contingent future state、各則の評価 proxy、制約集合、時間 horizon、代替モデルを事前に固定する。観察された A だけから事後的に「どの則が働いたか」を自由に割り当てない。
 
 実証では projection ごとに、P の採用次元、observable / proxy、A への mapping、`q_S`、観測前に固定する予測・検証条件を明示する。観察後に任意の P 差を追加して A を説明することは避ける。
 
 ---
 
-## 11. スケール
+## 12. スケール
 
 個人・組織・社会・文明を、固定された独立世界としてではなく、観測スケールと内生／外生境界の違いとして扱う。
 
@@ -369,17 +439,17 @@ P proxy の admissibility では少なくとも、
 
 ---
 
-## 12. コアで固定しないもの
+## 13. コアで固定しないもの
 
 以下は応用・実証・追加議論で決める。
 
 - K / P の標準次元
-- A の普遍的な選択則
+- A の普遍的な deterministic choice function
 - K / P の普遍的な状態遷移関数
 - `q_S` の普遍的定義
 - `E[ΔK]` の普遍的な形成式・確率測度
 - `H_S` 等の区間活動量の普遍的定義
-- functional optimization hypothesis の具体的 objective / constraint
+- 3則を数量化する具体的 objective / constraint / weight / priority rule
 - inter-agent compatibility の普遍的条件
 - market equilibrium の普遍的 choice / optimality / clearing 条件
 - ミクロ／マクロの具体的均衡・調整過程
@@ -393,7 +463,7 @@ P proxy の admissibility では少なくとも、
 
 ---
 
-## 13. 関連ノート
+## 14. 関連ノート
 
 - [計測](02_measurement.md)
 - [既存概念・応用への射影](../notes/projections.md)
