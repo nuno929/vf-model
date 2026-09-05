@@ -18,9 +18,13 @@
 
 K の資源世界そのものは主体ごとに別々に存在しない。actor-relative なのは `K_i`、`P_i`、およびそこから形成される期待評価である。
 
-`K_i` は集合論的な部分集合を必ずしも意味しない。共有情報、権利、信用枠等を含むため、共通 K 上の資源・権利・資格・契約・制度状態等から導かれる actor-relative access / usability view とする。
+本理論でいう resource は物的資源に限られず、外部に実在し行使・利用・参照可能な情報、権利、資格、契約、制度状態、金融請求権等を含みうる。
 
-他主体 `a` について主体 `j` が保持する評価・信用・見通し等を区別する必要がある場合は、`P_j(a)` と書く。これは `a` 自身の P ではなく、評価者 `j` の `P_j` に含まれる主観状態である。
+`K_i` は集合論的な部分集合を必ずしも意味しない。共有情報、権利、信用枠等を含むため、共通 K 上の条件から導かれる actor-relative access / usability view とする。
+
+P は projection-specific な内部型を持ちうる多次元 state であり、belief-like / evaluative / preference-like / relational-trust-like な成分を概念上区別できる。独立 primitive を追加する意味ではない。
+
+他主体 `a` について主体 `j` が保持する評価・信用・見通し等は `P_j(a)` と書く。これは `a` 自身の P ではなく、評価者 `j` の `P_j` に含まれる主観状態である。
 
 `S` は対象資源・主体だけでなく、resource coordinates、accounting boundary、transformation convention を含む観測・会計仕様である。
 
@@ -31,17 +35,15 @@ Y_S(t) = M_S(K_t)
 ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1)) ∈ D_S
 ```
 
-として表す。`δ_S` は必ずしも算術差ではなく、加法的 quantitative projection の場合にのみ `δ_S(y0,y1)=y1-y0` と置く。
+として表す。`δ_S` は必ずしも算術差ではなく、加法的 quantitative projection の場合にのみ通常の差分を用いる。
 
-一般形で `Y_S(t0)=Y_S(t1)=y` なら `δ_S(y,y)` を no-change descriptor とみなす。**加法的な在庫 projection では**、生産100・消費100で在庫が元に戻る場合 `ΔK(S,τ)=0` となる。
-
-一方、gross production、gross consumption、transaction volume 等の区間活動量は `ΔK` へ含めず、必要に応じて
+gross production、gross consumption、transaction volume 等の区間活動量は `ΔK` へ含めず、必要に応じて
 
 ```text
 H_S(τ) = h_S((K_t)_{t in τ}, A_τ)
 ```
 
-のような derived path functional として分離する。`A_τ` は区間内 actor-side event / process と必要な event ordering を保持する。`H_S` は Core の primitive ではない。
+のような derived path functional として分離する。
 
 期待値を取る場合は quantitative representation を
 
@@ -51,30 +53,137 @@ q_S : D_S -> V_S
 
 とし、記法上 `E_i[ΔK(S,τ)] := E_i[q_S(ΔK(S,τ))]` と略記する。
 
----
-
-## 2. 経済学への射影候補
-
-### 資源・期待・実現
+候補 action を比較する場合は、必要に応じて
 
 ```text
-K_t               : 共通の実資源状態
-K_i,t             : 主体 i の access / usability view
-P_i,t             : 主体 i の主観的評価・期待状態
-A_i,τ             : 主体 i 側の actor-side process / event
-ΔK(S, τ)          : K の state / resource change descriptor
-H_S(τ)            : projection-local な interval activity descriptor
-ΔP_i              : 主体 i の P の change descriptor / state transition
-E_i[ΔK(S, τ)]     : q_S を介した expected realized resource change
+E_i[ΔK(S,τ) | A=a, I_i]
 ```
 
-Core の K / P を経済学上の real / nominal と同一視しない。K は resource / capability side、P は subjective evaluation / expectation side として置き、real / nominal の語は対象とする経済理論への具体的射影でのみ用いる。
+のような action-contingent forecast を用いる。P 内の outlook / belief と、特定 `(S,τ,a)` に対する forecast は区別する。
+
+---
+
+## 2. 3つの管理合理性公理
+
+VFT の管理・意思決定記述では、合理性を次の3則へ集約する。
+
+1. **resource-realization rule**：望ましい resource outcome / state change の実現へ向けて A を動かす。
+2. **activity-flow rule**：K / P / A の配置を調整し、必要な activity / process の流れを維持・拡張する。
+3. **P-downside rule**：主体・組織・系の行動成立を阻害するほどの P の負側・毀損を抑える。
+
+3則は actor type ではなく、**意思決定合理性の公理系**である。同一 actor が3則を同時に考慮しうる。
+
+3則の管理対象は、概念的には
+
+```text
+resource-realization -> outcome / resource-state realization
+activity-flow        -> process / activity continuity and expansion
+P-downside            -> viability / breakdown prevention on the P side
+```
+
+と区別する。
+
+同じ A が複数則へ寄与することはありうる。したがって、A を3種へ排他的に分類するのではなく、**意思決定が outcome / process / viability のどこを、どの程度の優先度で制御しようとしているか**を区別する。
+
+この outcome / process / viability の3対象を、現行 VFT では管理合理性の最小公理系として採用する。形式的な独立性・完備性・最小性の証明は今後の課題だが、現行理論上は3則を前提として意思決定を構成する。
+
+### 文脈依存の比重
+
+各 actor が3則へ置く比重・優先順位は、文脈、役割、組織構造、制度、時間 horizon によって変わる。
+
+quantitative projection では必要に応じて、
+
+```text
+w_i,c = (w_R, w_F, w_D)
+```
+
+のような context `c` に依存する priority / weight を導入できる。ただしこれは Core primitive ではなく、線形加重和や `Σw=1` を普遍的に要求しない。lexicographic priority、constraint、threshold 等でもよい。
+
+### 意思決定の共通型
+
+3則をもとに具体的な意思決定を記述する場合、candidate action が将来の K / P / A-flow / ΔK 等をどう変えるかを評価する。
+
+```text
+current K / P
+    + candidate action a
+          ↓
+induced / expected future trajectory
+(K', P', A-flow, ΔK, ...)
+          ↓
+R1 / R2 / R3 に照らした評価
+          ↓
+decision
+```
+
+必要な quantitative model では、各則に対応する projection-specific な評価 `J_R(a)`, `J_F(a)`, `J_D(a)` と、それらを文脈に応じて統合する decision rule を置ける。
+
+```text
+A_i* ∈ argmax_{a ∈ feasible actions}
+       Φ_i(J_R(a), J_F(a), -J_D(a); w_i,c)
+```
+
+`J_R` / `J_F` / `J_D` / `Φ_i` / `w_i,c` は3則そのものではなく、対象 projection における数理化である。
+
+### P-downside の位置づけ
+
+P-downside は、P が観測しにくいから導入するのではない。局所的な resource-realization / activity-flow が進んでも、不信、離反、破綻期待、将来不安等が大きく悪化すれば、その後の A 自体が成立しにくくなり、組織・制度・社会の viability が損なわれうる。
+
+したがって R3 は、**P 側の毀損が action system の成立条件を壊すことを防ぐ管理合理性**として置く。異質な P proxy 間に普遍的加法則がないことは、具体的操作化で aggregate-P maximization より downside / threshold / viability constraint が使いやすい理由の一つであり、R3 の唯一の論拠ではない。
+
+---
+
+## 3. 自給自足・制度的分業・組織階層
+
+### 自給自足
+
+3則は actor type ではないため、市場や企業や国家が存在しない自給自足でも適用できる。
+
+```text
+single actor
+  ├─ resource-realization
+  ├─ activity-flow
+  └─ P-downside
+```
+
+自給自足では単一 actor が3則を同時に担う。
+
+### 国家レベルのマクロでの制度的分業
+
+資本主義制度を国家レベルのマクロで粗視化すると、**3則の主たる比重・担当が概ね次のように分化して見える**。
+
+```text
+individuals -> resource-realization heavy
+firms       -> activity-flow heavy
+state       -> P-downside heavy
+```
+
+これは actor type と3則を一対一対応させる主張ではない。individual も R2/R3、firm も R1/R3、state も R1/R2 を担いうる。制度・文脈に応じて、どの actor がどの合理性を主として引き受けるかが変わる。
+
+したがって市場・企業・国家は3則の定義ではなく、**同じ公理系の比重と機能分担が制度化された形**として読む。
+
+### マネジメント三階層としての解釈
+
+実行・中間管理・統治に相当する階層的な機能分化は、近代企業に限らず長期にわたる組織制度の中で反復して観察される。VFT が三階層の存在を新規に予測するのではなく、**既知の階層構造を3則の比重・担当の分化として記述する**。
+
+典型的には、
+
+```text
+operational / execution -> resource-realization heavy
+managerial              -> activity-flow heavy
+governance              -> P-downside heavy
+```
+
+と読める。
+
+ただし各階層は他の2則も担いうる。小規模組織、owner-manager、自給自足では同一 actor に3則が重なり、危機時・成長時・再編時には同じ役割でも比重が変化しうる。
+
+---
+
+## 4. 経済学への射影
 
 ### 主体別期待と意思決定
 
-経済射影では、`K_i` を主体 `i` の予算・保有資源・供給能力等の制約側、`P_i` を価格、他主体の生産・消費、信用、将来条件等についての見通し・評価を含む主観状態として読める。
-
-主体 `i` は、自らが利用可能な `K_i` と `P_i` のもとで A を選択し、その結果として実現する資源変化について `E_i[ΔK(S_i, τ)]` を形成しうる。
+経済射影では、`K_i` を予算・保有資源・供給能力等の制約側、`P_i` を価格、他主体、生産・消費、信用、将来条件等についての見通し・評価を含む主観状態として読める。
 
 必要な economic projection では、A に含まれる planned / chosen net resource change を補助的に `x_i` と書く。
 
@@ -83,43 +192,41 @@ x_i          = planned / chosen net resource change
 E_i[ΔK(...)] = expected realized resource change
 ```
 
-`x_i` は projection-local な補助記法であり、Core の新しい原始変数ではない。
-
-`S_i` は共通 K 上の主体 `i` の経済的な観測・会計 scope であり、主体ごとの別資源世界を意味しない。
+`x_i` は projection-local な補助記法であり、Core primitive ではない。
 
 ### 会計的予算制約
 
-`x_i` を取得を正・処分／供給を負とする planned net resource change とし、価格・会計換算ベクトルを `p` とする純粋交換の基本例では、概念的に
+`x_i` を取得を正・処分／供給を負とする planned net resource change とし、価格・会計換算ベクトルを `p` とする純粋交換の基本例では、
 
 ```text
 p · x_i <= 0
 ```
 
-のように budget feasibility を表せる。
-
-`p · x_i = 0` は self-financing / budget exhaustion 等を追加仮定する場合の特殊形である。所得、生産収入、投資、借入、移転、税、補助金等を含む場合は、対象理論側で一般予算式を与える。
-
-`E_i[ΔK]` は expected realized change であり、plan / choice 側の `x_i` と一致するとは限らない。
+のように budget feasibility を表せる。`p · x_i = 0` は self-financing / budget exhaustion 等を追加仮定する場合の特殊形である。
 
 ### 主体間整合条件
 
-**VFT notation を用いる最小経済射影では**、各主体の予算・資源制約を満たした `x_i` が、価格・取引条件等のもとで相互に実行可能・両立可能であるという inter-agent compatibility / feasibility condition を追加できる。
+各主体の budget-feasible な `x_i` が、価格・取引条件等のもとで相互に実行可能・両立可能であることを inter-agent compatibility / feasibility condition として追加できる。
 
-compatibility 自体も economic projection 側の条件であり、VFT Core から自動的に導出されるものではない。この compatibility を標準的な意味で market equilibrium と呼ぶためには、さらに射影先の経済理論が choice / optimality / best response / market-clearing 等の追加条件を与える必要がある。
+compatibility 自体は economic projection 側の条件であり、VFT Core や3則から自動的に導出されるものではない。market equilibrium と呼ぶには、さらに射影先理論の choice / optimality / best response / market-clearing 等の条件が必要である。
 
-価格、取引、契約、在庫、信用条件等の observable は各主体の `P_i` を更新し、それに応じて `A_i` / `x_i` / `E_i[ΔK]` が修正されることで、主体間の不整合が調整されうる。
+### utility / profit / supply-demand との関係
 
-この分散調整を古典経済学の「神の見えざる手」へ射影することは可能だが、VFT Core の普遍則とはしない。
+utility / profit 等は3則の特殊化そのものではなく、**3則をもとに具体的な意思決定を数量化するときに使われる評価関数・指標・proxy** として扱う。
+
+- utility は、resource-realization を考える際に候補 outcome の望ましさをスカラー化する一つの方法である。
+- profit は、activity-flow を考える際に使いうる accounting / performance 指標の一つである。going-concern の文脈で sustained activity と整合する場合に強い proxy になりうるが、R2 自体を profit maximization と同一視しない。
+- price / supply / demand / market equilibrium は、複数主体が各自の文脈依存の3則配分のもとで形成した planned change `x_i` を相互に調整する仕組みとして扱う。
+
+国家レベルの典型的分業では、需要側の individual は R1 比重が高く、供給側の firm は R2 比重が高いことが多い。市場はそれらを含む planned change 間の compatibility を調整する。
+
+したがって需給均衡は第4の管理則ではない。また、正式な `E_i[ΔK]` は forecast であるため、需給調整を expectation と realized `ΔK` の一致最大化とは置かない。
 
 ### 会計整合
 
 会計整合、主体間 compatibility、market equilibrium、定常状態は別概念である。
 
 対象 scope の net state change は `ΔK`、gross production / consumption / transaction volume / transformation 等は必要に応じて `H_S` として分離して記録する。
-
-加法的な在庫 projection では、生産100・消費100で在庫が元に戻る場合 `ΔK=0` でも、production / consumption を表す `H_S` はそれぞれ100となりうる。
-
-市場が不均衡でも会計恒等式は成立しうる一方、市場が均衡していても資本蓄積・在庫変化・投資等によって `ΔK` は非ゼロになりうる。また、定常的な在庫のもとでも `H_S` は非ゼロになりうる。
 
 ### ミクロ／マクロの共通 K 接続
 
@@ -133,112 +240,11 @@ VFT ではミクロとマクロを別々の資源世界として置かない。*
       micro observation  macro observation
 ```
 
-したがって、存在論的な接続のために `micro -> macro` の普遍的 aggregation map を要求しない。micro observable から macro observable を再構成する場合にのみ、projection-local な aggregation / coarsening rule を追加する。
-
-これは単に同じ記法を使うという意味ではなく、**観測対象として同じ K を共有することが接続の基礎**である。
-
-### 3つの基本管理合理性
-
-VFT ontology は「個人・企業・国家」を別種の actor として固定しない。その上で VFT の管理・経済記述では、組織・制度を維持し行動を成立させる合理性を、次の3則へ集約して扱う。
-
-1. **resource-realization rule**：主体は、自らの P と期待のもとで、望ましい resource change の実現へ向けて A を動かす。
-2. **activity-flow rule**：主体は、K / P の配置を再構成し、持続可能な A-flow を維持・拡張する。
-3. **P-downside rule**：主体群の P の大幅な負側・悪化側を抑えるよう、K / A を配分・調整する。
-
-この3則は、各 actor が現実に厳密な数理最適化を実行していることの実証命題ではなく、VFT 上で管理合理性を記述するための基本前提である。具体的な目的関数、制約、時間 horizon、計量表現は projection ごとに定める。
-
-必要な quantitative projection では、例えば
-
-```text
-resource-realization:
-A_i* ∈ argmax_A R_i(A ; P_i, E_i[ΔK])
-
-activity-flow:
-(K_f*, P_f*) ∈ argmax_(feasible K_f,P_f) F_f(A-flow | K_f, P_f)
-
-P-downside:
-A_g* ∈ argmin_A L_g^-(P ; observable proxies)
-```
-
-のような objective functional を追加できる。`R_i` / `F_f` / `L_g^-` は3則そのものではなく、projection-specific な数理化である。
-
-### 自給自足と制度的分業
-
-3則は actor type ではなく管理機能なので、**市場や企業や国家が存在しない自給自足でも適用できる**。
-
-```text
-single actor
-  ├─ resource-realization
-  ├─ activity-flow
-  └─ P-downside
-```
-
-自給自足では単一 actor が、望む resource change を目指して A を動かし、K / P 配置を組み替えて A-flow を確保し、将来不安・欠乏等の P-downside を抑える。
-
-一方、資本主義ではこれらが概ね、
-
-```text
-individuals  -> resource-realization
-firms        -> activity-flow
-state        -> P-downside
-```
-
-へ制度的に分業されると解釈できる。
-
-この見方では市場・企業・国家は理論の前提ではなく、**単一 actor 内でも成立する3つの管理合理性が社会的に分化した制度形態**として後から説明される。
-
-### マネジメント三階層としての解釈
-
-管理機能の階層的分化自体は近代企業に限らず、長期にわたる組織制度の中で反復して観察される。本節はその階層構造の存在を VFT が新規に予測するものではなく、**既知の実行・中間管理・統治の機能分化を VFT の3則へ還元して、その管理合理性を共通記述する**ことを目的とする。
-
-```text
-operational / execution layer
-    -> resource-realization
-
-managerial layer
-    -> activity-flow
-
-governance layer
-    -> P-downside
-```
-
-- **operational / execution**：与えられた `K_i / P_i` のもとで実際の A を成立させ、望ましい resource change を具体化する。
-- **managerial**：複数主体・複数時点の A を接続し、組織として活動系列を維持するため K / P 配置を組み替える。
-- **governance**：組織全体・長期・複数 stakeholder を対象に、許容不能な P の毀損、不信、離反、破綻期待等と、それに伴う行動崩壊を抑える。
-
-この対応は役職名を固定するものではない。同一人物が複数階層の合理性を同時に担う場合もあり、小規模組織や自給自足では3則が一主体へ重なる。組織が大きくなるにつれて、これらの管理対象が分業・階層化されると読む。
-
-### 効用最大化・利潤最大化との関係
-
-標準的な効用最大化は、**resource-realization rule を utility によってスカラー化した特殊な economic projection** として読める。
-
-主体の P に含まれる望ましさ・選好を `U_i` として resource outcome 上へ写像し、制約下で `U_i` を高める A / `x_i` を選ぶ場合、標準的な utility maximization に対応する。ここで `E_i[ΔK]` は forecast であり、desire そのものではない。望ましさは P 側、実現見込みは `E_i[ΔK]` 側として分離する。
-
-同様に profit maximization は、**activity-flow rule の一つの特殊射影**として扱える。対象 horizon と会計境界のもとで profit が sustained A-flow の十分な objective / proxy とみなせる場合に profit maximization へ落とせる。一方、短期的な資源減少・赤字を伴う投資、採用、R&D、市場獲得等は、将来 A-flow の拡張として説明できるため、activity-flow rule 自体を当期 profit maximization と同一視しない。
-
-### 需給モデルとの関係
-
-需給均衡は第4の管理則ではなく、**複数主体の resource-realization から生じる planned resource change の主体間整合**として扱う。
-
-各主体は P と期待のもとで A / `x_i` を選ぶ。市場・価格・取引条件等を通じて各 `x_i` が修正され、相互に実行可能な状態へ到達したとき、対象経済理論の追加条件のもとで market equilibrium と呼べる。
-
-したがって VFT 上の需給調整は、正式な `E_i[ΔK]` と realized `ΔK` の一致最大化ではない。`E_i[ΔK]` は forecast であり、需給の中心は planned change `x_i` 間の compatibility にある。ただし動学的には、**期待に基づいて選ばれた planned change が、他主体との相互作用を通じて実現可能な resource change へ調整される過程**として読める。
-
-### 期待変化の集約と余剰
-
-同一の共通 scope `S` に対する複数主体の予測 `E_i[ΔK(S, τ)]` は、単純和して aggregate resource change と解釈しない。
-
-異なる主体の `E_i[ΔK(S_i, τ)]` を集約する場合は、各 `S_i`、`q_S`、値空間 `V_S`、会計・換算規則を先に定める。
-
-標準経済学上の consumer surplus / producer surplus / total surplus と接続する場合は、対象理論側で valuation、utility、WTP / WTA、cost 等との mapping を追加的に明示する。
+micro observable から macro observable を再構成する場合にのみ、projection-local な aggregation / coarsening rule を追加する。
 
 ---
 
-## 3. 評価経済・信用経済への射影候補
-
-VFT では、評価・信用に関係する現象を一つの変数へ潰さず、**公開された評価情報、評価者側の主観状態、実際のアクセス可能性を分離したまま接続できる**。
-
-### 評価・評判・信用
+## 5. 評価経済・信用経済への射影候補
 
 評価対象を `a`、評価者を `j` とする。
 
@@ -262,53 +268,19 @@ rights / contract / credit conditions in K
         realized ΔK
 ```
 
-これにより、「評価や信用が経済的価値を持つ」という現象を、評価値そのものを主体 `a` の P とみなすことなく、**公開情報 → 他者の主観評価 → 行動 → 実アクセス条件 → 実資源変化**という経路で記述できる可能性がある。
-
-### 信用経済
-
-信用経済では、同じ主体 `a` についても、
-
-- 公開された信用情報 → K 上の情報
-- 他主体 `j` が `a` に対して保持する返済見込み・信用評価 → `P_j(a)`
-- その評価等を背景に `a` が実際に利用可能になった信用枠 → K / `K_a`
-
-を分ける。
-
-したがって、信用の変化が単なる名目評価ではなく、どの時点で実際の borrowing capacity / transaction capability に転換されるかを観測可能な境界として扱える。
-
-### 評価経済
-
-評価経済では、評判・レビュー・ブランド・社会的評価等の公開情報が、各評価者の `P_j(a)` を介して行動を変え、その結果として主体 `a` の取引機会、契約条件、アクセス可能性等の `K_a` を変える経路を候補として扱う。
-
-VFT は「評価そのものが資源である」と一律に定義せず、**公開情報としての K、他者が形成する subjective evaluation としての P、実際のアクセス可能性としての K_i を識別する**。
-
-これらは Core の普遍則ではなく、評価経済・信用経済を実証可能な projection として構成する候補である。
+これにより、公開情報 → 他者の主観評価 → 行動 → 実アクセス条件 → 実資源変化という経路で評価・信用経済を記述できる可能性がある。
 
 ---
 
-## 4. 選好・効用・消費・生産
+## 6. 選好・消費・生産・市場
 
 ### 選好
 
-選好を独立した Core 変数には置かない。主体ごとの選好差は P の構造差として扱う。
+選好を独立した Core 変数には置かない。主体ごとの選好差は P の evaluative / preference-like component として扱う。
 
 ### 消費 / 生産 / 交換
 
-消費・生産・交換を別の存在論として置かず、主体が共通 K のどの resource coordinates / accounting boundary へどう関与するかを表す経済射影上の action / accounting interpretation として扱う。
-
-主体ごとの `x_i` は plan / choice 側の planned resource change、`E_i[ΔK(S_i, τ)]` は expected realized state change を表しうる。gross activity を期待対象にする場合は `ΔK` ではなく、その activity 用に定義した quantitative `H_S` 等を使う。
-
-### 効用
-
-効用は独立した普遍的原始量とはせず、特定理論・目的で P に含まれる望ましさ・選好を resource outcome 上のスカラーへ射影する表現として扱う。utility maximization は resource-realization rule の projection-specific な特殊形として位置づける。
-
----
-
-## 5. 資本・spillover・市場
-
-### 資本
-
-設備、知識、権利、現金、行使可能な金融請求権、利用可能な信用枠等、実際に利用可能で行動可能性を増やすものは K の構成要素として扱える。名目評価額そのものと K を同一視しない。
+消費・生産・交換を別の存在論として置かず、主体が共通 K のどの resource coordinates / accounting boundary へどう関与するかを表す economic action / accounting interpretation として扱う。
 
 ### spillover / cross-agent effect
 
@@ -317,37 +289,7 @@ A_i -> change in K affecting K_j
 A_i -> change in P_j   (i != j)
 ```
 
-主体 `i` の A が他主体 `j` の K へのアクセス条件や P に影響する場合、まず **spillover / cross-agent effect** として記述する。
-
-標準経済学上の externality と呼ぶ場合は、市場価格・契約等を介さない影響、他主体の目的・feasible set への影響等、対象 projection 側の定義条件を追加する。
-
-### 市場・ネットワーク
-
-市場では、共通 K に対する主体ごとの access / usability 差 `K_i`、主観状態 `P_i`、planned change `x_i`、期待実現変化 `E_i[ΔK(S_i, τ)]`、区間活動量 `H_S`、行動 `A_i`、価格・取引条件の相互作用を扱う。
-
-ネットワークのノード・エッジは応用上の表現であり、Core の独立関係変数とはしない。
-
----
-
-## 6. 通貨・金利・信用
-
-### 通貨
-
-通貨を価値判断・交換を同期するプロトコルとして機能的に読むことはできるが、Core 定義ではない。
-
-### 金利
-
-金利を P と同一視しない。政策金利の変更 event は政策主体の A、変更後に持続する制度上の金利条件は必要に応じて K、その条件を主体がどう認識・予測するかは P として区別する。
-
-### 信用
-
-- 公開された信用情報 → K 上の情報
-- 主体 `j` が主体 `a` に対して保持する返済見込み・信用評価 → `P_j(a)`
-- 主体 `a` が実際に利用可能な信用枠 → K / `K_a`
-
-### 信用崩壊
-
-他主体が保持していた `P_j(a)` 上の見通しが実現変化によって十分に裏づけられず、その後の評価・信用が変化し、信用条件やアクセス可能性として `K_a` へ波及する現象として記述できる。
+主体 `i` の A が他主体 `j` の K へのアクセス条件や P に影響する場合、まず spillover / cross-agent effect として記述する。externality と呼ぶ場合は、対象 economic projection 側の定義条件を追加する。
 
 ---
 
@@ -371,7 +313,7 @@ A_i -> change in P_j   (i != j)
 1. 共通 K の対象範囲
 2. 対象主体集合
 3. 各主体の K への access / usability relation
-4. P に用いる proxy と proxy admissibility
+4. P の採用次元・型・proxy と proxy admissibility
 5. 他者評価を扱う場合の評価者 `j` と評価対象 `a`
 6. A の観測単位と event ordering
 7. 時間窓 `τ`
@@ -382,17 +324,19 @@ A_i -> change in P_j   (i != j)
 12. ΔK / ΔP / H の操作化
 13. `q_S : D_S -> V_S`
 14. `E_i[ΔK]` の expectation operator / 推定方法
-15. 3つの管理合理性を quantitative objective へ落とす場合の objective / feasible set / time horizon
-16. planned / chosen change `x_i` の定義と符号規約
-17. 価格・会計換算規則
-18. 主体別予算制約
-19. compatibility を扱う場合の相互両立条件
-20. market equilibrium と呼ぶ場合の choice / optimality / best response / clearing 条件
-21. 会計恒等式の境界
-22. surplus へ射影する場合の valuation / utility / WTP / WTA / cost mapping
-23. P の採用次元・proxy・事前固定した検証条件
-24. 評価・信用を扱う場合の public information → `P_j(a)` → K / `K_a` 経路
-25. 情報損失
+15. action-contingent forecast を使う場合の conditioning / information set
+16. 3則の context-dependent priority / weight / constraint
+17. candidate action / feasible set
+18. action が誘導する future trajectory と各則の評価方法
+19. planned / chosen change `x_i` の定義と符号規約
+20. 価格・会計換算規則
+21. 主体別予算制約
+22. compatibility を扱う場合の相互両立条件
+23. market equilibrium と呼ぶ場合の choice / optimality / best response / clearing 条件
+24. 会計恒等式の境界
+25. surplus へ射影する場合の valuation / utility / WTP / WTA / cost mapping
+26. 評価・信用を扱う場合の public information → `P_j(a)` → K / `K_a` 経路
+27. 情報損失
 
 ---
 
