@@ -10,11 +10,11 @@ License: **CC BY 4.0**
 
 価値場理論（Value-Field Theory; VFT）は、個人・組織・社会で生じる変化を、**実物・物理側の資源状態 K、主体別の交換価値・資本表現 K_i、主体ごとの主観的評価・期待状態 P_i、actor-side process / event A_i** の関係として記述する構造的フレームワークである。
 
-VFT における **field（場）** は独立した価値スカラーではない。ある時点における K、各主体の K_i / P_i、主体間・資源間の関係や制約がつくる配置構造であり、**その配置が主体の A を条件づけ、誘発し、継続的に再生産する**ことを指す。
+VFT における **field（場）** は独立した価値スカラーではない。ある時点における K、各主体の K_i / P_i と projection-specified な主体間・資源間の関係・制約から導かれる配置構造であり、**その配置が主体の A を条件づけ、誘発し、継続的に再生産する**ことを指す。
 
 ```text
 field state
-K_t, (K_i,t)_i, (P_i,t)_i, relations / constraints
+K_t, (K_i,t)_i, (P_i,t)_i, projection-specified relations / constraints
         ↓ induces / conditions
       (A_i)_i
         ↓
@@ -66,7 +66,7 @@ same resource r
 
 VFT における **use-value quantity** は、resource stock 自体や technical service potential ではなく、**主体がある期間内にその resource を実際に利用・消費し、体験として実現した主観的効用量**を指す。
 
-したがって use-value quantity は resource に内在する固定量ではなく、**interval を指定しない時点量としては評価しない**。physical stock / capability は K として時点観測できるが、それは use-value quantity そのものではない。
+したがって use-value quantity は resource に内在する固定量ではなく、**interval を指定しない時点量としては評価できない**。physical stock / capability は K として時点観測できるが、それは use-value quantity そのものではない。
 
 同じ主体・同じ resource・同じ利用量であっても、充足状態、利用順序、文脈、他の経験等によって体験結果は変わりうる。限界効用逓減もこの一例である。このため use-value quantity には一般的な再現性を仮定せず、実際の利用後にのみ realized value として観測できる。
 
@@ -84,6 +84,8 @@ expected future use-value
 ```
 
 将来区間の use-value はまだ実現していないため、それ自体を時点 stock として保持するのではなく、P_i の belief / expectation として予測される。つまり **realized use-value は interval outcome、future use-value は P 上の expectation** と区別する。
+
+この意味で VFT-specific use-value quantity は **P/L-like** である。ここで P/L-like とする理由は、単に「flow に見える」からではなく、**主観的体験価値であるため point-in-time valuation が成立せず、区間内で realized した値としてしか評価できない**からである。これは時間形式についてのアナロジーであり、use-value quantity を会計上の P/L entry と同一視するものではない。
 
 ### exchange-value representation
 
@@ -210,14 +212,14 @@ resources / capabilities / relations / expectations
 ### 起業・新規事業・既存事業
 
 ```text
-起業             = 新しい action-generating field の形成
-新規事業開発     = 既存 field から新しい field を形成・分岐させる活動
-既存事業の運営   = 成立済み field の維持・再生産・改善
+起業             = business-oriented field formation の一類型
+新規事業開発     = 既存 field から business-oriented field を形成・分岐させる活動
+既存事業の運営   = 成立済み business field の維持・再生産・改善
 ```
 
-既存事業の運営は profit / surplus 等の既存評価関数でもかなり説明できるが、起業時には顧客、商品、価格、組織、収益構造そのものが未形成であり、既存の profit function の最適化だけでは事業体の成立を十分に定義できない。
+field formation 自体は事業に限らない。起業はそのうち business-oriented な field formation として扱う。
 
-VFT はこれを **field formation** として扱う。
+既存事業の運営は profit / surplus 等の既存評価関数でもかなり説明できるが、起業時には顧客、商品、価格、組織、収益構造そのものが未形成であり、既存の profit function の最適化だけでは事業体の成立を十分に定義できない。
 
 ---
 
