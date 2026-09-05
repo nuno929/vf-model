@@ -115,7 +115,7 @@ A_(t0,t1]
 (K_t1, P_t1)
 ```
 
-とする。これは temporal typing であり、普遍的な状態遷移関数を意味しない。
+とする。これは **actor-side channel の temporal typing** であり、普遍的な状態遷移関数を意味しない。減価償却・自然消耗・災害や記憶減衰等の A を介さない変化は、この図とは別に必要な projection で扱う。
 
 P → A の時間的・因果的関係を検証する projection で、A 区間内の information reception / interpretation 等が途中で P を更新し、その後の decision / action に影響する場合は、**区間を分割するか event ordering を保持する**。途中更新後の P を初期 `P_t0` と同一視しない。
 
@@ -152,19 +152,19 @@ Y_S(t1) = Y_S(t0) + ΔK(S, τ)
 
 と置ける。`K_t1 = K_t0 + ΔK` は、さらに `M_S = id` で K 自体が同じ加法空間にある特殊ケースに限る。
 
+一般形では `δ_S(y,y)` を no-change descriptor とみなす。**加法的な在庫 projection では**、生産 100・消費 100 で在庫が元に戻る場合 `ΔK(S,τ)=0` となる。
+
 ### interval activity `H_S`
 
 gross production、gross consumption、transaction volume、resource transformation 等は state change そのものではないため、`ΔK` へ含めない。必要な measurement / projection では、
 
 ```text
-H_S(τ) = h_S((K_t)_{t in τ}, (A_t)_{t in τ})
+H_S(τ) = h_S((K_t)_{t in τ}, A_τ)
 ```
 
-のような derived path functional / interval activity descriptor として分離する。
+のような derived path functional / interval activity descriptor として分離する。`A_τ` は区間内の actor-side event / process を保持し、必要なら event ordering を保持する。
 
-`H_S` は Core の新しい primitive / state ではない。
-
-例えば、生産 100・消費 100 で在庫が元に戻る場合、在庫について `ΔK=0` でも、production / consumption を表す `H_S` はそれぞれ 100 と記録できる。
+`H_S` は Core の新しい primitive / state ではない。上の加法的在庫例でも、production / consumption を表す `H_S` はそれぞれ 100 と記録できる。
 
 `ΔP_i` も一般には算術差ではなく、主体 `i` の P に実現した change descriptor / state transition を表す。非加法的な場合は少なくとも
 
@@ -212,9 +212,11 @@ Core は `q_S` の具体形、`E_i` に対応する確率測度・情報集合�
 
 ---
 
-## 9. 集約
+## 9. 集約と共通 K
 
 VFT は、複数主体の `K_i` / `P_i` / `A_i` を自動的に一主体・一変数へ集約しない。
+
+ただしミクロとマクロは別の資源世界ではなく、**同じ common K を異なる観測・会計仕様 `S` から見る**。micro observable から macro observable を再構成する場合にだけ、projection-local な aggregation / coarsening rule を明示する。
 
 集約する場合は少なくとも以下を明示する。
 
@@ -231,8 +233,6 @@ VFT は、複数主体の `K_i` / `P_i` / `A_i` を自動的に一主体・一�
 11. ΔK / ΔP / H の集約規則
 12. 共有資源・重複アクセスの扱い
 13. 情報損失
-
-ミクロからマクロへの接続でも、新しい `ΔK_macro` の型を置く必要はなく、異なる `S` / `τ` / 集約規則を与えた同じ S-indexed state-change schema として扱う。gross flow / interval activity は必要に応じて `H_S` 側で集約する。
 
 ---
 
@@ -252,7 +252,34 @@ p · x_i <= 0
 
 ---
 
-## 11. 主体間整合・market equilibrium・会計整合・定常状態
+## 11. 機能的最適化則の計測
+
+経済・社会 projection で、以下の3つの functional optimization hypothesis を検証対象にできる。
+
+- **resource-realization**：主体が、P と期待のもとで、望む／見込む `ΔK` の実現へ向けて A を選ぶ
+- **activity-flow**：主体が K / P の配置を再構成し、持続可能な A-flow を最大化する
+- **P-downside**：主体群の P の大幅な負側・悪化側を抑えるよう K / A を配分・調整する
+
+これらを法人格・制度名だけで自動的に個人・企業・国家へ割り当てない。自給自足では単一 actor が3機能を同時に担いうるためである。
+
+実証では各機能について少なくとも、
+
+1. その機能を担う actor / actor set
+2. objective の observable / proxy
+3. feasible set / constraints
+4. 対象時間窓
+5. 予測される A / K / P / H / ΔK の変化
+6. competing objective / alternative hypothesis
+
+を観測前に固定する。
+
+企業型の activity-flow を検証する際、profit は outcome proxy の一つであって objective と自動的に同一視しない。短期損失を伴う投資・採用・R&D・市場獲得等が将来 A-flow を増やすかを別途識別する。
+
+国家型の P-downside を検証する際、異質な P proxy 間に普遍的な加法則を仮定しない。支持率・失業・犯罪・景況感・出生・健康・移住・市場指標等が何の P 次元を代理するかを固定し、downside 判定を事前定義する。
+
+---
+
+## 12. 主体間整合・market equilibrium・会計整合・定常状態
 
 以下は別概念として扱う。
 
@@ -265,7 +292,7 @@ compatibility 自体も VFT Core から自動導出されるものではなく�
 
 ---
 
-## 12. P の実証上の制約
+## 13. P の実証上の制約
 
 P が観察後の residual state にならないよう、各 projection / empirical model では少なくとも以下を観測・推定前に固定する。
 
@@ -280,7 +307,7 @@ P が観察後の residual state にならないよう、各 projection / empiri
 
 ---
 
-## 13. 評価・信用経済を扱う場合
+## 14. 評価・信用経済を扱う場合
 
 評価対象 `a` と評価者 `j` を区別する。
 
@@ -304,11 +331,9 @@ rights / contract / credit conditions in K
       realized ΔK
 ```
 
-この経路を使うことで、評価・信用側の変化が実資源アクセスや行動へどう波及するかを検証可能な projection として設計できる。
-
 ---
 
-## 14. 実証上の原則
+## 15. 実証上の原則
 
 価値場理論を実証へ落とす際は、少なくとも以下を明示する。
 
@@ -333,9 +358,10 @@ rights / contract / credit conditions in K
 19. 集約・会計・換算規則
 20. 欠測・測定誤差
 21. expectation operator / 推定方法
-22. compatibility を扱う場合の予算制約・価格・取引条件
-23. market equilibrium と呼ぶ場合の choice / optimality / clearing 条件
-24. P の採用次元と事前固定した検証条件
-25. 他者評価を扱う場合の評価者 `j` と評価対象 `a` の区別
+22. functional optimization hypothesis を扱う場合の actor / objective proxy / constraints / alternative hypothesis
+23. compatibility を扱う場合の予算制約・価格・取引条件
+24. market equilibrium と呼ぶ場合の choice / optimality / clearing 条件
+25. P の採用次元と事前固定した検証条件
+26. 他者評価を扱う場合の評価者 `j` と評価対象 `a` の区別
 
-目的は、**state change `ΔK`、interval activity `H_S`、subjective state `P_i`、planned change `x_i`、expected realized change `E_i[ΔK]` を混同せず、観測・会計・因果上の位置を明示すること**にある。
+目的は、**state change `ΔK`、interval activity `H_S`、subjective state `P_i`、planned change `x_i`、expected realized change `E_i[ΔK]`、および各 projection が置く optimization objective を混同せず、観測・会計・因果上の位置を明示すること**にある。
