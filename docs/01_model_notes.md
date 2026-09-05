@@ -126,40 +126,39 @@ K_t
 
 ---
 
-## 7. ΔK / ΔP：区間変化
+## 7. ΔK / ΔP：状態変化
 
-観測・会計仕様 `S` と時間区間 `τ=[t0,t1]` を明示した実資源変化を `ΔK(S, τ)` とする。
+観測・会計仕様 `S` と時間区間 `τ=[t0,t1]` を明示した K の state / resource change を `ΔK(S, τ)` とする。
 
-`S` は対象資源・主体だけでなく、**resource coordinates、accounting boundary、transformation convention** を含む。したがって、消費・生産・交換・資源変換が同じ出来事に含まれる場合でも、どの座標と会計境界から変化を記録するかを `S` で固定する。
+`S` は対象資源・主体だけでなく、**resource coordinates、accounting boundary、transformation convention** を含む。
 
-`ΔK` は endpoint の算術差に限定しない。一般形として、区間内の state path と actor-side process / event を観測表現へ写し、
+観測・会計仕様 `S` に対応する state representation を `Y_S(t)` とすると、
 
 ```text
-Z_S(τ) = M_S((K_t)_{t in τ}, (A_t)_{t in τ})
-ΔK(S, τ) = δ_S(Z_S(τ)) ∈ D_S
+Y_S(t) = M_S(K_t)
+ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1)) ∈ D_S
 ```
 
 と書ける。`M_S` と `δ_S` は projection / measurement model 側で定める specification-local な写像・演算であり、Core の新しい原始変数ではない。
 
-この一般形では、`S` に応じて net stock change のほか、gross production、gross consumption、transaction volume、resource transformation 等の区間内過程を保持できる。
-
-endpoint のみを観測する場合は特殊ケースとして、
-
-```text
-Y_S(t) = M_S(K_t)
-ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1))
-```
-
-と置ける。
-
-さらに加法的な quantitative projection が適用できる場合には、
+`ΔK` は必ずしも算術差ではない。加法的な quantitative projection が適用できる場合に限って、
 
 ```text
 δ_S(y0, y1) = y1 - y0
 Y_S(t1) = Y_S(t0) + ΔK(S, τ)
 ```
 
-と書ける。**`K_t1 = K_t0 + ΔK` は、さらに `M_S = id` で K 自体が同じ加法空間にある特殊ケースに限る。**
+と書ける。`K_t1 = K_t0 + ΔK` は、さらに `M_S = id` で K 自体が同じ加法空間にある特殊ケースに限る。
+
+一方、gross production、gross consumption、transaction volume、resource transformation 等の**区間活動量・flow statistic** は `ΔK` へ含めない。必要な projection / measurement で、例えば
+
+```text
+H_S(τ) = h_S((K_t)_{t in τ}, (A_t)_{t in τ})
+```
+
+のような derived path functional として分離する。`H_S` は Core の primitive / state ではなく、区間 path から導出する観測・会計量である。
+
+このため、生産 100・消費 100 で在庫が元に戻る場合、在庫についての `ΔK` は 0 でも、production / consumption を表す `H_S` はそれぞれ 100 と記録できる。
 
 `ΔP_i` も一般には算術差ではなく、主体 `i` の P に実現した change descriptor / state transition を表す。非加法的な場合には少なくとも
 
@@ -169,11 +168,7 @@ P_i,t0 -> P_i,t1
 
 として扱い、必要な quantitative mapping は projection / measurement model 側で与える。
 
-文脈上 scope が明らかな場合は `ΔK(S, τ)` を `ΔK` と省略する。
-
-Core が、健康、権利、情報、信念等を含むすべての成分へ同一のベクトル空間や加法構造を要求するわけではない。
-
-`ΔK` はミクロ用・マクロ用に数学的な同一型を要求しない。各 `S` に対して値域 `D_S` が異なりうる。個人・市場・社会・マクロの違いは、同じ **S-indexed interval-change schema** に異なる観測・会計仕様を与えることで表す。
+`ΔK` はミクロ用・マクロ用に数学的な同一型を要求しない。各 `S` に対して値域 `D_S`、座標、単位、集約規則等は異なりうる。共通なのは **S-indexed state-change schema** である。
 
 `K_i` は K から導かれる view であるため、K 上のアクセス条件が変われば `K_i` も変化しうる。`K_i` 専用の独立した差分変数は Core に置かない。
 
@@ -193,17 +188,27 @@ A_(t0,t1]
 
 と置く。これは因果・時間順序を示す typing であり、普遍的な状態遷移関数を意味しない。K には減価償却・老朽化・自然消耗・災害等、A を介さない変化もありうる。P にも記憶減衰等の微小・非主体的変化はありうるが、必要な応用でのみ扱う。
 
-主体 `i` が、自らの消費・生産等として関与する観測・会計仕様 `S`・時間区間 `τ` について形成する期待実資源変化を `E_i[ΔK(S, τ)]` とする。
+P と A の時間的・因果的関係を検証する projection で、`A_(t0,t1]` 内の情報受容・解釈等が途中で P を更新し、その後の decision / action に影響する場合は、**区間を分割するか event ordering を保持する**。
 
-期待値評価に用いる K は、主体 `i` が実際にアクセス・利用可能な範囲 `K_i` でよい。actor-relative なのは、参照可能な資源範囲と主観状態、およびそこから形成される期待値である。**期待対象である実資源変化 `ΔK(S, τ)` 自体を、主体ごとの別変数へ分離しない。**
+### quantitative representation
 
-文脈上 scope が明らかな場合は `E_i[ΔK(S, τ)]` を `E_i[ΔK]` と省略する。
+`ΔK(S, τ)` の値域 `D_S` は非数量・非加法でありうる。期待値を取る場合は quantitative representation を
 
-`E[...]` は expectation operator として、対象となる `ΔK` が quantitative projection 上で表現され、期待値が定義可能な場合に用いる。非加法的・非数量的な K 成分について数量的な期待値を用いる場合は、応用側で quantitative projection を先に定める。数量化しない forecast を無理に `E[...]` と表記しない。
+```text
+q_S : D_S -> V_S
+```
 
-Core は `E_i` に対応する確率測度・情報集合・期待形成式を普遍的に固定しない。具体的な期待演算の定義は対象 projection / measurement model で与える。
+として明示し、`V_S` を expectation が定義可能な quantitative value space とする。
 
-`E[ΔK]` は rate としての flow ではなく、特定対象・区間に対する **expected interval change / 期待区間変化** として扱う。
+記法上、
+
+```text
+E_i[ΔK(S, τ)] := E_i[q_S(ΔK(S, τ))]
+```
+
+と略記する。左辺は generic change descriptor へ直接期待演算を掛ける意味ではない。
+
+`q_S`、確率測度、情報集合、期待形成式は対象 projection / measurement model で与える。数量化しない forecast を無理に `E[...]` と表記しない。
 
 `E[...]` は主体が形成する見込み値・期待値を表し、主体の望みそのものではない。選好、望ましさ、評価等は `P_i` に保持され、期待形成や A に影響しうる。
 
@@ -248,17 +253,17 @@ p · x_i <= 0
 
 ### 主体間整合と market equilibrium
 
-VFT 単独で記述するのは、各主体の予算・資源制約を満たした `x_i` が、価格・取引条件等のもとで**相互に実行可能・両立可能であるという inter-agent compatibility / feasibility condition** までとする。
+**VFT notation を用いる最小経済射影では**、各主体の予算・資源制約を満たした `x_i` が、価格・取引条件等のもとで相互に実行可能・両立可能であるという inter-agent compatibility / feasibility condition を追加できる。
 
-これを標準的な意味で market equilibrium と呼ぶためには、射影先の経済理論が choice / optimality / best response / market-clearing 等の追加条件を与える必要がある。VFT Core 自体はそれらを普遍的に固定しない。
+この compatibility 自体も economic projection 側の条件であり、VFT Core から自動的に導出されるものではない。これを標準的な意味で market equilibrium と呼ぶためには、さらに射影先の経済理論が choice / optimality / best response / market-clearing 等の追加条件を与える必要がある。
 
 ### 会計整合とミクロ／マクロの接続面
 
-会計恒等式と主体間整合・市場均衡は区別する。主体間の交換や生産・消費を共通の会計規則で集約した結果は、対象 scope の実現 `ΔK` と会計的に整合する。
+会計恒等式と主体間整合・市場均衡は区別する。
 
-path-aware な `ΔK(S, τ)` を用いることで、endpoint の net stock change がゼロでも、区間内の gross production / consumption / exchange / transformation を観測・会計仕様に応じて保持できる。
+対象 scope の state change は `ΔK`、gross production / consumption / transaction volume 等の区間活動量は `H_S` として分けて会計的に対応づける。
 
-主体レベルの資源変化とマクロ観測を共通の `ΔK(S, τ)` schema 上で記述できるが、これはミクロからマクロを自動導出する普遍的 aggregation law を意味しない。
+主体レベルの state change と interval activity を、共通の `S` / `τ` / accounting rule のもとで市場・産業・社会・マクロ観測へ接続できるが、これはミクロからマクロを自動導出する普遍的 aggregation law を意味しない。
 
 ### 評価・信用経済への射影可能性
 
@@ -284,7 +289,7 @@ rights / contract / credit conditions in K
 
 ### 期待変化の集約と余剰
 
-異なる主体の `E_i[ΔK(S_i, τ)]` を集約する場合は、各 `S_i` が何を表し、どの会計・換算規則で比較可能になっているかを明示する。同一の共通 scope に対する複数主体の予測 `E_i[ΔK(S, τ)]` は、単純和して aggregate resource change と解釈しない。
+異なる主体の `E_i[ΔK(S_i, τ)]` を集約する場合は、各 `S_i`、`q_S`、会計・換算規則が比較可能であることを明示する。同一の共通 scope に対する複数主体の予測 `E_i[ΔK(S, τ)]` は、単純和して aggregate resource change と解釈しない。
 
 標準経済学上の consumer surplus / producer surplus / total surplus と対応づける場合は、対象理論側で valuation、utility、WTP / WTA、cost 等との mapping を追加的に明示する。
 
@@ -302,13 +307,20 @@ Core の K / P を経済学上の real / nominal と同一視しない。K は r
 
 A のうち外部に実現した action event は直接観測できる場合がある。一方、内部の意思決定、観測、情報受容、解釈等は直接観測できず、proxy を要する場合がある。
 
-個々の `P_i` の全構造も直接観測できるとは仮定しない。価格、信用、評価、契約、調査された期待・信念・発話等の観測可能な指標から必要な範囲を proxy として扱う。
+個々の `P_i` の全構造も直接観測できるとは仮定しない。価格、金利、スプレッド、信用条件等の market outcome を P proxy として用いる場合は、P 自体ではなく K / A / institution / market process との同時決定結果である可能性を考慮する。
 
-集約レベルでは、価格、金利、信用条件等の名目経済指標を、複数主体の P の総体的な現れを含む proxy として利用できる。ただし `(P_i)_i` の完全な総和や直接観測を意味しない。
+P proxy の admissibility では少なくとも、
 
-`ΔK` / `ΔP` は A の結果 proxy として利用できる場合があるが、複数の A が相殺・重複しうるため、A を一意に同定する量ではない。また `Δ` 記法は一般には change descriptor であり、算術差が必要な場合は quantitative projection を明示する。
+- target A / ΔK より前に観測された proxy か
+- 同時決定の場合に joint structural / measurement model を明示しているか
+- target outcome を使って latent P を事後的に構成していないか
+- proxy validity を別データまたは追加制約で検証できるか
 
-実証では projection ごとに、P の採用次元、observable / proxy、A への mapping、観測前に固定する予測・検証条件を明示する。観察後に任意の P 差を追加して A を説明することは避ける。
+を確認する。
+
+`ΔK` / `ΔP` は A の結果 proxy として利用できる場合があるが、複数の A が相殺・重複しうるため、A を一意に同定する量ではない。gross activity を観測する場合は `H_S` 等の path functional と state change `ΔK` を区別する。
+
+実証では projection ごとに、P の採用次元、observable / proxy、A への mapping、`q_S`、観測前に固定する予測・検証条件を明示する。観察後に任意の P 差を追加して A を説明することは避ける。
 
 ---
 
@@ -316,7 +328,7 @@ A のうち外部に実現した action event は直接観測できる場合が�
 
 個人・組織・社会・文明を、固定された独立世界としてではなく、観測スケールと内生／外生境界の違いとして扱う。
 
-スケールを変えると `S` に応じて `ΔK(S, τ)` の値域 `D_S`、座標、単位、集約規則等は変わりうる。一方、観測・会計仕様に対する **interval-change schema** は共通に保つ。
+スケールを変えると `S` に応じて `ΔK(S, τ)` の値域 `D_S`、`q_S` の値域 `V_S`、座標、単位、集約規則等は変わりうる。一方、観測・会計仕様に対する **state-change schema** は共通に保つ。区間活動量は必要に応じて別の `H_S` として定義する。
 
 組織・国家等を単一主体として扱う場合は近似であり、対象主体、K へのアクセス範囲、P の対象範囲、集約規則、情報損失を明示する。
 
@@ -329,11 +341,13 @@ A のうち外部に実現した action event は直接観測できる場合が�
 - K / P の標準次元
 - A の普遍的な選択則
 - K / P の普遍的な状態遷移関数
+- `q_S` の普遍的定義
 - `E[ΔK]` の普遍的な形成式・確率測度
-- 非数量的 K から quantitative projection への普遍写像
+- `H_S` 等の区間活動量の普遍的定義
+- inter-agent compatibility の普遍的条件
 - market equilibrium の普遍的 choice / optimality / clearing 条件
 - ミクロ／マクロの具体的均衡・調整過程
-- K / P / A / ΔK / ΔP の普遍的集約規則
+- K / P / A / ΔK / ΔP / H の普遍的集約規則
 - 階層間写像
 - 資本・市場等の既存概念との具体対応
 - 組織・国家等を一つの主体として扱う近似条件
