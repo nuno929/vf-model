@@ -12,7 +12,9 @@
 
 K は real-resource / capability state である。
 
-候補 observable には原材料量、製品量、設備、稼働、エネルギー使用、土地等の physical resources に加え、時間、労働時間、技能・人的能力、利用可能 capability 等がある。
+候補 observable には原材料量、製品量、設備、稼働可能 capacity、エネルギー、土地等の physical resources に加え、available time budget / remaining workable capacity、技能・人的能力、利用可能 capability 等がある。
+
+calendar time `t` は観測時点の index として扱い、K の resource coordinate にはしない。interval `τ` 内に実際に投入された labor time / hours worked は K の stock observable ではなく、A / labor measure 側の interval observable とする。
 
 K の完全観測は前提とせず、resource / capability coordinates と観測単位は projection ごとに定める。
 
@@ -228,7 +230,7 @@ stated intention / final choice は `Γ^adm` そのものではなく、`Γ^adm`
 
 ## 8. A と shared realized event
 
-A は actor-side action / process record である。
+A は actor-side action / process record である。interval `τ` 内の actual labor time / hours worked は、labor projection では A / labor measure の interval observable として記録する。
 
 複数主体にまたがる交換・移転・契約等では、対応する actor records に shared `event_id` と participant / role relation を記録する。
 
@@ -344,7 +346,7 @@ organization / company を actor として扱う場合、business actor は acto
 - ownership / accounting attribution
 - actor-specific K_i / P_i / A_i
 
-business field は、business activity を継続的に可能化・誘発・再生産する局所 field として観測する。
+business field は、actor-resource transformation / exchange / service / beneficiary relation 等を反復可能にする局所 field として観測する。
 
 候補 observable：
 
@@ -369,22 +371,22 @@ profit は一指標であり、business existence の定義変数とはしない
 
 ## 13. 3つの管理合理性の計測
 
-3則は constitutive rationality assumptions とする。
+3公理は management / decision rationality の必須構成条件とする。
 
 - resource-realization：resource / capital / realized-use outcome に関する比較規則
 - activity-flow：activity continuity / formation / renewal に関する比較規則
 - P-downside：projection-specific future P / viability に関する loss / threshold / exclusion rule
 
-各 rationality dimension は `Ŷ_i,t(a;I_i,t)` のどの component を評価するかを明示し、`Γ_i^adm` の形成へ接続する。
+3公理それぞれが `Ŷ_i,t(a;I_i,t)` のどの component を評価するかを明示し、`Γ_i^adm` の形成へ接続する。
 
-VFT decision projection では、採用した dimension ごとに少なくとも admissibility / exclusion condition または比較規則を事前に定義する。
+評価・判断・実行の担い手は単一 actor に限らず、複数 actor、役割、組織階層、制度へ分業・分散してよい。VFT decision projection では3公理すべてについて少なくとも admissibility / exclusion condition または比較規則を事前に定義する。
 
 ---
 
 ## 14. Marxian projection の計測
 
 - VFT-specific use-value quantity / realized-use outcome：主体が interval 内の実利用を通じて ex post に realized した主観的 outcome
-- labor measure：labor activity / labor time
+- labor measure：interval 内に実際に投入された labor activity / labor time
 - Marxian labor-value：socially necessary labor time 等の追加条件を伴う specialization
 - exchange-value / price：resource 間の comparison / market / monetary valuation
 - exchange-value residual / surplus：指定 boundary と exchange-value scale 上の差分
@@ -407,30 +409,33 @@ VFT-specific realized-use outcome と Marxian use-value を自動的に同一視
 少なくとも以下を明示する。
 
 1. K の resource / capability coordinates
-2. actor set
-3. projection-specified relations / constraints
-4. `Γ^feas` の operationalization
-5. `Γ^avail` の operationalization
-6. `Γ^adm` の admissibility / exclusion rule
-7. A の record unit / ordering
-8. multi-actor event の `event_id` / participant / role / reconciliation rule
-9. downstream aggregation rule
-10. `δ_K` の endpoint difference rule
-11. exogenous K change を扱う場合の `Ω` 等の定義
-12. realized-use outcome の actor / interval / subjective proxy / attribution / reference timing
-13. instantaneous rate を使う場合の `C_i(t)` と正則性条件
-14. exchange-value / valuation rule
-15. K_i の representation rule
-16. P / shared P の proxy
-17. current P belief / valuation role の識別
-18. outcome bundle `Y_i^proj` の coordinates
-19. generic forecast `Ŷ_i` の推定法
-20. exchange-value residual / surplus の対象 economic changes / comparison boundary
-21. accounting projection を用いる場合の recognition / identity rule
-22. business actor boundary / business field boundary
-23. P-downside の projection-specific viability criterion
-24. micro / macro reporting / aggregation rule
-25. 欠測・測定誤差・情報損失
+2. calendar time index と available time / labor-capacity coordinate の区別
+3. actor set
+4. projection-specified relations / constraints
+5. `Γ^feas` の operationalization
+6. `Γ^avail` の operationalization
+7. `Γ^adm` の admissibility / exclusion rule
+8. A の record unit / ordering
+9. labor projection を使う場合の actual labor time / hours worked の interval measure
+10. multi-actor event の `event_id` / participant / role / reconciliation rule
+11. downstream aggregation rule
+12. `δ_K` の endpoint difference rule
+13. exogenous K change を扱う場合の `Ω` 等の定義
+14. realized-use outcome の actor / interval / subjective proxy / attribution / reference timing
+15. instantaneous rate を使う場合の `C_i(t)` と正則性条件
+16. exchange-value / valuation rule
+17. K_i の representation rule
+18. P / shared P の proxy
+19. current P belief / valuation role の識別
+20. outcome bundle `Y_i^proj` の coordinates
+21. generic forecast `Ŷ_i` の推定法
+22. exchange-value residual / surplus の対象 economic changes / comparison boundary
+23. accounting projection を用いる場合の recognition / identity rule
+24. business actor boundary / business field boundary
+25. 3公理それぞれの operationalization と役割分担
+26. P-downside の projection-specific viability criterion
+27. micro / macro reporting / aggregation rule
+28. 欠測・測定誤差・情報損失
 
 ---
 
