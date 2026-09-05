@@ -2,420 +2,271 @@
 
 ## 1. 目的
 
-本書は、価値場理論の Core を実証・観測へ落とす際の境界を整理する。
+本書は、価値場理論の Core を実証・観測・会計へ落とす際の境界を整理する。
 
-Core では、K は共通の実資源世界、`K_i` はそのうち主体 `i` がアクセス・利用・行使・参照可能な actor-relative view、`P_i` は主体ごとの subjective evaluation / expectation state として扱う。
+Core では、K は資源・資本、`K_i` は主体 `i` に所有・保有・帰属する資源・資本、`P_i` は主体ごとの subjective evaluation / expectation state、A は actor-side process / event として扱う。
 
-計測上の課題は、K / P / A を一つのスカラーへ還元することではなく、**どの資源、主体、時間窓、resource coordinates、accounting boundary、transformation convention、proxy、集約規則を観測対象にするかを明示すること**である。
+VFT は K / K_i / P / ΔK の完全観測を前提としない。計測上の中心は、**何を直接観測し、何を記帳し、何を proxy から推定するかを区別すること**にある。
 
 ---
 
 ## 2. K と K_i の計測
 
-K は共通の実資源世界を参照する。
+K は対象経済・社会に存在する resource / capital state を参照する。
 
-`K_i` は、その K のうち主体 `i` が実際にアクセス・利用・行使・参照可能な actor-relative view である。
+`K_i` は、そのうち主体 `i` に所有・保有・帰属すると扱う部分である。`K_i` は主体の主観的な「利用可能感」ではない。その認識は P に属する。
 
-`K_i` は集合論的な部分集合を必ずしも意味しない。共有情報、インフラ、権利、信用枠、制度上利用可能な手段等では、主体ごとの access / usability relation を通じて操作化する。
+K / K_i の真値を主体本人や観測者が完全に把握しているとは仮定しない。未把握資産・債務、評価差、共有資産、複雑な帰属関係等により、実際の状態と認識・記帳値はずれうる。
 
-したがって、同じ設備、情報、インフラ、信用制度等が複数主体の `K_i` に関係しうるが、資源自体が主体ごとに複製されたことを意味しない。
+候補 observable / records には、
 
-本理論でいう resource は物的資源に限定されない。情報、権利、資格、契約、制度状態、金融請求権等、外部に実在し行使・利用・参照可能で actor の行為可能性に関係する状態も K に含みうる。
+- 資産台帳・在庫台帳
+- 現金・金融資産残高
+- 設備・土地・原材料・製品
+- 労働時間・人的資本・技能
+- 物量・稼働・消耗記録
 
-K の候補指標には、利用可能な現金残高、行使可能な金融請求権、受取可能額、earning capacity、設備・在庫・インフラ、時間、人員、技能、知識、情報、利用可能な信用枠、権限・アクセス可能な手段等がある。
+等がある。
 
-期間所得そのものは通常 flow であり、K の stock/state と同一視しない。期間中に実現した所得受取は state transition または interval activity として扱い、受取可能な請求権や earning capacity 等を K 側へ置く。
-
-金融資源は、名目上の評価額そのものではなく、実際に行動可能性を増やす利用可能な資源・権利として K / `K_i` へ操作化する。
+所有・帰属をどう扱うかは法域・会計境界・対象 projection に依存する。Core は普遍的な所有判定関数を固定しない。
 
 ---
 
 ## 3. P の計測
 
-`P_i` は主体 `i` の将来の見通し・評価・選好・信用・信念等を保持する多次元の subjective evaluation / expectation state である。
+`P_i` は、主体 `i` が持つ将来見通し、評価、選好、信用、信念、規範認識等を含む主観状態である。
 
-P は一つの未分化スカラーではなく、少なくとも概念上は異なる型の成分を含みうる。
+P は多数主体に共有されても主観状態であり、客観的な P の真値へ変わるわけではない。
 
-```text
-P_i
-├─ epistemic / belief-like components
-├─ evaluative / preference-like components
-├─ relational / trust-like components
-└─ other projection-specific components
-```
+必要な projection では、主体集合 `G` の P の共通性・整合度・分布を shared P として扱える。ただし shared P も直接観測される単一客観量ではなく、複数主体の proxy から推定する。
 
-これは独立 primitive を増やす意味ではない。projection ごとに P のどの成分を観測・推定・意思決定へ使うかを区別するための型整理である。
+候補 proxy には、
 
-他主体 `a` について主体 `j` が保持する評価・信用・見通し等を区別する必要がある場合は、`P_j(a)` と書く。これは `a` 自身の P ではなく、評価者 `j` の主観状態である。
+- 期待・信念・選好・評価の調査
+- 発話・文章・選択履歴
+- 信用・信頼に関する調査値
+- 契約・制度への履行期待・執行期待
+- 市場 outcome から間接推定される期待
 
-個々の `P_i` の全構造を直接観測できるとは仮定しない。
+等がある。
 
-候補 proxy には、調査された期待・信念・選好・評価、発話、契約に対する信用、評判・ブランド評価、価格、金利、スプレッド、信用条件等がある。
+価格、金利、スプレッド、支持率、rating 等は P そのものではなく、P と K / A / market process の相互作用から生じる observable でありうる。
 
-価格・金利・スプレッド・信用条件等は P そのものではなく、P と K / A / 制度・市場過程等の相互作用から生じる observable でありうる。
+### proxy admissibility
 
-### P proxy admissibility
+P proxy を使う場合は少なくとも、
 
-market outcome 等を P の proxy として用いる場合は、同時決定・post-treatment・outcome leakage を避けるため、少なくとも以下を確認する。
+1. target A / ΔK より前に観測されたか
+2. 同時決定なら joint model を明示しているか
+3. target outcome を使って P を事後構成していないか
+4. proxy validity を別データ・制約で検証できるか
 
-1. proxy が target `A` / `ΔK` より前に観測されたものか
-2. 同時決定の場合、joint structural / measurement model を明示しているか
-3. target outcome を使って latent P を事後的に構成していないか
-4. proxy validity を別データ、独立測定、または追加制約で検証できるか
-
-`P_t -> A_t -> price_t` のような構造が想定されるのに、同じ `price_t` から `P_t` を復元して `A_t` を説明する、といった循環を避ける。
-
-### 理論変数と observable の分離
-
-`P_i` / `ΔP_i` は理論上の subjective state とその変化であり、直接観測できることを Core の要件とはしない。価格、金利、調査値、信用条件、発話等は、それらと K / A / 制度・市場過程等の相互作用から生じる observable / proxy として扱う。
-
-したがって、**理論変数と observable の対応は応用・計測ごとに定める measurement mapping であり、Core が普遍的な観測式を固定するものではない。**
+を確認する。
 
 ---
 
-## 4. K / P の識別原則
+## 4. 契約・制度の観測
 
-K / P は対象物の種類だけで分類しない。
+契約・制度を、そのまま K の resource / capital として扱わない。
 
-- **K**：実際に存在し、主体が利用・行使・参照できる資源・能力・権利・情報等
-- **P**：それらを含む環境について主体が保持する見通し・評価・選好・信用・信念等
+- 契約締結・政策変更・判決・制度変更 → observable event / A
+- 契約書・法令・判決文等 → record / information source
+- 主体が履行・執行・継続をどう期待するか → P
+- 執行・履行によって実際に生じた資源・資本移転 → ΔK
 
-例：
-
-- 契約上行使可能な権利 → K
-- 契約が履行される見込み → P
-- 参照可能な情報 → K
-- その情報から形成された将来見通し → P
-- 公開レビュー値 → K 上の accessible information
-- そのレビューを読んだ `j` が `a` をどう信用するか → `P_j(a)`
-
-同一 observable を根拠なく K / P の双方へ二重投入しない。
-
-### event / persistent state / subjective representation
-
-同じ観測対象が複数段階に現れる場合は、少なくとも
-
-```text
-actor-side event A
-        ↓
-persistent / accessible world state in K
-        ↓ perception / interpretation
-subjective representation in P
-```
-
-のどこを代理しているかを固定する。
-
-例えば政策金利なら、変更 event は政策主体の A、変更後に持続する制度条件は必要に応じて K、それを主体がどう認識・予測するかは P として区別する。
+契約には法的効力がありうるが、その効力を資源量と同一視しない。VFT 上では、法的・制度的事実と、主体がそれをどう認識・期待するか、そして最終的にどの resource / capital change が実現したかを分けて追う。
 
 ---
 
 ## 5. A の観測可能性と時間型
 
-A は各主体側で生じる actor-side process / event を表す。
+A は各主体側で生じる process / event を表す。
 
-外部に実現した action event は直接観測できる場合がある。取引、移動、発話、投資、労働、契約、政策変更等が該当する。
+外部 action event は直接観測できる場合がある。取引、移動、発話、投資、労働、生産、契約締結、政策実施等が該当する。
 
-一方、内部の意思決定、観測、情報受容、解釈等は直接観測できない場合があり、proxy を要する。
+内部 decision / observation / interpretation は直接観測できない場合があり、proxy を要する。
 
-観測・情報受容・解釈を A に含める場合も、それらが必ず能動的行為であることを意味しない。P 更新を記述する actor-side process として必要な範囲で含める。
-
-時間順序は、選択則・更新則を固定せず、概念的には
+時間型は、普遍的な状態遷移式を固定せず、
 
 ```text
 (K_t0, P_t0)
       ↓ conditions
 A_(t0,t1]
-      ↓ realized interval processes
+      ↓ realized processes / resource use
 (K_t1, P_t1)
 ```
 
-とする。これは **actor-side channel の temporal typing** であり、普遍的な状態遷移関数を意味しない。減価償却・自然消耗・災害や記憶減衰等の A を介さない変化は、この図とは別に必要な projection で扱う。
-
-P → A の時間的・因果的関係を検証する projection で、A 区間内の information reception / interpretation 等が途中で P を更新し、その後の decision / action に影響する場合は、**区間を分割するか event ordering を保持する**。途中更新後の P を初期 `P_t0` と同一視しない。
+とする。
 
 ---
 
-## 6. ΔK / ΔP と区間活動量の観測
+## 6. ΔK / ΔP の観測と記帳
 
-観測・会計仕様 `S` と時間区間 `τ=[t0,t1]` を明示した K の state / resource change を `ΔK(S, τ)` とする。
+### ΔK
 
-`S` は少なくとも以下を含む。
+`ΔK` は K の利用・移転・変換・消費・生成等の結果として実現した resource / capital change を表す。
 
-1. 対象資源・主体
-2. resource coordinates
-3. accounting boundary
-4. transformation convention
+実証では主に、
 
-### state change `ΔK`
+1. 会計・台帳・取引記録等による記帳
+2. 活動後の resource / capital state の観測
 
-観測仕様に対応する state representation を
+から ΔK をトレースする。
 
-```text
-Y_S(t) = M_S(K_t)
-ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1)) ∈ D_S
-```
-
-とする。`M_S` と `δ_S` は measurement / projection 側で定める specification-local な写像・演算であり、Core の新しい原始変数ではない。
-
-`ΔK` は必ずしも算術差分を意味しない。加法的な quantitative projection が適用できる場合にのみ、
+一つの A が複数の ΔK を生む場合は、それぞれを別 record として保持する。
 
 ```text
-δ_S(y0, y1) = y1 - y0
-Y_S(t1) = Y_S(t0) + ΔK(S, τ)
+A
+├─ material       -10
+├─ labor input     -5
+├─ equipment wear  -2
+└─ product         +20
 ```
 
-と置ける。`K_t1 = K_t0 + ΔK` は、さらに `M_S = id` で K 自体が同じ加法空間にある特殊ケースに限る。
+区間活動量を表す独立変数 `H` は置かない。gross production / consumption / transaction 等を分析したい場合は、A と ΔK records の event history を用いる。
 
-一般形では `δ_S(y,y)` を no-change descriptor とみなす。**加法的な在庫 projection では**、生産 100・消費 100 で在庫が元に戻る場合 `ΔK(S,τ)=0` となる。
+### net change と gross activity
 
-### interval activity `H_S`
+同じ区間で生産100・消費100が起こり最終在庫が変わらない場合、net state change は0になりうる。しかし生産・消費の各 record は残る。
 
-gross production、gross consumption、transaction volume、resource transformation 等は state change そのものではないため、`ΔK` へ含めない。必要な measurement / projection では、
+したがって、gross activity と net state change の違いは、独立変数を追加するのではなく、**記帳粒度・event history・aggregation rule** で扱う。
 
-```text
-H_S(τ) = h_S((K_t)_{t in τ}, A_τ)
-```
+### ΔP
 
-のような derived path functional / interval activity descriptor として分離する。`A_τ` は区間内の actor-side event / process を保持し、必要なら event ordering を保持する。
-
-`H_S` は Core の新しい primitive / state ではない。上の加法的在庫例でも、production / consumption を表す `H_S` はそれぞれ 100 と記録できる。
-
-`ΔP_i` も一般には算術差ではなく、主体 `i` の P に実現した change descriptor / state transition を表す。非加法的な場合は少なくとも
+`ΔP_i` は主体 `i` の P に実現した変化を表す。
 
 ```text
 P_i,t0 -> P_i,t1
 ```
 
-として扱い、数量化が必要な場合だけ measurement mapping を追加する。
-
-`ΔK` はミクロ用・マクロ用に数学的な同一型を要求しない。`S` に応じて `D_S`、座標、単位、集約規則等は異なりうるが、**S-indexed state-change schema** は共通に保つ。区間活動量は必要に応じて別の `H_S` として定義する。
+P は一般に非加法的であり、普遍的な算術差は定義しない。
 
 ---
 
-## 7. P の変化と観測
+## 7. 会計評価と surplus
 
-A は P を変化させる主要な actor-side process である。
+異質な ΔK は物理単位のまま直接加算できない場合がある。
 
-政策変更、価格提示、契約条件変更、情報伝達、観測・情報受容・解釈等による P の変化も、必要に応じて A を介する経路として記述できる。
+指定した valuation / bookkeeping rule により共通尺度へ写像し、同じ accounting boundary で差し引く。
 
-記憶減衰等の微小・非主体的な P の変化の存在自体は否定しない。ただし、それが観測可能な A や P proxy に意味のある差を生じない限り、Core の主要変化経路として明示的に操作化しない。
+```text
+realized ΔK records
+        ↓ valuation / bookkeeping
+accounting entries
+        ↓ aggregation
+surplus / deficit
+```
+
+surplus は直接観測される物理量ではなく、**実現した ΔK records を特定の会計・評価体系で集約した派生量**である。
+
+したがって surplus を測る場合は、少なくとも次を明示する。
+
+1. 対象 ΔK records
+2. accounting boundary
+3. valuation / unit-of-account
+4. recognition timing
+5. aggregation / offset rule
+6. ownership / attribution rule
+
+貨幣は、保有される資産として K に現れる場合と、unit of account / valuation scale として使われる場合を区別する。
 
 ---
 
 ## 8. E[ΔK] の位置づけ
 
-`ΔK(S, τ)` の値域 `D_S` は非数量・非加法でありうるため、期待値を取る場合は quantitative representation を明示する。
+`E_i[ΔK]` は、主体 `i` が形成する expected realized resource / capital change である。
+
+`E_i[ΔK]` は desire / preference / plan ではない。望ましさ・選好は P に属する。
+
+ΔK が多次元で expectation を直接定義できない場合は、projection 側で必要な quantitative representation を定める。
+
+candidate action ごとの forecast が必要なら、
 
 ```text
-q_S : D_S -> V_S
+E_i[ΔK(S, τ) | a, I_i]
 ```
 
-`V_S` は対象 projection で expectation が定義可能な quantitative value space とする。
-
-記法上、
-
-```text
-E_i[ΔK(S, τ)] := E_i[q_S(ΔK(S, τ))]
-```
-
-と略記する。左辺は generic change descriptor 自体へ直接 expectation operator を掛ける意味ではない。
-
-Core は `q_S` の具体形、`E_i` に対応する確率測度・情報集合・期待形成式を普遍的に固定しない。具体的な quantitative representation / expectation operator は対象 projection / measurement model で与える。
-
-`E[...]` は主体が形成する見込み値・期待値を表し、主体の望みそのものではない。選好・望ましさ・評価は P に保持され、期待形成や A に影響しうる。
-
-候補 action を比較する quantitative projection では、必要に応じて
-
-```text
-E_i[ΔK(S, τ) | A = a, I_i]
-```
-
-のような action-contingent forecast を用いる。`I_i` は projection-specific な情報集合である。P 内の belief / outlook は forecast を形成する内部状態の一部となりうるが、`E_i[ΔK | A=a]` は特定の `(S,τ,a)` に対して数量化された予測であり、P 自体とは区別する。
+のように表せる。
 
 ---
 
-## 9. 集約と共通 K
+## 9. 集約とミクロ／マクロ
 
-VFT は、複数主体の `K_i` / `P_i` / `A_i` を自動的に一主体・一変数へ集約しない。
+ミクロとマクロは別の K ではない。同じ K と同じ ΔK records を、異なる ownership / accounting / aggregation boundary から観測する。
 
-ただしミクロとマクロは別の資源世界ではなく、**同じ common K を異なる観測・会計仕様 `S` から見る**。micro observable から macro observable を再構成する場合にだけ、projection-local な aggregation / coarsening rule を明示する。
+micro observable から macro observable を再構成する場合にだけ、projection-local な aggregation / coarsening rule を追加する。
 
-集約する場合は少なくとも以下を明示する。
+集約では少なくとも、
 
-1. 共通 K の対象範囲
-2. 対象主体集合
-3. 各主体の K へのアクセス・利用可能性
-4. P に用いる proxy
-5. A の観測単位とイベント順序
-6. `τ`
-7. `S` の resource coordinates / accounting boundary / transformation convention
-8. `M_S` / `δ_S` または対応する state-change mapping
-9. `H_S` を使う場合の path functional
-10. `q_S` を使う場合の quantitative representation
-11. ΔK / ΔP / H の集約規則
-12. 共有資源・重複アクセスの扱い
-13. 情報損失
+- actor set
+- ownership / attribution boundary
+- accounting boundary
+- ΔK record の対応
+- P proxy の集約方法
+- shared P の推定方法
+- surplus / deficit の帰属・分配
+- 情報損失
+
+を明示する。
 
 ---
 
-## 10. 経済射影での会計的予算制約
+## 10. 3つの管理合理性を扱う計測
 
-経済射影では、主体 `i` の economic scope を `S_i` とする。
+resource-realization / activity-flow / P-downside の3則は、意思決定合理性の公理系として扱う。
 
-必要な projection では、A に含まれる planned / chosen net resource change を `x_i` と書く。取得を正、処分／供給を負とする符号規約を採用し、価格・会計換算ベクトルを `p` とする純粋交換の基本例では、
+計測では「3則が存在するか」を毎回再証明するのではなく、actor / context / institution / role / time horizon によって、3則の比重・優先順位・分担がどう変わり、どの A / ΔK / ΔP が生じるかを扱う。
+
+P-downside を扱う際は、対象主体集合、P 次元、shared P proxy、downside / threshold / viability criterion を事前に定める。客観的な P 真値の存在は仮定しない。
+
+---
+
+## 11. 経済射影での計測
+
+### plan / choice と budget
+
+必要な economic projection では planned / chosen resource change を `x_i` と書ける。
 
 ```text
-p · x_i <= 0
+x_i          = planned / chosen resource change
+E_i[ΔK(...)] = expected realized resource change
 ```
 
-として budget feasibility を操作化できる。`p · x_i = 0` は self-financing / budget exhaustion 等を追加仮定した特殊形である。
+予算制約は `x_i` 側へ置き、forecast と混同しない。
 
-`E_i[ΔK(S_i, τ)]` は expected realized resource change であり、plan / choice である `x_i` と一致するとは限らない。
+### 使用価値・労働価値・交換価値
 
----
+- 使用価値：K が特定目的の A / transformation を可能にする機能を観測・評価
+- 労働価値：投入 labor activity / labor time を計測尺度として採用
+- 交換価値・価格：market / accounting valuation
+- surplus：ΔK records を共通尺度化して得る accounting residual
 
-## 11. 3つの管理合理性を扱う計測
-
-resource-realization / activity-flow / P-downside の3則は、VFT 上の**意思決定合理性の公理系**として扱う。計測の目的は「3則そのものが存在するか」を毎回実証することではなく、3則を前提に構成した具体的な decision model がどのように働くかを観測することにある。
-
-各 actor は3則を同時に考慮しうる。経験的に扱うのは、actor / context / institution / role / time horizon によって、**3則の比重・優先順位・分業がどう変わるか**、candidate action がどの future trajectory を誘導し、その結果どの A / K / P / H / ΔK が生じるかである。
-
-必要な quantitative projection では、例えば
-
-```text
-w_i,c = (w_R, w_F, w_D)
-```
-
-のような context-dependent priority / weight を導入できる。ただし線形加重和や `Σw=1` を普遍的に仮定しない。lexicographic priority、constraint、threshold 等でもよい。
-
-具体的な意思決定モデルでは、少なくとも
-
-```text
-current K / P
-    + candidate action a
-          ↓
-induced / expected future trajectory
-(K', P', H, ΔK, ...)
-          ↓
-R1 / R2 / R3 に照らした evaluation
-          ↓
-decision
-```
-
-という関係を明示する。
-
-少なくとも以下を事前に固定する。
-
-1. actor / actor set と context
-2. 3則の priority / weight / constraint の操作化
-3. candidate action / feasible set
-4. action-contingent future state / trajectory の予測方法
-5. resource-realization の outcome proxy
-6. activity-flow の `H_S` 等の path / flow proxy
-7. P-downside の対象 P 次元、threshold / loss / viability criterion
-8. 対象時間窓
-9. 管理機能の分担・重複・conflict
-10. 代替 decision model / organizational arrangement との比較条件
-
-企業を扱う際、profit は activity-flow を評価する accounting / performance 指標の一つであって R2 そのものではない。特に going-concern の文脈で profit が sustained activity と整合するかを確認する。短期損失を伴う投資・採用・R&D・市場獲得等が将来 A-flow をどう変えるかを別途観測する。
-
-P-downside を扱う際、R3 の根拠を「P proxy が異質だから」に還元しない。R3 は、P 側の毀損が将来の A の成立や組織・制度・社会の viability を壊すことを防ぐ管理合理性として扱う。異質な P proxy 間に普遍的加法則を仮定せず、誰のどの P 次元を対象にするか、downside / threshold / viability criterion を事前定義する。
-
-国家レベルの資本主義社会を粗視化する場合、individual / firm / state に R1 / R2 / R3 の主たる比重が概ね分化して見えることがある。ただしこれは固定的な actor-type assignment ではなく、文脈依存の制度的分業として扱う。
-
-既存の管理階層と VFT 三則の関係を研究する場合も、三階層の存在そのものを検証対象にするのではなく、**各階層で3則の比重・遂行・分担・重複がどう変わり、その管理成果とどう関係するか**を比較する。
+これらを同一の「価値」変数へ潰さない。
 
 ---
 
-## 12. 主体間整合・market equilibrium・会計整合・定常状態
+## 12. 実証上の原則
 
-以下は別概念として扱う。
-
-- **主体間整合 / compatibility**：economic projection が追加する条件として、各主体の予算・資源制約を満たした `x_i` が、価格・取引条件等のもとで相互に実行可能・両立可能であること
-- **market equilibrium**：上記 compatibility に加え、射影先の理論が choice / optimality / best response / market-clearing 等の条件を与えた状態
-- **会計整合**：同じ state change / interval activity を同一会計境界・換算規則で記録した結果が収支上整合すること
-- **定常状態**：対象 scope の K が区間を通じて実質的に増減しない等、別途定める状態条件
-
-compatibility 自体も VFT Core から自動導出されるものではなく、economic projection 側の追加条件である。
-
----
-
-## 13. P の実証上の制約
-
-P が観察後の residual state にならないよう、各 projection / empirical model では少なくとも以下を観測・推定前に固定する。
-
-1. 採用する P の次元と型
-2. 各次元の observable / proxy
-3. proxy admissibility
-4. P と A / E[ΔK] の mapping
-5. action-contingent forecast を使う場合の conditioning / information set
-6. 検証対象となる事前予測または識別条件
-7. 代替説明と比較する基準
-
-観察された A の差を説明するために事後的に任意の P 次元や proxy を追加することは避ける。
-
----
-
-## 14. 評価・信用経済を扱う場合
-
-評価対象 `a` と評価者 `j` を区別する。
-
-- 公開レビュー値・rating 等 → K 上の accessible information / observable
-- 主体 `j` が主体 `a` に対して形成する評価・信用・見通し → `P_j(a)`
-- その結果として実際に `a` に付与された信用枠・請求権・契約上の権利・取引アクセス → K / `K_a`
-
-実証では、少なくとも以下の経路を混同しない。
-
-```text
-public rating / review information in K
-        ↓ observed by j
-      P_j(a)
-        ↓
-      A_j
-        ↓
-rights / contract / credit conditions in K
-        ↓
-      K_a
-        ↓
-      realized ΔK
-```
-
----
-
-## 15. 実証上の原則
-
-価値場理論を実証へ落とす際は、少なくとも以下を明示する。
+少なくとも以下を明示する。
 
 1. 観測スケール
-2. 共通 K の対象範囲
-3. 各主体の K へのアクセス・利用可能性
-4. P に用いる proxy と対象範囲
-5. P proxy admissibility
-6. K / P の識別原則
-7. A を直接観測する範囲
-8. 内部 decision / observation の proxy
-9. temporal typing / event ordering
-10. ΔK / ΔP を結果 proxy として使う範囲
-11. interval activity `H_S` を使う範囲
-12. 理論変数と observable の measurement mapping
-13. `S` / `S_i`
-14. `τ`
-15. resource coordinates / accounting boundary / transformation convention
-16. `M_S` / `δ_S` または対応する state-change mapping
-17. `h_S` / `H_S` を使う場合の path functional
-18. `q_S` / `V_S`
-19. 集約・会計・換算規則
-20. 欠測・測定誤差
-21. expectation operator / 推定方法
-22. action-contingent forecast を使う場合の information set / conditioning
-23. 3則を decision model へ落とす場合の context-dependent priority / weight / constraints / horizon
-24. candidate actions と induced future trajectory の対応
-25. compatibility を扱う場合の予算制約・価格・取引条件
-26. market equilibrium と呼ぶ場合の choice / optimality / clearing 条件
-27. P の採用次元と事前固定した検証条件
-28. 他者評価を扱う場合の評価者 `j` と評価対象 `a` の区別
+2. K の対象範囲
+3. K_i の ownership / attribution rule
+4. K / K_i の observable / records
+5. P の採用次元・proxy
+6. shared P の対象 actor set と推定法
+7. A の観測単位・event ordering
+8. ΔK records の認識・記帳方法
+9. ΔP の proxy / mapping
+10. expectation operator / `E[ΔK]` の推定方法
+11. valuation / bookkeeping / accounting boundary
+12. surplus / deficit の集約規則
+13. planned / expected / realized change の分離
+14. 3則の priority / constraint / horizon
+15. compatibility / market equilibrium を扱う場合の追加条件
+16. 欠測・測定誤差・情報損失
 
-目的は、**state change `ΔK`、interval activity `H_S`、subjective state `P_i`、planned change `x_i`、expected realized change `E_i[ΔK]`、3つの管理合理性、および各 projection が追加する具体的 decision rule を混同せず、観測・会計・因果上の位置を明示すること**にある。
+目的は、**資源・資本そのもの、主体の主観、行為、実現変化、会計評価、余剰を同一視しないこと**にある。
 
 ---
 

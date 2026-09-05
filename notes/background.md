@@ -1,6 +1,6 @@
 # 価値場理論 — 背景と整理の経緯
 
-> この文書は理論コアではなく、価値場理論が現在の K / P / A 構造へ至るまでの整理経緯を保存する履歴ノートである。以下に登場する X / V 等は過去の検討段階の変数であり、現行 Core では独立変数として用いない。**また、以下の数式・surplus 解釈等には旧案が含まれ、現行 Core / Measurement / Projections の定義が優先される。**
+> この文書は理論コアではなく、価値場理論が現在の K / P / A 構造へ至るまでの整理経緯を保存する履歴ノートである。以下に登場する旧変数・旧定義は現行 Core では用いない。現行定義は README / Core / Measurement / Projections を優先する。
 
 ## 1. 発想の出発点
 
@@ -21,30 +21,30 @@ P -> K -> X -> A -> K -> P
 
 という循環構造を検討した。
 
-その後、P / K / X の境界重複と中間変数の過剰さを減らし、より少ない原始概念で記述する方向へ整理した。
+その後、中間変数の重複を減らし、K / P / A を中心に整理した。
 
 ---
 
-## 2. K：自由度から共通の実資源世界へ
+## 2. K：自由度から資源・資本へ
 
 初期の K は自由度・選択可能域に近い概念だった。
 
-その後、自由度そのものを原始量とするより、**現実に存在する資源・能力・権利・情報等が、主体の行為可能性を支える**と捉える方が一般的だと整理した。
+その後、行為可能性を説明する際に、自由度そのものより、実際に存在する資源・資本を基礎に置く方が経済理論として素直だと整理した。
 
-現行 Core では、K が参照する資源世界は主体ごとに別々に存在するのではなく、**同一の物理的・社会的な実資源世界**として置く。
+現行 Core では、
 
-ここでいう resource は物的資源に限らない。外部に実在し行使・利用・参照可能な情報、権利、資格、契約、制度状態、金融請求権等も、行為可能性に関係する K の構成要素になりうる。
+- `K`：共通の resource / capital state
+- `K_i`：そのうち主体 `i` に所有・保有・帰属する resource / capital
 
-一方、主体ごとに利用可能な範囲は異なるため、共通 K から主体 `i` のアクセス・利用・行使・参照可能性を `K_i` として導く。
+とする。
 
-```text
-K_t
-├─ K_1,t
-├─ K_2,t
-└─ ...
-```
+途中では `K_i` を actor-relative access / usability view として広く定義し、権利、資格、契約、制度状態等まで K に含める案を採った。しかし、この定義では K が resource / capital を超えて「外部 world state」全体へ膨張し、K / P の境界が崩れた。
 
-ここで actor-relative なのは K の存在そのものではなく、主体ごとの access / usability view である。現行 Core では `K_i` を独立 state ではなく、K に含まれる条件から導かれる view として扱う。
+現行ではこの拡張を撤回し、K を resource / capital に戻している。
+
+また、`K_i` は主体が「利用可能だと認識している K」ではない。所有・保有・帰属する資源・資本を表し、その認識は P 側に属する。
+
+K_i の真値を主体本人や観測者が完全に把握しているとも仮定しない。未把握資産・債務、評価差、帰属の複雑さは計測・会計上の問題として扱う。
 
 ---
 
@@ -52,13 +52,13 @@ K_t
 
 P は最も意味が変化した概念である。
 
-初期には制度・文化・環境等をまとめた背景構造だったが、議論を進める中で、信用、評価、選好、信念、将来見通し、ナラティブ等が、同じ資源条件でも行動を変える側として整理された。
+初期には制度・文化・環境等をまとめた背景構造だったが、議論を進める中で、信用、評価、選好、信念、将来見通し、規範認識等が、同じ資源条件でも行動を変える側として整理された。
 
-現行では `P_i` を、**主体 i の将来の見通し・評価・選好・信用・信念等を保持し、期待や行動を形成する多次元の subjective evaluation / expectation state** とする。
+現行では `P_i` を、**主体 i の subjective evaluation / expectation state** とする。
 
-P は一つのスカラーではなく、概念上は belief-like / evaluative / preference-like / relational-trust-like な内部型を区別できる。ただし独立 primitive を増やすのではなく、P 一つの内部型として扱う。
+P は多数主体に共有されても主観状態である。shared P は複数主体の P の共通性・整合性・分布として扱い、客観的な社会価値の真値とはみなさない。
 
-P を「期待 stock」と呼ぶ場合も、期待値そのものを蓄積した量という意味ではなく、将来価値への期待・評価や行動を生成する側の蓄積構造に着目した呼称である。
+契約・制度についても、法的効力や外部 record の存在と、主体が履行・執行・継続をどう期待するかを区別する。経済行動を条件づける共有された契約・制度認識は P 側で扱う。
 
 ---
 
@@ -66,15 +66,9 @@ P を「期待 stock」と呼ぶ場合も、期待値そのものを蓄積した
 
 初期モデルでは選好方向 X を独立変数として置いていた。
 
-しかし、
+しかし、選好は P の evaluative / preference-like component として扱えるため、X を独立 primitive として置く必要性は薄れた。
 
-- 選好は P の構成要素として扱える
-- 将来価値の具体的な見込みは `E[ΔK]` として必要な場合のみ明示できる
-- 実現した行動は A として観測できる
-
-ため、X を独立した普遍変数として置く必要性が薄れた。
-
-現行 Core では X を廃止し、選好差は P の構造差へ統合している。
+現行 Core では X を置かない。
 
 ---
 
@@ -82,263 +76,165 @@ P を「期待 stock」と呼ぶ場合も、期待値そのものを蓄積した
 
 途中では K / P / X から価値場状態 V を生成する案も検討した。
 
-しかし V を独立 state とすると、説明用の中間変数が増える一方、V 自体を独立に観測・同定する必要性が弱かった。
+しかし V を独立 state とすると中間変数が増えるため、現行 Core では V を置かない。
 
-そこで現行 Core では V を置かず、価値場を、**共通 K、主体ごとの利用可能範囲 K_i、主体ごとの P_i の配置・関係が各 A を条件づける構造**として扱う。
-
-「方向性」「引力」という語は action space 上の幾何学的ベクトルを意味しない。
+価値場は、**K / K_i と P_i の配置・関係が A_i を条件づける構造**として扱う。
 
 ---
 
-## 6. actor-relative の意味の整理
+## 6. ΔK：state descriptor から実現 resource change へ
 
-途中の整理では K / P / A / ΔK / ΔP をすべて actor-relative と読める表現を採用していた。
+ΔK をどこまで一般化するかについても整理が進んだ。
 
-しかし、これは K の存在論を必要以上に相対化する余地があった。
-
-現行では、
-
-- K：共通の実資源世界
-- K_i：共通 K から導かれる主体 i の access / usability view
-- P_i：主体 i の主観的評価・期待状態
-- A_i：主体 i の actor-side process / event
-- E_i[ΔK]：主体 i が見込む expected realized resource change
-
-と分ける。
-
-相対性が中心になるのは、主体ごとのアクセス可能性、P、期待評価である。
-
----
-
-## 7. K / P の境界
-
-P を広い主観的評価・期待構造として扱うと、情報、契約、信用等が K / P の双方に見える問題が生じた。
-
-このため現行では、対象の種類ではなく主体との関係で分ける。
-
-- K：実際に存在し、主体が利用・行使・参照できる資源・能力・権利・情報等
-- P：それらを含む環境について主体が保持する見通し・評価・選好・信用・信念等
-
-例えば、行使可能な契約上の権利は K、契約が履行される見込みは P となる。
-
----
-
-## 8. ΔK / ΔP と基本動学
-
-実現変化を明示するため、K / P の状態変化を ΔK / ΔP として記述するようになった。
-
-現行では `ΔK(S,τ)` を K の state / resource change に予約し、観測仕様 `S` に応じて
+途中では、観測仕様 `S` に対する generic state-change descriptor として
 
 ```text
 Y_S(t) = M_S(K_t)
-ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1)) ∈ D_S
+ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1))
 ```
 
-と記述する。gross production / consumption / transaction volume 等の区間活動量は `ΔK` に含めず、必要な projection / measurement で
+のように広く定義し、gross interval activity を `H_S` として分離する案を採った。
+
+その後、経済理論として必要以上に形式化していることが分かった。
+
+現行では、`ΔK` を **K の利用・移転・変換・消費・生成等の結果として実現した resource / capital change** とする。
+
+一つの A が複数の資源変化を生む場合は、複数の ΔK record を保持する。
 
 ```text
-H_S(τ) = h_S((K_t)_{t in τ}, A_τ)
+A
+├─ ΔK_1
+├─ ΔK_2
+└─ ...
 ```
 
-のような derived path functional として分離する。
+区間活動量を表す独立変数 `H` は置かない。gross activity が必要なら A と ΔK records の event history から再構成する。
 
-A は K / P を変化させる主要な actor-side process であるが、K の減価償却、自然損耗、災害等の非主体的変化もありうる。
-
-`K_i` は K から導かれる view であるため、K 上の権利・資格・契約・制度状態等が変われば `K_i` も変化しうる。現行 Core では `ΔK_i` を独立原始量として置かない。
+この意味で、複数の ΔK record は「一般化された仕訳」として読むことができる。
 
 ---
 
-## 9. P と E[ΔK] の分離
+## 7. surplus：物理量ではなく会計的派生量
 
-P を主観的評価・期待 state として広く定義すると、特定時点・対象・区間に対する具体的な forecast との区別が必要になった。
+余剰を物理世界の primitive として扱う必要はない。
 
-途中段階では、期待実資源変化を概念的に
-
-```text
-E_i,t[ΔK] = f_i(K_i,t, P_i,t, ...)
-```
-
-のように書く案も用いた。
-
-**これは履歴上の概念式であり、現行 Core では普遍的な期待形成関数 `f_i`、確率測度、情報集合を固定しない。**
-
-現在は `ΔK(S,τ) ∈ D_S` に対して quantitative representation
+実現した ΔK records を valuation / bookkeeping rule で共通尺度へ写像し、同じ accounting boundary で差し引いた最終差分が surplus / deficit になる。
 
 ```text
-q_S : D_S -> V_S
+realized ΔK records
+        ↓ valuation / bookkeeping
+accounting entries
+        ↓ aggregation
+surplus / deficit
 ```
 
-を projection / measurement 側で定め、記法上
+したがって surplus は、物理的に直接観測される独立量ではなく、**resource / capital change を会計的に評価・集約した residual** として扱う。
 
-```text
-E_i[ΔK(S,τ)] := E_i[q_S(ΔK(S,τ))]
-```
-
-と略記する。
-
-また、`E[ΔK]` は plan / choice や desire ではなく、特定対象・区間について主体が見込む expected realized resource change として扱う。候補 action ごとの比較が必要な場合は、
-
-```text
-E_i[ΔK(S,τ) | A=a, I_i]
-```
-
-のような action-contingent forecast を用いる方向へ整理した。
-
-つまり、P 内の belief / outlook は forecast 形成の内部状態になりうるが、特定 `(S,τ,a)` に対する forecast 自体とは区別する。
+貨幣についても、保有資産としての money は K に入りうる一方、unit of account / valuation scale としての money は accounting representation である。両者を役割で区別する。
 
 ---
 
-## 10. 経済学への射影整理
+## 8. E[ΔK]：期待と実現の分離
 
-VFT 独自の均衡則を作るのではなく、既存経済学の理論へ K / K_i / P_i / A_i / ΔK / ΔP_i / `E_i[ΔK]` を接続する方針に整理した。
+主体は K を利用する前に、その結果として生じる ΔK について期待を持ちうる。
 
-### ミクロ
+```text
+E_i[ΔK]
+```
 
-初期の射影案では `E_i[ΔK]` と A の相互作用を中心に既存ミクロ経済学の均衡・調整過程へ接続する表現を用いた。
+は expected realized resource / capital change であり、desire / preference / plan とは区別する。
 
-その後、**plan / choice と expected realized outcome は別物**と整理し、必要な economic projection では A に含まれる planned / chosen resource change を補助的に `x_i` と書き、予算制約・compatibility は `x_i` 側へ置く方針へ修正した。
-
-compatibility 自体も VFT Core から自動導出される条件ではなく、economic projection が追加する条件として扱う。
-
-VFT では消費と供給を別の存在論として置かない。
-
-また、過去には「主体間移転を相殺した後に残る期待実資源変化」を期待総余剰へ射影する案も検討したが、**これは現行方針では採用していない。** 現在は consumer surplus / producer surplus / total surplus へ接続する場合、valuation、utility、WTP / WTA、cost 等の追加 mapping を射影先で明示する。
-
-### マクロ
-
-政策金利変更、通貨供給量操作、制度変更等をまず政策主体の A とし、それが各主体の P を変え、`ΔP_i` を誘発する経路として整理した。
-
-現行ではミクロとマクロを別 K として置かず、**同じ common K / K transition を異なる `S` から観測する**ことで存在論的に接続する。micro observable から macro observable を再構成する場合のみ aggregation / coarsening rule を追加する。
-
-また、Core の K / P と経済学上の real / nominal は同一視せず、real / nominal は射影先でのみ用いる。
+望ましさ・選好は P、planned change は必要な economic projection で `x_i`、実現結果は ΔK として分離する。
 
 ---
 
-## 11. 3つの管理合理性への整理
+## 9. 経済学への射影整理
 
-経済・組織への射影を検討する中で、個人・企業・国家を別種の存在として定義するより、**同じ K / P / A ontology 上で意思決定合理性を3則へ集約する**方が一般的だと整理した。
+VFT は独自の均衡則を作るのではなく、既存経済学へ K / K_i / P_i / A_i / ΔK / E_i[ΔK] を接続する。
+
+### マルクス経済学の骨子
+
+VFT が取り込みたいのは、特定の政治的・規範的結論ではなく、マルクス経済学が区別した、
+
+- 使用価値
+- 労働
+- 交換価値
+- 余剰
+- 蓄積・分配
+
+という経済現象の骨格である。
+
+現行の方向では、
+
+- 使用価値：K が特定の A / transformation を可能にする機能
+- 労働価値：labor activity / labor time を価値記述の尺度として使う射影
+- 交換価値・価格：market / accounting valuation
+- 余剰：ΔK records の accounting residual
+
+として分離する。
+
+「労働だけが価値の唯一の源泉である」「余剰が存在すれば直ちに搾取である」といった規範・形而上学的主張は Core に置かない。
+
+---
+
+## 10. ミクロ／マクロ接続
+
+現行 VFT ではミクロとマクロを別々の K として置かない。
+
+```text
+micro:
+(K_i, P_i) -> A_i -> ΔK records
+
+              ↓ same common K
+
+macro:
+ownership distribution
+production / consumption
+surplus distribution
+capital accumulation
+shared P
+```
+
+個別主体の A_i が同じ K の構成・所有分布を変え、マクロではその同じ K と ΔK records を異なる accounting / aggregation boundary から観測する。
+
+surplus の帰属・分配が次期 K_i を変えることで、主体の意思決定と資本蓄積・所有分布を同じ系列で接続できる。
+
+---
+
+## 11. 3つの管理合理性
 
 現行の3則は、
 
-1. resource-realization：望ましい resource outcome / state change の実現へ向けて A を動かす
-2. activity-flow：K / P / A の配置を調整して必要な activity / process の流れを維持・拡張する
-3. P-downside：主体・組織・系の行動成立を阻害するほどの P の負側・毀損を抑える
+1. resource-realization
+2. activity-flow
+3. P-downside
 
 である。
 
-この3則は actor type の分類ではなく、**VFT 上の意思決定合理性の公理系**として置く。同一 actor が3則を同時に考慮し、文脈・制度・役割・時間 horizon に応じて比重・優先順位が変わる。
+3則は actor type ではなく意思決定合理性の公理系として扱う。同一 actor が3則を同時に考慮し、文脈・制度・役割・時間 horizon に応じて比重・優先順位が変わる。
 
-管理対象は、概念的に outcome / process / viability の3つへ分ける。具体的な objective function や weight は3則そのものではなく projection-specific な数理化とする。
-
-### 旧い直接最適化式からの修正
-
-途中では resource-realization / activity-flow / P-downside をそれぞれ独立した `argmax / argmin` として直接書く案を用いた。しかし K / P は state であり、直接選択する control variable ではない。
-
-現行では、
-
-```text
-current K / P
-    + candidate action a
-          ↓
-induced / expected future trajectory
-          ↓
-R1 / R2 / R3 に照らした評価
-          ↓
-decision
-```
-
-という共通型へ修正した。必要な quantitative projection では `J_R(a)`, `J_F(a)`, `J_D(a)` と context-dependent priority `w_i,c` を用いて具体化する。
-
-### P-downside の論拠整理
-
-途中では、P の真値を直接観測しにくく異質な proxy 間に普遍的加法則がないことから、aggregate P maximization より P-downside が operational だと説明していた。
-
-現在はこの順序を修正し、**P 側の大幅な毀損が将来の A の成立や組織・制度・社会の viability を壊しうるため、その breakdown を防ぐ合理性として R3 を置く**。proxy の非加法性は、具体的操作化で downside / threshold / viability constraint が扱いやすい理由の一つとして位置づける。
-
-### 自給自足から制度的分業へ
-
-3則は actor type ではないため、市場・企業・国家が存在しない自給自足でも単一 actor が全部を担える。
-
-```text
-single actor
-  ├─ resource-realization
-  ├─ activity-flow
-  └─ P-downside
-```
-
-国家レベルの資本主義社会を粗視化すると、概ね
-
-```text
-individuals -> resource-realization heavy
-firms       -> activity-flow heavy
-state       -> P-downside heavy
-```
-
-へ主たる比重が分化して見える。ただし各 actor は他の2則も持ちうる。これは固定 assignment ではなく、**文脈と制度による比重・機能分担**である。
-
-また、実行・中間管理・統治に相当する階層的な機能分化も長期にわたる組織制度で反復して観察される。VFT は三階層自体を新規に発見するのではなく、既知の階層構造を3則の比重・分担の差として共通記述する。
-
-### 既存経済学との関係
-
-途中では utility maximization を resource-realization の「特殊射影」、profit maximization を activity-flow の「特殊射影」と表現した。
-
-現在はこの表現を改め、**utility / profit 等は3則の特殊化ではなく、3則をもとに具体的な意思決定を数量化するときに使う評価関数・指標・proxy** と整理する。
-
-utility は R1 における outcome valuation の一つ、profit は R2 における accounting / performance indicator の一つとして読める。profit は特に going-concern の文脈で sustained activity と整合する場合に強い proxy になりうるが、R2 自体とは同一視しない。
-
-需給均衡は第4の管理則ではなく、各主体が文脈依存の3則配分のもとで形成した planned resource change `x_i` の compatibility として扱う。`E_i[ΔK]` は forecast であるため、需給調整を expectation と realized change の一致最大化とは置かない。
+P-downside は、客観的 P の最大化ではなく、対象主体群の shared P / trust / expectation 等の大幅な毀損により将来 A が成立しなくなることを防ぐ合理性として扱う。
 
 ---
 
-## 12. 生成構造と計測の分離
-
-Core は、概念的には
-
-```text
-K_t, (P_i,t)_i
-      ↓ conditions
-(A_i,τ)_i
-      ↓
-K_t1, (P_i,t1)_i
-```
-
-という actor-side channel の時間構造を記述する。
-
-一方、実証ではすべてを直接観測できるわけではない。
-
-外部に実現した action event は直接観測できる場合があるが、内部の意思決定、観測、解釈過程は proxy を要する場合がある。P も全構造を直接観測できるとは仮定しない。
-
-`ΔK` / `ΔP` は A の結果 proxy として利用できる場合があるが、A を一意に同定する量ではない。gross activity は必要に応じて `H_S` として別に観測する。
-
-P proxy が価格・金利・信用条件等の market outcome である場合は、target A / ΔK との時間順序、同時決定、post-treatment、outcome leakage を識別する必要がある。
-
-3則を用いた意思決定モデルでは、actor/context ごとの priority、candidate action、action-contingent future trajectory、各則の評価 proxy を事前に定め、観察後に自由に則を割り当てることを避ける。
-
----
-
-## 13. 現行 Core と管理合理性レイヤー
-
-現在の最小 Core 構造は、
+## 12. 現行 Core の最小構造
 
 ```text
 common K_t
-   ↓ derived access / usability
+  └─ ownership / attribution -> (K_i,t)_i
+
 (K_i,t)_i, (P_i,t)_i
         ↓ conditions
       (A_i,τ)_i
         ↓
-K_t1, (P_i,t1)_i
+realized ΔK records, ΔP_i
+        ↓
+valuation / bookkeeping if needed
+        ↓
+surplus / deficit / macro aggregates
 ```
 
-である。
-
-K の state / resource change は `ΔK(S,τ)`、P の change / state transition は `ΔP_i` として表す。gross production / consumption / transaction volume 等は Core primitive にせず、必要な projection / measurement で `H_S(τ)` のような derived path functional として記述する。
-
-必要な quantitative projection では `q_S : D_S -> V_S` を定め、`E_i[ΔK(S,τ)]` を `E_i[q_S(ΔK(S,τ))]` の略記として使う。必要な economic projection では A に含まれる planned / chosen resource change を補助的に `x_i` と記述できる。
-
-独立した X / V、普遍的な deterministic A 選択関数、P 更新関数、期待形成関数、compatibility 条件、独自の均衡式は Core に置かない。
-
-その上で、resource-realization / activity-flow / P-downside の3則を**意思決定合理性の公理系**として置く。3則の具体的 objective / weight / priority rule / horizon は Core primitive ではなく projection-specific に具体化する。
+独立した X / V / H、普遍的 deterministic choice function、P 更新関数、期待形成関数、独自の均衡式、普遍的 surplus 変換式は Core に置かない。
 
 ---
 
