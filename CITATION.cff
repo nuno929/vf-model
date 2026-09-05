@@ -20,20 +20,33 @@ abstract: >
   change operator need not be an arithmetic difference. Gross production,
   consumption, transaction volume, transformation, and other interval activity
   statistics are not folded into Delta K; when needed they are represented by
-  projection-local derived path functionals such as H_S(tau). Where an
+  projection-local derived path functionals such as
+  H_S(tau)=h_S((K_t)_{t in tau},A_tau). A_tau contains interval actor-side
+  events or processes and may retain event ordering where required. Where an
   expectation is defined, a quantitative representation q_S:D_S->V_S is
   specified and E_i[Delta K(S,tau)] is shorthand for the expectation of
   q_S(Delta K(S,tau)). Delta P_i is likewise a change descriptor or state
   transition and need not be an arithmetic difference. Planned or chosen
   resource changes are distinct from forecasts and may be represented by
-  projection-local variables such as x_i. Economic budget feasibility,
-  inter-agent compatibility, market-equilibrium conditions, accounting
-  identities, surplus, decentralized adjustment, micro-macro linkages, and
-  reputation- or credit-economy models are domain-specific projection
-  candidates rather than universal consequences of the VFT Core. VFT does not
-  fix a universal probability measure, expectation-formation equation,
-  action-selection rule, state-transition law, compatibility condition,
-  market-equilibrium condition, or aggregation law.
+  projection-local variables such as x_i. Micro and macro observations refer
+  to the same common K and K transitions under different observation or
+  accounting specifications S; a universal micro-to-macro aggregation map is
+  not required by the Core. Economic and social projections may additionally
+  test three functional optimization hypotheses: resource-realization through
+  action choice, sustainable activity-flow maximization through K/P
+  reconfiguration, and downside minimization of distributed P through resource
+  and action allocation. These are functions rather than ontological actor
+  types: a single autarkic actor may perform all three, while capitalist
+  institutions may distribute them primarily across individuals, firms, and
+  the state. The concrete objective functionals are projection-specific rather
+  than Core primitives. Economic budget feasibility, inter-agent compatibility,
+  market-equilibrium conditions, accounting identities, surplus,
+  decentralized adjustment, and reputation- or credit-economy models remain
+  domain-specific projection candidates rather than universal consequences of
+  the VFT Core. VFT does not fix a universal probability measure,
+  expectation-formation equation, action-selection rule, state-transition law,
+  compatibility condition, market-equilibrium condition, optimization
+  objective, or aggregation law.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
@@ -46,6 +59,10 @@ keywords:
   - state change descriptor
   - interval activity descriptor
   - expected realized change
+  - functional optimization
+  - activity-flow
+  - autarky
+  - institutional division of functions
   - micro-macro linkage
   - reputation economy
   - credit economy
