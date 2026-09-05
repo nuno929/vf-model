@@ -10,7 +10,7 @@
 - `K_i`：共通 K に対する主体 `i` の access / usability view
 - `P_i`：主体 `i` の subjective evaluation / expectation state
 - `A_i`：主体 `i` 側の actor-side process / event
-- `ΔK(S, τ)`：観測・会計仕様 `S`・時間区間 `τ` に実現した K の change descriptor
+- `ΔK(S, τ)`：観測・会計仕様 `S`・時間区間 `τ` に実現した K の interval change descriptor
 - `ΔP_i`：主体 `i` の P に実現した change descriptor / state transition
 - `E_i[ΔK(S, τ)]`：主体 `i` が対象範囲・区間について形成する expected realized resource change
 
@@ -24,14 +24,21 @@ K の資源世界そのものは主体ごとに別々に存在しない。actor-
 
 `S` は対象資源・主体だけでなく、resource coordinates、accounting boundary、transformation convention を含む観測・会計仕様である。
 
-一般には、
+一般には、区間内の state path と actor-side process / event を観測表現へ写して、
+
+```text
+Z_S(τ) = M_S((K_t)_{t in τ}, (A_t)_{t in τ})
+ΔK(S, τ) = δ_S(Z_S(τ)) ∈ D_S
+```
+
+とみなせる。endpoint のみを観測する場合は、
 
 ```text
 Y_S(t) = M_S(K_t)
-ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1)) ∈ D_S
+ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1))
 ```
 
-とみなせる。`δ_S` は必ずしも算術差ではなく、加法的 quantitative projection の場合にのみ `y1 - y0` と置く。
+を特殊ケースとして用いる。加法的 quantitative projection の場合には `δ_S(y0,y1)=y1-y0` と置ける。
 
 ---
 
@@ -43,9 +50,9 @@ Y_S(t) = M_S(K_t)
 K_t               : 共通の実資源状態
 K_i,t             : 主体 i の access / usability view
 P_i,t             : 主体 i の主観的評価・期待状態
-A_i,t             : 主体 i 側の actor-side process / event
-ΔK(S, τ)          : 観測・会計仕様 S / 区間 τ における K の change descriptor
-ΔP_i,t            : 主体 i の P の change descriptor / state transition
+A_i,τ             : 主体 i 側の actor-side process / event
+ΔK(S, τ)          : 観測・会計仕様 S / 区間 τ における K の interval change descriptor
+ΔP_i              : 主体 i の P の change descriptor / state transition
 E_i[ΔK(S, τ)]     : 主体 i が形成する expected realized resource change
 ```
 
@@ -98,6 +105,8 @@ VFT 単独で記述するのは、各主体の予算・資源制約を満たし�
 
 主体間の交換、生産、消費、在庫、投資等を同一の resource coordinates / accounting boundary / transformation convention で記録した結果は、対象 scope の実現 `ΔK` と会計的に整合する。
 
+path-aware な `ΔK(S, τ)` を用いることで、endpoint の net stock change がゼロでも、区間内の gross production / consumption / exchange / transformation を保持できる。
+
 市場が不均衡でも会計恒等式は成立しうる一方、市場が均衡していても資本蓄積・在庫変化・投資等によって共通 K の `ΔK` は非ゼロになりうる。
 
 ### ミクロ／マクロの接続面
@@ -109,14 +118,14 @@ VFT はミクロとマクロで数学的に同一の `ΔK` 値型を要求しな
 ```text
 individual K_i / P_i / A_i
           ↓
-realized changes
+realized interval processes
           ↓ common observation / accounting schema
       ΔK(S, τ) ∈ D_S
           ↓ broader S / τ / aggregation
 macro-scale observation
 ```
 
-中心的な可能性は、ミクロからマクロを自動導出することではなく、**異なるスケールの変化を共通の S-indexed observation / accounting schema 上で記述できること**にある。
+中心的な可能性は、ミクロからマクロを自動導出することではなく、**異なるスケールの変化を共通の S-indexed interval-change / accounting schema 上で記述できること**にある。
 
 ### 期待変化の集約と余剰
 
@@ -268,20 +277,22 @@ A_i -> change in P_j   (i != j)
 5. 他者評価を扱う場合の評価者 `j` と評価対象 `a`
 6. A の観測単位
 7. 時間窓 `τ`
-8. `S` / `S_i` の resource coordinates / accounting boundary / transformation convention
-9. `M_S` / `δ_S` または対応する change mapping
-10. ΔK / ΔP の操作化
-11. `E_i[ΔK]` の expectation operator / 推定方法
-12. planned / chosen change `x_i` の定義と符号規約
-13. 価格・会計換算規則
-14. 主体別予算制約
-15. compatibility を扱う場合の相互両立条件
-16. market equilibrium と呼ぶ場合の choice / optimality / best response / clearing 条件
-17. 会計恒等式の境界
-18. surplus へ射影する場合の valuation / utility / WTP / WTA / cost mapping
-19. P の採用次元・proxy・事前固定した検証条件
-20. 評価・信用を扱う場合の public information → `P_j(a)` → K / `K_a` 経路
-21. 情報損失
+8. temporal typing
+9. `S` / `S_i` の resource coordinates / accounting boundary / transformation convention
+10. path-aware / endpoint-only の選択
+11. `M_S` / `δ_S` または対応する change mapping
+12. ΔK / ΔP の操作化
+13. `E_i[ΔK]` の expectation operator / 推定方法
+14. planned / chosen change `x_i` の定義と符号規約
+15. 価格・会計換算規則
+16. 主体別予算制約
+17. compatibility を扱う場合の相互両立条件
+18. market equilibrium と呼ぶ場合の choice / optimality / best response / clearing 条件
+19. 会計恒等式の境界
+20. surplus へ射影する場合の valuation / utility / WTP / WTA / cost mapping
+21. P の採用次元・proxy・事前固定した検証条件
+22. 評価・信用を扱う場合の public information → `P_j(a)` → K / `K_a` 経路
+23. 情報損失
 
 ---
 
