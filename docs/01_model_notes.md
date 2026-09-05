@@ -58,7 +58,9 @@ actual action / choice の生成則は projection-specific とし、Core では�
 
 `K_t` は時点 `t` における real-resource / capability state を表す。
 
-対象 projection に応じて、設備、土地、原材料、製品、エネルギー等の physical resources に加え、時間、身体、技能、知識、労働力・人的能力等を含みうる。
+対象 projection に応じて、設備、土地、原材料、製品、エネルギー等の physical resources に加え、available time budget / remaining workable capacity、身体、技能、知識、労働能力等を含みうる。
+
+calendar time `t` はモデル上の index であり K の resource coordinate ではない。また、interval `τ` 内に実際に投入された labor time / hours worked は K_t の stock ではなく、A / labor measure 側の interval activity として扱う。
 
 K は external world state 全体ではない。契約、制度、規範、法的権利関係等を、それだけを理由に K へ含めない。
 
@@ -217,7 +219,7 @@ Y_i^proj(τ)
 
 A は各主体側の action / process record を表す。
 
-生産、消費、交換、投資、労働、移転、契約、政策、探索、学習、情報伝達等を必要な粒度で記述する。
+生産、消費、交換、投資、労働、移転、契約、政策、探索、学習、情報伝達等を必要な粒度で記述する。interval `τ` 内の actual labor time / hours worked も、必要な labor projection では A / labor measure として記述する。
 
 A は actor-side に限定する。A を通らない K 変化が必要な projection では、`Ω_τ` 等の exogenous / environmental process を別に置く。
 
@@ -314,7 +316,7 @@ organization / company を actor として扱う場合、その主体は `i` と
 
 ### business field
 
-`F^biz` は business activity を継続的に可能化・誘発・再生産する局所 action-generating configuration とする。
+`F^biz` は actor-resource transformation / exchange / service / beneficiary relation 等を反復可能にする局所 action-generating configuration とする。
 
 ### business
 
@@ -336,19 +338,21 @@ profit / surplus は business existence の定義条件ではない。
 
 ## 11. 3つの管理合理性公理
 
-VFT の decision projection は次の3則を constitutive rationality assumptions として置く。
+VFT の management / decision rationality は、次の3則を**必須の構成公理**として持つ。
 
 1. **resource-realization**：望ましい resource / capital / realized-use outcome の実現
 2. **activity-flow**：必要な activity / process の流れを維持・拡張し、必要なら field formation / renewal を行う
 3. **P-downside**：projection が指定した将来 P component / action-generating viability の重大な downside を回避する
 
-3則は `Ŷ_i,t(a;I_i,t)` の outcome components と、projection-specific objective / constraint / threshold / comparison rule を介して `Γ_i^adm` を形成する段階に接続する。
+3公理は `Ŷ_i,t(a;I_i,t)` の outcome components と、projection-specific objective / constraint / threshold / comparison rule を介して `Γ_i^adm` を形成する段階に接続する。
+
+3公理はすべて構成条件であり、任意に採否を選ぶ dimension ではない。一方、その評価・判断・実行は単一 actor に集中する必要はなく、複数 actor、役割、組織階層、制度へ分業・分散してよい。
+
+VFT decision projection を名乗る場合、3公理それぞれについて少なくとも admissibility / exclusion condition または比較規則を ex ante に明示し、観測後の任意行動を事後的に分類するだけのラベルとして使わない。
 
 P-downside は P 全体に universal ordering を仮定しない。
 
-VFT decision projection を名乗る場合、採用した rationality dimension ごとに少なくとも admissibility / exclusion condition または比較規則を ex ante に明示し、観測後の任意行動を事後的に分類するだけのラベルとして使わない。
-
-3則は経験的普遍法則ではない。profit / utility は具体的 decision problem の metric / objective / proxy として使いうる。
+3公理は経験的普遍法則ではない。profit / utility は具体的 decision problem の metric / objective / proxy として使いうる。
 
 ---
 
@@ -378,7 +382,7 @@ budget feasibility は plan / choice 側へ置き、forecast と区別する。
 VFT は use-value / labor / exchange-value / surplus / accumulation の区別を一般化構造上で保持する。
 
 - VFT-specific use-value quantity / realized-use outcome：主体が interval 内の実利用を通じて realized した主観的 outcome
-- labor measure：labor activity / labor time
+- labor measure：interval 内に実際に投入された labor activity / labor time
 - Marxian labor-value：socially necessary labor time 等の追加条件を持つ specialization
 - exchange-value / price：resource 間の比較・market / monetary valuation
 - exchange-value residual / surplus：指定 boundary と exchange-value scale 上の差分
@@ -432,7 +436,7 @@ macro states / distributions / field formation-dissolution
 - generic outcome bundle `Y_i^proj` の標準 coordinates
 - generic forecast `Ŷ_i` の確率測度・期待形成式・causal semantics
 - exchange-value residual の普遍的算出式・対象 economic changes
-- 3則の objective / weight / priority / threshold / viability criterion
+- 3公理の projection-specific operationalization と actor / role 間の分業形態
 - market equilibrium の普遍的条件
 - micro-to-macro aggregation rule
 
