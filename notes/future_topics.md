@@ -77,15 +77,17 @@ Y_S(t) = M_S(K_t)
 
 を用いる。`δ_S` は必ずしも算術差ではなく、加法的 quantitative projection の場合にのみ `δ_S(y0,y1)=y1-y0` とする。
 
+一般形で `Y_S(t0)=Y_S(t1)=y` の場合は `δ_S(y,y)` を no-change descriptor とみなす。数値ゼロを用いるのは加法的 quantitative projection に限る。
+
 `ΔP_i` も一般には算術差ではなく、P の change descriptor / state transition とする。
 
 一方、gross production、gross consumption、transaction volume、resource transformation 等の区間活動量は `ΔK` と分離し、必要に応じて projection-local に
 
 ```text
-H_S(τ) = h_S((K_t)_{t in τ}, (A_t)_{t in τ})
+H_S(τ) = h_S((K_t)_{t in τ}, A_τ)
 ```
 
-のような derived path functional を使う。
+のような derived path functional を使う。`A_τ` が区間内 event/process と必要な ordering を保持する。
 
 今後の検討候補：
 
@@ -136,7 +138,69 @@ E_i[ΔK(S, τ)] := E_i[q_S(ΔK(S, τ))]
 
 ---
 
-## 6. 会計的予算制約
+## 6. 機能的最適化則
+
+経済・社会 projection では、主体種別ではなく以下の3つの機能を optimization hypothesis として置く候補がある。
+
+1. **resource-realization**：P / expectation のもとで、望む／見込む `ΔK` の実現へ向けて A を選ぶ
+2. **activity-flow**：K / P の配置を再構成して持続可能な A-flow を最大化する
+3. **P-downside**：主体群の P の大幅な負側・悪化側を抑えるよう K / A を配分・調整する
+
+概念記法：
+
+```text
+A_i* ∈ argmax_A R_i(A ; P_i, E_i[ΔK])
+
+(K_f*, P_f*)
+  ∈ argmax_(feasible K_f,P_f)
+      F_f(A-flow | K_f, P_f)
+
+A_g* ∈ argmin_A L_g^-(P ; observable proxies)
+```
+
+`R_i` / `F_f` / `L_g^-` は Core primitive ではなく projection-local objective functional とする。
+
+今後の検討候補：
+
+- resource-realization で「望む」と「見込む」をどう分離するか
+- `R_i` が P と E[ΔK] をどの型で参照するか
+- A-flow の定義、単位、異質な A 間の比較可能性
+- sustainable A-flow の horizon / viability constraint
+- activity-flow と profit / revenue / throughput / market share の関係
+- 短期的な ΔK 悪化を許容する intertemporal 条件
+- P-downside の loss functional と downside の閾値
+- 異質な P proxy 間で加法則を仮定しない optimization の形式
+- 個人間 P の比較可能性・加減算可能性の条件
+- 単一 actor が複数機能を同時に最適化する場合の trade-off
+- 機能分業が成立する条件
+- 機能間の conflict / coordination
+- 3則が falsifiable な予測をどこまで生むか
+
+### 自給自足と制度的分業
+
+3機能は actor type ではないため、自給自足では単一 actor が全部を担いうる。
+
+```text
+single actor
+  ├─ resource-realization
+  ├─ activity-flow
+  └─ P-downside
+```
+
+資本主義では概ね、individual / firm / state に重点が分化する候補がある。
+
+今後の検討候補：
+
+- 自給自足 household / family unit で3則をどう観測するか
+- household production と firm production の境界
+- 市場形成前後で最適化機能の分業がどう変わるか
+- 資本主義以外の制度での分業パターン
+- 国家機能が弱い社会で P-downside を誰が担うか
+- cooperative / commune / family business の複合機能
+
+---
+
+## 7. 会計的予算制約
 
 経済射影では、A に含まれる planned / chosen net resource change を projection-local に `x_i` と置ける。
 
@@ -159,7 +223,7 @@ p · x_i <= 0
 
 ---
 
-## 7. compatibility / market equilibrium / 会計整合 / 定常状態
+## 8. compatibility / market equilibrium / 会計整合 / 定常状態
 
 以下を分離して扱う。
 
@@ -170,55 +234,36 @@ p · x_i <= 0
 
 compatibility 自体も Core からは導出されない。
 
-今後の検討候補：
-
-- compatibility の形式化
-- market equilibrium へ必要な追加条件
-- 在庫・資本蓄積・投資を含む stock-flow accounting
-- `ΔK` と `H_S` を併用した会計整合
-- 会計恒等式と行動均衡を同じデータで識別する方法
-- 均衡への収束性・複数均衡・不安定均衡
-- 情報非対称・外部性・市場支配下の均衡
-- 市場外制度での調整条件
-
 ---
 
-## 8. 分散的調整と「見えざる手」
+## 9. 分散的調整と「見えざる手」
 
 各主体が `K_i` / `P_i` のもとで budget-feasible な `x_i` を選び、価格・取引・信用等を介してその選択を修正することで、主体間の不整合が分散的に調整される可能性がある。
 
 この構造を古典経済学の「神の見えざる手」へ射影することは可能だが、現時点では projection candidate であり、Core の確立済み主張ではない。
 
-今後の検討候補：
-
-- どの市場制度で主体間不整合が縮小するか
-- 価格がどの情報を伝達するか
-- どの条件で調整が収束するか
-- herd behavior / network dependence / common shock で調整がどう崩れるか
-- 均衡と社会的最適の差
-- externality / information asymmetry / market power をどう表現するか
-
 ---
 
-## 9. ミクロ／マクロ接続の操作化
+## 10. ミクロ／マクロ接続の操作化
 
-VFT はミクロ／マクロで数学的に同一の `ΔK` 値型を要求しない。
+VFT ではミクロとマクロを別々の K として置かない。**同じ common K / K transition を異なる `S` から観測する**ことが存在論的な接続である。
 
-中心課題は、主体レベルの state change と interval activity を、共通の `S` / `τ` / accounting rule のもとで `ΔK(S, τ)` / `H_S(τ)` へ接続し、市場・産業・社会・マクロ観測量へ拡張することである。
+micro observable から macro observable を再構成する場合には、projection-local な aggregation / coarsening rule が必要になる。
 
 今後の検討候補：
 
-- 個人の realized state change をどの会計規則で `ΔK` へ接続するか
+- 同じ K transition を異なる `S` がどう記述するか
+- micro / macro の measurement consistency
 - gross flow / interval activity をどの `H_S` で表現するか
 - `S` の拡張と aggregation rule の関係
-- stock-flow consistent なミクロ／マクロ接続
+- stock-flow consistent な観測再構成
 - 個人期待と集計マクロ変数の識別
 - 政策 A → K 上の制度条件 → ΔP_i → A_i → ΔK / H の経路
 - macro observable から micro structure をどこまで逆推定できるか
 
 ---
 
-## 10. 評価経済・信用経済への射影
+## 11. 評価経済・信用経済への射影
 
 VFT の有力な応用候補として、公開された評価情報が他主体の subjective evaluation / expectation を介して実資源アクセスへどう変換されるかを扱うことがある。
 
@@ -244,22 +289,9 @@ rights / contract / credit conditions in K
    realized ΔK
 ```
 
-今後の検討候補：
-
-- 公開評価 observable と K 上の情報状態の mapping
-- 公開評価情報から `P_j(a)` への measurement / causal mapping
-- 評価者ごとの異質性
-- `P_j(a)` から信用条件・契約条件への変換関数
-- 信用評価と実際の borrowing capacity の識別
-- レビュー・評判が契約機会や価格条件に与える影響
-- `P_j(a)` → K / `K_a` 変換の時間遅延
-- 評価ショック / 信用ショックから ΔK までの因果識別
-- ネットワーク上の評判伝播
-- 評価経済・信用経済でのミクロ／マクロ接続
-
 ---
 
-## 11. 期待変化の集約と余剰
+## 12. 期待変化の集約と余剰
 
 同一共通 scope に対する複数主体の `E_i[ΔK(S, τ)]` を単純和して aggregate resource change としない。
 
@@ -267,19 +299,13 @@ rights / contract / credit conditions in K
 
 標準経済学上の surplus へ接続するには追加 mapping が必要である。
 
-今後の具体化候補：
-
-- utility / valuation mapping
-- WTP / WTA / cost との対応
-- consumer surplus / producer surplus / total surplus との対応条件
-
 ---
 
-## 12. A の観測と順序
+## 13. A の観測と順序
 
 A の外部 action event は直接観測できる場合がある一方、内部 decision / observation / interpretation は proxy を要する場合がある。
 
-Core の temporal typing は、
+Core の actor-side temporal typing は、
 
 ```text
 (K_t0, P_t0)
@@ -289,23 +315,13 @@ A_(t0,t1]
 (K_t1, P_t1)
 ```
 
-とする。これは普遍的な選択関数・更新関数ではなく、時間順序の型付けである。
+とする。A を介さない K / P 変化は別経路として必要な projection で扱う。
 
 P → A の因果関係を検証する場合、A 区間内で情報受容・解釈による P 更新が起き、その後の decision / action に影響するなら、区間を分割するか event ordering を保持する。
 
-今後の具体化候補：
-
-- A のイベント単位
-- event → persistent K state → subjective P representation の時間構造
-- 観測・情報受容・解釈を actor-side process として扱う操作化
-- 区間内イベント順序を保持する条件
-- coarse-grained representation の情報損失
-- ΔK / ΔP / H がどの範囲の A を代理するか
-- A と結果 proxy の時間遅延
-
 ---
 
-## 13. 価値場の最小形式化
+## 14. 価値場の最小形式化
 
 現行 Core では、価値場を K / K_i / P の配置・関係が A を条件づける structural framework として定義し、独立した V や普遍的選択関数を置かない。
 
@@ -319,40 +335,21 @@ P → A の因果関係を検証する場合、A 区間内で情報受容・解�
 
 のような action correspondence / admissible or plausible action set の導入を検討できる。
 
-ただし、これを Core に追加する場合は、feasible と plausible の区別、確率表現との関係、追加変数の必要性を先に検討する。
-
 ---
 
-## 14. P の反証可能性
+## 15. P の反証可能性
 
 P が観察後の residual state にならないよう、projection / empirical model ごとに、採用する P 次元、proxy、proxy admissibility、A / E[ΔK] への mapping、事前予測・識別条件を観測前に固定する必要がある。
 
-今後の具体化候補：
-
-- pre-registration に相当する仕様記述
-- P 次元の選択基準
-- competing model との比較方法
-- out-of-sample prediction
-- proxy validity の独立検証
-- 同時決定・post-treatment・outcome leakage の識別
-- action correspondence と P の識別
-
 ---
 
-## 15. spillover / externality の区別
+## 16. spillover / externality の区別
 
 主体間の影響はまず spillover / cross-agent effect として記述する。
 
-今後の具体化候補：
-
-- `A_i -> K_j / P_j` の一般的 cross-agent effect
-- market-mediated effect と non-market effect の区別
-- externality と呼ぶための projection-specific 条件
-- 価格・契約・制度を介した internalization の扱い
-
 ---
 
-## 16. 組織・国家等の集約主体近似
+## 17. 組織・国家等の集約主体近似
 
 組織・国家等を単一主体として扱うことは Core 前提ではない。
 
@@ -360,29 +357,28 @@ P が観察後の residual state にならないよう、projection / empirical 
 
 ---
 
-## 17. 実証・計量化
+## 18. 実証・計量化
 
 今後の具体化候補：
 
 - 共通 K の観測設計
 - `K_i` の access / usability
-- P proxy
-- P proxy admissibility
+- P proxy / admissibility
 - K / P 識別
 - `P_j(a)` の評価者・評価対象の識別
 - A の直接観測と潜在 decision の proxy
 - temporal typing / event ordering の操作化
-- event / persistent K state / subjective P representation の識別
 - ΔK / ΔP の generic change mapping
 - `H_S` / `h_S` の操作化
 - `M_S` / `δ_S` の操作化
 - gross flow / net stock change の同時計測
 - `q_S : D_S -> V_S` の操作化
 - `E[ΔK]` の expectation operator / 推定
-- `S` / `τ` の定義
+- functional optimization hypothesis の objective / constraints / horizon
+- 自給自足と制度的分業の比較実証
 - planned / expected / realized change の分離
 - compatibility / market equilibrium / accounting identity の同時計測
-- ミクロ／マクロ接続面の実証
+- common K に基づく micro / macro observation consistency
 - 公開評価情報 → `P_j(a)` → K / `K_a` → ΔK の因果計測
 - 測定誤差・欠測
 - ケーススタディ
