@@ -1,21 +1,66 @@
 cff-version: 1.2.0
-title: "VVRC Theory: A Dynamic Equilibrium Model of Happiness, Capital, and Population"
-message: "If you use this theory or repository, please cite as below."
+title: "Value-Field Theory (VFT)"
+message: "If you use this theory or repository, please cite this repository."
 authors:
   - family-names: "Nuno"
-    given-names: "T. "
+    given-names: "T."
     affiliation: "Independent Researcher"
 abstract: >
-  VVRC (Value Vector–Reaction Coefficient) Theory defines a dynamic system linking
-  happiness (U), capital (K), and population (N) through mutual reaction coefficients.
-  It provides a theoretical framework for sustainable equilibrium in social systems.
-date-released: "2025-11-12"
-repository-code: "https://github.com/drive-force/vvrc_model"
+  Value-Field Theory (VFT) models economic and organizational activity through
+  a real-resource or capability state K, actor-specific exchange-value and capital
+  representations K_i, structured subjective states P_i, and actor-side action or
+  process records A_i. The field is not an independent scalar value; it is a derived
+  action-generating configuration of resources, capabilities, subjective states,
+  capital representations, and projection-specified relations and constraints.
+  Action generation is separated into feasible, cognitively or behaviorally
+  available, and admissible action sets. Forecasts are represented as
+  projection-selected outcome bundles, while current belief and expectation
+  components of P_i support forecast generation and current preference and valuation
+  components support evaluation. Multi-actor realized events are linked by shared
+  event identity and constructed by reconciling participant-side records rather than
+  discarding them as duplicates. Resource endpoint change is represented through a
+  projection-defined difference operator rather than universal subtraction. Time is
+  typed explicitly: calendar time is a model index, available time or remaining
+  workable capacity may be represented in K, and actual labor time or hours worked are
+  interval activity records in A or a labor measure. VFT distinguishes resource
+  capability, realized use experience, and exchange-value representation. Its
+  realized-use outcome is interval-indexed and may be called a VFT-specific use-value
+  quantity when connecting to economic categories; general additivity and an
+  instantaneous rate are not assumed. A rate may be introduced only in projections
+  that separately define an appropriate cumulative realized-use process. Formal
+  accounting is treated as a projection rather than a universal causal layer.
+  Exchange-value residuals may receive projection-specific interpretations such as
+  surplus, profit, income, or valuation gain. Organizations or companies can be
+  modeled as actors, while a business field is a local action-generating configuration
+  that supports repeatable actor-resource transformation, exchange, service, or
+  beneficiary relations; a business is the activity system centered on such a field.
+  Entrepreneurship and new business development can be represented through
+  business-oriented field formation. VFT retains resource-realization, activity-flow,
+  and P-downside as required constitutive rationality axioms. Their evaluation,
+  judgment, and execution may be distributed across multiple actors, roles,
+  organizational layers, or institutions, while each decision projection must define
+  ex ante admissibility, exclusion, or comparison rules for all three axioms. Marxian
+  categories such as use-value, labor, exchange-value, surplus, and accumulation can
+  be represented through projection-specific specializations.
+repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
-version: "0.1.0"
 keywords:
-  - value vector
-  - reaction coefficient
-  - happiness economy
-  - dynamic equilibrium
-  - socio-economic modeling
+  - value-field theory
+  - action-generating field
+  - feasible action set
+  - behavioral availability
+  - admissible action set
+  - shared event reconciliation
+  - outcome forecast
+  - real-resource state
+  - capability state
+  - exchange-value representation
+  - realized-use outcome
+  - capital representation
+  - subjective expectation
+  - business field
+  - entrepreneurship
+  - accounting projection
+  - labor-value
+  - capital accumulation
+  - micro-macro linkage
