@@ -6,45 +6,51 @@ authors:
     given-names: "T."
     affiliation: "Independent Researcher"
 abstract: >
-  Value-Field Theory (VFT) distinguishes a physical or real-resource state K
-  from actor-indexed book-value capital positions K_i represented on balance
-  sheets in monetary units. K_i is not a subset or partition of K; it is an
-  actor-indexed monetary representation produced through ownership or
-  attribution, recognition, valuation, and bookkeeping. Subjective evaluation
-  and expectation states P_i condition actor-side processes and events A_i.
-  Realized Delta K refers to resource change on the physical side and is kept
-  distinct from accounting entries. Period physical and economic flows are
-  mapped into monetary units and represented on profit-and-loss accounts; those
-  monetary period amounts connect through closing, attribution, distribution,
-  and other accounting rules to balance-sheet capital positions K_i. Surplus is
-  therefore treated as an accounting-derived period increment or residual within
-  a specified accounting and consolidation boundary, rather than as a physical
-  primitive. Financial assets such as deposits, bonds, and receivables can be
-  represented as recognized and valued balance-sheet positions K_i without
-  treating their underlying contracts or legal relations themselves as physical
-  K. VFT adopts resource-realization, activity-flow, and P-downside as
-  constitutive rationality assumptions; empirically testable hypotheses arise
-  only after projection-specific objectives, priorities, constraints, thresholds,
-  or horizons are specified. Marxian categories such as use-value, labor,
-  exchange-value, surplus, and accumulation can be represented on VFT, while
-  Marx-specific value theory requires projection-specific conditions such as
-  socially necessary labor time. Micro and macro descriptions connect the same
-  physical K to monetary P/L and B/S representations through explicit
-  measurement, ownership, valuation, and consolidation rules.
+  Value-Field Theory (VFT) models economic and organizational activity through
+  a physical or real-resource state K, actor-specific exchange-value and capital
+  representations K_i, structured subjective states P_i, and actor-side actions
+  or processes A_i. The field is not an independent scalar value; it is the
+  actor-resource configuration of resources, subjective states, capital
+  representations, relations, and constraints that conditions, induces, and
+  reproduces action. VFT distinguishes realized use-value from exchange-value:
+  use-value quantity refers to utility realized through use over an interval,
+  while exchange-value is a comparative representation that may describe both
+  point-in-time positions and interval transactions. These two value semantics
+  are therefore not identified one-to-one with stock and flow. Delta K denotes
+  endpoint change in the physical resource state, while gross interval activity
+  remains in the action or event history. K_i is not a subset or partition of K
+  and is not identified with a balance sheet; formal ledgers, profit-and-loss
+  accounts, and balance sheets are accounting projections that may implement
+  actor-specific monetary representations under explicit recognition, valuation,
+  and accounting rules. Surplus is not a physical primitive but a difference or
+  residual that becomes defined after physical or use-value activity is mapped
+  into a comparable exchange-value scale. Subjective forecasts of resource-state
+  change are derived from the belief or expectation component of P_i and are
+  kept distinct from preference and plan. VFT defines a business entity as a
+  local action-generating field structure that continuously induces and
+  reproduces activity, allowing firms, NPOs, public businesses, and state or
+  municipal activities to be described without making profit maximization the
+  universal definition of business. Entrepreneurship and new-business
+  development can therefore be represented as field formation, while existing
+  business operation is field maintenance, reproduction, and improvement. VFT
+  retains resource-realization, activity-flow, and P-downside as constitutive
+  rationality assumptions and allows Marxian categories such as use-value,
+  labor, exchange-value, surplus, and accumulation to be represented through
+  projection-specific specializations.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
   - value-field theory
+  - action-generating field
   - physical resource state
-  - book-value capital
-  - balance sheet
-  - profit and loss
-  - monetary measurement
-  - accounting surplus
-  - ownership attribution
-  - subjective expectation
-  - rationality axioms
+  - exchange-value representation
   - use-value
+  - capital representation
+  - subjective expectation
+  - entrepreneurship
+  - business formation
+  - accounting projection
+  - accounting surplus
   - labor-value
   - capital accumulation
   - micro-macro linkage
