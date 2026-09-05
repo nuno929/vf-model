@@ -4,7 +4,7 @@
 
 本書は、価値場理論の Core を実証・観測へ落とす際の境界を整理する。
 
-Core では、K は共通の実資源世界、`K_i` はその K から導かれる主体 `i` の access / usability view、`P_i` は主体ごとの subjective evaluation / expectation state として扱う。
+Core では、K は共通の実資源世界、`K_i` はそのうち主体 `i` がアクセス・利用・行使・参照可能な actor-relative view、`P_i` は主体ごとの subjective evaluation / expectation state として扱う。
 
 計測上の課題は、K / P / A を一つのスカラーへ還元することではなく、**どの資源、主体、時間窓、resource coordinates、accounting boundary、transformation convention、proxy、集約規則を観測対象にするかを明示すること**である。
 
@@ -16,11 +16,13 @@ K は共通の実資源世界を参照する。
 
 `K_i` は、その K のうち主体 `i` が実際にアクセス・利用・行使・参照可能な actor-relative view である。
 
-`K_i` は集合論的な部分集合や独立 state を必ずしも意味しない。共有情報、インフラ、権利、信用枠、制度上利用可能な手段等では、共通 K に含まれる資源・権利・資格・契約・制度状態等から、主体ごとの access / usability を導出して操作化する。
+`K_i` は集合論的な部分集合を必ずしも意味しない。共有情報、インフラ、権利、信用枠、制度上利用可能な手段等では、主体ごとの access / usability relation を通じて操作化する。
 
-したがって、同じ設備、情報、インフラ、信用制度等が複数主体の `K_i` に関係しうるが、資源自体が主体ごとに複製されたことを意味しない。また、K の物量が大きく変わらなくても、アクセス権等の K 上の条件が変われば `K_i` は変化しうる。
+したがって、同じ設備、情報、インフラ、信用制度等が複数主体の `K_i` に関係しうるが、資源自体が主体ごとに複製されたことを意味しない。
 
-K の候補指標には、所得、利用可能な現金、行使可能な金融請求権、設備・在庫・インフラ、時間、人員、技能、知識、情報、利用可能な信用枠、権限・アクセス可能な手段等がある。
+K の候補指標には、利用可能な現金残高、行使可能な金融請求権、受取可能額、earning capacity、設備・在庫・インフラ、時間、人員、技能、知識、情報、利用可能な信用枠、権限・アクセス可能な手段等がある。
+
+期間所得そのものは通常 flow であり、K の stock/state と同一視しない。期間中に実現した所得受取は K の transition / `ΔK` 側で扱い、受取可能な請求権や earning capacity 等を K 側へ置く。
 
 金融資源は、名目上の評価額そのものではなく、実際に行動可能性を増やす利用可能な資源・権利として K / `K_i` へ操作化する。
 
@@ -30,15 +32,17 @@ K の候補指標には、所得、利用可能な現金、行使可能な金融
 
 `P_i` は主体 `i` の将来の見通し・評価・選好・信用・信念等を保持する多次元の subjective evaluation / expectation state である。
 
+他主体 `a` について主体 `j` が保持する評価・信用・見通し等を区別する必要がある場合は、`P_j(a)` と書く。これは `a` 自身の P ではなく、評価者 `j` の主観状態である。
+
 個々の `P_i` の全構造を直接観測できるとは仮定しない。
 
 候補 proxy には、調査された期待・信念・選好・評価、発話、契約に対する信用、評判・ブランド評価、価格、金利、スプレッド、信用条件等がある。
 
-価格・金利・信用条件等は P そのものではなく、P の集約的な現れを含みうる observable として扱う。
+価格・金利・信用条件等は P そのものではなく、P と K / A / 制度・市場過程等の相互作用から生じる observable として扱う。
 
 ### 理論変数と observable の分離
 
-`P_i` / `ΔP_i` は理論上の主観状態とその変化であり、直接観測できることを Core の要件とはしない。価格、金利、調査値、信用条件、発話等は、それらと K / A / 制度・市場過程等の相互作用から生じる observable / proxy として扱う。
+`P_i` / `ΔP_i` は理論上の subjective state とその変化であり、直接観測できることを Core の要件とはしない。価格、金利、調査値、信用条件、発話等は、それらと K / A / 制度・市場過程等の相互作用から生じる observable / proxy として扱う。
 
 したがって、**理論変数と observable の対応は応用・計測ごとに定める measurement mapping であり、Core が普遍的な観測式を固定するものではない。**
 
@@ -57,8 +61,26 @@ K / P は対象物の種類だけで分類しない。
 - 契約が履行される見込み → P
 - 参照可能な情報 → K
 - その情報から形成された将来見通し → P
+- 公開レビュー値 → K 上の accessible information
+- そのレビューを読んだ `j` が `a` をどう信用するか → `P_j(a)`
 
 同一 observable を根拠なく K / P の双方へ二重投入しない。
+
+### event / persistent state / subjective representation
+
+同じ観測対象が複数段階に現れる場合は、少なくとも
+
+```text
+actor-side event A
+        ↓
+persistent / accessible world state in K
+        ↓ perception / interpretation
+subjective representation in P
+```
+
+のどこを代理しているかを固定する。
+
+例えば政策金利なら、変更 event は政策主体の A、変更後に持続する制度条件は必要に応じて K、それを主体がどう認識・予測するかは P として区別する。
 
 ---
 
@@ -70,13 +92,13 @@ A は各主体側で生じる actor-side process / event を表す。
 
 一方、内部の意思決定、観測、情報受容、解釈等は直接観測できない場合があり、proxy を要する。
 
-観測・情報受容・解釈を A に含める場合も、それらが必ず能動的行為であることを意味しない。外部 action と perception / update process は projection ごとに区別する。
+観測・情報受容・解釈を A に含める場合も、それらが必ず能動的行為であることを意味しない。P 更新を記述する actor-side process として必要な範囲で含める。
 
 ---
 
 ## 6. ΔK / ΔP の観測
 
-観測・会計仕様 `S` と時間区間 `τ` を明示した実資源差分を `ΔK(S, τ)` とする。
+観測・会計仕様 `S` と時間区間 `τ=[t0,t1]` を明示した実資源変化を `ΔK(S, τ)` とする。
 
 `S` は少なくとも以下を含む。
 
@@ -87,26 +109,32 @@ A は各主体側で生じる actor-side process / event を表す。
 
 例えば一つの消費行為が、在庫減少、現金移転、身体への摂取、別形態の資源への変換等を同時に生む場合、どの座標と会計境界で `ΔK` を測るかを `S` で固定する。
 
-`ΔK(S, τ)` は、その仕様 `S` について時間区間 `τ` 内に実現した実資源量の差分を表す。`ΔP_i` は主体 `i` の P に実現した区間差分を表す。
-
-加法表現が適用できる場合には、
+一般には、観測仕様に対応する状態表現と change operator を
 
 ```text
-K_t+1 = K_t + ΔK_t
-P_i,t+1 = P_i,t + ΔP_i,t
+Y_S(t) = M_S(K_t)
+ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1)) ∈ D_S
 ```
 
-と書ける。
+と考える。`M_S` と `δ_S` は measurement / projection 側で定める specification-local な写像・演算であり、Core の新しい原始変数ではない。
 
-ただし、すべての K / P 成分へ同一のベクトル空間や加法構造を要求しない。
-
-`ΔK` はミクロ用・マクロ用に数学的な同一型を要求しない。各 `S` ごとに値域 `D_S` が異なりうるものとして、概念的には
+`ΔK` は必ずしも算術差分を意味しない。加法的な quantitative projection が適用できる場合にのみ、
 
 ```text
-ΔK(S, τ) ∈ D_S
+δ_S(y0, y1) = y1 - y0
 ```
 
-と扱う。個人・市場・社会・マクロを通じて共通なのは、**観測・会計仕様 `S` に対する区間変化という schema** である。
+と置ける。
+
+`ΔP_i` も一般には算術差ではなく、主体 `i` の P に実現した change descriptor / state transition を表す。非加法的な場合は少なくとも
+
+```text
+P_i,t0 -> P_i,t1
+```
+
+として扱い、数量化が必要な場合だけ measurement mapping を追加する。
+
+`ΔK` はミクロ用・マクロ用に数学的な同一型を要求しない。`S` に応じて `D_S`、座標、単位、集約規則等は異なりうるが、**S-indexed change schema** は共通に保つ。
 
 ---
 
@@ -116,7 +144,7 @@ A は P を変化させる主要な actor-side process である。
 
 政策変更、価格提示、契約条件変更、情報伝達、観測・情報受容・解釈等による P の変化も、必要に応じて A を介する経路として記述できる。
 
-記憶減衰等の微小・非主体的な P 変化の存在自体は否定しない。ただし、それが観測可能な A や P proxy に意味のある差を生じない限り、Core の主要変化経路として明示的に操作化しない。
+記憶減衰等の微小・非主体的な P の変化の存在自体は否定しない。ただし、それが観測可能な A や P proxy に意味のある差を生じない限り、Core の主要変化経路として明示的に操作化しない。
 
 ---
 
@@ -124,11 +152,11 @@ A は P を変化させる主要な actor-side process である。
 
 主体 `i` が対象 `S`・区間 `τ` について形成する期待実資源変化を `E_i[ΔK(S, τ)]` とする。
 
-`E[...]` は expectation operator として、対象となる K の差分が quantitative projection 上で表現され、期待値が定義可能な場合に用いる。
+`E[...]` は expectation operator として、対象となる `ΔK` が quantitative projection 上で表現され、期待値が定義可能な場合に用いる。
 
 Core は `E_i` に対応する確率測度・情報集合・期待形成式を普遍的に固定しない。具体的な expectation operator の定義は対象 projection / measurement model で与える。
 
-`E[...]` は主体が形成する見込み値・期待値を表し、主体の plan / choice や望みそのものではない。選好・望ましさ・評価は P に保持され、期待形成や A に影響しうる。
+`E[...]` は主体が形成する見込み値・期待値を表し、主体の望みそのものではない。選好・望ましさ・評価は P に保持され、期待形成や A に影響しうる。
 
 ---
 
@@ -145,34 +173,28 @@ VFT は、複数主体の `K_i` / `P_i` / `A_i` を自動的に一主体・一�
 5. A の観測単位とイベント順序
 6. `τ`
 7. `S` の resource coordinates / accounting boundary / transformation convention
-8. ΔK / ΔP の集約規則
-9. 共有資源・重複アクセスの扱い
-10. 情報損失
+8. `M_S` / `δ_S` または対応する change mapping
+9. ΔK / ΔP の集約規則
+10. 共有資源・重複アクセスの扱い
+11. 情報損失
 
-ミクロからマクロへの接続では、新しい `ΔK_macro` の原始型を置くのではなく、異なる `S` / `τ` / aggregation rule を持つ **S-indexed ΔK schema の接続**として扱う。
+ミクロからマクロへの接続でも、新しい `ΔK_macro` の型を置く必要はなく、異なる `S` / `τ` / 集約規則を与えた同じ S-indexed change schema として扱う。
 
 ---
 
-## 10. 経済射影での plan / forecast の分離
+## 10. 経済射影での会計的予算制約
 
-必要な economic projection では、A に含まれる planned / chosen resource change を補助的に `x_i` と書く。
+経済射影では、主体 `i` の economic scope を `S_i` とする。
 
-```text
-x_i          = planned / chosen resource change
-E_i[ΔK(...)] = expected realized resource change
-```
-
-`x_i` は projection-local な補助記法であり、Core の新しい原始変数ではない。
-
-予算制約・実行可能性が直接制約するのは plan / choice 側である。価格・会計換算ベクトルを `p` とし、純粋な交換を同一会計境界内で表す場合、例えば
+必要な projection では、A に含まれる planned / chosen net resource change を `x_i` と書く。取得を正、処分／供給を負とする符号規約を採用し、価格・会計換算ベクトルを `p` とする純粋交換の基本例では、
 
 ```text
-p · x_i = 0
+p · x_i <= 0
 ```
 
-のように planned resource change の会計的予算整合として操作化できる。
+として budget feasibility を操作化できる。`p · x_i = 0` は self-financing / budget exhaustion 等を追加仮定した特殊形である。
 
-一方、`E_i[ΔK]` はその plan を含む状況から主体が見込む実現結果の期待値であり、`x_i` と一致するとは限らない。
+`E_i[ΔK(S_i, τ)]` は expected realized resource change であり、plan / choice である `x_i` と一致するとは限らない。
 
 ---
 
@@ -205,20 +227,24 @@ P が観察後の residual state にならないよう、各 projection / empiri
 
 ## 13. 評価・信用経済を扱う場合
 
-評価、評判、信用、ブランド、将来見通し等を P 側、実際に行使可能な信用枠・請求権・アクセス可能性を K / `K_i` 側として区別する。
+評価対象 `a` と評価者 `j` を区別する。
+
+- 公開レビュー値・rating 等 → K 上の accessible information / observable
+- 主体 `j` が主体 `a` に対して形成する評価・信用・見通し → `P_j(a)`
+- その結果として実際に `a` に付与された信用枠・請求権・契約上の権利・取引アクセス → K / `K_a`
 
 実証では、少なくとも以下の経路を混同しない。
 
 ```text
-評価・信用 observable
-        ↓ measurement mapping
-      P_i / ΔP_i
+public rating / review information in K
+        ↓ observed by j
+      P_j(a)
         ↓
-期待形成・A の変化
+      A_j
         ↓
-権利・契約・信用条件等の K 上の変化
+rights / contract / credit conditions in K
         ↓
-      K_i の変化
+      K_a
         ↓
       realized ΔK
 ```
@@ -237,19 +263,20 @@ P が観察後の residual state にならないよう、各 projection / empiri
 4. P に用いる proxy と対象範囲
 5. K / P の識別原則
 6. A を直接観測する範囲
-7. 内部 decision / perception / update の proxy
+7. 内部 decision / observation の proxy
 8. ΔK / ΔP を結果 proxy として使う範囲
 9. 理論変数と observable の measurement mapping
 10. `S` / `S_i`
 11. `τ`
 12. resource coordinates / accounting boundary / transformation convention
-13. 集約・会計・換算規則
-14. 欠測・測定誤差
-15. `E[ΔK]` を適用する quantitative projection
-16. expectation operator / 推定方法
-17. economic projection で plan / choice を扱う場合の `x_i`
+13. `M_S` / `δ_S` または対応する change mapping
+14. 集約・会計・換算規則
+15. 欠測・測定誤差
+16. `E[ΔK]` を適用する quantitative projection
+17. expectation operator / 推定方法
 18. compatibility を扱う場合の予算制約・価格・取引条件
 19. market equilibrium と呼ぶ場合の choice / optimality / clearing 条件
 20. P の採用次元と事前固定した検証条件
+21. 他者評価を扱う場合の評価者 `j` と評価対象 `a` の区別
 
-目的は、**共通の実資源世界 K、そこから導かれる主体ごとのアクセス view K_i、主観的評価・期待状態 P_i、actor-side process A_i、forecast としての E_i[ΔK(S, τ)] を混同せず、S-indexed ΔK schema を観測スケールに応じて使い分けること**にある。
+目的は、**共通の実資源世界 K と、主体ごとのアクセス状態 K_i・主観的評価／期待状態 P_i・期待区間変化 E_i[ΔK(S, τ)] を混同せず、S-indexed change schema をミクロからマクロまで観測・会計仕様に応じて接続し、A / ΔP / proxy / compatibility / equilibrium と使い分けること**にある。
