@@ -6,7 +6,7 @@
 
 VFT は、**physical / real-resource state K、actor-specific exchange-value / capital representation K_i、structured subjective state P_i、actor-side process / event A_i** の関係として経済・事業活動を記述する。
 
-VFT における field は独立したスカラー V ではない。K、(K_i)_i、(P_i)_i、主体間・資源間の関係・制約が形成する配置構造であり、その配置が A を条件づけ、誘発し、再生産することを指す。
+VFT における field は独立したスカラー V ではない。K、(K_i)_i、(P_i)_i と projection-specified な主体間・資源間の関係・制約から導かれる配置構造であり、その配置が A を条件づけ、誘発し、再生産することを指す。
 
 ---
 
@@ -24,7 +24,7 @@ K_t
 - `P_i,t`：structured subjective evaluation / expectation state
 - `A_i,τ`：actor-side action / process / event
 
-field はこれらを単純に足した新変数ではなく、A を発生させる actor-resource 間の配置・関係構造である。
+field はこれらを単純に足した新変数ではない。**K / K_i / P_i と projection-specified relations / constraints から導かれる action-generating configuration** である。
 
 ---
 
@@ -79,9 +79,42 @@ same resource r
 
 ### 5.1 use-value quantity
 
-VFT における use-value quantity は、resource stock 自体や technical service potential ではなく、**期間内の利用・消費・充足を通じて実現した効用量**を指す。
+VFT における use-value quantity は、resource stock 自体や technical service potential ではなく、**主体がある interval 内に resource を実際に利用・消費し、その体験として実現した主観的効用量**を指す。
 
-physical stock / capability 自体は K として時点観測できる。しかし、限界効用逓減等により同じ stock 量でも期間内に実現する効用量は一意に決まらない。そのため use-value quantity は flow-oriented に計量する。
+したがって、use-value quantity は resource に内在する fixed property でも、時点 `t` に stock として直接保持される量でもない。physical stock / capability は K として時点観測できるが、それは use-value quantity そのものではない。
+
+同じ主体・同じ resource・同じ利用量でも、充足状態、順序、文脈、他の経験等により体験結果は変わりうる。限界効用逓減はその一例である。よって **use-value quantity には一般的な再現性を仮定しない**。
+
+use-value は利用前に真値として観測できず、利用後に ex post の realized outcome としてのみ評価できる。
+
+```text
+A / actual use over τ=(t0,t1]
+        ↓
+subjective experience / fulfillment
+        ↓
+U^use_i(τ) = realized use-value quantity
+```
+
+離散時間で時点 `t` を考える場合、時点 `t` で直接参照可能なのは前区間までに realized した use-value flow である。
+
+```text
+U^use_i((t-1,t])
+        ↓
+reference / update of P_i,t
+        ↓
+expectation about future use
+```
+
+将来区間の use-value はまだ実現していないため、それ自体を use-value quantity として保持しない。将来について主体が持つのは P_i の belief / expectation である。
+
+したがって、
+
+```text
+realized use-value = subjective interval outcome
+future use-value   = not yet realized; represented only as expectation in P_i
+```
+
+と区別する。
 
 個別用途の効用関数、substitute / complement、代替可能性は Core では固定しない。
 
@@ -96,9 +129,9 @@ exchange-value は、
 
 の双方に現れうる。
 
-したがって use-value / exchange-value と stock / flow を完全な一対一対応とはしない。
+したがって use-value / exchange-value と stock / flow を完全な一対一対応とはしない。ただし、**VFT-specific use-value quantity は interval realization としてのみ定義する**。
 
-一方、異質な resource stock を共通交換尺度で比較・集計した評価は、use-value quantity ではなく exchange-value representation に属する。
+異質な resource stock を共通交換尺度で比較・集計した評価は、use-value quantity ではなく exchange-value representation に属する。
 
 ### 5.3 複式簿記アナロジー
 
@@ -139,17 +172,19 @@ plan / choice = A / x_i 側
 
 ### 加工・変換と P 更新
 
-同一由来 resource でも、A による加工・変換後には利用可能性・使用価値が変わる。
+同一由来 resource でも、A による加工・変換後には利用可能性が変わる。ただし加工後の use-value quantity は加工時点で確定するのではなく、**加工後 resource を実際に利用した interval の体験結果として初めて realized する**。
 
 ```text
 K_t
- ↓ A
+ ↓ A / transformation
 K_t1
- ↓ changed use possibilities / realized use-value
-P_i,t -> P_i,t1
+ ↓ actual use in later interval
+U^use_i(τ) realized
+ ↓
+P_i update
 ```
 
-主体は A が K をどのような利用可能状態へ変えるかについて期待を持ち、実現結果からその期待を更新する。
+主体は A が K をどのような利用可能状態へ変え、どのような体験結果を生みうるかについて期待を持つ。前区間までの realized use-value がその期待を更新し、次の A を条件づける。
 
 ---
 
@@ -234,7 +269,7 @@ valuation-only events ────────┘
 
 ### field
 
-field は、K、(K_i)_i、(P_i)_i、主体間・資源間の関係・制約がつくる **action-generating configuration** である。
+field は、K、(K_i)_i、(P_i)_i と projection-specified relations / constraints から導かれる **action-generating configuration** である。
 
 ```text
 field_t
@@ -255,14 +290,16 @@ profit / surplus は事業の定義条件ではなく、exchange-value 側で活
 ### field formation
 
 ```text
-起業           = 新しい action-generating field の形成
-新規事業開発   = 既存 field から新しい field を形成・分岐させる活動
-既存事業運営   = 成立済み field の維持・再生産・改善
+起業           = business-oriented field formation の一類型
+新規事業開発   = 既存 field から business-oriented field を形成・分岐させる活動
+既存事業運営   = 成立済み business field の維持・再生産・改善
 ```
+
+field formation 自体は、研究チーム、政治団体、コミュニティ等の形成にも起こりうる。起業はそのうち business-oriented な field formation として扱う。
 
 既存事業では既存の顧客・商品・価格・組織・収益構造があるため profit / surplus を含む既存評価関数で運営を説明しやすい。
 
-一方、起業時にはそれら自体が未形成である。したがって起業を「既存 profit function の最大化」とだけ定義すると、事業体そのものの成立を説明できない。VFT はこれを field formation として扱う。
+一方、起業時にはそれら自体が未形成である。したがって起業を「既存 profit function の最大化」とだけ定義すると、事業体そのものの成立を説明できない。
 
 ---
 
@@ -304,13 +341,15 @@ budget feasibility は plan / choice 側へ置き、forecast と区別する。
 
 VFT は use-value / labor / exchange-value / surplus / accumulation の区別を一般化構造上で保持する。
 
-- use-value：期間内の利用を通じて実現される効用側 value quantity
+- use-value：主体が interval 内の実利用を通じて体験として realized した主観的効用量
 - labor measure：labor activity / labor time
 - Marxian labor-value：socially necessary labor time 等の追加条件を持つ specialization
 - exchange-value / price：resource 間の比較・market / monetary valuation
 - surplus：exchange-value の比較可能尺度上で成立する差分 / residual
 - Marxian surplus value：Marx 固有条件を持つ specialized interpretation
 - accumulation：surplus 等の帰属・留保・分配による K_i の変化
+
+VFT-specific use-value quantity は Marxian use-value と自動的に同一視しない。
 
 ---
 
@@ -320,7 +359,7 @@ VFT は use-value / labor / exchange-value / surplus / accumulation の区別を
 micro
 field_i -> A_i -> resource activity
               -> ΔK
-              -> realized use-value -> P_i update
+              -> realized use-value over interval -> P_i update
               -> exchange valuation -> K_i update
 
                      ↓ external reporting / aggregation where needed
