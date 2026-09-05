@@ -7,25 +7,26 @@ authors:
     affiliation: "Independent Researcher"
 abstract: >
   Value-Field Theory (VFT) is a structural framework for describing how a
-  shared multidimensional real-resource world K, actor-specific access and
-  usability views K_i, and actor-specific expectation-forming states P_i
-  condition actions and decisions A_i. K_i is not required to be a set-theoretic
-  subset of K; it represents actor-relative access, usability, exercisability,
-  or referenceability with respect to the shared resource world. Delta K(S, tau)
-  denotes realized real-resource change under an observation and accounting
-  specification S and interval tau, where S includes resource coordinates,
-  accounting boundary, and transformation convention. The same Delta K type can
-  be used across micro and macro scales by changing S, tau, and aggregation rules.
-  E_i[Delta K(S, tau)] denotes an actor-specific expected resource change where
-  the relevant Delta K is represented on a quantitative projection for which an
-  expectation is defined. Preferences, desirability, credit assessments, beliefs,
-  and related structures remain in P_i rather than being identified with the
-  expectation itself. VFT does not fix a universal probability measure,
-  expectation-formation equation, action-selection rule, market-equilibrium
-  condition, or aggregation law. Economic equilibrium, budget constraints,
-  accounting identities, surplus, decentralized adjustment, micro-macro linkage,
-  and reputation- or credit-economy models are treated as domain-specific
-  projection candidates requiring additional economic and measurement assumptions.
+  shared multidimensional real-resource world K, actor-relative access and
+  usability views K_i derived from that shared world, and actor-specific
+  subjective evaluation and expectation states P_i condition actor-side
+  processes and events A_i. Delta K(S, tau) denotes realized real-resource
+  change under an observation and accounting specification S and interval tau,
+  where S includes resource coordinates, accounting boundary, and transformation
+  convention. Delta K is treated as an S-indexed change schema rather than a
+  single universal mathematical value type; conceptually, Delta K(S, tau) may
+  take values in a scope-specific domain D_S. E_i[Delta K(S, tau)] denotes an
+  actor-specific expected realized resource change where an expectation is
+  defined. Planned or chosen resource changes are projection-specific and are
+  not identified with this forecast. Preferences, desirability, credit
+  assessments, beliefs, and related structures remain in P_i rather than being
+  identified with the expectation itself. VFT does not fix a universal
+  probability measure, expectation-formation equation, action-selection rule,
+  market-equilibrium condition, or aggregation law. Economic equilibrium,
+  budget constraints, accounting identities, surplus, decentralized adjustment,
+  micro-macro accounting or observation linkages, and reputation- or
+  credit-economy models are treated as domain-specific projection candidates
+  requiring additional economic and measurement assumptions.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
@@ -33,12 +34,13 @@ keywords:
   - multidimensional resource state
   - shared resource world
   - actor-specific access
-  - expectation stock
+  - subjective evaluation
+  - expectation state
   - expected interval change
   - micro-macro linkage
   - reputation economy
   - credit economy
-  - action
+  - actor-side process
   - resource dynamics
   - measurement proxy
   - economic projection
