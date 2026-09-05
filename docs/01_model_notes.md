@@ -116,6 +116,8 @@ future use-value   = not yet realized; represented only as expectation in P_i
 
 と区別する。
 
+この意味で VFT-specific use-value quantity は **P/L-like** である。理由は単に flow-oriented だからではなく、**主観的体験価値であるため point-in-time valuation が成立せず、interval 内で realized した値としてしか評価できない**ことにある。P/L-like はこの時間形式を示すアナロジーであり、use-value quantity を会計上の P/L entry と同一視するものではない。
+
 個別用途の効用関数、substitute / complement、代替可能性は Core では固定しない。
 
 ### 5.2 exchange-value representation
