@@ -7,21 +7,25 @@ authors:
     affiliation: "Independent Researcher"
 abstract: >
   Value-Field Theory (VFT) is a structural framework for describing how a
-  shared multidimensional real-resource world K, actor-specific accessible
-  portions K_i, and actor-specific expectation-forming states P_i condition
-  actions and decisions A_i. Delta K(S, tau) denotes the realized real-resource
-  quantity difference over a defined target scope S and interval tau. The same
-  Delta K type is used across micro and macro scales; what changes is the actor
-  set, time horizon, resource scope, and accounting or aggregation rule.
+  shared multidimensional real-resource world K, actor-specific access and
+  usability views K_i, and actor-specific expectation-forming states P_i
+  condition actions and decisions A_i. K_i is not required to be a set-theoretic
+  subset of K; it represents actor-relative access, usability, exercisability,
+  or referenceability with respect to the shared resource world. Delta K(S, tau)
+  denotes realized real-resource change under an observation and accounting
+  specification S and interval tau, where S includes resource coordinates,
+  accounting boundary, and transformation convention. The same Delta K type can
+  be used across micro and macro scales by changing S, tau, and aggregation rules.
   E_i[Delta K(S, tau)] denotes an actor-specific expected resource change where
   the relevant Delta K is represented on a quantitative projection for which an
-  expectation is defined. Preferences, desirability, credit, beliefs, and
-  related structures remain in P_i rather than being identified with the
+  expectation is defined. Preferences, desirability, credit assessments, beliefs,
+  and related structures remain in P_i rather than being identified with the
   expectation itself. VFT does not fix a universal probability measure,
-  expectation-formation equation, action-selection rule, or aggregation law.
-  Economic equilibrium, budget constraints, accounting identities, surplus,
-  and decentralized adjustment are treated as domain-specific projection
-  candidates that require additional economic and measurement assumptions.
+  expectation-formation equation, action-selection rule, market-equilibrium
+  condition, or aggregation law. Economic equilibrium, budget constraints,
+  accounting identities, surplus, decentralized adjustment, micro-macro linkage,
+  and reputation- or credit-economy models are treated as domain-specific
+  projection candidates requiring additional economic and measurement assumptions.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
@@ -31,6 +35,9 @@ keywords:
   - actor-specific access
   - expectation stock
   - expected interval change
+  - micro-macro linkage
+  - reputation economy
+  - credit economy
   - action
   - resource dynamics
   - measurement proxy
