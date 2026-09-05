@@ -252,30 +252,29 @@ p · x_i <= 0
 
 ---
 
-## 11. 機能的最適化則の計測
+## 11. 3つの管理合理性を扱う計測
 
-経済・社会 projection で、以下の3つの functional optimization hypothesis を検証対象にできる。
+resource-realization / activity-flow / P-downside の3則は、VFT 上で管理合理性を記述するための基本前提として扱う。したがって、計測の目的は「3則そのものが存在するか」を毎回実証することではない。
 
-- **resource-realization**：主体が、P と期待のもとで、望む／見込む `ΔK` の実現へ向けて A を選ぶ
-- **activity-flow**：主体が K / P の配置を再構成し、持続可能な A-flow を最大化する
-- **P-downside**：主体群の P の大幅な負側・悪化側を抑えるよう K / A を配分・調整する
+経験的に扱うのは、各 projection / 組織 / 制度で、3則がどの actor によってどのように遂行・分担・重複され、その結果どのような A / K / P / H / ΔK が生じるかである。
 
-これらを法人格・制度名だけで自動的に個人・企業・国家へ割り当てない。自給自足では単一 actor が3機能を同時に担いうるためである。
+quantitative model を置く場合は、3則そのものと、その具体的数理化を分離する。例えば `R_i` / `F_f` / `L_g^-` のような objective functional を導入する場合、それらの関数形・制約・時間 horizon は projection-specific であり、観測・比較の対象になる。
 
-実証では各機能について少なくとも、
+少なくとも以下を明示する。
 
-1. その機能を担う actor / actor set
-2. objective の observable / proxy
+1. 各管理合理性を担う actor / actor set
+2. 具体的な objective / outcome proxy を置く場合の observable
 3. feasible set / constraints
 4. 対象時間窓
-5. 予測される A / K / P / H / ΔK の変化
-6. competing objective / alternative hypothesis
+5. 予測・評価する A / K / P / H / ΔK の変化
+6. 管理機能の分担・重複・conflict
+7. 代替的な objective / organizational arrangement との比較条件
 
-を観測前に固定する。
+企業型の activity-flow を扱う際、profit は outcome / objective proxy の一つであって activity-flow rule 自体と同一視しない。短期損失を伴う投資・採用・R&D・市場獲得等が将来 A-flow をどう変えるかを別途観測する。
 
-企業型の activity-flow を検証する際、profit は outcome proxy の一つであって objective と自動的に同一視しない。短期損失を伴う投資・採用・R&D・市場獲得等が将来 A-flow を増やすかを別途識別する。
+国家・governance 型の P-downside を扱う際、異質な P proxy 間に普遍的な加法則を仮定しない。支持率・失業・犯罪・景況感・出生・健康・移住・市場指標等が何の P 次元を代理するかを固定し、downside 判定を事前定義する。
 
-国家型の P-downside を検証する際、異質な P proxy 間に普遍的な加法則を仮定しない。支持率・失業・犯罪・景況感・出生・健康・移住・市場指標等が何の P 次元を代理するかを固定し、downside 判定を事前定義する。
+既存の管理階層と VFT 三則の関係を研究する場合は、三階層の存在そのものを検証対象にするのではなく、**各階層で3則がどう遂行・分担・重複し、その管理成果とどう関係するか**を比較する。
 
 ---
 
@@ -358,10 +357,10 @@ rights / contract / credit conditions in K
 19. 集約・会計・換算規則
 20. 欠測・測定誤差
 21. expectation operator / 推定方法
-22. functional optimization hypothesis を扱う場合の actor / objective proxy / constraints / alternative hypothesis
+22. 3則を quantitative model へ落とす場合の projection-specific objective / constraints / horizon
 23. compatibility を扱う場合の予算制約・価格・取引条件
 24. market equilibrium と呼ぶ場合の choice / optimality / clearing 条件
 25. P の採用次元と事前固定した検証条件
 26. 他者評価を扱う場合の評価者 `j` と評価対象 `a` の区別
 
-目的は、**state change `ΔK`、interval activity `H_S`、subjective state `P_i`、planned change `x_i`、expected realized change `E_i[ΔK]`、および各 projection が置く optimization objective を混同せず、観測・会計・因果上の位置を明示すること**にある。
+目的は、**state change `ΔK`、interval activity `H_S`、subjective state `P_i`、planned change `x_i`、expected realized change `E_i[ΔK]`、3つの管理合理性、および各 projection が追加する具体的 objective を混同せず、観測・会計・因果上の位置を明示すること**にある。
