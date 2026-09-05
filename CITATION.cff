@@ -10,34 +10,30 @@ abstract: >
   representation for describing how a shared multidimensional real-resource
   world K, actor-specific access and usability views K_i, and actor-specific
   subjective evaluation and expectation states P_i condition actor-side
-  processes and events A_i. The Core is not a standalone predictive hypothesis;
-  empirical restrictions are supplied by domain-specific projections and
-  measurement models. K_i is not required to be a set-theoretic subset of K;
-  it is a derived actor-relative access, usability, exercisability, or
+  processes and events A_i. K_i is not required to be a set-theoretic subset
+  of K; it is a derived actor-relative access, usability, exercisability, or
   referenceability view of the shared resource world. For another actor a,
   P_j(a) denotes actor j's evaluation, belief, credit assessment, or expectation
-  about a, rather than a state held by a. Delta K(S,tau) denotes an S-indexed
-  interval change descriptor. In the general path-aware form,
-  Z_S(tau)=M_S((K_t)_{t in tau},(A_t)_{t in tau}) and
-  Delta K(S,tau)=delta_S(Z_S(tau)) in D_S. Endpoint-only changes are a special
-  case using Y_S(t)=M_S(K_t) and delta_S(Y_S(t0),Y_S(t1)); arithmetic differences
-  are a further special case of additive quantitative projections. Delta P_i is
-  likewise a change descriptor or state transition and need not be arithmetic.
-  The same S-indexed interval-change schema can be used across micro and macro
-  scales even when value domains, coordinates, units, and aggregation rules
-  differ. Actor states and interval processes are temporally typed so that
-  (K_t0,P_t0) condition A_(t0,t1], which may contribute to (K_t1,P_t1), without
-  imposing a universal transition function. E_i[Delta K(S,tau)] denotes an
-  actor-specific expected realized resource change where the relevant Delta K
-  is represented on a quantitative projection for which an expectation is
-  defined. Planned or chosen resource changes are distinct from such forecasts
-  and may be represented by projection-local variables such as x_i. VFT does
-  not fix a universal probability measure, expectation-formation equation,
-  action-selection rule, market-equilibrium condition, or aggregation law.
-  Economic equilibrium, budget constraints, accounting identities, surplus,
-  decentralized adjustment, micro-macro linkage, and reputation- or
-  credit-economy models are treated as domain-specific projection candidates
-  requiring additional economic and measurement assumptions.
+  about a, rather than a state held by a. Delta K(S,tau) is reserved for a
+  specification-indexed state or resource change descriptor. In general,
+  Y_S(t)=M_S(K_t) and Delta K(S,tau)=delta_S(Y_S(t0),Y_S(t1)) in D_S, where the
+  change operator need not be an arithmetic difference. Gross production,
+  consumption, transaction volume, transformation, and other interval activity
+  statistics are not folded into Delta K; when needed they are represented by
+  projection-local derived path functionals such as H_S(tau). Where an
+  expectation is defined, a quantitative representation q_S:D_S->V_S is
+  specified and E_i[Delta K(S,tau)] is shorthand for the expectation of
+  q_S(Delta K(S,tau)). Delta P_i is likewise a change descriptor or state
+  transition and need not be an arithmetic difference. Planned or chosen
+  resource changes are distinct from forecasts and may be represented by
+  projection-local variables such as x_i. Economic budget feasibility,
+  inter-agent compatibility, market-equilibrium conditions, accounting
+  identities, surplus, decentralized adjustment, micro-macro linkages, and
+  reputation- or credit-economy models are domain-specific projection
+  candidates rather than universal consequences of the VFT Core. VFT does not
+  fix a universal probability measure, expectation-formation equation,
+  action-selection rule, state-transition law, compatibility condition,
+  market-equilibrium condition, or aggregation law.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
@@ -46,11 +42,10 @@ keywords:
   - shared resource world
   - actor-specific access
   - subjective evaluation
-  - expectation stock
-  - interval change descriptor
-  - path-aware measurement
-  - temporal typing
-  - expected interval change
+  - expectation state
+  - state change descriptor
+  - interval activity descriptor
+  - expected realized change
   - micro-macro linkage
   - reputation economy
   - credit economy
