@@ -58,15 +58,32 @@ K を「外部に実在するものすべて」へ拡張しない。契約、制
 
 ```text
 same resource r
-├─ use-value      : 実際の利用を通じてどの程度の効用を実現するか
+├─ use-value      : 実際の利用を通じてどの程度の効用を実現したか
 └─ exchange-value : 他の resource / money とどの程度交換可能と評価されるか
 ```
 
 ### use-value quantity
 
-VFT における **use-value quantity** は、resource stock 自体や technical service potential ではなく、**期間内の利用・消費・充足を通じて実現した効用量**を指す。
+VFT における **use-value quantity** は、resource stock 自体や technical service potential ではなく、**主体がある期間内にその resource を実際に利用・消費し、体験として実現した主観的効用量**を指す。
 
-物理的 stock / capability は K として時点観測できる。しかし限界効用の逓減等により、同じ stock 量でも主体が期間内に得る効用量は一意に決まらない。そのため use-value quantity は flow-oriented に計量する。
+したがって use-value quantity は resource に内在する固定量ではなく、**interval を指定しない時点量としては評価しない**。physical stock / capability は K として時点観測できるが、それは use-value quantity そのものではない。
+
+同じ主体・同じ resource・同じ利用量であっても、充足状態、利用順序、文脈、他の経験等によって体験結果は変わりうる。限界効用逓減もこの一例である。このため use-value quantity には一般的な再現性を仮定せず、実際の利用後にのみ realized value として観測できる。
+
+離散時間で時点 `t` を考える場合、`t` で直接参照できる use-value は前区間までに実現した flow である。
+
+```text
+previous interval
+actual use / consumption
+        ↓
+realized subjective use-value
+        ↓
+P_i,t update / reference
+        ↓
+expected future use-value
+```
+
+将来区間の use-value はまだ実現していないため、それ自体を時点 stock として保持するのではなく、P_i の belief / expectation として予測される。つまり **realized use-value は interval outcome、future use-value は P 上の expectation** と区別する。
 
 ### exchange-value representation
 
@@ -74,7 +91,7 @@ exchange-value は、resource を他の resource / money との比較関係か�
 
 exchange-value は、時点の資本 position `K_i` としても、取引・売上・費用等の期間 event valuation としても現れうる。したがって **use-value / exchange-value と stock / flow を完全な一対一対応とはしない**。
 
-一方、異質な resource stock を共通交換尺度で比較・集計する場合、その評価は use-value quantity ではなく exchange-value representation に属する。
+ただし VFT 固有の use-value quantity は interval realization としてのみ扱う。一方、異質な resource stock を共通交換尺度で比較・集計する場合、その評価は use-value quantity ではなく exchange-value representation に属する。
 
 ### 複式簿記アナロジー
 
@@ -92,17 +109,19 @@ P はどれだけ共有されても主観状態である。shared P は複数主
 
 `E_i[ΔK | a, I_i]` は P_i と別の主観世界ではなく、**P_i の belief / expectation component と情報集合 I_i から導出される action-contingent forecast** とする。desire / preference / plan とは区別する。
 
-加工・変換によって同一由来の resource でも利用可能性・使用価値は変化する。
+加工・変換によって同一由来の resource でも利用可能性は変化する。加工後の use-value は事前に確定した真値として存在するのではなく、利用後の体験として実現し、その結果が P_i を更新する。
 
 ```text
 K_t
- ↓ A
+ ↓ A / transformation
 K_t1
- ↓ changed use possibilities / realized use-value
+ ↓ actual use over interval
+realized subjective use-value
+ ↓
 P_i,t -> P_i,t1
 ```
 
-この経路により、主体は「どの A がどの利用可能状態を生むか」という期待を実現結果から更新する。
+この経路により、主体は「どの A がどの利用可能状態と体験結果を生むか」という期待を、前区間までの実現結果から更新する。
 
 ---
 
@@ -233,14 +252,14 @@ E_i[ΔK | a, I_i]     = action-contingent forecast of endpoint resource change
 
 VFT は Marxian economics が区別した use-value / labor / exchange-value / surplus / accumulation を一般化された構造上で表現する。
 
-- use-value：期間内の利用を通じて実現される効用側の value quantity
+- use-value：主体が期間内の実利用を通じて体験として実現した主観的効用量
 - labor measure：labor activity / labor time による production activity の記述
 - Marxian labor-value projection：socially necessary labor time 等の追加条件を導入した specialization
 - exchange-value / price：resource 間の比較・market / monetary valuation
 - surplus：exchange-value の比較可能尺度上で成立する差分 / residual
 - accumulation / distribution：surplus 等の帰属・留保・分配による K_i の変化
 
-VFT Core 自体を Marx 固有の labor-value theory / surplus-value theory と同一視しない。
+VFT-specific use-value quantity は Marxian use-value と自動的に同一視しない。VFT Core 自体を Marx 固有の labor-value theory / surplus-value theory とも同一視しない。
 
 ---
 
@@ -249,7 +268,7 @@ VFT Core 自体を Marx 固有の labor-value theory / surplus-value theory と�
 ```text
 micro
 field_i -> A_i -> resource activity
-              -> realized use-value -> P_i update
+              -> realized use-value over interval -> P_i update
               -> exchange valuation -> K_i update
 
                      ↓ external reporting / aggregation where needed
