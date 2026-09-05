@@ -298,7 +298,7 @@ shared P
 - K の標準 resource coordinates
 - monetary measurement / valuation function μ
 - ownership / attribution / recognition rule
--具体的 accounting standard
+- 具体的 accounting standard
 - P/L と B/S の closing rule
 - surplus の普遍的算出式
 - P の普遍的更新式
