@@ -4,7 +4,7 @@
 
 ## 1. 集約と分布化
 
-Core では、K は共通の実資源世界、`K_i` は主体ごとのアクセス可能範囲、`P_i` / `A_i` は主体ごとの状態・行動として扱う。
+Core では、K は共通の実資源世界、`K_i` は主体ごとの access / usability view、`P_i` / `A_i` は主体ごとの状態・行動として扱う。
 
 今後の検討候補：
 
@@ -17,17 +17,18 @@ Core では、K は共通の実資源世界、`K_i` は主体ごとのアクセ�
 
 ---
 
-## 2. K の表現粒度
+## 2. K と K_i の表現粒度
 
 K は共通の実資源世界である。
 
-未解決なのは K が共通かどうかではなく、応用ごとにどの資源成分を保持し、どのように `K_i` へ access slice を切り出すかである。
+`K_i` は集合論的な部分集合に限定せず、共通 K に対する主体 i の access / usability relation によって定まる actor-relative view とする。
 
-検討候補：
+今後の検討候補：
 
 - K の標準次元を設けるか
 - 物理資源、時間、技能、情報、関係、権利等の分解
-- `K_i` のアクセス可能性の操作化
+- `K_i` の access / usability の操作化
+- relational resource / right の表現
 - 共有・排他的アクセスの表現
 - 資本概念との対応
 
@@ -44,25 +45,27 @@ P は主体ごとの期待形成状態として Core で定義済みである。
 - P proxy の操作化
 - 同一 observable が K / P の両方に関係する場合の識別
 - 他主体・価格・将来条件についての期待をどの粒度で保持するか
-- 対象・時間軸ごとの分解
 - projection ごとの P 次元を観測前に固定する方法
-
-P 固有の普遍的な減衰率・時間定数・更新関数を VFT 側で新たに定義すること自体は未解決事項とはしない。
 
 ---
 
-## 4. ΔK / ΔP の型と操作化
+## 4. ΔK / ΔP と scope S
 
-Core では `ΔK(S, τ)` を、対象範囲 `S` について時間区間 `τ` 内に実現した実資源量の差分（総量変化）として扱う。`ΔP_i` は P の区間差分である。
+Core では `ΔK(S, τ)` を、観測・会計仕様 `S` について時間区間 `τ` 内に実現した実資源量の差分として扱う。
 
-`ΔK` はミクロ用・マクロ用に別の型へ分けない。個人の消費・生産による差分から、複数主体・長期区間での集約差分まで、対象主体・時間・資源範囲の違いとして扱う。
+`S` は単なる対象集合ではなく、少なくとも以下を含む。
+
+- 対象資源・主体
+- resource coordinates
+- accounting boundary
+- transformation convention
 
 今後の検討候補：
 
+- `S` の標準的な記述形式
 - 各応用で始点・終点を比較可能にする表現
 - 加法表現を採用できる条件
 - 非加法成分の quantitative projection
-- scope `S` / horizon `τ` の標準的な記述方法
 - 個別実現変化と集約 `ΔK` の会計対応
 - 共有資源変化と `K_i` 変化の対応
 - ΔP proxy の測定誤差
@@ -73,17 +76,16 @@ Core では `ΔK(S, τ)` を、対象範囲 `S` について時間区間 `τ` �
 
 `E_i[ΔK(S, τ)]` は、主体 `i` が対象 scope / interval について形成する期待実資源変化として Core で区別済みである。
 
-主体 `i` が自らの消費・生産等として関与する対象・区間についての見込み値を表し、desire そのものは表さない。選好・望ましさ・評価は P 側に保持される。
-
 `E[...]` を expectation operator として用いるのは、対象となる ΔK が quantitative projection 上で表現され、期待値が定義可能な場合である。Core は確率測度・情報集合・期待形成式を固定しない。
 
 今後の検討候補：
 
 - expectation operator の確率測度・情報集合
+- planned resource change と expected realized resource change の区別
+- expectation budget consistency と ex-ante feasible action / contingent plan の区別
+- state-wise / almost-sure feasibility
 - 期待対象となる消費・生産等の範囲
-- scope `S` / `S_i` / time horizon `τ`
-- どの K 成分を期待評価へ入れるか
-- 期待形成モデルの選択
+- `S` / `S_i` / `τ`
 - 確率的期待値と定性的 forecast の接続
 - 実測可能な expectation survey 等との対応
 - 他主体の期待・行動についての予測が P にどう入るか
@@ -91,9 +93,9 @@ Core では `ΔK(S, τ)` を、対象範囲 `S` について時間区間 `τ` �
 
 ---
 
-## 6. 会計的予算制約の操作化
+## 6. 会計的予算制約
 
-経済射影では、主体 `i` が `K_i` の予算・資源・能力制約と、`P_i` に含まれる価格・他主体・将来条件等への期待のもとで、主体自身の経済的 scope `S_i` に対する期待資源ポートフォリオ変化 `E_i[ΔK(S_i, τ)]` を形成する。
+経済射影では、主体 `i` が `K_i` の予算・資源・能力制約と `P_i` に含まれる価格・他主体・将来条件等への期待のもとで、主体自身の economic scope `S_i` に対する期待資源ポートフォリオ変化を形成する。
 
 純粋な交換で価格・会計換算ベクトルを `p` とする場合、
 
@@ -101,36 +103,36 @@ Core では `ΔK(S, τ)` を、対象範囲 `S` について時間区間 `τ` �
 p · E_i[ΔK(S_i, τ)] = 0
 ```
 
-のような会計的予算制約へ射影できる。
+のような expectation-side accounting budget consistency へ射影できる。
 
 今後の検討候補：
 
 - 所得・生産収入・投資・借入・移転を含む一般予算式
-- 価格ベクトルが多次元 K をどこまで比較可能にするか
-- 信用枠・金融請求権を含む intertemporal budget constraint
+- intertemporal budget constraint
+- 信用枠・金融請求権を含む予算制約
 - 非市場資源の会計換算
-- 予算制約と実現 A の乖離
+- planned action と expected outcome の分離
 
 ---
 
-## 7. 市場均衡・会計整合・定常状態
+## 7. compatibility / market equilibrium / 会計整合 / 定常状態
 
-以下は分離して扱う。
+以下を分離して扱う。
 
+- **inter-agent compatibility / feasibility**：各主体の予算・資源制約を満たした予定・期待資源変化が、価格・取引条件等のもとで相互に実行可能・両立可能であること
+- **market equilibrium**：compatibility に加え、射影先理論が choice / optimality / best response / market-clearing 等を与えた状態
 - **会計整合**：同一事象を共通の会計境界・換算規則で記録した結果が収支上整合すること
-- **市場均衡**：各主体の予算制約を満たした期待資源変化が、価格・取引条件等のもとで相互に両立すること
 - **定常状態**：対象 K の増減が小さい等、別途定める状態条件
 
 今後の検討候補：
 
-- 市場均衡における相互両立条件の形式化
+- compatibility の形式化
+- market equilibrium へ必要な追加条件
 - 在庫・資本蓄積・投資を含む stock-flow accounting
 - 会計恒等式と行動均衡を同じデータで識別する方法
 - 均衡への収束性・複数均衡・不安定均衡
 - 情報非対称・外部性・市場支配下の均衡
 - 市場外制度での調整条件
-
-`Σ_i E_i[ΔK] = 0` は一般均衡条件として採用しない。同一共通 scope に対する複数主体の `E_i[ΔK(S, τ)]` は、同じ対象についての異なる期待であり、単純和しない。
 
 ---
 
@@ -155,17 +157,60 @@ p · E_i[ΔK(S_i, τ)] = 0
 
 VFT はミクロ／マクロで別型の `ΔK` を導入しない。
 
-今後の検討対象は、主体別の予算制約下の期待資源変化・A・実現変化を、共通会計規則のもとで `ΔK(S, τ)` へ接続し、どの主体集合・時間窓・資源範囲で集約すると既存の市場・産業・マクロ指標へ接続できるかである。
+中心課題は、主体レベルの期待・A・実現変化を、共通の `S` / `τ` / accounting rule のもとで `ΔK(S, τ)` へ接続し、同じ型のまま市場・産業・社会・マクロ観測量へ拡張することである。
 
-- 主体別 budget-constrained choice をどのミクロモデルへ射影するか
-- 個別実現変化をどの会計規則で `ΔK` へ接続するか
-- 市場均衡をどの既存均衡モデルへ射影するか
-- 政策 A → ΔP_i → E_i[ΔK] の経路をどのマクロモデルへ射影するか
-- stock-flow consistent な集約方法
+今後の検討候補：
+
+- 個人の realized change をどの会計規則で `ΔK` へ接続するか
+- `S` の拡張と aggregation rule の関係
+- stock-flow consistent なミクロ／マクロ接続
+- 個人期待と集計マクロ変数の識別
+- 政策 A → ΔP_i → E_i[ΔK] → A_i → ΔK の経路
+- macro observable から micro structure をどこまで逆推定できるか
 
 ---
 
-## 10. 期待変化の集約と余剰
+## 10. 評価経済・信用経済への射影
+
+VFT の有力な応用候補として、評価・信用が期待形成と実資源アクセスへどう変換されるかを同一状態表現上で扱うことがある。
+
+基本的な分離は以下。
+
+- 評価、評判、ブランド、相手への信用、返済見込み、将来見通し → `P_i`
+- 実際に行使可能な信用枠、請求権、契約上の権利、アクセス可能な取引機会 → `K_i`
+
+候補経路：
+
+```text
+rating / reputation / trust
+        ↓
+      P_i
+        ↓
+expectation / decision
+        ↓
+       A_i
+        ↓
+credit terms / transaction access
+        ↓
+      K_i
+        ↓
+   realized ΔK
+```
+
+今後の検討候補：
+
+- 評価 observable と P の measurement mapping
+- 評価から信用条件への変換関数
+- 信用評価と実際の borrowing capacity の識別
+- レビュー・評判が契約機会や価格条件に与える影響
+- P → K_i 変換の時間遅延
+- 評価ショック / 信用ショックから ΔK までの因果識別
+- ネットワーク上の評判伝播
+- 評価経済・信用経済でのミクロ／マクロ接続
+
+---
+
+## 11. 期待変化の集約と余剰
 
 同一共通 scope に対する複数主体の `E_i[ΔK(S, τ)]` を単純和して aggregate resource change としない。
 
@@ -175,18 +220,13 @@ VFT はミクロ／マクロで別型の `ΔK` を導入しない。
 
 今後の具体化候補：
 
-- 対象主体集合と共通 K の対象範囲
-- 主体別 economic scope `S_i`
-- 会計範囲
-- 共有資源・重複アクセスの扱い
-- 必要な換算規則
 - utility / valuation mapping
 - WTP / WTA / cost との対応
 - consumer surplus / producer surplus / total surplus との対応条件
 
 ---
 
-## 11. A の観測と順序
+## 12. A の観測と順序
 
 A の外部 action event は直接観測できる場合がある一方、内部 decision / observation / interpretation は proxy を要する場合がある。
 
@@ -199,11 +239,9 @@ A の外部 action event は直接観測できる場合がある一方、内部 
 - ΔK / ΔP がどの範囲の A を代理するか
 - A と結果 proxy の時間遅延
 
-`ΔK` / `ΔP` は A を一意に同定する量ではない。
-
 ---
 
-## 12. 価値場の最小形式化
+## 13. 価値場の最小形式化
 
 現行 Core では、価値場を K / K_i / P の配置・関係が A を条件づける structural framework として定義し、独立した V や普遍的選択関数を置かない。
 
@@ -213,7 +251,7 @@ A の外部 action event は直接観測できる場合がある一方、内部 
 
 ---
 
-## 13. P の反証可能性
+## 14. P の反証可能性
 
 P が観察後の residual state にならないよう、projection / empirical model ごとに、採用する P 次元、proxy、A / E[ΔK] への mapping、事前予測・識別条件を観測前に固定する必要がある。
 
@@ -227,32 +265,11 @@ P が観察後の residual state にならないよう、projection / empirical 
 
 ---
 
-## 14. 微小・非主体的な P 変化
-
-Core では、A を P 変化の主要な actor-side process として扱う。
-
-記憶減衰等の微小・非主体的な P 変化は存在しうるが、観測可能な A や P proxy に意味のある差を生じない限り、Core の独立経路として明示モデル化しない。
-
-特定応用で必要になった場合のみ、計測・応用モデル側で追加する。
-
----
-
 ## 15. 組織・国家等の集約主体近似
 
 組織・国家等を単一主体として扱うことは Core 前提ではない。
 
-必要な場合は近似として導入し、
-
-- 対象主体
-- 共通 K の対象範囲
-- 各主体の `K_i`
-- 各主体の `P_i`
-- A の集約方法
-- ΔK の会計・集約規則
-- 情報損失
-- 内部対立
-
-を明示する。
+必要な場合は近似として導入し、対象主体、共通 K の対象範囲、各主体の `K_i` / `P_i`、A の集約方法、ΔK の会計・集約規則、情報損失、内部対立を明示する。
 
 ---
 
@@ -261,16 +278,17 @@ Core では、A を P 変化の主要な actor-side process として扱う。
 今後の具体化候補：
 
 - 共通 K の観測設計
-- `K_i` のアクセス可能性
+- `K_i` の access / usability
 - P proxy
 - K / P 識別
 - A の直接観測と潜在 decision の proxy
 - ΔK / ΔP の結果 proxy 設計
 - `E[ΔK]` の expectation operator / 推定
-- scope / horizon の定義
-- 予算制約と市場均衡の同時計測
-- 会計恒等式と実現差分の接続
-- 集約規則
+- `S` / `τ` の定義
+- planned / expected / realized change の分離
+- compatibility / market equilibrium / accounting identity の同時計測
+- ミクロ／マクロ接続の実証
+- 評価・信用 → P → K_i → ΔK の因果計測
 - 測定誤差・欠測
 - ケーススタディ
 - 反実仮想設計
