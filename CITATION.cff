@@ -6,35 +6,38 @@ authors:
     given-names: "T."
     affiliation: "Independent Researcher"
 abstract: >
-  Value-Field Theory (VFT) is a structural framework for describing how a
-  shared multidimensional real-resource world K, actor-specific access and
-  usability views K_i, and actor-specific subjective evaluation and expectation
-  states P_i condition actor-side processes and events A_i. K_i is not required
-  to be a set-theoretic subset of K; it is a derived actor-relative access,
-  usability, exercisability, or referenceability view of the shared resource
-  world. For another actor a, P_j(a) denotes actor j's evaluation, belief,
-  credit assessment, or expectation about a, rather than a state held by a.
-  Delta K(S, tau) denotes a specification-indexed change descriptor for K under
-  an observation and accounting specification S and interval tau. In general,
-  Y_S(t)=M_S(K_t) and Delta K(S,tau)=delta_S(Y_S(t0),Y_S(t1)) in D_S, where the
-  change operator need not be an arithmetic difference. Additive differences
-  are a special case of a quantitative projection. Delta P_i is likewise a
-  change descriptor or state transition and need not be an arithmetic
-  difference. The same S-indexed change schema can be used across micro and
-  macro scales even when value domains, coordinates, units, and aggregation
-  rules differ. E_i[Delta K(S,tau)] denotes an actor-specific expected realized
-  resource change where the relevant Delta K is represented on a quantitative
-  projection for which an expectation is defined. Planned or chosen resource
-  changes are distinct from such forecasts and may be represented by
-  projection-local variables such as x_i. Preferences, desirability, credit
-  assessments, beliefs, and related structures remain in P_i rather than being
-  identified with the expectation itself. VFT does not fix a universal
-  probability measure, expectation-formation equation, action-selection rule,
-  market-equilibrium condition, or aggregation law. Economic equilibrium,
-  budget constraints, accounting identities, surplus, decentralized adjustment,
-  micro-macro linkage, and reputation- or credit-economy models are treated as
-  domain-specific projection candidates requiring additional economic and
-  measurement assumptions.
+  Value-Field Theory (VFT) is a structural framework and common state
+  representation for describing how a shared multidimensional real-resource
+  world K, actor-specific access and usability views K_i, and actor-specific
+  subjective evaluation and expectation states P_i condition actor-side
+  processes and events A_i. The Core is not a standalone predictive hypothesis;
+  empirical restrictions are supplied by domain-specific projections and
+  measurement models. K_i is not required to be a set-theoretic subset of K;
+  it is a derived actor-relative access, usability, exercisability, or
+  referenceability view of the shared resource world. For another actor a,
+  P_j(a) denotes actor j's evaluation, belief, credit assessment, or expectation
+  about a, rather than a state held by a. Delta K(S,tau) denotes an S-indexed
+  interval change descriptor. In the general path-aware form,
+  Z_S(tau)=M_S((K_t)_{t in tau},(A_t)_{t in tau}) and
+  Delta K(S,tau)=delta_S(Z_S(tau)) in D_S. Endpoint-only changes are a special
+  case using Y_S(t)=M_S(K_t) and delta_S(Y_S(t0),Y_S(t1)); arithmetic differences
+  are a further special case of additive quantitative projections. Delta P_i is
+  likewise a change descriptor or state transition and need not be arithmetic.
+  The same S-indexed interval-change schema can be used across micro and macro
+  scales even when value domains, coordinates, units, and aggregation rules
+  differ. Actor states and interval processes are temporally typed so that
+  (K_t0,P_t0) condition A_(t0,t1], which may contribute to (K_t1,P_t1), without
+  imposing a universal transition function. E_i[Delta K(S,tau)] denotes an
+  actor-specific expected realized resource change where the relevant Delta K
+  is represented on a quantitative projection for which an expectation is
+  defined. Planned or chosen resource changes are distinct from such forecasts
+  and may be represented by projection-local variables such as x_i. VFT does
+  not fix a universal probability measure, expectation-formation equation,
+  action-selection rule, market-equilibrium condition, or aggregation law.
+  Economic equilibrium, budget constraints, accounting identities, surplus,
+  decentralized adjustment, micro-macro linkage, and reputation- or
+  credit-economy models are treated as domain-specific projection candidates
+  requiring additional economic and measurement assumptions.
 repository-code: "https://github.com/nuno929/vf-model"
 license: "CC-BY-4.0"
 keywords:
@@ -44,7 +47,9 @@ keywords:
   - actor-specific access
   - subjective evaluation
   - expectation stock
-  - change descriptor
+  - interval change descriptor
+  - path-aware measurement
+  - temporal typing
   - expected interval change
   - micro-macro linkage
   - reputation economy
