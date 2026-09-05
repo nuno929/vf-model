@@ -45,7 +45,9 @@
 
 と分ける。
 
-`K` は physical resource に限定しない。設備・原材料等に加え、時間、技能、知識、労働能力等の capability coordinates を含みうる。
+`K` は physical resource に限定しない。設備・原材料等に加え、available time budget / remaining workable capacity、技能、知識、労働能力等の capability coordinates を含みうる。
+
+時間については、calendar time `t` を model index、available time / labor capacity を K_t の point-in-time capability、actual labor time / hours worked during `τ` を A / labor measure の interval activity として分離した。実際に投入された labor time を K の stock coordinate として扱わない。
 
 `K_i` は K の subset / partition ではない。
 
@@ -145,7 +147,7 @@ E_e^shared
 
 という projection-defined endpoint difference とする。additive vector projection では `K_t1-K_t0` を特殊形として使える。
 
-A は actor-side に限定し、自然劣化・災害・偶発故障等は必要な projection で `Ω_τ` 等へ分ける。
+A は actor-side に限定し、actual labor time / hours worked も labor projection では A / labor measure として扱う。自然劣化・災害・偶発故障等は必要な projection で `Ω_τ` 等へ分ける。
 
 ---
 
@@ -197,7 +199,7 @@ surplus / deficit、production surplus、profit、income、valuation gain 等は
 
 ```text
 business actor / organization = actor i
-business field F^biz          = recurring business activity を再生産する local field
+business field F^biz          = actor-resource transformation / exchange / service / beneficiary relation 等を反復可能にする local field
 business                      = F^biz を中心とする activity system
 ```
 
@@ -219,15 +221,17 @@ profit / surplus は business existence の定義条件ではない。
 
 ## 10. 3つの管理合理性
 
-resource-realization / activity-flow / P-downside の3則は constitutive rationality assumptions とする。
+resource-realization / activity-flow / P-downside の3則は VFT の management / decision rationality における必須構成公理とする。
 
 use-value を realized experience として明示したことで、resource-realization は resource / capital outcome だけでなく desired realized-use outcome も含むように整理した。
 
 P-downside は P 全体の universal ordering を意味せず、projection-specific な P component と threshold / loss / viability criterion によって定義する。
 
-さらに、3則を事後説明ラベルにしないため、VFT decision projection では採用した dimension ごとに admissibility / exclusion condition または比較規則を ex ante に明示する。
+3公理は任意に採否を選ぶ dimension ではない。一方、その評価・判断・実行は単一 actor に集中する必要はなく、複数 actor、役割、組織階層、制度へ分業・分散してよい。
 
-3則は `Ŷ_i,t(a;I_i,t)` の outcome components を介して `Γ_i^adm` に接続する。
+VFT decision projection では3公理すべてについて admissibility / exclusion condition または比較規則を ex ante に明示する。
+
+3公理は `Ŷ_i,t(a;I_i,t)` の outcome components を介して `Γ_i^adm` に接続する。
 
 ---
 
@@ -236,6 +240,8 @@ P-downside は P 全体の universal ordering を意味せず、projection-speci
 VFT が一般化して保持するのは、use-value / labor / exchange-value / surplus / accumulation の区別である。
 
 VFT-specific realized-use outcome は subjective interval realization として定義し、Marxian use-value と自動的に同一視しない。
+
+labor time は interval 内の labor activity / labor measure とし、K_t の stock coordinate とは区別する。
 
 Marx 固有の labor-value theory / surplus-value theory は socially necessary labor time 等の追加条件を持つ projection-specific specialization とする。
 
