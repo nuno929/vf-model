@@ -60,7 +60,35 @@ common K / economic events
 
 ---
 
-## 3. P：主観的評価・期待 state
+## 3. 使用価値と交換価値の二重表現
+
+同一の資源は、主体から見て少なくとも二つの側面を持つ。
+
+```text
+same resource
+├─ use-value side      : 何に、どれだけ利用できるか
+└─ exchange-value side : 他の資源・通貨とどれだけ交換できるか
+```
+
+VFT はこの二重性を、二つの独立した物理世界としてではなく、**同一 K に対する異なる value representation** として扱う。
+
+### use-value side
+
+使用価値は、資源が実際の A / transformation をどのように可能にし、期間内でどの程度効用を実現するかに関係する。
+
+使用可能な物理在庫そのものは時点で観測できるが、その stock 量だけから主体にとっての効用量は一意に決まらない。限界効用の逓減等により、使用価値の効用量は期間中の利用・消費・充足との関係で評価される。この意味で use-value は **flow-oriented / P/L-like** である。
+
+### exchange-value side
+
+交換価値は、異質な資源を他の資源・通貨との比較関係から共通尺度へ写像した量である。このため exchange-value は時点の保有 position として比較・集計でき、**stock-oriented / B/S-like** に表現できる。
+
+使用価値を時点 stock として共通尺度化・比較評価した場合、その表現はすでに exchange-value 側へ移っているとみなす。
+
+この二重表現は複式簿記を想起させるが、**複式簿記は説明上のアナロジーであり、VFT が全主体に借方・貸方や会計恒等式を認知構造として仮定するものではない。** 個人では感覚的な利用可能量・交換可能量として、企業では在庫管理・会計評価等として、形式化の程度が異なりうる。
+
+---
+
+## 4. P：主観的評価・期待 state
 
 各 `P_i,t` は、将来見通し、評価、選好、信用、信念、規範認識等からなる subjective state である。
 
@@ -74,9 +102,21 @@ P は多数主体に共有されても主観状態である。shared P は複数
 
 を分けて扱う。
 
+加工・変換によって同一由来の資源でも利用可能性は変わる。したがって、
+
+```text
+K_t
+ ↓ A
+K_t1
+ ↓ changed use possibilities / realized use-value
+P_i update
+```
+
+のように、**A による K の加工結果が使用価値を変え、その実現結果が主体の次の期待 P_i を更新する**。
+
 ---
 
-## 4. A / ΔK と P/L・B/S 接続
+## 5. A / ΔK と P/L・B/S 接続
 
 A は生産、消費、交換、投資、労働、移転、契約、政策等の actor-side process / event を表す。
 
@@ -104,11 +144,25 @@ B/S positions K_i
 
 とする。
 
-surplus は物理世界の primitive ではない。指定した accounting boundary で P/L 上の通貨的増減を集約・相殺・計量した residual / increment として扱う。surplus の帰属・留保・分配は次期 `K_i` を変化させる。
+帳簿自体は actor-specific であり、主体ごとに recognition / valuation / bookkeeping が異なりうる。外部の財務報告や統計的集計は、その個別帳簿とは別の representation である。
+
+### surplus
+
+surplus は使用価値側の物理量として存在する primitive ではない。**input / output 等を exchange-value の共通尺度へ写像して比較したときに成立する差分**である。
+
+```text
+use-value / physical flow
+        ↓ exchange valuation
+input exchange value / output exchange value
+        ↓ comparison / accounting
+surplus / deficit
+```
+
+したがって物理的 K が同じでも、主体・知識・交換体系・valuation rule が異なれば exchange-value と surplus は異なりうる。余剰の帰属・留保・分配は次期 `K_i` を変化させる。
 
 ---
 
-## 5. 3つの管理合理性公理
+## 6. 3つの管理合理性公理
 
 VFT の意思決定合理性は次の3則へ集約する。
 
@@ -122,7 +176,7 @@ VFT の意思決定合理性は次の3則へ集約する。
 
 ---
 
-## 6. 経済学への射影
+## 7. 経済学への射影
 
 ### plan / choice と forecast
 
@@ -139,11 +193,11 @@ E_i[ΔK(...)] = expected realized resource change
 
 VFT は、Marxian economics が区別した use-value / labor / exchange-value / surplus / accumulation を一般化された構造上で表現できる。一方、Marx 固有の value theory は projection-specific な追加条件を必要とする。
 
-- **use-value**：K が特定の A / transformation を可能にする機能・有用性
+- **use-value**：K が特定の A / transformation を可能にし、期間内で実現される利用・効用側の価値
 - **labor measure**：labor activity / labor time による production flow の記述
 - **Marxian labor-value projection**：socially necessary labor time 等の追加条件を導入した specialization
-- **exchange-value / price**：market / monetary valuation
-- **surplus**：指定した P/L accounting boundary と monetary measurement に基づく期間増分
+- **exchange-value / price**：異質な資源を比較可能にする market / monetary valuation
+- **surplus**：exchange-value へ写像された input / output 等の差分を、指定 accounting boundary で計量した期間増分
 - **accumulation / distribution**：surplus の帰属・留保・分配を通じた B/S 上の `K_i` の変化
 
 したがって generic labor time をそのまま Marxian value と同一視せず、generic surplus をそのまま Marxian surplus value とも同一視しない。
@@ -156,43 +210,44 @@ K, K_i, P_i
     ↓
    A_i
     ↓
-physical flows
-    ↓ monetary measurement
+physical / use-value flow
+    ↓ exchange / monetary measurement
 P/L_i
     ↓ closing / attribution
 K_i(t+1)
 
-          ↓ aggregation / consolidation
+          ↓ external reporting / aggregation
 
 macro
 physical production / consumption
 capital-stock distribution
-aggregate P/L increment / surplus
+aggregate exchange-value increment / surplus
 capital accumulation
 shared P
 ```
 
-ミクロとマクロは、同じ physical K と、そこから会計的に形成される主体別 P/L・B/S 表現を異なる scope で観測・集約することで接続する。
+ミクロとマクロは、同じ physical K と、そこから各主体ごとに形成される monetary representations を異なる scope で観測・集約することで接続する。主体の帳簿そのものが共通化されることは仮定しない。
 
 ---
 
-## 7. compatibility / equilibrium / accounting
+## 8. compatibility / equilibrium / accounting
 
 - **inter-agent compatibility / feasibility**：各主体の plan が相互に実行可能・両立可能であること
 - **market equilibrium**：compatibility に加え、射影先理論の choice / optimality / best response / clearing 条件が成立すること
-- **accounting consistency**：同じ economic event を指定した recognition / valuation / consolidation rule で記帳した結果が整合すること
+- **accounting consistency**：同じ economic event を指定した recognition / valuation / accounting rule で記帳した結果が整合すること
 - **steady state**：対象状態について別途定める動学条件
 
 これらは別概念である。
 
 ---
 
-## 8. 理論境界
+## 9. 理論境界
 
 VFT Core は以下を普遍的に固定しない。
 
 - K の標準 resource coordinates
-- monetary measurement / valuation function
+- use-value の具体的効用関数・代替可能性
+- exchange-value の monetary measurement / valuation function
 - B/S 上の ownership / attribution / recognition rule
 - P/L / B/S の具体的 accounting standard
 - surplus の普遍的算出式
@@ -201,11 +256,11 @@ VFT Core は以下を普遍的に固定しない。
 - E[ΔK] の確率測度・期待形成式
 - 3則の objective / weight / priority / threshold
 - market equilibrium の普遍的条件
-- micro-to-macro aggregation / consolidation rule
+- micro-to-macro aggregation / reporting rule
 
 ---
 
-## 9. ドキュメント
+## 10. ドキュメント
 
 - [モデルノート](docs/01_model_notes.md)
 - [計測](docs/02_measurement.md)
