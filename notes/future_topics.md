@@ -12,7 +12,7 @@ Core では、K は共通の実資源世界、`K_i` は主体ごとの access / 
 - 平均・代表主体で失われる情報
 - 多峰性・非対称性
 - ネットワーク構造をどこまで残すか
-- 集約後の ΔK / ΔP が何を代理しているか
+- 集約後の ΔK / ΔP / H が何を代理しているか
 - 共有資源・重複アクセスの扱い
 
 ---
@@ -59,7 +59,7 @@ P は主体ごとの subjective evaluation / expectation state として Core �
 
 ## 4. ΔK / ΔP と scope S
 
-Core では `ΔK(S, τ)` を、観測・会計仕様 `S` について時間区間 `τ=[t0,t1]` 内に実現した K の **interval change descriptor** として扱う。
+Core では `ΔK(S, τ)` を、観測・会計仕様 `S` について K に実現した **state / resource change descriptor** として扱う。
 
 `S` は単なる対象集合ではなく、少なくとも以下を含む。
 
@@ -68,31 +68,31 @@ Core では `ΔK(S, τ)` を、観測・会計仕様 `S` について時間区�
 - accounting boundary
 - transformation convention
 
-一般形として、区間内の state path と actor-side process / event を観測表現へ写し、
-
-```text
-Z_S(τ) = M_S((K_t)_{t in τ}, (A_t)_{t in τ})
-ΔK(S, τ) = δ_S(Z_S(τ)) ∈ D_S
-```
-
-を用いる。endpoint のみを観測する場合は、
+一般形として、
 
 ```text
 Y_S(t) = M_S(K_t)
-ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1))
+ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1)) ∈ D_S
 ```
 
-を特殊ケースとして使う。加法的 quantitative projection の場合には `δ_S(y0,y1)=y1-y0` とできる。
+を用いる。`δ_S` は必ずしも算術差ではなく、加法的 quantitative projection の場合にのみ `δ_S(y0,y1)=y1-y0` とする。
 
 `ΔP_i` も一般には算術差ではなく、P の change descriptor / state transition とする。
+
+一方、gross production、gross consumption、transaction volume、resource transformation 等の区間活動量は `ΔK` と分離し、必要に応じて projection-local に
+
+```text
+H_S(τ) = h_S((K_t)_{t in τ}, (A_t)_{t in τ})
+```
+
+のような derived path functional を使う。
 
 今後の検討候補：
 
 - `S` の標準的な記述形式
 - `M_S` / `δ_S` の型付け
-- path-aware / endpoint-only の使い分け
-- gross flow と net stock change の関係
-- change descriptor の最小インターフェース
+- `H_S` / `h_S` の最小インターフェース
+- state change と gross flow / interval activity の会計対応
 - 加法表現を採用できる条件
 - 非加法成分の quantitative projection
 - 個別実現変化と集約 `ΔK` の会計対応
@@ -105,12 +105,25 @@ Y_S(t) = M_S(K_t)
 
 `E_i[ΔK(S, τ)]` は、主体 `i` が対象 scope / interval について形成する expected realized resource change として Core で区別済みである。
 
-`E[...]` を expectation operator として用いるのは、対象となる ΔK が quantitative projection 上で表現され、期待値が定義可能な場合である。Core は確率測度・情報集合・期待形成式を固定しない。
+Core では quantitative representation を
+
+```text
+q_S : D_S -> V_S
+```
+
+と置き、記法上
+
+```text
+E_i[ΔK(S, τ)] := E_i[q_S(ΔK(S, τ))]
+```
+
+と略記する。`q_S`、値空間 `V_S`、確率測度、情報集合、期待形成式の具体形は projection / measurement model 側で定める。
 
 今後の検討候補：
 
+- `V_S` に要求する代数構造
+- `q_S` の同定可能性と座標変換依存性
 - expectation operator の確率測度・情報集合
-- quantitative representation `q_S : D_S -> V_S` を明示する必要性
 - planned resource change と expected realized resource change の区別
 - ex-ante feasible action / contingent plan と expected outcome の区別
 - state-wise / almost-sure feasibility
@@ -150,16 +163,19 @@ p · x_i <= 0
 
 以下を分離して扱う。
 
-- **inter-agent compatibility / feasibility**：各主体の予算・資源制約を満たした `x_i` が、価格・取引条件等のもとで相互に実行可能・両立可能であること
+- **inter-agent compatibility / feasibility**：economic projection が追加する、各主体の budget-feasible な `x_i` が相互に実行可能・両立可能であるという条件
 - **market equilibrium**：compatibility に加え、射影先理論が choice / optimality / best response / market-clearing 等を与えた状態
-- **会計整合**：同一事象を共通の会計境界・換算規則で記録した結果が収支上整合すること
+- **会計整合**：同一事象の state change / interval activity を共通の会計境界・換算規則で記録した結果が収支上整合すること
 - **定常状態**：対象 K の増減が小さい等、別途定める状態条件
+
+compatibility 自体も Core からは導出されない。
 
 今後の検討候補：
 
 - compatibility の形式化
 - market equilibrium へ必要な追加条件
 - 在庫・資本蓄積・投資を含む stock-flow accounting
+- `ΔK` と `H_S` を併用した会計整合
 - 会計恒等式と行動均衡を同じデータで識別する方法
 - 均衡への収束性・複数均衡・不安定均衡
 - 情報非対称・外部性・市場支配下の均衡
@@ -188,15 +204,16 @@ p · x_i <= 0
 
 VFT はミクロ／マクロで数学的に同一の `ΔK` 値型を要求しない。
 
-中心課題は、主体レベルの期待・A・実現変化を、共通の `S` / `τ` / accounting rule のもとで `ΔK(S, τ)` へ接続し、**S-indexed interval-change schema** として市場・産業・社会・マクロ観測量へ拡張することである。
+中心課題は、主体レベルの state change と interval activity を、共通の `S` / `τ` / accounting rule のもとで `ΔK(S, τ)` / `H_S(τ)` へ接続し、市場・産業・社会・マクロ観測量へ拡張することである。
 
 今後の検討候補：
 
-- 個人の realized interval process をどの会計規則で `ΔK` へ接続するか
+- 個人の realized state change をどの会計規則で `ΔK` へ接続するか
+- gross flow / interval activity をどの `H_S` で表現するか
 - `S` の拡張と aggregation rule の関係
-- gross flow / net stock change をともに扱う stock-flow consistent なミクロ／マクロ接続
+- stock-flow consistent なミクロ／マクロ接続
 - 個人期待と集計マクロ変数の識別
-- 政策 A → K 上の制度条件 → ΔP_i → A_i → ΔK の経路
+- 政策 A → K 上の制度条件 → ΔP_i → A_i → ΔK / H の経路
 - macro observable から micro structure をどこまで逆推定できるか
 
 ---
@@ -246,7 +263,7 @@ rights / contract / credit conditions in K
 
 同一共通 scope に対する複数主体の `E_i[ΔK(S, τ)]` を単純和して aggregate resource change としない。
 
-異なる主体の `E_i[ΔK(S_i, τ)]` を集約する場合は、各 `S_i` の意味と会計・換算規則を先に定める。
+異なる主体の `E_i[ΔK(S_i, τ)]` を集約する場合は、各 `S_i`、`q_S`、`V_S`、会計・換算規則を先に定める。
 
 標準経済学上の surplus へ接続するには追加 mapping が必要である。
 
@@ -274,6 +291,8 @@ A_(t0,t1]
 
 とする。これは普遍的な選択関数・更新関数ではなく、時間順序の型付けである。
 
+P → A の因果関係を検証する場合、A 区間内で情報受容・解釈による P 更新が起き、その後の decision / action に影響するなら、区間を分割するか event ordering を保持する。
+
 今後の具体化候補：
 
 - A のイベント単位
@@ -281,7 +300,7 @@ A_(t0,t1]
 - 観測・情報受容・解釈を actor-side process として扱う操作化
 - 区間内イベント順序を保持する条件
 - coarse-grained representation の情報損失
-- ΔK / ΔP がどの範囲の A を代理するか
+- ΔK / ΔP / H がどの範囲の A を代理するか
 - A と結果 proxy の時間遅延
 
 ---
@@ -306,7 +325,7 @@ A_(t0,t1]
 
 ## 14. P の反証可能性
 
-P が観察後の residual state にならないよう、projection / empirical model ごとに、採用する P 次元、proxy、A / E[ΔK] への mapping、事前予測・識別条件を観測前に固定する必要がある。
+P が観察後の residual state にならないよう、projection / empirical model ごとに、採用する P 次元、proxy、proxy admissibility、A / E[ΔK] への mapping、事前予測・識別条件を観測前に固定する必要がある。
 
 今後の具体化候補：
 
@@ -314,6 +333,8 @@ P が観察後の residual state にならないよう、projection / empirical 
 - P 次元の選択基準
 - competing model との比較方法
 - out-of-sample prediction
+- proxy validity の独立検証
+- 同時決定・post-treatment・outcome leakage の識別
 - action correspondence と P の識別
 
 ---
@@ -335,7 +356,7 @@ P が観察後の residual state にならないよう、projection / empirical 
 
 組織・国家等を単一主体として扱うことは Core 前提ではない。
 
-必要な場合は近似として導入し、対象主体、共通 K の対象範囲、各主体の `K_i` / `P_i`、A の集約方法、ΔK の会計・集約規則、情報損失、内部対立を明示する。
+必要な場合は近似として導入し、対象主体、共通 K の対象範囲、各主体の `K_i` / `P_i`、A の集約方法、ΔK / H の会計・集約規則、情報損失、内部対立を明示する。
 
 ---
 
@@ -346,15 +367,17 @@ P が観察後の residual state にならないよう、projection / empirical 
 - 共通 K の観測設計
 - `K_i` の access / usability
 - P proxy
+- P proxy admissibility
 - K / P 識別
 - `P_j(a)` の評価者・評価対象の識別
 - A の直接観測と潜在 decision の proxy
-- temporal typing の操作化
+- temporal typing / event ordering の操作化
 - event / persistent K state / subjective P representation の識別
 - ΔK / ΔP の generic change mapping
-- path-aware / endpoint-only の使い分け
+- `H_S` / `h_S` の操作化
 - `M_S` / `δ_S` の操作化
 - gross flow / net stock change の同時計測
+- `q_S : D_S -> V_S` の操作化
 - `E[ΔK]` の expectation operator / 推定
 - `S` / `τ` の定義
 - planned / expected / realized change の分離
