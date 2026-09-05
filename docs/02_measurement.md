@@ -4,7 +4,7 @@
 
 本書は、VFT の Core を実証・観測・会計へ落とす際の境界を整理する。
 
-計測上は、**物理・実物側 K、actor-specific subjective state P_i、期間 flow の P/L monetary representation、B/S 上の K_i** を区別する。
+計測上は、**物理・実物側 K、actor-specific subjective state P_i、使用価値側の期間 flow、交換価値側の monetary representation、B/S 上の K_i** を区別する。
 
 ---
 
@@ -34,13 +34,43 @@ K の完全観測は前提としない。resource coordinates と観測単位は
 
 `K_i` は K の subset / partition ではない。共同所有・重複帰属・連結対象等を含みうるため、actor-indexed monetary representation として扱う。
 
+帳簿そのものは actor-specific であり、主体ごとに recognition / valuation / bookkeeping が異なりうる。財務報告や統計は、個別帳簿から外部向けに構成される別 representation である。
+
 ### financial assets
 
 預金、債券、売掛債権等は、契約・権利関係そのものではなく、会計上認識・評価された financial asset position として `K_i` に現れる。
 
 ---
 
-## 4. P の計測
+## 4. 使用価値と交換価値の計測
+
+### 使用価値
+
+使用価値は、resource が実際の A / transformation をどのように可能にし、期間内でどの程度効用を実現したかという側から計測する。
+
+物理的 stock 量は時点観測できるが、主体にとっての効用量は stock だけから一意に決まらない。限界効用の逓減等を考えると、使用価値の効用量は利用・消費・充足を含む期間 flow から評価する。
+
+具体的な効用関数、代替可能性、用途分類は projection ごとに定める。
+
+### 交換価値
+
+交換価値は、resource を他の resource / money との比較関係から共通尺度へ写像して計測する。
+
+時点 stock を共通尺度化・比較評価した量は exchange-value representation とする。
+
+```text
+use / realization over interval
+        → use-value measurement
+
+comparison / valuation at a point
+        → exchange-value measurement
+```
+
+使用価値と交換価値の二重表現を説明する際に複式簿記をアナロジーとして用いうるが、借方・貸方や会計恒等式を普遍的認知構造として仮定しない。
+
+---
+
+## 5. P の計測
 
 `P_i` は subjective evaluation / expectation state である。
 
@@ -48,11 +78,13 @@ K の完全観測は前提としない。resource coordinates と観測単位は
 
 shared P は複数主体の P proxy の共通性・整合性・分布として推定する。客観的な社会価値の真値は仮定しない。
 
+加工・変換によって同一由来資源の利用可能性が変わり、実現使用価値が変化した場合、その結果認識は P_i の更新を引き起こしうる。
+
 P proxy が price / market outcome と同時決定される場合は、endogeneity / post-treatment / outcome leakage を区別する。
 
 ---
 
-## 5. A と ΔK の観測
+## 6. A と ΔK の観測
 
 A は生産、消費、交換、投資、労働、移転、契約、政策等の actor-side process / event である。
 
@@ -68,22 +100,22 @@ physical flow / ΔK
 
 ---
 
-## 6. P/L：physical flow の monetary measurement
+## 7. P/L：physical / use-value flow の monetary measurement
 
 P/L が表現する対象は期間中の physical / economic flow である。
 
 ```text
-physical activity / ΔK
-        ↓ monetary measurement μ
+physical / use-value activity
+        ↓ exchange / monetary measurement μ
 P/L entries
 ```
 
-P/L statement 自体は通貨単位で記録されるが、対象は期間中の生産・消費・労働・減耗・交換等である。
+P/L statement 自体は通貨単位で記録されるが、その対象は期間中の生産・消費・労働・減耗・交換等である。
 
 計測では少なくとも、
 
 - recognition timing
-- monetary measurement / valuation
+- monetary / exchange-value measurement
 - revenue / expense classification
 - internal transaction treatment
 - accounting boundary
@@ -92,13 +124,15 @@ P/L statement 自体は通貨単位で記録されるが、対象は期間中の
 
 ---
 
-## 7. B/S：abstract monetary stock
+## 8. B/S：exchange-value stock representation
 
 B/S は actor-specific capital stock / position を通貨単位で表現する。
 
 ```text
 B/S_i(t) ≡ K_i,t
 ```
+
+このため B/S は exchange-value を stock として保持する代表的な制度表現とみなせる。
 
 P/L と B/S は同じ monetary unit により接続する。
 
@@ -112,13 +146,17 @@ B/S K_i(t+1)
 
 ---
 
-## 8. surplus の計測
+## 9. surplus の計測
 
-surplus は、指定 accounting boundary で P/L 上の monetary amounts を aggregation / consolidation / offset rule に従って合算した period increment / residual として測る。
+surplus は、physical / use-value side の単なる物理増分ではない。
+
+input / output 等を exchange-value の共通尺度へ写像し、指定 accounting boundary で aggregation / consolidation / offset rule に従って比較した period increment / residual として測る。
 
 ```text
-P/L books
-  ↓ consolidation / aggregation
+physical / use-value flow
+  ↓ exchange-value measurement
+P/L monetary amounts
+  ↓ comparison / aggregation
 surplus / deficit
 ```
 
@@ -138,7 +176,7 @@ surplus の帰属・留保・分配は、次期 B/S 上の `K_i` へ接続する
 
 ---
 
-## 9. E[ΔK]
+## 10. E[ΔK]
 
 `E_i[ΔK]` は expected realized resource change であり、desire / preference / plan とは区別する。
 
@@ -152,7 +190,7 @@ E_i[ΔK(S,τ) | a, I_i]
 
 ---
 
-## 10. 3つの管理合理性の計測
+## 11. 3つの管理合理性の計測
 
 3則は VFT の constitutive rationality assumptions とする。
 
@@ -160,44 +198,45 @@ E_i[ΔK(S,τ) | a, I_i]
 
 ---
 
-## 11. Marxian projection の計測
+## 12. Marxian projection の計測
 
-- use-value：K がどの A / transformation を可能にするか
+- use-value：期間内の利用・効用実現
 - labor measure：labor activity / labor time
 - Marxian labor-value：socially necessary labor time 等の追加条件を伴う specialization
-- exchange-value / price：market / monetary valuation
-- generic surplus：P/L aggregation による monetary increment
+- exchange-value / price：market / monetary comparison
+- generic surplus：exchange-value に写像された input / output 等の差分
 - Marxian surplus value：Marx 固有の追加制約を含む specialization
 
 generic labor time と Marxian value、generic surplus と Marxian surplus valueを同一視しない。
 
 ---
 
-## 12. ミクロ／マクロ集約
+## 13. ミクロ／マクロ集約
 
-ミクロとマクロは、同じ physical K と、その activity を monetary measurement した P/L、および B/S 上の `K_i` を異なる scope で観測・集約することで接続する。
+ミクロとマクロは、同じ physical K と、その activity / use-value flow を exchange-value / monetary measurement した representation、および B/S 上の `K_i` を異なる scope で観測・集約することで接続する。
 
-micro-to-macro reconstruction では、ownership / attribution、valuation、accounting boundary、consolidation、shared P aggregation の情報損失を明示する。
+主体ごとの帳簿自体が共通化されることは仮定しない。micro-to-macro reconstruction では、financial reporting / statistical transformation、ownership / attribution、valuation、accounting boundary、shared P aggregation の情報損失を明示する。
 
 ---
 
-## 13. 実証上の原則
+## 14. 実証上の原則
 
 少なくとも以下を明示する。
 
 1. K の resource coordinates
 2. A の event unit / ordering
 3. ΔK の観測単位
-4. monetary measurement / valuation rule
-5. P/L recognition / classification
-6. B/S ownership / attribution / recognition
-7. K_i の book-value rule
-8. P / shared P の proxy
-9. E[ΔK] の推定法
-10. surplus の accounting boundary / consolidation rule
-11. 3則の empirical specification
-12. micro / macro aggregation rule
-13. 欠測・測定誤差・情報損失
+4. use-value の期間・効用 proxy
+5. exchange-value / monetary measurement rule
+6. P/L recognition / classification
+7. B/S ownership / attribution / recognition
+8. K_i の book-value rule
+9. P / shared P の proxy
+10. E[ΔK] の推定法
+11. surplus の accounting boundary / comparison rule
+12. 3則の empirical specification
+13. micro / macro reporting / aggregation rule
+14. 欠測・測定誤差・情報損失
 
 ---
 
