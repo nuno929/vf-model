@@ -204,17 +204,19 @@ VFT では消費と供給を別の存在論として置かない。
 
 ---
 
-## 11. 最適化機能の分離
+## 11. 3つの管理合理性への整理
 
-経済学への射影を検討する中で、個人・企業・国家を別種の存在として定義するより、**同じ K / P / A ontology 上で異なる最適化機能を分離する**方が一般的だと整理した。
+経済・組織への射影を検討する中で、個人・企業・国家を別種の存在として定義するより、**同じ K / P / A ontology 上で管理合理性を3則へ集約する**方が一般的だと整理した。
 
-候補となる3機能は、
+現行の3則は、
 
-1. resource-realization：望む／見込む `ΔK` の実現へ向けて A を選ぶ
-2. activity-flow：K / P 配置を再構成して持続可能な A-flow を最大化する
+1. resource-realization：P / expectation のもとで、望ましい resource change の実現へ向けて A を動かす
+2. activity-flow：K / P 配置を再構成して持続可能な A-flow を維持・拡張する
 3. P-downside：主体群の P の大幅な負側・悪化側を抑えるよう K / A を配分する
 
 である。
+
+この3則は、各 actor が厳密な数理最適化を行うことを経験的に証明した命題ではなく、**VFT 上で管理合理性を記述するための基本前提**として置く。`R_i` / `F_f` / `L_g^-` のような具体的 objective function、制約、時間 horizon は projection-specific な数理化であり、3則そのものとは区別する。
 
 この整理では、企業の利益は activity-flow から生じる resource/accounting outcome の一面であり、短期赤字を伴う投資・採用・R&D・市場獲得等を例外扱いせず、将来 A-flow の拡張として読める。
 
@@ -222,7 +224,7 @@ VFT では消費と供給を別の存在論として置かない。
 
 ### 自給自足から制度的分業へ
 
-3機能は actor type ではないため、市場・企業・国家が存在しない自給自足でも、単一 actor が全部を担える。
+3則は actor type ではないため、市場・企業・国家が存在しない自給自足でも、単一 actor が全部を担える。
 
 ```text
 single actor
@@ -231,7 +233,7 @@ single actor
   └─ P-downside
 ```
 
-したがって自給自足を市場経済の例外として置く必要はなく、むしろ最適化機能がまだ制度的に分業されていない最小形として記述できる。
+したがって自給自足を市場経済の例外として置く必要はなく、むしろ3つの管理合理性がまだ制度的に分業されていない最小形として記述できる。
 
 資本主義では概ね、
 
@@ -241,9 +243,15 @@ firms       -> activity-flow
 state       -> P-downside
 ```
 
-へ重点が分化した制度形態として読む候補が生じた。
+へ重点が分化した制度形態として読める。
 
-これは現行 Core の普遍法則ではなく、Core ontology 上の explanatory projection として整理している。
+また、実行・中間管理・統治に相当する階層的な機能分化は長期にわたる組織制度で反復して観察される。VFT はその三階層自体を新規に発見するのではなく、既知の階層構造の管理合理性を3則へ還元して共通記述する。
+
+### 既存経済学との関係
+
+標準的な utility maximization は resource-realization を utility によってスカラー化した特殊射影、profit maximization は activity-flow の特殊射影として整理した。
+
+需給均衡は第4の管理則ではなく、複数主体の resource-realization から生じる planned resource change `x_i` の compatibility として扱う。`E_i[ΔK]` は forecast であるため、需給調整を expectation と realized change の一致最大化そのものとは置かない。
 
 ---
 
@@ -291,7 +299,7 @@ K の state / resource change は `ΔK(S,τ)`、P の change / state transition 
 
 必要な quantitative projection では `q_S : D_S -> V_S` を定め、`E_i[ΔK(S,τ)]` を `E_i[q_S(ΔK(S,τ))]` の略記として使う。必要な economic projection では A に含まれる planned / chosen resource change を補助的に `x_i` と記述できる。
 
-独立した X / V、普遍的な A 選択関数、P 更新関数、期待形成関数、compatibility 条件、独自の均衡式、3最適化機能の具体的 objective function は Core に置かない。
+独立した X / V、普遍的な A 選択関数、P 更新関数、期待形成関数、compatibility 条件、独自の均衡式は Core に置かない。また、3つの管理合理性を数量化する具体的 objective function / constraints / horizon も Core には固定しない。
 
 ---
 
