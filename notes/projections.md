@@ -14,7 +14,7 @@ VFT の経済射影では、
 
 を区別する。
 
-field は K / K_i / P_i と関係・制約がつくる action-generating configuration として扱う。
+field は K / K_i / P_i と projection-specified relations / constraints がつくる action-generating configuration として扱う。
 
 ---
 
@@ -24,15 +24,33 @@ field は K / K_i / P_i と関係・制約がつくる action-generating configu
 
 ### use-value
 
-VFT の use-value quantity は resource stock 自体ではなく、期間内の利用・消費・充足を通じて実現した効用量とする。
+VFT の use-value quantity は resource stock 自体ではなく、**主体が interval 内に resource を実際に利用・消費し、その体験として ex post に realized した主観的効用量**とする。
 
-physical stock / capability は K として時点観測できるが、限界効用逓減等により stock 量だけから realized utility は一意に決まらない。
+physical stock / capability は K として時点観測できるが、それは use-value quantity そのものではない。
+
+同じ主体・同じ resource・同じ利用量でも、充足状態、順序、文脈、他の経験等によって realized utility は変わりうるため、一般的な再現性を仮定しない。
+
+したがって use-value quantity は interval を持たない point-in-time stock としては定義しない。
+
+```text
+actual use over τ=(t0,t1]
+        ↓
+subjective experience
+        ↓
+realized use-value U^use_i(τ)
+        ↓
+P_i update
+```
+
+時点 `t` で直接参照できる use-value は前区間までの realized flow である。将来区間の use-value はまだ実現しておらず、P_i 上の expectation としてのみ表現される。
 
 ### exchange-value
 
 resource を他の resource / money との比較関係から共通尺度へ写像した representation とする。
 
 exchange-value は point-in-time position にも interval transaction valuation にも現れうるため、stock 専用とはしない。
+
+したがって use-value / exchange-value と stock / flow を完全な一対一対応とはしない。ただし **VFT-specific use-value quantity は interval realization としてのみ扱う**。
 
 異質な resource stock を共通交換尺度で比較・集計した評価は exchange-value representation に属する。
 
@@ -82,7 +100,23 @@ P_i は belief / expectation、preference / valuation、trust / reputation、nor
 
 `E_i[ΔK | a, I_i]` は P_i の belief / expectation component と情報集合から導出される action-contingent forecast とする。
 
-加工・変換後の changed use possibilities / realized use-value は P_i 更新を引き起こしうる。
+use-value については、
+
+```text
+previous realized use-value
+        ↓
+P_i,t update
+        ↓
+expectation about future use
+        ↓
+A / actual use
+        ↓
+next realized use-value
+```
+
+という時間方向を取る。
+
+加工・変換は resource の利用可能性を変えるが、加工後 use-value quantity は加工時点で確定せず、後続 interval の実利用体験で初めて realized する。
 
 ---
 
@@ -125,9 +159,9 @@ field は action-generating configuration とする。
 business entity は **一定の目的・機能に向けた A を継続的に誘発・再生産する局所 field structure** として記述できる。
 
 ```text
-起業           = 新しい field formation
-新規事業開発   = 既存 field から新しい field を形成・分岐
-既存事業運営   = 成立済み field の維持・再生産・改善
+起業           = business-oriented field formation の一類型
+新規事業開発   = 既存 field から business-oriented field を形成・分岐
+既存事業運営   = 成立済み business field の維持・再生産・改善
 ```
 
 この定義では営利企業、NPO、協同組合、公共事業、国家・自治体の事業等を同じ型で扱える。
@@ -165,13 +199,15 @@ compatibility / market equilibrium / accounting consistency / steady state は�
 
 VFT は use-value / labor / exchange-value / surplus / accumulation を一般化構造上で保持する。
 
-- use-value：期間内に realized した utility / use
+- VFT-specific use-value quantity：主体が interval 内の実利用体験を通じて ex post に realized した主観的効用量
 - labor measure：labor activity / labor time
 - Marxian labor-value：socially necessary labor time 等の追加条件を持つ specialization
 - exchange-value / price：resource 間の comparison / market / monetary valuation
 - generic surplus：exchange-value 上の差分 / residual
 - Marxian surplus value：Marx 固有条件を持つ specialization
 - accumulation：surplus 等の帰属・留保・分配による K_i の変化
+
+VFT-specific use-value quantity と Marxian use-value は自動的に同一視しない。
 
 ---
 
@@ -181,7 +217,7 @@ VFT は use-value / labor / exchange-value / surplus / accumulation を一般化
 micro
 field_i -> A_i -> resource activity
               -> ΔK
-              -> realized use-value -> P_i update
+              -> realized use-value over interval -> P_i update
               -> exchange valuation -> K_i update
 
                      ↓ external reporting / aggregation where needed
@@ -204,7 +240,7 @@ field formation / dissolution
 2. actor set
 3. A の event unit / ordering
 4. ΔK の endpoint interval
-5. use-value の utility proxy / interval
+5. use-value の actor / realized interval / subjective proxy / reference timing
 6. exchange-value / valuation rule
 7. K_i の representation rule
 8. P / shared P の proxy
