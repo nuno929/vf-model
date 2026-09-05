@@ -130,7 +130,13 @@ Y_S(t) = M_S(K_t)
 ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1)) ∈ D_S
 ```
 
-と記述する。gross production / consumption / transaction volume 等の区間活動量は `ΔK` に含めず、必要な projection / measurement で `H_S(τ)` のような derived path functional として分離する。
+と記述する。gross production / consumption / transaction volume 等の区間活動量は `ΔK` に含めず、必要な projection / measurement で
+
+```text
+H_S(τ) = h_S((K_t)_{t in τ}, A_τ)
+```
+
+のような derived path functional として分離する。
 
 A は K / P を変化させる主要な actor-side process であるが、K の減価償却、自然損耗、災害等の非主体的変化もありうる。
 
@@ -192,13 +198,56 @@ VFT では消費と供給を別の存在論として置かない。
 
 前区間の資源変化と当期の主観状態側変化との相互作用を既存マクロ経済学へ接続することは、一つの射影候補であり、VFT がミクロ／マクロ一般の時間構造や集約則を定義するものではない。
 
-現行では、ミクロ／マクロで数学的に同一の `ΔK` 値型を要求せず、`ΔK(S, τ) ∈ D_S` という S-indexed state-change schema を共通の observation / accounting 接続面として用いる。gross flow / interval activity は必要に応じて `H_S` 側へ分離する。
+現行ではミクロとマクロを別 K として置かず、**同じ common K / K transition を異なる `S` から観測する**ことで存在論的に接続する。micro observable から macro observable を再構成する場合のみ aggregation / coarsening rule を追加する。
 
 また、Core の K / P と経済学上の real / nominal は同一視せず、real / nominal は射影先でのみ用いる。
 
 ---
 
-## 11. 生成構造と計測の分離
+## 11. 最適化機能の分離
+
+経済学への射影を検討する中で、個人・企業・国家を別種の存在として定義するより、**同じ K / P / A ontology 上で異なる最適化機能を分離する**方が一般的だと整理した。
+
+候補となる3機能は、
+
+1. resource-realization：望む／見込む `ΔK` の実現へ向けて A を選ぶ
+2. activity-flow：K / P 配置を再構成して持続可能な A-flow を最大化する
+3. P-downside：主体群の P の大幅な負側・悪化側を抑えるよう K / A を配分する
+
+である。
+
+この整理では、企業の利益は activity-flow から生じる resource/accounting outcome の一面であり、短期赤字を伴う投資・採用・R&D・市場獲得等を例外扱いせず、将来 A-flow の拡張として読める。
+
+国家については、P の真値を直接観測できず、支持率、失業、犯罪、景況感、出生、健康、移住、市場指標等の異質な proxy 間に普遍的加法則がないため、aggregate P の直接最大化より P-downside minimization の方が operational な形として現れやすい、と整理した。
+
+### 自給自足から制度的分業へ
+
+3機能は actor type ではないため、市場・企業・国家が存在しない自給自足でも、単一 actor が全部を担える。
+
+```text
+single actor
+  ├─ resource-realization
+  ├─ activity-flow
+  └─ P-downside
+```
+
+したがって自給自足を市場経済の例外として置く必要はなく、むしろ最適化機能がまだ制度的に分業されていない最小形として記述できる。
+
+資本主義では概ね、
+
+```text
+individuals -> resource-realization
+firms       -> activity-flow
+state       -> P-downside
+```
+
+へ重点が分化した制度形態として読む候補が生じた。
+
+これは現行 Core の普遍法則ではなく、Core ontology 上の explanatory projection として整理している。
+
+---
+
+## 12. 生成構造と計測の分離
 
 Core は、概念的には
 
@@ -210,7 +259,7 @@ K_t, (P_i,t)_i
 K_t1, (P_i,t1)_i
 ```
 
-という時間構造を記述する。
+という actor-side channel の時間構造を記述する。
 
 一方、実証ではすべてを直接観測できるわけではない。
 
@@ -222,7 +271,7 @@ P proxy が価格・金利・信用条件等の market outcome である場合�
 
 ---
 
-## 12. 現行 Core
+## 13. 現行 Core
 
 現在の最小構造は、
 
@@ -242,7 +291,7 @@ K の state / resource change は `ΔK(S,τ)`、P の change / state transition 
 
 必要な quantitative projection では `q_S : D_S -> V_S` を定め、`E_i[ΔK(S,τ)]` を `E_i[q_S(ΔK(S,τ))]` の略記として使う。必要な economic projection では A に含まれる planned / chosen resource change を補助的に `x_i` と記述できる。
 
-独立した X / V、普遍的な A 選択関数、P 更新関数、期待形成関数、compatibility 条件、独自の均衡式は Core に置かない。
+独立した X / V、普遍的な A 選択関数、P 更新関数、期待形成関数、compatibility 条件、独自の均衡式、3最適化機能の具体的 objective function は Core に置かない。
 
 ---
 
