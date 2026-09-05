@@ -20,6 +20,8 @@ K は共通の実資源世界を参照する。
 
 したがって、同じ設備、情報、インフラ、信用制度等が複数主体の `K_i` に関係しうるが、資源自体が主体ごとに複製されたことを意味しない。
 
+本理論でいう resource は物的資源に限定されない。情報、権利、資格、契約、制度状態、金融請求権等、外部に実在し行使・利用・参照可能で actor の行為可能性に関係する状態も K に含みうる。
+
 K の候補指標には、利用可能な現金残高、行使可能な金融請求権、受取可能額、earning capacity、設備・在庫・インフラ、時間、人員、技能、知識、情報、利用可能な信用枠、権限・アクセス可能な手段等がある。
 
 期間所得そのものは通常 flow であり、K の stock/state と同一視しない。期間中に実現した所得受取は state transition または interval activity として扱い、受取可能な請求権や earning capacity 等を K 側へ置く。
@@ -31,6 +33,18 @@ K の候補指標には、利用可能な現金残高、行使可能な金融請
 ## 3. P の計測
 
 `P_i` は主体 `i` の将来の見通し・評価・選好・信用・信念等を保持する多次元の subjective evaluation / expectation state である。
+
+P は一つの未分化スカラーではなく、少なくとも概念上は異なる型の成分を含みうる。
+
+```text
+P_i
+├─ epistemic / belief-like components
+├─ evaluative / preference-like components
+├─ relational / trust-like components
+└─ other projection-specific components
+```
+
+これは独立 primitive を増やす意味ではない。projection ごとに P のどの成分を観測・推定・意思決定へ使うかを区別するための型整理である。
 
 他主体 `a` について主体 `j` が保持する評価・信用・見通し等を区別する必要がある場合は、`P_j(a)` と書く。これは `a` 自身の P ではなく、評価者 `j` の主観状態である。
 
@@ -210,6 +224,14 @@ Core は `q_S` の具体形、`E_i` に対応する確率測度・情報集合�
 
 `E[...]` は主体が形成する見込み値・期待値を表し、主体の望みそのものではない。選好・望ましさ・評価は P に保持され、期待形成や A に影響しうる。
 
+候補 action を比較する quantitative projection では、必要に応じて
+
+```text
+E_i[ΔK(S, τ) | A = a, I_i]
+```
+
+のような action-contingent forecast を用いる。`I_i` は projection-specific な情報集合である。P 内の belief / outlook は forecast を形成する内部状態の一部となりうるが、`E_i[ΔK | A=a]` は特定の `(S,τ,a)` に対して数量化された予測であり、P 自体とは区別する。
+
 ---
 
 ## 9. 集約と共通 K
@@ -254,27 +276,54 @@ p · x_i <= 0
 
 ## 11. 3つの管理合理性を扱う計測
 
-resource-realization / activity-flow / P-downside の3則は、VFT 上で管理合理性を記述するための基本前提として扱う。したがって、計測の目的は「3則そのものが存在するか」を毎回実証することではない。
+resource-realization / activity-flow / P-downside の3則は、VFT 上の**意思決定合理性の公理系**として扱う。計測の目的は「3則そのものが存在するか」を毎回実証することではなく、3則を前提に構成した具体的な decision model がどのように働くかを観測することにある。
 
-経験的に扱うのは、各 projection / 組織 / 制度で、3則がどの actor によってどのように遂行・分担・重複され、その結果どのような A / K / P / H / ΔK が生じるかである。
+各 actor は3則を同時に考慮しうる。経験的に扱うのは、actor / context / institution / role / time horizon によって、**3則の比重・優先順位・分業がどう変わるか**、candidate action がどの future trajectory を誘導し、その結果どの A / K / P / H / ΔK が生じるかである。
 
-quantitative model を置く場合は、3則そのものと、その具体的数理化を分離する。例えば `R_i` / `F_f` / `L_g^-` のような objective functional を導入する場合、それらの関数形・制約・時間 horizon は projection-specific であり、観測・比較の対象になる。
+必要な quantitative projection では、例えば
 
-少なくとも以下を明示する。
+```text
+w_i,c = (w_R, w_F, w_D)
+```
 
-1. 各管理合理性を担う actor / actor set
-2. 具体的な objective / outcome proxy を置く場合の observable
-3. feasible set / constraints
-4. 対象時間窓
-5. 予測・評価する A / K / P / H / ΔK の変化
-6. 管理機能の分担・重複・conflict
-7. 代替的な objective / organizational arrangement との比較条件
+のような context-dependent priority / weight を導入できる。ただし線形加重和や `Σw=1` を普遍的に仮定しない。lexicographic priority、constraint、threshold 等でもよい。
 
-企業型の activity-flow を扱う際、profit は outcome / objective proxy の一つであって activity-flow rule 自体と同一視しない。短期損失を伴う投資・採用・R&D・市場獲得等が将来 A-flow をどう変えるかを別途観測する。
+具体的な意思決定モデルでは、少なくとも
 
-国家・governance 型の P-downside を扱う際、異質な P proxy 間に普遍的な加法則を仮定しない。支持率・失業・犯罪・景況感・出生・健康・移住・市場指標等が何の P 次元を代理するかを固定し、downside 判定を事前定義する。
+```text
+current K / P
+    + candidate action a
+          ↓
+induced / expected future trajectory
+(K', P', H, ΔK, ...)
+          ↓
+R1 / R2 / R3 に照らした evaluation
+          ↓
+decision
+```
 
-既存の管理階層と VFT 三則の関係を研究する場合は、三階層の存在そのものを検証対象にするのではなく、**各階層で3則がどう遂行・分担・重複し、その管理成果とどう関係するか**を比較する。
+という関係を明示する。
+
+少なくとも以下を事前に固定する。
+
+1. actor / actor set と context
+2. 3則の priority / weight / constraint の操作化
+3. candidate action / feasible set
+4. action-contingent future state / trajectory の予測方法
+5. resource-realization の outcome proxy
+6. activity-flow の `H_S` 等の path / flow proxy
+7. P-downside の対象 P 次元、threshold / loss / viability criterion
+8. 対象時間窓
+9. 管理機能の分担・重複・conflict
+10. 代替 decision model / organizational arrangement との比較条件
+
+企業を扱う際、profit は activity-flow を評価する accounting / performance 指標の一つであって R2 そのものではない。特に going-concern の文脈で profit が sustained activity と整合するかを確認する。短期損失を伴う投資・採用・R&D・市場獲得等が将来 A-flow をどう変えるかを別途観測する。
+
+P-downside を扱う際、R3 の根拠を「P proxy が異質だから」に還元しない。R3 は、P 側の毀損が将来の A の成立や組織・制度・社会の viability を壊すことを防ぐ管理合理性として扱う。異質な P proxy 間に普遍的加法則を仮定せず、誰のどの P 次元を対象にするか、downside / threshold / viability criterion を事前定義する。
+
+国家レベルの資本主義社会を粗視化する場合、individual / firm / state に R1 / R2 / R3 の主たる比重が概ね分化して見えることがある。ただしこれは固定的な actor-type assignment ではなく、文脈依存の制度的分業として扱う。
+
+既存の管理階層と VFT 三則の関係を研究する場合も、三階層の存在そのものを検証対象にするのではなく、**各階層で3則の比重・遂行・分担・重複がどう変わり、その管理成果とどう関係するか**を比較する。
 
 ---
 
@@ -295,12 +344,13 @@ compatibility 自体も VFT Core から自動導出されるものではなく�
 
 P が観察後の residual state にならないよう、各 projection / empirical model では少なくとも以下を観測・推定前に固定する。
 
-1. 採用する P の次元
+1. 採用する P の次元と型
 2. 各次元の observable / proxy
 3. proxy admissibility
 4. P と A / E[ΔK] の mapping
-5. 検証対象となる事前予測または識別条件
-6. 代替説明と比較する基準
+5. action-contingent forecast を使う場合の conditioning / information set
+6. 検証対象となる事前予測または識別条件
+7. 代替説明と比較する基準
 
 観察された A の差を説明するために事後的に任意の P 次元や proxy を追加することは避ける。
 
@@ -357,10 +407,17 @@ rights / contract / credit conditions in K
 19. 集約・会計・換算規則
 20. 欠測・測定誤差
 21. expectation operator / 推定方法
-22. 3則を quantitative model へ落とす場合の projection-specific objective / constraints / horizon
-23. compatibility を扱う場合の予算制約・価格・取引条件
-24. market equilibrium と呼ぶ場合の choice / optimality / clearing 条件
-25. P の採用次元と事前固定した検証条件
-26. 他者評価を扱う場合の評価者 `j` と評価対象 `a` の区別
+22. action-contingent forecast を使う場合の information set / conditioning
+23. 3則を decision model へ落とす場合の context-dependent priority / weight / constraints / horizon
+24. candidate actions と induced future trajectory の対応
+25. compatibility を扱う場合の予算制約・価格・取引条件
+26. market equilibrium と呼ぶ場合の choice / optimality / clearing 条件
+27. P の採用次元と事前固定した検証条件
+28. 他者評価を扱う場合の評価者 `j` と評価対象 `a` の区別
 
-目的は、**state change `ΔK`、interval activity `H_S`、subjective state `P_i`、planned change `x_i`、expected realized change `E_i[ΔK]`、3つの管理合理性、および各 projection が追加する具体的 objective を混同せず、観測・会計・因果上の位置を明示すること**にある。
+目的は、**state change `ΔK`、interval activity `H_S`、subjective state `P_i`、planned change `x_i`、expected realized change `E_i[ΔK]`、3つの管理合理性、および各 projection が追加する具体的 decision rule を混同せず、観測・会計・因果上の位置を明示すること**にある。
+
+---
+
+© T. Nuno  
+Licensed under CC BY 4.0
