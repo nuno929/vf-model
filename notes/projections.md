@@ -10,27 +10,37 @@ VFT の経済射影では、
 - `K_i`：actor-specific exchange-value / capital representation
 - `P_i`：structured subjective state
 - `A_i`：actor-side action / process / event
-- `ΔK`：endpoint resource-state change
+- `ΔK_τ := δ_K(K_t0,K_t1)`：projection-defined endpoint resource-state difference
+- `ΔK̂_i(a;I_i)`：generic action-contingent forecast
 
 を区別する。
 
-field は K / K_i / P_i と projection-specified relations / constraints がつくる action-generating configuration として扱う。
+field は K / K_i / P_i と projection-specified relations / constraints から導かれる action-generating configuration として扱う。
+
+必要な projection では、
+
+```text
+F_t := configuration(...)
+Γ_i(F_t) := feasible / inducible action correspondence
+```
+
+という derived notation を使える。
 
 ---
 
 ## 2. 使用価値 / 交換価値
 
-同一 resource は use-value side と exchange-value side の二重表現を持ちうる。
+同一 resource について、physical capability / realized use experience / exchange-value representation を区別する。
 
 ### use-value
 
-VFT の use-value quantity は resource stock 自体ではなく、**主体が interval 内に resource を実際に利用・消費し、その体験として ex post に realized した主観的効用量**とする。
+VFT の use-value quantity は resource stock 自体ではなく、**主体が interval 内に resource を実際に利用・消費し、その経験に帰属される形で ex post に realized した主観的効用量**とする。
 
 physical stock / capability は K として時点観測できるが、それは use-value quantity そのものではない。
 
-同じ主体・同じ resource・同じ利用量でも、充足状態、順序、文脈、他の経験等によって realized utility は変わりうるため、一般的な再現性を仮定しない。
+同じ主体・同じ resource・同じ利用量でも、充足状態、順序、文脈、他の経験等によって realized outcome は変わりうるため、一般的な再現性や interval 間の加法性を仮定しない。
 
-したがって use-value quantity は interval を持たない point-in-time stock としては定義しない。
+したがって use-value quantity は interval-indexed outcome として定義する。
 
 ```text
 actual use over τ=(t0,t1]
@@ -42,7 +52,11 @@ realized use-value U^use_i(τ)
 P_i update
 ```
 
-時点 `t` で直接参照できる use-value は前区間までの realized flow である。将来区間の use-value はまだ実現しておらず、P_i 上の expectation としてのみ表現される。
+時点 `t` で参照できる use-value は前区間までの realized outcome である。将来区間の use-value はまだ realized しておらず、P_i 上の expectation としてのみ表現される。
+
+瞬間 rate を必要とする projection では、interval quantity の極限・微分的表現として導入できるが、point-in-time stock valuation とは扱わない。
+
+この interval-indexed な時間形式を P/L-like と呼びうるが、会計上の P/L entry と同一視しない。
 
 ### exchange-value
 
@@ -56,7 +70,7 @@ exchange-value は point-in-time position にも interval transaction valuation 
 
 ### accounting analogy
 
-use / exchange の二重表現は複式簿記を想起させるが、あくまで説明上のアナロジーである。
+physical capability / realized use experience / exchange-value representation を別々に保持する多面的記述は会計的表現を想起させるが、借方・貸方や複式簿記との対応を意味しない。
 
 ---
 
@@ -80,6 +94,19 @@ valuation-only events ────────┘
 
 帳簿そのものは actor-specific であり、財務報告・連結・統計は別の external representation とする。
 
+### valuation の境界
+
+```text
+P_i valuation
+= subjective desirability / appraisal / belief-side evaluation
+
+K_i valuation
+= exchange-value representation under specified
+  recognition / comparison / unit-of-account / valuation rules
+```
+
+と区別する。
+
 ---
 
 ## 4. 契約・制度・金融資産
@@ -98,7 +125,21 @@ valuation-only events ────────┘
 
 P_i は belief / expectation、preference / valuation、trust / reputation、norm recognition 等を含む structured subjective state とする。
 
-`E_i[ΔK | a, I_i]` は P_i の belief / expectation component と情報集合から導出される action-contingent forecast とする。
+Core の generic forecast は、
+
+```text
+ΔK̂_i(a;I_i)
+```
+
+とし、P_i の belief / expectation component と情報集合から導出される action-contingent forecast とする。
+
+確率・因果構造を採用する projection では、例えば、
+
+```text
+ΔK̂_i(a;I_i) = E_i[ΔK | do(a),I_i]
+```
+
+のように具体化してよい。
 
 use-value については、
 
@@ -120,17 +161,27 @@ next realized use-value
 
 ---
 
-## 6. A / ΔK
+## 6. A / ΔK / exogenous change
 
-A は生産、消費、交換、投資、労働、移転、契約、政策、探索、学習等の event history を持つ。
+A は生産、消費、交換、投資、労働、移転、契約、政策、探索、学習等の actor-side event history を持つ。
 
-`ΔK` は endpoint state change とする。
+`ΔK` は projection-defined endpoint resource-state difference とする。
 
 ```text
-ΔK_[t0,t1] = K_t1 - K_t0
+ΔK_τ := δ_K(K_t0,K_t1)
 ```
 
+additive vector projection では、
+
+```text
+δ_K(K_t0,K_t1) = K_t1 - K_t0
+```
+
+と specialize できる。
+
 したがって gross activity と ΔK は別概念であり、gross activity は A history から読む。
+
+A を通らない K change が必要な projection では、自然劣化、災害、偶発故障等を `Ω_τ` などの exogenous / environmental process として追加する。
 
 ---
 
@@ -138,17 +189,21 @@ A は生産、消費、交換、投資、労働、移転、契約、政策、探
 
 surplus は physical primitive ではない。
 
-physical / use-value activity の input / output 等を exchange-value の比較可能尺度へ写像し、その差分を recognition / accounting boundary の下で集計したときに成立する。
+指定された economic changes を exchange-value の比較可能尺度へ写像し、その差分を specified comparison boundary の下で集計したときに成立する。
 
 ```text
-physical / use-value activity
-   ↓ exchange-value valuation
+specified economic changes
+   ↓ exchange-value representation
 comparable values
-   ↓ comparison / accounting
+   ↓ comparison under specified boundary
 surplus / deficit
 ```
 
-surplus の attribution / retention / distribution は次期 K_i を変える。
+production projection では physical / use activity の input / output が主対象になりうる。一方、accounting projection では contract / financial events や valuation-only events を含みうる。
+
+production surplus / accounting profit / income / valuation gain / wealth change は Core で同一視しない。
+
+surplus の attribution / retention / distribution は次期 K_i を変えうる。
 
 ---
 
@@ -178,7 +233,11 @@ profit / surplus は business existence の定義条件ではなく、exchange-v
 
 3則は constitutive rationality assumptions とする。
 
+resource-realization は resource / capital outcome だけでなく、resource の利用による desired realized-use outcome を含む。
+
 activity-flow は既存 activity の継続だけでなく、必要に応じた field formation / renewal を含みうる。
+
+P-downside は P 全体の universal ordering を意味しない。projection-specific な P component と threshold / loss / viability criterion を指定して、将来の action-generating viability の重大な劣化を定義する。
 
 profit / utility は3則の特殊化ではなく、projection-specific metric / objective / proxy とする。
 
@@ -188,7 +247,7 @@ profit / utility は3則の特殊化ではなく、projection-specific metric / 
 
 ```text
 x_i              = planned / chosen resource change
-E_i[ΔK | a,I_i]  = expected endpoint resource-state change
+ΔK̂_i(a;I_i)     = generic action-contingent forecast
 ```
 
 compatibility / market equilibrium / accounting consistency / steady state は別概念とする。
@@ -203,7 +262,7 @@ VFT は use-value / labor / exchange-value / surplus / accumulation を一般化
 - labor measure：labor activity / labor time
 - Marxian labor-value：socially necessary labor time 等の追加条件を持つ specialization
 - exchange-value / price：resource 間の comparison / market / monetary valuation
-- generic surplus：exchange-value 上の差分 / residual
+- generic surplus：指定 boundary と exchange-value scale 上の差分 / residual
 - Marxian surplus value：Marx 固有条件を持つ specialization
 - accumulation：surplus 等の帰属・留保・分配による K_i の変化
 
@@ -215,10 +274,10 @@ VFT-specific use-value quantity と Marxian use-value は自動的に同一視�
 
 ```text
 micro
-field_i -> A_i -> resource activity
-              -> ΔK
-              -> realized use-value over interval -> P_i update
-              -> exchange valuation -> K_i update
+field_i -> Γ_i(F_t) -> A_i -> resource activity
+                         -> ΔK
+                         -> realized use-value over interval -> P_i update
+                         -> exchange valuation -> K_i update
 
                      ↓ external reporting / aggregation where needed
 
@@ -239,18 +298,20 @@ field formation / dissolution
 1. K の resource coordinates
 2. actor set
 3. A の event unit / ordering
-4. ΔK の endpoint interval
-5. use-value の actor / realized interval / subjective proxy / reference timing
-6. exchange-value / valuation rule
-7. K_i の representation rule
-8. P / shared P の proxy
-9. E[ΔK] の推定法
-10. institutional state が必要な場合の追加定義
-11. accounting projection の recognition / identity rule
-12. surplus の comparison / attribution / distribution
-13. field / business continuity の proxy
-14. Marxian specialization の追加条件
-15. micro / macro reporting / aggregation rule
+4. `δ_K` の endpoint difference rule
+5. exogenous K change を扱う場合の `Ω` 等の定義
+6. use-value の actor / realized interval / subjective proxy / attribution / reference timing
+7. exchange-value / valuation rule
+8. K_i の representation rule
+9. P / shared P の proxy
+10. generic forecast `ΔK̂` の推定・specialization
+11. institutional state が必要な場合の追加定義
+12. accounting projection の recognition / identity rule
+13. surplus の対象 economic changes / comparison / attribution / distribution
+14. field / business continuity / inducibility の proxy
+15. P-downside の viability criterion
+16. Marxian specialization の追加条件
+17. micro / macro reporting / aggregation rule
 
 ---
 
