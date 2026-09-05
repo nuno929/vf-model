@@ -17,22 +17,41 @@ Core では、K は physical / real-resource state、`K_i` は B/S 上の actor-
 
 ---
 
-## 2. P/L と B/S
+## 2. 使用価値 / 交換価値
 
-P/L は期間中の physical / economic flow の monetary representation、B/S は actor-specific monetary stock representation とする。
+同一 resource の use-value / exchange-value 二重表現を採る。
 
 今後の検討候補：
 
-- physical flow → monetary measurement `μ`
+- use-value の期間効用 proxy
+- 限界効用逓減をどこまで明示的に置くか
+- substitute / complement を含む用途・代替可能性
+- physical stock と realized use-value flow の関係
+- exchange-value の比較尺度
+- use-value stock を共通尺度化した場合に exchange-value representation へ移る境界
+- 複式簿記アナロジーの適用範囲
+
+複式簿記は説明アナロジーに留め、借方・貸方や会計恒等式を Core の認知公理とはしない。
+
+---
+
+## 3. P/L と B/S
+
+P/L は期間中の physical / economic flow の monetary representation、B/S は actor-specific exchange-value / monetary stock representation とする。
+
+今後の検討候補：
+
+- physical / use-value flow → exchange / monetary measurement `μ`
 - recognition timing
 - P/L classification
 - P/L closing → B/S の接続
 - capital transaction / dividend / revaluation と period profit の分離
-- consolidation / elimination rule
+- actor-specific ledger と external financial reporting の関係
+- macro statistical transformation / aggregation
 
 ---
 
-## 3. ΔK
+## 4. ΔK
 
 `ΔK` は physical K に実現した resource change とし、bookkeeping entry とは区別する。
 
@@ -46,9 +65,9 @@ P/L は期間中の physical / economic flow の monetary representation、B/S �
 
 ---
 
-## 4. surplus / accumulation
+## 5. surplus / accumulation
 
-surplus は指定 accounting boundary で P/L monetary amounts を aggregation / consolidation した period increment / residual とする。
+surplus は physical primitive ではなく、exchange-value の共通尺度へ写像した input / output 等の差分を accounting boundary 内で計量した period increment / residual とする。
 
 今後の検討候補：
 
@@ -57,12 +76,15 @@ surplus は指定 accounting boundary で P/L monetary amounts を aggregation /
 - surplus / profit / income / wealth change の関係
 - surplus attribution / retention / distribution
 - surplus → B/S K_i → capital accumulation の動学
+- exchange-value recognition が surplus に与える差
 
 ---
 
-## 5. P と shared P
+## 6. P と shared P
 
 P は subjective evaluation / expectation state とし、shared P は actor set 上の共通性・整合性・分布として推定する。
+
+加工・変換による K の利用可能性・使用価値変化が、実現結果を通じて P_i を更新する経路を持つ。
 
 今後の検討候補：
 
@@ -71,10 +93,11 @@ P は subjective evaluation / expectation state とし、shared P は actor set 
 - shared P の推定
 - market outcome を proxy に用いる際の endogeneity
 - 契約・制度への履行・執行期待
+- use-value expectation と realized use-value の更新関係
 
 ---
 
-## 6. 3つの管理合理性公理
+## 7. 3つの管理合理性公理
 
 3則は constitutive rationality assumptions とする。
 
@@ -88,23 +111,23 @@ P は subjective evaluation / expectation state とし、shared P は actor set 
 
 ---
 
-## 7. Marxian projection
+## 8. Marxian projection
 
 VFT は Marxian categories を一般化構造上に載せるが、Marx 固有理論は追加条件を持つ specialization とする。
 
 今後の検討候補：
 
-- use-value の機能表現
+- use-value の期間効用表現
 - labor activity / labor time
 - socially necessary labor time の定義
 - direct / indirect labor
 - exchange-value / price との接続
-- Marxian surplus value と generic accounting surplus の差
+- Marxian surplus value と generic exchange-value surplus の差
 - reproduction / accumulation の formalization
 
 ---
 
-## 8. action-contingent forecast
+## 9. action-contingent forecast
 
 `E_i[ΔK(S,τ) | a,I_i]` の `|a` は action-contingent forecast の略記とする。
 
@@ -116,31 +139,33 @@ VFT は Marxian categories を一般化構造上に載せるが、Marx 固有理
 
 ---
 
-## 9. ミクロ／マクロ
+## 10. ミクロ／マクロ
 
 今後の検討候補：
 
-- micro physical flow → macro physical aggregate
-- P/L consolidation
+- micro physical / use-value flow → macro physical aggregate
+- actor-specific ledger → reporting / statistical representation
+- aggregate exchange-value increment / surplus
 - B/S capital distribution
 - ownership concentration
 - shared P と macro demand / investment / credit の関係
-- policy A → P_i → A_i → physical flow → P/L → B/S の識別
+- policy A → P_i → A_i → physical flow → exchange-value measurement → B/S の識別
 
 ---
 
-## 10. 実証・計量化
+## 11. 実証・計量化
 
 - physical K / ΔK measurement
+- use-value flow measurement
+- exchange-value measurement
 - P/L event log
 - B/S K_i measurement
 - ownership / attribution measurement
 - P / shared P proxy
 - surplus / accumulation measurement
 - labor-time measurement
-- use-value capability measurement
 - 3則の projection-specific estimation
-- micro / macro accounting consistency
+- micro / macro reporting consistency
 
 ---
 
