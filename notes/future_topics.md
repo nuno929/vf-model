@@ -6,10 +6,19 @@
 
 Core では、K は real-resource / capability state、K_i は actor-specific exchange-value / capital representation とする。
 
+時間関連 coordinate は、
+
+- calendar time `t`：model index
+- available time budget / remaining workable capacity：K_t coordinate
+- actual labor time / hours worked during `τ`：A / labor measure
+
+と区別する。
+
 今後の検討候補：
 
 - K の標準 resource / capability coordinates
 - physical resource と capability coordinate の境界
+- available-time resource / labor-capacity coordinate の形式化
 - ownership / holding / attribution の形式化
 - joint ownership / overlapping attribution
 - K_i の vector / object representation
@@ -61,6 +70,8 @@ E_e^shared
 ```
 
 `E^shared` は derived view であり universal state primitive ではない。
+
+実際に投入された labor time / hours worked も、必要な labor projection では A / labor measure の interval activity とする。
 
 今後の検討候補：
 
@@ -196,7 +207,7 @@ Core では business actor と business field を別型として扱う。
 
 ```text
 business actor / organization = actor i
-business field F^biz          = recurring business activity を再生産する local field
+business field F^biz          = actor-resource transformation / exchange / service / beneficiary relation 等を反復可能にする local field
 business                      = F^biz を中心とする activity system
 ```
 
@@ -222,24 +233,26 @@ profit maximization は business existence の普遍定義とはしない。
 
 ## 10. 3つの管理合理性公理
 
-3則は constitutive rationality assumptions とする。
+resource-realization / activity-flow / P-downside の3公理は、VFT の management / decision rationality における必須構成条件とする。
 
-Core では各 dimension を `Ŷ_i,t(a;I_i,t)` の outcome components と projection-specific comparison / admissibility rules に接続し、`Γ_i^adm` を形成する段階へ置く。
+Core では3公理すべてを `Ŷ_i,t(a;I_i,t)` の outcome components と projection-specific comparison / admissibility rules に接続し、`Γ_i^adm` を形成する段階へ置く。
+
+3公理の評価・判断・実行は単一 actor に集中する必要はなく、複数 actor、役割、組織階層、制度へ分業・分散してよい。
 
 今後の検討候補：
 
-- 独立性・完備性・最小性
-- 第4の独立合理性が必要になる条件
+- 3公理の独立性・最小性・非還元性
+- 第4の独立公理が必要になる条件
 - resource / capital / realized-use outcome の関係
 - objective / priority / weight / constraint / threshold
 - P-downside の loss / viability functional
 - activity-flow と field formation の関係
-- dimension ごとの exclusion condition
+- 各公理の exclusion / comparison rule
 - dominance / admissibility rule の候補
 - empirical falsifiability
 - actor / institution / hierarchy 間の機能分担
 
-「axiom / constitutive assumption」という名称自体の再検討は、独立性・排除条件の形式化後に行う。
+公理として置くこと自体は維持し、今後の検討対象はその具体的 operationalization、独立性、非還元性とする。
 
 ---
 
@@ -276,6 +289,8 @@ Core では各 dimension を `Ŷ_i,t(a;I_i,t)` の outcome components と projec
 ## 13. 実証・計量化
 
 - real-resource / capability K measurement
+- available time / labor-capacity measurement
+- actual labor-time interval measurement
 - projection-defined `δ_K` measurement
 - `Γ^feas` / `Γ^avail` / `Γ^adm` operationalization
 - actor-side A records
@@ -292,8 +307,9 @@ Core では各 dimension を `Ŷ_i,t(a;I_i,t)` の outcome components と projec
 - exchange-value residual / surplus measurement
 - business actor / business field boundary measurement
 - field continuity / formation proxy
+- 3公理それぞれの operationalization
+- actor / role 間の rationality-function division of labor
 - P-downside viability criterion estimation
-- rationality-dimension exclusion rule estimation
 - labor-time measurement
 - micro / macro reporting consistency
 
