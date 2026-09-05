@@ -2,102 +2,168 @@
 
 > この文書は Core 定義ではなく、今後の展望・具体化候補・再検討事項を保存する。
 
-## 1. K と K_i
+## 1. K / K_i
 
-Core では、K は physical / real-resource state、`K_i` は B/S 上の actor-indexed book-value capital position とする。
+Core では、K は physical / real-resource state、K_i は actor-specific exchange-value / capital representation とする。
 
 今後の検討候補：
 
 - K の標準 resource coordinates
 - ownership / holding / attribution の形式化
 - joint ownership / overlapping attribution
-- recognition / valuation rule
-- book value / market value / replacement value の差
+- K_i の vector / object representation
+- book value / market value / replacement value の関係
 - financial asset / liability position の表現
+
+K_i を B/S そのものとは定義しない。formal accounting projection での実装境界は別途検討する。
 
 ---
 
-## 2. 使用価値 / 交換価値
+## 2. use-value / exchange-value
 
 同一 resource の use-value / exchange-value 二重表現を採る。
 
 今後の検討候補：
 
-- use-value の期間効用 proxy
+- realized use-value の utility proxy
 - 限界効用逓減をどこまで明示的に置くか
-- substitute / complement を含む用途・代替可能性
-- physical stock と realized use-value flow の関係
-- exchange-value の比較尺度
-- use-value stock を共通尺度化した場合に exchange-value representation へ移る境界
+- substitute / complement / use category
+- physical stock / capability と realized utility の接続
+- exchange-value の comparison scale
+- exchange-value の point-in-time / interval representation
 - 複式簿記アナロジーの適用範囲
 
-複式簿記は説明アナロジーに留め、借方・貸方や会計恒等式を Core の認知公理とはしない。
+use-value / exchange-value と stock / flow を完全な一対一対応とはしない。
 
 ---
 
-## 3. P/L と B/S
+## 3. A / ΔK
 
-P/L は期間中の physical / economic flow の monetary representation、B/S は actor-specific exchange-value / monetary stock representation とする。
+`ΔK` は endpoint resource-state change とする。
+
+```text
+ΔK_[t0,t1] = K_t1 - K_t0
+```
 
 今後の検討候補：
 
-- physical / use-value flow → exchange / monetary measurement `μ`
+- heterogeneous K coordinates の差分定義
+- A event history と gross activity の表現
+- production / consumption / depreciation / depletion の event semantics
+- exogenous change の分離
+- partial observability
+
+独立した gross-flow primitive は Core に置かない。
+
+---
+
+## 4. P / forecast
+
+P は structured subjective state とする。
+
+今後の検討候補：
+
+- belief / expectation
+- preference / valuation
+- trust / reputation
+- norm recognition
+- shared P の推定
+- market outcome を proxy に用いる際の endogeneity
+- use-value expectation と realized use-value の更新関係
+- `E_i[ΔK | a,I_i]` の causal semantics
+
+必要なら P の内部 component を projection-specific に明示するが、Core primitive の分割は必須としない。
+
+---
+
+## 5. institutional / legal state
+
+契約・制度・法的権利関係を physical K に押し込まない。
+
+今後の検討候補：
+
+- `C_t` 等の projection-local institutional state
+- contract / claim / legal status の event/state representation
+- enforcement / default / recognition
+- institutional state → P / A / K_i への作用
+
+Core の普遍 primitive とする必要性は未確定。
+
+---
+
+## 6. accounting projection
+
+P/L・B/S・複式簿記は Core の普遍因果層ではなく formal accounting projection とする。
+
+今後の検討候補：
+
+- physical/resource events
+- contract / financial events
+- valuation-only events
 - recognition timing
-- P/L classification
-- P/L closing → B/S の接続
-- capital transaction / dividend / revaluation と period profit の分離
-- actor-specific ledger と external financial reporting の関係
-- macro statistical transformation / aggregation
+- ledger state
+- P/L / B/S identities
+- actor-specific ledger と external reporting の関係
+- consolidation / elimination
+- statistical transformation
 
 ---
 
-## 4. ΔK
+## 7. surplus / accumulation
 
-`ΔK` は physical K に実現した resource change とし、bookkeeping entry とは区別する。
-
-今後の検討候補：
-
-- heterogeneous resource coordinates の表現
-- gross flow と endpoint net change の関係
-- production / consumption / depreciation / depletion のイベント表現
-- ΔK の partial observability
-- physical flow と P/L entry の対応
-
----
-
-## 5. surplus / accumulation
-
-surplus は physical primitive ではなく、exchange-value の共通尺度へ写像した input / output 等の差分を accounting boundary 内で計量した period increment / residual とする。
+surplus は physical primitive ではなく、exchange-value の比較可能尺度上で成立する差分 / residual とする。
 
 今後の検討候補：
 
-- accounting boundary
+- comparison / accounting boundary
+- recognition timing
 - internal transfer elimination
 - surplus / profit / income / wealth change の関係
 - surplus attribution / retention / distribution
-- surplus → B/S K_i → capital accumulation の動学
-- exchange-value recognition が surplus に与える差
+- K_i accumulation dynamics
+- valuation rule が surplus に与える差
 
 ---
 
-## 6. P と shared P
+## 8. field
 
-P は subjective evaluation / expectation state とし、shared P は actor set 上の共通性・整合性・分布として推定する。
-
-加工・変換による K の利用可能性・使用価値変化が、実現結果を通じて P_i を更新する経路を持つ。
+field は action-generating configuration とする。
 
 今後の検討候補：
 
-- P の標準次元
-- belief / valuation / preference / trust / norm expectation
-- shared P の推定
-- market outcome を proxy に用いる際の endogeneity
-- 契約・制度への履行・執行期待
-- use-value expectation と realized use-value の更新関係
+- field boundary
+- actor-resource graph / relation structure
+- action inducibility / feasibility の formalization
+- field stability / resilience
+- field formation / dissolution
+- multiple overlapping fields
+- organization / business / market / institution の field representation
+
+独立 scalar V や物理学的 field を自動的に仮定しない。
 
 ---
 
-## 7. 3つの管理合理性公理
+## 9. business / entrepreneurship
+
+business entity は、一定の目的・機能に向けた A を継続的に誘発・再生産する局所 field structure とする。
+
+今後の検討候補：
+
+- business boundary
+- recurring action set
+- activity continuity
+- resource replenishment
+- participant / customer / beneficiary relations
+- field formation threshold
+- 起業と新規事業開発の識別
+- existing-business optimization と field formation の差
+- NPO / public business / state business への適用
+
+profit maximization は business existence の普遍定義とはしない。
+
+---
+
+## 10. 3つの管理合理性公理
 
 3則は constitutive rationality assumptions とする。
 
@@ -106,63 +172,49 @@ P は subjective evaluation / expectation state とし、shared P は actor set 
 - 独立性・完備性・最小性
 - 第4の独立合理性が必要になる条件
 - projection-specific objective / priority / weight / constraint / threshold
+- activity-flow と field formation の関係
 - actor / institution / hierarchy 間の機能分担
-- empirical falsifiability の設計
+- empirical falsifiability
 
 ---
 
-## 8. Marxian projection
-
-VFT は Marxian categories を一般化構造上に載せるが、Marx 固有理論は追加条件を持つ specialization とする。
+## 11. Marxian projection
 
 今後の検討候補：
 
-- use-value の期間効用表現
+- realized use-value と Marxian use-value の関係
 - labor activity / labor time
-- socially necessary labor time の定義
+- socially necessary labor time
 - direct / indirect labor
-- exchange-value / price との接続
-- Marxian surplus value と generic exchange-value surplus の差
-- reproduction / accumulation の formalization
+- exchange-value / price
+- generic surplus と Marxian surplus value の差
+- reproduction / accumulation
 
 ---
 
-## 9. action-contingent forecast
-
-`E_i[ΔK(S,τ) | a,I_i]` の `|a` は action-contingent forecast の略記とする。
+## 12. ミクロ／マクロ
 
 今後の検討候補：
 
-- causal semantics が必要な場合の `ΔK^a` 等への拡張
-- observational expectation との識別
-- scenario / qualitative forecast との接続
-
----
-
-## 10. ミクロ／マクロ
-
-今後の検討候補：
-
-- micro physical / use-value flow → macro physical aggregate
+- micro A histories → macro physical aggregate
+- K_i distribution / capital concentration
+- shared P と macro demand / investment / credit
 - actor-specific ledger → reporting / statistical representation
-- aggregate exchange-value increment / surplus
-- B/S capital distribution
-- ownership concentration
-- shared P と macro demand / investment / credit の関係
-- policy A → P_i → A_i → physical flow → exchange-value measurement → B/S の識別
+- field formation / dissolution の macro dynamics
+- policy A → field / P / K / K_i への経路
 
 ---
 
-## 11. 実証・計量化
+## 13. 実証・計量化
 
 - physical K / ΔK measurement
-- use-value flow measurement
+- A event history
+- realized use-value measurement
 - exchange-value measurement
-- P/L event log
-- B/S K_i measurement
-- ownership / attribution measurement
+- K_i measurement
 - P / shared P proxy
 - surplus / accumulation measurement
+- field continuity / formation proxy
 - labor-time measurement
 - 3則の projection-specific estimation
 - micro / macro reporting consistency
