@@ -25,7 +25,24 @@
 
 ---
 
-## 3. P
+## 3. 使用価値 / 交換価値の二重表現
+
+同一 resource は、主体にとって use-value side と exchange-value side の二重表現を持ちうる。
+
+- use-value：何に、どのように利用でき、期間内でどの程度効用を実現するか
+- exchange-value：他の resource / money とどの程度交換可能かを比較尺度へ写像した量
+
+使用可能な physical stock 自体は時点観測できるが、その stock 量だけから効用量は一意に決まらない。限界効用の逓減等により、使用価値の効用量は期間中の利用・消費・充足との関係で評価される。
+
+一方、exchange-value は比較可能な共通尺度へ写像されることで stock / position として表現できる。
+
+使用価値を時点 stock として共通尺度化・比較評価した場合、その表現は exchange-value 側へ移ったものとして扱う。
+
+この二重性は複式簿記を想起させるが、複式簿記はあくまで説明上のアナロジーであり、借方・貸方や会計恒等式を全主体の認知構造として仮定しない。
+
+---
+
+## 4. P
 
 P は主体ごとの subjective evaluation / expectation state とする。
 
@@ -33,9 +50,11 @@ P はどれだけ共有されても主観状態であり、shared P は複数主
 
 契約・制度についても、法的 event / record、主体の履行・執行期待 P、実現した economic effect を分離する。
 
+また、同一由来の resource でも加工・変換結果により利用可能性・使用価値が変わる。この実現結果が、主体の「どの A がどの利用可能状態を生むか」という期待を更新し、P_i の変化につながる。
+
 ---
 
-## 4. ΔK と会計の分離
+## 5. ΔK と会計の分離
 
 途中では ΔK records 自体を「一般化された仕訳」と表現したが、これは physical change と accounting representation を混同しうるため撤回した。
 
@@ -44,8 +63,8 @@ P はどれだけ共有されても主観状態であり、shared P は複数主
 ```text
 physical K
    ↓ A
-physical flow / ΔK
-   ↓ monetary measurement
+physical / use-value flow / ΔK
+   ↓ exchange / monetary measurement
 P/L entries
    ↓ closing / attribution / distribution
 B/S K_i
@@ -57,25 +76,32 @@ B/S K_i
 
 ---
 
-## 5. P/L / B/S / surplus
+## 6. P/L / B/S / surplus
 
 P/L が表現する対象は期間中の physical / economic flow、B/S が表現する対象は actor-specific monetary capital stock / position である。
 
-両者は同じ abstract monetary unit によって接続する。
+この意味で、
 
-surplus は physical primitive ではなく、指定 accounting boundary で P/L monetary amounts を aggregation / consolidation した period increment / residual とする。
+- use-value realization は flow-oriented / P/L-like
+- exchange-value position は stock-oriented / B/S-like
 
-surplus の attribution / retention / distribution は次期 B/S の `K_i` を変える。
+と整理できる。
+
+帳簿そのものは actor-specific であり、主体ごとに recognition / valuation / bookkeeping が異なりうる。財務報告・統計は帳簿そのものではなく、そこから外部向けに構成される別 representation である。
+
+surplus は physical primitive ではなく、physical / use-value flow を exchange-value の共通尺度へ写像し、input / output 等を比較したときに成立する period increment / residual とする。
+
+したがって余剰は単なる物理的増加ではない。resource の物理的存在だけでは、use-value / exchange-value / surplus は一意に決まらない。
 
 ---
 
-## 6. 金融資産
+## 7. 金融資産
 
 預金、債券、売掛債権等は、それを成立させる契約・法的権利関係そのものを K とせず、会計上認識・評価された financial asset position として B/S 上の `K_i` に置く。
 
 ---
 
-## 7. 3つの管理合理性
+## 8. 3つの管理合理性
 
 resource-realization / activity-flow / P-downside の3則は、経験的普遍法則ではなく VFT の constitutive rationality assumptions とする。
 
@@ -83,7 +109,7 @@ resource-realization / activity-flow / P-downside の3則は、経験的普遍�
 
 ---
 
-## 8. Marxian categories
+## 9. Marxian categories
 
 VFT が一般化して保持するのは、use-value / labor / exchange-value / surplus / accumulation の区別である。
 
@@ -91,24 +117,20 @@ Marx 固有の labor-value theory や surplus-value theory は socially necessar
 
 ---
 
-## 9. 現行最小構造
+## 10. 現行最小構造
 
 ```text
 K_t, (K_i,t)_i, (P_i,t)_i
           ↓
         (A_i)_i
           ↓
-physical activity / ΔK
-          ↓ monetary measurement
-        P/L
-          ↓ aggregation / closing / attribution
-surplus / deficit, (K_i,t+1)_i
-
-realized outcomes
-          ↓
+physical / use-value activity / ΔK
+          ↓ realized use-value
        P_i update
-          ↓
-       next A_i
+          ↓ exchange / monetary measurement
+        P/L
+          ↓ comparison / closing / attribution
+surplus / deficit, (K_i,t+1)_i
 ```
 
 ---
