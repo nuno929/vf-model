@@ -150,15 +150,17 @@ Y_S(t1) = Y_S(t0) + ΔK(S, τ)
 
 と書ける。`K_t1 = K_t0 + ΔK` は、さらに `M_S = id` で K 自体が同じ加法空間にある特殊ケースに限る。
 
+一般形では、始点と終点の state representation が同じ場合の `δ_S(y,y)` を no-change descriptor とみなす。**加法的な在庫 projection では**、生産 100・消費 100 で在庫が元に戻る場合 `ΔK(S,τ)=0` となる。
+
 一方、gross production、gross consumption、transaction volume、resource transformation 等の**区間活動量・flow statistic** は `ΔK` へ含めない。必要な projection / measurement で、例えば
 
 ```text
-H_S(τ) = h_S((K_t)_{t in τ}, (A_t)_{t in τ})
+H_S(τ) = h_S((K_t)_{t in τ}, A_τ)
 ```
 
-のような derived path functional として分離する。`H_S` は Core の primitive / state ではなく、区間 path から導出する観測・会計量である。
+のような derived path functional として分離する。`A_τ` 自体が区間内の actor-side event / process を保持し、必要なら event ordering を保持する。`H_S` は Core の primitive / state ではなく、区間 path から導出する観測・会計量である。
 
-このため、生産 100・消費 100 で在庫が元に戻る場合、在庫についての `ΔK` は 0 でも、production / consumption を表す `H_S` はそれぞれ 100 と記録できる。
+上の加法的在庫例でも、production / consumption を表す `H_S` はそれぞれ 100 と記録できる。
 
 `ΔP_i` も一般には算術差ではなく、主体 `i` の P に実現した change descriptor / state transition を表す。非加法的な場合には少なくとも
 
@@ -186,7 +188,9 @@ A_(t0,t1]
 (K_t1, P_t1)
 ```
 
-と置く。これは因果・時間順序を示す typing であり、普遍的な状態遷移関数を意味しない。K には減価償却・老朽化・自然消耗・災害等、A を介さない変化もありうる。P にも記憶減衰等の微小・非主体的変化はありうるが、必要な応用でのみ扱う。
+と置く。これは **actor-side channel の因果・時間順序を示す typing** であり、普遍的な状態遷移関数を意味しない。
+
+K には減価償却・老朽化・自然消耗・災害等、A を介さない変化もありうる。P にも記憶減衰等の微小・非主体的変化はありうるが、これらは上の actor-side channel 図に含めず、必要な応用で扱う。
 
 P と A の時間的・因果的関係を検証する projection で、`A_(t0,t1]` 内の情報受容・解釈等が途中で P を更新し、その後の decision / action に影響する場合は、**区間を分割するか event ordering を保持する**。
 
@@ -257,13 +261,44 @@ p · x_i <= 0
 
 この compatibility 自体も economic projection 側の条件であり、VFT Core から自動的に導出されるものではない。これを標準的な意味で market equilibrium と呼ぶためには、さらに射影先の経済理論が choice / optimality / best response / market-clearing 等の追加条件を与える必要がある。
 
-### 会計整合とミクロ／マクロの接続面
+### 会計整合とミクロ／マクロの共通 K 接続
 
 会計恒等式と主体間整合・市場均衡は区別する。
 
 対象 scope の state change は `ΔK`、gross production / consumption / transaction volume 等の区間活動量は `H_S` として分けて会計的に対応づける。
 
-主体レベルの state change と interval activity を、共通の `S` / `τ` / accounting rule のもとで市場・産業・社会・マクロ観測へ接続できるが、これはミクロからマクロを自動導出する普遍的 aggregation law を意味しない。
+VFT ではミクロとマクロを別の資源世界として置かない。両者は **同じ common K と同じ K transition を異なる `S` から記述したもの**である。micro observable から macro observable を再構成する場合のみ、projection-local な aggregation / coarsening rule を追加する。
+
+### 機能的最適化則の候補
+
+Core は主体種別ごとの普遍的選択則を固定しない。その上で、経済・社会 projection では以下の3つを **functional optimization hypothesis** として分離できる。
+
+1. **resource-realization function**：主体は、自らの P と期待のもとで、望む／見込む `ΔK` の実現へ向けて A を選ぶ。
+2. **activity-flow function**：主体は、K / P の配置を再構成し、持続可能な A-flow を最大化する。
+3. **P-downside function**：主体群の P の大幅な負側・悪化側を抑えるよう、K / A を配分・調整する。
+
+概念的には、projection-local objective を用いて
+
+```text
+resource-realization:
+A_i* ∈ argmax_A R_i(A ; P_i, E_i[ΔK])
+
+activity-flow:
+(K_f*, P_f*) ∈ argmax_(feasible K_f,P_f) F_f(A-flow | K_f, P_f)
+
+P-downside:
+A_g* ∈ argmin_A L_g^-(P ; observable proxies)
+```
+
+のように書ける。`R_i` / `F_f` / `L_g^-` は Core primitive ではなく、各 projection が具体化する objective functional である。
+
+この3つは「個人・企業・国家」という ontological actor type ではなく**最適化機能**である。自給自足では単一 actor が3機能をすべて担いうる。資本主義では、概ね個人が resource-realization、企業が activity-flow、国家が P-downside を重点的に担う制度的分業として記述できる。
+
+企業の利益は A-flow から生じる resource/accounting outcome の一面であり、短期的な資源減少を伴う投資・採用・R&D・市場獲得も、将来 A-flow の拡張として説明できる。この意味で activity-flow hypothesis は単純な短期 profit maximization より広い。
+
+国家については P の真値を直接観測できず、異質な proxy 間に普遍的加法則がないため、aggregate P の直接最大化よりも、明確に識別できる負側・悪化側を抑える downside rule の方が operational に置きやすい。上方の改善は個人・企業の分散的最適化へ委ねられうる。
+
+これらは現段階では Core の普遍法則ではなく、**同一 actor 内にも制度的分業にも適用できる explanatory projection** として扱う。
 
 ### 評価・信用経済への射影可能性
 
@@ -284,8 +319,6 @@ rights / contract / credit conditions in K
 ```
 
 公開レビュー・rating はアクセス可能な情報として K、主体 `j` が主体 `a` に対して形成する評価・信用は `P_j(a)`、その結果として `a` に実際に付与された信用枠・請求権・契約上の権利等は K / `K_a` として区別する。
-
-これは現時点では VFT Core の普遍則ではなく、VFT の共通状態表現を用いた projection / empirical modeling の候補である。
 
 ### 期待変化の集約と余剰
 
@@ -320,6 +353,8 @@ P proxy の admissibility では少なくとも、
 
 `ΔK` / `ΔP` は A の結果 proxy として利用できる場合があるが、複数の A が相殺・重複しうるため、A を一意に同定する量ではない。gross activity を観測する場合は `H_S` 等の path functional と state change `ΔK` を区別する。
 
+機能的最適化則を検証する場合は、どの actor がどの機能を担うか、objective の proxy、制約集合、時間窓、代替仮説を事前に固定する。法人格や制度上の名称だけで個人則・企業則・国家則を自動的に割り当てない。
+
 実証では projection ごとに、P の採用次元、observable / proxy、A への mapping、`q_S`、観測前に固定する予測・検証条件を明示する。観察後に任意の P 差を追加して A を説明することは避ける。
 
 ---
@@ -344,6 +379,7 @@ P proxy の admissibility では少なくとも、
 - `q_S` の普遍的定義
 - `E[ΔK]` の普遍的な形成式・確率測度
 - `H_S` 等の区間活動量の普遍的定義
+- functional optimization hypothesis の具体的 objective / constraint
 - inter-agent compatibility の普遍的条件
 - market equilibrium の普遍的 choice / optimality / clearing 条件
 - ミクロ／マクロの具体的均衡・調整過程
