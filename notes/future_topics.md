@@ -19,9 +19,9 @@ Core では、K は共通の実資源世界、`K_i` は主体ごとの access / 
 
 ## 2. K と K_i の表現粒度
 
-K は共通の実資源世界である。
+K は共通の実資源世界である。本理論でいう resource は物的資源に限られず、外部に実在し行使・利用・参照可能な情報、権利、資格、契約、制度状態、金融請求権等を含みうる。
 
-`K_i` は集合論的な部分集合に限定せず、共通 K に含まれる資源・権利・資格・契約・制度状態等から導かれる actor-relative access / usability view とする。
+`K_i` は集合論的な部分集合に限定せず、共通 K に含まれる条件から導かれる actor-relative access / usability view とする。
 
 今後の検討候補：
 
@@ -40,20 +40,32 @@ K は共通の実資源世界である。
 
 P は主体ごとの subjective evaluation / expectation state として Core で定義済みである。
 
+概念上は、
+
+```text
+P_i
+├─ epistemic / belief-like components
+├─ evaluative / preference-like components
+├─ relational / trust-like components
+└─ other projection-specific components
+```
+
+のような内部型を区別できる。これは独立 primitive を増やす意味ではない。
+
 他主体 `a` に対する主体 `j` の評価・信用・見通しは `P_j(a)` として区別できる。
 
 今後の検討候補：
 
 - P の標準次元を設けるか
 - belief-like / valuation-like / preference-like / credit-assessment-like substate の型区分
-- `P_i = (B_i, V_i, C_i, ...)` のような内部型を導入する必要性
+- `P_i = (B_i, V_i, C_i, ...)` のような内部表記を導入する必要性
 - 特定応用でどの期待・評価・信用・信念を抽出するか
 - P proxy の操作化
 - 同一 observable が K / P の両方に関係する場合の識別
-- 他主体・価格・将来条件についての期待をどの粒度で保持するか
+- P 内の general outlook / belief と、特定 `(S,τ,a)` に対する forecast の関係
 - projection ごとの P 次元を観測前に固定する方法
 
-独立した X 等を復活させず、P 一つのまま内部型を持たせる可能性を検討する。
+独立した X 等を復活させず、P 一つのまま内部型を持たせる方向を基本とする。
 
 ---
 
@@ -75,9 +87,7 @@ Y_S(t) = M_S(K_t)
 ΔK(S, τ) = δ_S(Y_S(t0), Y_S(t1)) ∈ D_S
 ```
 
-を用いる。`δ_S` は必ずしも算術差ではなく、加法的 quantitative projection の場合にのみ `δ_S(y0,y1)=y1-y0` とする。
-
-一般形で `Y_S(t0)=Y_S(t1)=y` の場合は `δ_S(y,y)` を no-change descriptor とみなす。数値ゼロを用いるのは加法的 quantitative projection に限る。
+を用いる。`δ_S` は必ずしも算術差ではなく、加法的 quantitative projection の場合にのみ通常の差分を用いる。
 
 `ΔP_i` も一般には算術差ではなく、P の change descriptor / state transition とする。
 
@@ -87,7 +97,7 @@ Y_S(t) = M_S(K_t)
 H_S(τ) = h_S((K_t)_{t in τ}, A_τ)
 ```
 
-のような derived path functional を使う。`A_τ` が区間内 event/process と必要な ordering を保持する。
+のような derived path functional を使う。
 
 今後の検討候補：
 
@@ -119,7 +129,15 @@ q_S : D_S -> V_S
 E_i[ΔK(S, τ)] := E_i[q_S(ΔK(S, τ))]
 ```
 
-と略記する。`q_S`、値空間 `V_S`、確率測度、情報集合、期待形成式の具体形は projection / measurement model 側で定める。
+と略記する。
+
+candidate action ごとの forecast が必要な場合は、
+
+```text
+E_i[ΔK(S, τ) | A=a, I_i]
+```
+
+のような action-contingent representation を使える。
 
 今後の検討候補：
 
@@ -128,55 +146,94 @@ E_i[ΔK(S, τ)] := E_i[q_S(ΔK(S, τ))]
 - expectation operator の確率測度・情報集合
 - planned resource change と expected realized resource change の区別
 - ex-ante feasible action / contingent plan と expected outcome の区別
+- action-contingent forecast の conditioning / causal semantics
 - state-wise / almost-sure feasibility
-- 期待対象となる消費・生産等の範囲
-- `S` / `S_i` / `τ`
 - 確率的期待値と定性的 forecast の接続
 - 実測可能な expectation survey 等との対応
-- 他主体の期待・行動についての予測が P にどう入るか
+- P 内の belief / outlook から特定 action forecast をどう生成するか
 - `E_i[ΔK]` と実現 `ΔK` の乖離分解
 
 ---
 
-## 6. 3つの基本管理合理性
+## 6. 3つの管理合理性公理
 
-VFT の管理・経済記述では、組織・制度を維持し行動を成立させる合理性を次の3則へ集約して扱う。
+VFT の管理・意思決定記述では、合理性を次の3則へ集約する。
 
-1. **resource-realization**：P / expectation のもとで、望ましい resource change の実現へ向けて A を動かす
-2. **activity-flow**：K / P の配置を再構成して持続可能な A-flow を維持・拡張する
-3. **P-downside**：主体群の P の大幅な負側・悪化側を抑えるよう K / A を配分・調整する
+1. **resource-realization**：望ましい resource outcome / state change の実現へ向けて A を動かす
+2. **activity-flow**：K / P / A の配置を調整し、必要な activity / process の流れを維持・拡張する
+3. **P-downside**：主体・組織・系の行動成立を阻害するほどの P の負側・毀損を抑える
 
-3則は「現実に厳密な目的関数最大化が行われていること」の実証命題ではなく、VFT 上で管理合理性を記述するための基本前提として扱う。
+3則は actor type ではなく、**意思決定合理性の公理系**である。同一 actor が3則を同時に考慮し、文脈・制度・役割・時間 horizon に応じて比重や優先順位が変わる。
 
-必要な quantitative projection では、例えば
+管理対象は概念的に、
 
 ```text
-A_i* ∈ argmax_A R_i(A ; P_i, E_i[ΔK])
-
-(K_f*, P_f*)
-  ∈ argmax_(feasible K_f,P_f)
-      F_f(A-flow | K_f, P_f)
-
-A_g* ∈ argmin_A L_g^-(P ; observable proxies)
+resource-realization -> outcome / resource-state realization
+activity-flow        -> process / activity continuity and expansion
+P-downside            -> viability / breakdown prevention on the P side
 ```
 
-のような objective functional を追加できる。`R_i` / `F_f` / `L_g^-` は3則そのものではなく projection-specific な数理化である。
+と区別する。
+
+必要な quantitative projection では、例えば context-dependent priority を
+
+```text
+w_i,c = (w_R, w_F, w_D)
+```
+
+と置き、candidate action `a` に対する各則の評価を `J_R(a)`, `J_F(a)`, `J_D(a)` として、
+
+```text
+A_i* ∈ argmax_{a ∈ feasible actions}
+       Φ_i(J_R(a), J_F(a), -J_D(a); w_i,c)
+```
+
+のような decision rule を置ける。`J_*` / `Φ_i` / `w_i,c` は3則そのものではなく projection-specific な数理化である。線形加重和や `Σw=1` は要求せず、lexicographic priority、constraint、threshold 等も候補となる。
+
+### 3則の形式的境界
+
+現行 VFT では outcome / process / viability の3対象を管理合理性の最小公理系として採用する。一方、形式的な独立性・完備性・最小性の証明は未了である。
 
 今後の検討候補：
 
-- resource-realization で「望ましい帰結」と「見込まれる帰結」を P と `E_i[ΔK]` にどう分離するか
-- `R_i` が P と `E_i[ΔK]` をどの型で参照するか
+- outcome / process / viability の3対象が相互にどう独立するか
+- 第4の独立した管理合理性が必要になる条件があるか
+- 3則の membership criterion / exclusion criterion
+- 同一 A が複数則に寄与するときの識別方法
+- 観察後に任意の則へ帰属させることを防ぐ事前分類条件
+- context-dependent weight / priority の同定可能性
+- weight、lexicographic priority、constraint、threshold の使い分け
+
+### resource-realization の具体化
+
+今後の検討候補：
+
+- 「望ましい帰結」と「見込まれる帰結」を P と `E_i[ΔK|A=a]` にどう分離するか
+- outcome valuation と action-contingent forecast の接続
+- utility 等を outcome valuation として使う場合の情報損失
+
+### activity-flow の具体化
+
+今後の検討候補：
+
 - A-flow を event count と同一視せず、`H_S` 等の path functional としてどう定義するか
 - sustainable A-flow の horizon / viability constraint
 - activity-flow と profit / revenue / throughput / market share の関係
 - 短期的な ΔK 悪化を許容する intertemporal 条件
-- P-downside の loss functional と downside の閾値
-- 異質な P proxy 間で加法則を仮定しない optimization の形式
+- going-concern と liquidation / asset stripping 等の区別
+
+### P-downside の具体化
+
+R3 は、P proxy の異質性だけから導入するものではなく、P 側の毀損が将来の A の成立や組織・制度・社会の viability を壊すことを防ぐ合理性として置く。
+
+今後の検討候補：
+
+- 誰のどの P を対象にするか
+- downside / unacceptable region の定義
+- loss functional / threshold / viability constraint の選択
+- 異質な P proxy 間で加法則を仮定しない形式
 - 個人間 P の比較可能性・加減算可能性の条件
-- 単一 actor が複数機能を同時に担う場合の trade-off
-- 機能分業が成立する条件
-- 機能間の conflict / coordination
-- 各機能に追加した projection-specific objective がどのような検証可能な予測を生むか
+- rights / minimum guarantee / satisficing / lexicographic constraint 等との関係
 
 ### 自給自足と制度的分業
 
@@ -189,54 +246,60 @@ single actor
   └─ P-downside
 ```
 
-資本主義では概ね、individual / firm / state に重点が分化する。
+国家レベルの資本主義社会を粗視化すると、典型的には
+
+```text
+individuals -> resource-realization heavy
+firms       -> activity-flow heavy
+state       -> P-downside heavy
+```
+
+と主たる比重が分化して見える。ただし固定的な actor-type assignment ではない。
 
 今後の検討候補：
 
+- actor/context ごとの3則 priority の推定
 - 自給自足 household / family unit で3則がどう遂行されるか
-- household production と firm production の境界
-- 市場形成前後で管理機能の分業がどう変わるか
+- 市場形成前後で比重・機能分担がどう変わるか
 - 資本主義以外の制度での分業パターン
 - 国家機能が弱い社会で P-downside を誰が担うか
 - cooperative / commune / family business の複合機能
+- 危機・成長・縮小局面で同一 actor の比重がどう変わるか
 
 ### マネジメント階層への再帰
 
-実行・中間管理・統治に相当する階層的な機能分化は、近代企業だけでなく長期にわたる組織制度で反復して観察される。VFT が新たに三階層の存在を予測するのではなく、**既知の階層的管理構造の合理性を3則へ還元して共通記述する**。
+実行・中間管理・統治に相当する階層的な機能分化は、近代企業だけでなく長期にわたる組織制度で反復して観察される。VFT が新たに三階層の存在を予測するのではなく、**既知の階層構造を3則の比重・分担の差として共通記述する**。
+
+典型的には、
 
 ```text
-operational / execution
-    -> resource-realization
-
-managerial
-    -> activity-flow
-
-governance
-    -> P-downside
+operational / execution -> resource-realization heavy
+managerial              -> activity-flow heavy
+governance              -> P-downside heavy
 ```
 
-- operational：与えられた `K_i / P_i` のもとで A を成立させ、望ましい resource change を具体化する
-- managerial：複数主体・複数時点の A を接続し、活動系列を維持するため K / P 配置を組み替える
-- governance：組織全体・長期・複数 stakeholder を対象に、許容不能な P の毀損やそれに伴う行動崩壊を抑える
-
-これは役職や組織図を固定する主張ではなく、小規模組織・owner-manager・自給自足では同一 actor に3則が重なり、規模や分業の進展に応じて管理対象が階層的に分化するという読みである。
+と読めるが、各層は他の2則も担いうる。
 
 今後の検討候補：
 
-- 実行・管理・統治の境界を actor / objective / time horizon のどこで定義するか
-- 管理層が individual resource-realization と organization-level activity-flow を同時に担う場合の conflict
-- governance 層の P-downside が従業員・顧客・株主・取引先等のどの P を対象にするか
-- 組織規模の拡大に伴う機能分化・再統合の条件
-- flat organization / owner-manager / family business で3則が重なる場合の記述
-- 同じ三階層構造が企業以外の行政・非営利・プロジェクト・共同体でどう現れるか
+- 実行・管理・統治の比重差を actor / objective / time horizon のどこで識別するか
+- 管理層が R1 / R2 / R3 を同時に担う場合の conflict
+- governance 層が対象とする P の scope
+- 組織規模の拡大に伴う機能分化・再統合
+- flat organization / owner-manager / family business の比重構造
+- 企業以外の行政・非営利・プロジェクト・共同体での比較
 
-### 既存経済学への特殊射影
+### 既存経済学の評価関数・調整機構との対応
 
-- utility maximization を resource-realization のスカラー化として扱える条件
-- profit maximization を activity-flow の十分な objective / proxy とみなせる条件
-- utility / profit への射影で失われる P / K / A-flow の情報
-- 需給調整を複数主体の planned change `x_i` の compatibility として記述する条件
-- 価格変化による `P_i -> x_i` の更新と market clearing の動学
+utility / profit は3則の特殊化そのものではなく、3則に基づく意思決定を数量化する評価関数・指標・proxy として扱う。
+
+今後の検討候補：
+
+- utility を R1 の outcome valuation として使う条件
+- profit / revenue / throughput を R2 の performance proxy として使う条件
+- utility / profit によるスカラー化で失われる P / K / A-flow の情報
+- 需給調整を planned change `x_i` 間の compatibility として記述する条件
+- 価格変化による `P_i -> A_i / x_i` の更新と market clearing の動学
 - forecast `E_i[ΔK]` と desire / planned change `x_i` を混同しない定式化
 
 ---
@@ -273,15 +336,15 @@ p · x_i <= 0
 - **会計整合**：同一事象の state change / interval activity を共通の会計境界・換算規則で記録した結果が収支上整合すること
 - **定常状態**：対象 K の増減が小さい等、別途定める状態条件
 
-compatibility 自体も Core からは導出されない。
+compatibility 自体も Core や3則から自動的には導出されない。
 
 ---
 
 ## 9. 分散的調整と「見えざる手」
 
-各主体が `K_i` / `P_i` のもとで budget-feasible な `x_i` を選び、価格・取引・信用等を介してその選択を修正することで、主体間の不整合が分散的に調整される可能性がある。
+各主体が `K_i` / `P_i` と文脈依存の3則 priority のもとで budget-feasible な `x_i` を選び、価格・取引・信用等を介してその選択を修正することで、主体間の不整合が分散的に調整される可能性がある。
 
-この構造を古典経済学の「神の見えざる手」へ射影することは可能だが、現時点では projection candidate であり、Core の確立済み主張ではない。
+この構造を古典経済学の「神の見えざる手」へ射影することは可能だが、現時点では projection candidate であり、Core の普遍的帰結ではない。
 
 ---
 
@@ -364,11 +427,9 @@ P → A の因果関係を検証する場合、A 区間内で情報受容・解�
 
 ## 14. 価値場の最小形式化
 
-現行 Core では、価値場を K / K_i / P の配置・関係が A を条件づける structural framework として定義し、独立した V や普遍的選択関数を置かない。
+現行 Core では、価値場を K / K_i / P の配置・関係が A を条件づける structural framework として定義し、独立した V や普遍的 deterministic choice function を置かない。
 
-したがって現時点の Core は、経験的選択則そのものより **ontology / modeling language / common state representation** としての性格が強い。
-
-今後、説明力・反証可能性のために最低限の形式化が必要になった場合は、例えば
+今後、説明力・操作化のために最低限の形式化が必要になった場合は、例えば
 
 ```text
 Γ_i(K_i, P_i) ⊆ 𝒜_i
@@ -376,11 +437,13 @@ P → A の因果関係を検証する場合、A 区間内で情報受容・解�
 
 のような action correspondence / admissible or plausible action set の導入を検討できる。
 
+3則はこの Core state representation の上で意思決定を方向づける公理系として扱い、具体的な `Γ_i` や decision rule との接続方法を projection ごとに定める。
+
 ---
 
 ## 15. P の反証可能性
 
-P が観察後の residual state にならないよう、projection / empirical model ごとに、採用する P 次元、proxy、proxy admissibility、A / E[ΔK] への mapping、事前予測・識別条件を観測前に固定する必要がある。
+P が観察後の residual state にならないよう、projection / empirical model ごとに、採用する P 次元・型、proxy、proxy admissibility、A / action-contingent `E[ΔK]` への mapping、事前予測・識別条件を観測前に固定する必要がある。
 
 ---
 
@@ -394,7 +457,7 @@ P が観察後の residual state にならないよう、projection / empirical 
 
 組織・国家等を単一主体として扱うことは Core 前提ではない。
 
-必要な場合は近似として導入し、対象主体、共通 K の対象範囲、各主体の `K_i` / `P_i`、A の集約方法、ΔK / H の会計・集約規則、情報損失、内部対立を明示する。
+必要な場合は近似として導入し、対象主体、共通 K の対象範囲、各主体の `K_i` / `P_i`、A の集約方法、3則の priority / division、ΔK / H の会計・集約規則、情報損失、内部対立を明示する。
 
 ---
 
@@ -404,7 +467,7 @@ P が観察後の residual state にならないよう、projection / empirical 
 
 - 共通 K の観測設計
 - `K_i` の access / usability
-- P proxy / admissibility
+- P の内部型 / proxy / admissibility
 - K / P 識別
 - `P_j(a)` の評価者・評価対象の識別
 - A の直接観測と潜在 decision の proxy
@@ -414,11 +477,12 @@ P が観察後の residual state にならないよう、projection / empirical 
 - `M_S` / `δ_S` の操作化
 - gross flow / net stock change の同時計測
 - `q_S : D_S -> V_S` の操作化
-- `E[ΔK]` の expectation operator / 推定
-- 3則を quantitative model へ落とす場合の objective / constraints / horizon
-- 自給自足と制度的分業における3則の遂行・分担・重複の比較
-- マネジメント三階層とVFT三則の対応関係の比較事例研究
-- 各管理階層における三則の遂行・分担・重複と管理成果の比較
+- action-contingent `E[ΔK|A=a]` の expectation operator / 推定
+- actor/context ごとの3則 priority / weight / constraint の推定
+- candidate action → future trajectory → three-rule evaluation の識別
+- 自給自足と制度的分業における3則の比重・遂行・分担・重複の比較
+- 国家レベルでの individual / firm / state の主担当分化の比較
+- マネジメント三階層における3則の比重・分担と管理成果の比較
 - planned / expected / realized change の分離
 - compatibility / market equilibrium / accounting identity の同時計測
 - common K に基づく micro / macro observation consistency
