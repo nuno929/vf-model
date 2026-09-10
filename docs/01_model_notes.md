@@ -80,7 +80,7 @@ K の変化が A のみによって生じるとは仮定しない。自然劣化
 
 P は価格、残高、契約額、評価指標等の observable そのものではない。
 
-P を支える observable / reference proxy を、
+P の真値・内部構造・次元は直接観測できない。P を支える observable / reference proxy を、
 
 ```text
 X_i,t = {x_i,t,1, x_i,t,2, ..., x_i,t,n}
@@ -98,13 +98,21 @@ realized ΔK / realized events
       A_i,t
 ```
 
+金融・経済 projection では、観測と集約を単純化するため、P を単一スカラーへ近似してよい。
+
+```text
+P̂_i,t ∈ R
+```
+
+これは true P が本質的に一-dimensional であるという仮定ではない。
+
 経済関係が複雑化すると、P の primitive dimension を増やすことよりも、P を支える proxy / relation が追加される形で記述できる。
 
 ```text
 X^(stage+1) ⊇ X^(stage)
 ```
 
-P の標準更新式や単一スカラー化は Core では固定しない。
+P の標準更新式、真の内部構造、scalar approximation の標準推定式は Core では固定しない。
 
 ---
 
@@ -223,22 +231,43 @@ A_t
 
 VFT ではこれを、**次期 A に対する abstract degree of freedom** として扱う。
 
-貨幣は、この resource-specific な自由度をより一般的な exchangeability と common measure へ抽象化する構造として記述できる。
+交換は resource-specific な余剰を他 resource へ変換可能にし、貨幣はその exchangeability をより一般的に保存・計量する構造として記述できる。
 
-capital は surplus そのものではなく、surplus が生む自由度を future A の拡張へ再投入する反復構造として扱う。
+---
+
+## 9. 資本概念と資本蓄積
+
+VFT では capital を独立した一義的 primitive として置かない。
+
+既存の capital 概念には、現に存在する resource / capability と、その将来価値を含んだ評価が重なっている。
+
+VFT では、現実に成立している資源・能力の側を K、将来価値・未実現関係への信用側を P として分離する。
+
+```text
+realized / actual capital side
+→ K
+
+capital valuation including future value
+→ K を基礎に P を含む projection
+```
+
+book value、market value、enterprise value 等は K / P そのものではなく、valuation / accounting projection による representation とする。
+
+一方、surplus が生む自由度を future K / A の拡張へ再投入する反復は、capital accumulation / formation の構造として扱う。
 
 ```text
 repeated surplus
 → abstract degree of freedom
 → reinvestment
-→ K / capability expansion
+→ K / capability expansion or reconfiguration
+→ P update
 → broader A_(t+1)
 → new surplus
 ```
 
 ---
 
-## 9. candidate A / expected ΔK
+## 10. candidate A / expected ΔK
 
 actor は candidate A に対して、主体固有の preference / expectation を通じて expected resource outcome を形成する。
 
@@ -256,11 +285,11 @@ production、consumption、labor、investment、career choice 等を同じ resou
 
 ---
 
-## 10. 3つの管理合理性
+## 11. 3つの管理合理性
 
 VFT では、管理・意思決定に少なくとも次の3合理性が反復して現れると考える。
 
-### 10.1 resource-realization
+### 11.1 resource-realization
 
 ```text
 expected ΔK
@@ -270,7 +299,7 @@ realized ΔK
 
 期待した resource outcome と実現結果の乖離を抑える合理性。
 
-### 10.2 activity-flow
+### 11.2 activity-flow
 
 ```text
 maximize / maintain A_(t+1)
@@ -280,7 +309,7 @@ maximize / maintain A_(t+1)
 
 `A_(t+1)` は、projection に応じて activity count、activity range、action space、field-level activity mass 等で operationalize できる。
 
-### 10.3 P-downside
+### 11.3 P-downside
 
 ```text
 minimize ΔP^-
@@ -288,9 +317,9 @@ minimize ΔP^-
 
 将来 A の成立を支える信用・期待・関係の重大な毀損を避ける合理性。
 
-P 全体の universal ordering や P maximization は仮定しない。
+P の真の内部構造を Core で固定しないため、downside の具体的な projection / proxy / viability criterion は projection 側で定める。
 
-### 10.4 非還元性
+### 11.4 非還元性
 
 3合理性は一つの目的関数へ還元しない。
 
@@ -306,7 +335,7 @@ P 全体の universal ordering や P maximization は仮定しない。
 
 ---
 
-## 11. 制度主体による P への直接介入
+## 12. 制度主体による P への直接介入
 
 通常の更新では realized `ΔK` や realized event が proxy を通じて P を更新する。
 
@@ -331,7 +360,7 @@ A_F
 
 ---
 
-## 12. 経済形態の successive construction
+## 13. 経済形態の successive construction
 
 VFT は、
 
@@ -360,11 +389,13 @@ autarky
 
 ---
 
-## 13. Core で固定しないもの
+## 14. Core で固定しないもの
 
 - K / K_i の標準 resource coordinates
 - `δ_K` の標準 difference rule
-- P の標準内部次元・単一 proxy・普遍的更新式
+- P の真の内部構造・次元
+- P の標準 proxy・普遍的更新式
+- P の scalar approximation の標準推定式
 - preference / expectation の普遍的関数形
 - `Γ^feas / Γ^avail / Γ^adm` の標準生成式
 - deterministic choice function
