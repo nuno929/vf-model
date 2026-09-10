@@ -77,6 +77,16 @@ realized outcomes
 → A
 ```
 
+P の真値・内部構造・次元は直接観測できない。
+
+一方、金融・経済分析では観測と集約の単純化のため、P を単一スカラーへ近似してよい。
+
+```text
+P̂_i,t ∈ R
+```
+
+これは true P が本質的に一-dimensional であることを意味しない。
+
 経済発展に伴う複雑化は、P primitive を際限なく増やすよりも、P を支える proxy / relation の増加として捉える。
 
 ---
@@ -113,11 +123,31 @@ surplus
 
 交換はその自由度を他 resource へ変換可能にし、貨幣はさらに一般的な exchangeability / common measure として保存する。
 
-capital は surplus 自体ではなく、その自由度を future K / A の拡張へ再投入する反復構造として整理した。
+---
+
+## 7. 資本概念の分離
+
+既存の「資本」という語には、現に存在する resource / capability と、その将来価値まで含めた評価が重なっている。
+
+VFT では capital を独立した一義的 primitive として置かず、
+
+```text
+actual / realized capital side
+→ K
+
+capital valuation including future value
+→ K を基礎に P を含む projection
+```
+
+として分離する。
+
+簿価、時価、企業価値等は K / P そのものではなく、valuation / accounting rule による representation とする。
+
+また、surplus が生む自由度を future K / A の拡張へ再投入する反復は、capital そのものの定義ではなく accumulation / formation の構造として扱う。
 
 ---
 
-## 7. 3つの管理合理性
+## 8. 3つの管理合理性
 
 現行整理では、管理・意思決定に次の3合理性が反復して現れる。
 
@@ -140,7 +170,7 @@ A の選別は第4の独立合理性ではなく、3合理性の競合結果と�
 
 ---
 
-## 8. 経済発展系列
+## 9. 経済発展系列
 
 現行 VFT は、
 
@@ -168,7 +198,7 @@ autarky
 
 ---
 
-## 9. 制度主体による P への直接介入
+## 10. 制度主体による P への直接介入
 
 通常の循環では realized outcome が P を更新するが、国家・宗教・platform 等には、
 
@@ -185,7 +215,7 @@ A_F
 
 ---
 
-## 10. 既存理論との関係
+## 11. 既存理論との関係
 
 VFT は既存理論を一つに合成するものではなく、部分構造を K / K_i / P / A / field 上へ再配置する。
 
