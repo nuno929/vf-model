@@ -75,7 +75,7 @@ K_i(t)
 
 といった未実現関係への信用が P に属する。
 
-P そのものは直接観測できず、主体は複数の proxy / reference `X_i,t` を参照して P を形成・更新する。
+P の真値・内部構造・次元は直接観測できない。主体は複数の observable proxy / reference `X_i,t` を参照して P を形成・更新すると考える。
 
 ```text
 X_i,t = {x_1, x_2, ..., x_n}
@@ -83,6 +83,14 @@ X_i,t = {x_1, x_2, ..., x_n}
 X_i,t
 → P_i,t
 ```
+
+金融・経済 projection では、観測と集約を単純化するため、P を単一スカラーへ近似してよい。
+
+```text
+P̂_i,t ∈ R
+```
+
+この scalar approximation は P の真値が本質的に一-dimensional であることを意味しない。
 
 経済関係が複雑になるほど、P を支える proxy は増加しうる。
 
@@ -259,19 +267,19 @@ r_a ↔ r_b
 
 ## 8. 貨幣
 
-貨幣は、交換によって生まれた余剰の自由度をさらに抽象化する。
+余剰は交換以前から存在する。交換は resource-specific な余剰を他 resource へ変換可能にし、貨幣はその交換可能性をさらに一般化・保存する。
 
 物々交換では余剰は特定 resource と具体的な交換相手に拘束される。貨幣が成立すると、
 
 ```text
 specific resource surplus
-↓
-money
-↓
+↓ exchange
+broader exchangeability
+↓ money
 many possible future resources / activities
 ```
 
-となり、余剰から生まれた交換可能性をより一般的な形で保存できる。
+となり、余剰から生まれる自由度をより一般的な形で保持できる。
 
 貨幣は、
 
@@ -326,11 +334,25 @@ A^consumption
 
 ---
 
-## 11. 資本
+## 11. 資本概念と資本蓄積
 
-余剰そのものを capital とはしない。
+VFT では capital を独立した一義的 primitive として置かない。
 
-反復的な余剰が生み出す自由度の一部を、将来の A を拡張する K へ再投入すると、次の循環が形成される。
+既存の「資本」という語には、少なくとも現に存在する resource / capability と、それが将来生みうる価値を含んだ評価が重なっている。
+
+VFT では、前者を K、後者に含まれる未実現の将来価値・信用側を P として分離して記述する。
+
+```text
+realized / actual capital side
+→ K
+
+capital valuation including future value
+→ K を基礎に P を含む projection
+```
+
+簿価、時価、企業価値等は K や P そのものではなく、特定の valuation / accounting rule による representation とする。
+
+一方、余剰の再投入による循環は capital そのものの定義ではなく、capital accumulation / formation の構造として扱う。
 
 ```text
 repeated surplus
@@ -339,18 +361,14 @@ abstract degree of freedom
 ↓
 reinvestment
 ↓
-K / capability expansion
+K / capability expansion or reconfiguration
+↓
+P update
 ↓
 broader A_(t+1)
 ↓
 new surplus
 ```
-
-VFT では capital を、単なる asset stock ではなく、
-
-> 余剰によって得られた自由度を将来の A の拡張へ再投入する反復構造
-
-として記述する。
 
 ---
 
@@ -520,6 +538,7 @@ VFT Core では、以下を universal rule として固定しない。
 - general equilibrium
 - deterministic choice function
 - preference の普遍的関数形
+- P の真の内部構造・次元
 - P の単一 proxy
 - `A_(t+1)` の単一計測法
 - 3合理性の weighting function
@@ -527,7 +546,7 @@ VFT Core では、以下を universal rule として固定しない。
 - B/S・P/L・複式簿記
 - 特定の市場・制度・契約形態
 
-必要な具体形は projection / measurement 側で定義する。
+金融・経済 projection では、P を単一スカラーとして近似してよい。必要な具体形は projection / measurement 側で定義する。
 
 ---
 
