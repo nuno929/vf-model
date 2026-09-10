@@ -1,6 +1,6 @@
 # 価値場理論 — 拡張・再検討ノート
 
-> この文書は Core 定義ではなく、今後の形式化・実証・拡張候補を保存する。
+> この文書は Core 定義ではなく、今後の形式化・実証・拡張候補を保存する。以下は PR の成立条件ではなく、必要に応じて後続研究で具体化する項目である。
 
 ---
 
@@ -51,9 +51,12 @@
 
 P は未実現 relation / outcome に対する credit / reference state、X はそれを支える observable proxy とする。
 
+P の真値・内部構造・次元は不明とし、金融・経済 projection では必要に応じて scalar `P̂` に近似する。
+
 今後の検討候補：
 
 - P の empirical proxy
+- scalar approximation `P̂` の推定法
 - shared P の推定
 - proxy set X の増加・下方硬直性
 - forecast calibration と P update
@@ -79,7 +82,7 @@ P は未実現 relation / outcome に対する credit / reference state、X は�
 
 Core では、candidate A から actor-specific preference / expectation を通じて expected ΔK を形成する構造だけを置き、普遍的な関数形は固定しない。
 
-今後の検討候補：
+必要に応じて検討する候補：
 
 - production / consumption / labor / investment / career choice を同じ形式で記述する場合の coordinate design
 - expected ΔK の distributional representation
@@ -102,7 +105,7 @@ P-downside
 = 将来 A を支える P の重大な毀損回避
 ```
 
-今後の検討候補：
+必要に応じて検討する候補：
 
 - 3合理性の正式名称
 - 独立性 / 非還元性の検証
@@ -140,13 +143,18 @@ P-downside
 
 ---
 
-## 10. capital
+## 10. capital / accumulation
 
-capital は surplus の reinvestment による future K / A expansion の反復構造として扱う。
+現行整理では capital を独立した一義的 primitive として置かない。
+
+- actual / realized capital side：K
+- future value を含む capital valuation：K を基礎に P を含む projection
+- book / market / enterprise value：valuation / accounting representation
+- surplus reinvestment：capital accumulation / formation
 
 今後の検討候補：
 
-- machine / human / financial capital の共通構造
+- machine / human / financial capital の projection 上の比較
 - reinvestment threshold
 - capital accumulation と field expansion
 - surplus consumption と accumulation の分岐
@@ -172,6 +180,7 @@ capital は surplus の reinvestment による future K / A expansion の反復�
 - K / K_i measurement
 - A event schema
 - P / X proxy design
+- scalar `P̂` approximation
 - surplus persistence
 - action-space / activity-flow metric
 - expected / realized ΔK error
