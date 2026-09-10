@@ -17,7 +17,7 @@ Core では、
 
 を区別する。
 
-exchange-value、money、capital、accounting、firm、state 等は原則として derived projection とする。
+exchange-value、money、capital valuation、accounting、firm、state 等は原則として derived projection とする。
 
 ---
 
@@ -66,9 +66,9 @@ surplus
 
 required K の境界は projection に依存する。
 
-自給自足では resource-specific quantity として現れる。交換・貨幣が成立すると、その surplus が他 resource へ変換され、より一般的な exchangeability / freedom として利用できる。
+自給自足でも surplus は成立する。交換が成立すると resource-specific surplus を他 resource へ変換可能になり、貨幣が成立するとその exchangeability をより一般的に保存・計量できる。
 
-money projection では surplus を共通尺度へ写像して集約することもできるが、これは surplus の別種類ではなく representation の変化である。
+money projection で surplus を共通尺度へ写像して集約することはできるが、これは surplus の別種類ではなく representation の変化である。
 
 ---
 
@@ -123,40 +123,54 @@ credit expansion は current physical K を超える future relation を先行�
 
 ## 7. capital projection
 
-capital は surplus そのものでも単なる asset stock でもない。
+VFT では capital を一義的な独立 primitive として置かない。
+
+既存の capital 概念には、現に存在する resource / capability と、その将来価値まで含めた評価が重なっている。
+
+VFT では、
+
+```text
+actual / realized capital side
+→ K
+
+capital valuation including future value
+→ K を基礎に P を含む projection
+```
+
+として分離する。
+
+book value、market value、enterprise value 等は K / P そのものではなく、valuation / accounting rule による representation である。
+
+machine capital は physical / productive K の特殊形として、financial capital は monetary / contractual / valuation projection として扱える。
+
+---
+
+## 8. capital accumulation / formation projection
+
+surplus の再投入は capital の定義ではなく accumulation / formation の構造として扱う。
 
 ```text
 repeated surplus
 → abstract degree of freedom
 → reinvestment
-→ K / capability expansion
+→ K / capability expansion or reconfiguration
+→ P update
 → broader A_(t+1)
 → new surplus
 ```
 
-という反復構造を基本とする。
-
-machine capital は、
-
-```text
-A^labor + K^machine
-→ expanded K^output
-```
-
-という productivity / capacity expansion の特殊形として扱える。
-
-financial / accounting capital は、上記 underlying structure を exchange-value / accounting rule で表現した projection とする。
+surplus retention、investment A、productive K の変化、future A expansion を分けて観測する。
 
 ---
 
-## 8. accounting projection
+## 9. accounting projection
 
 P/L・B/S・double-entry bookkeeping は VFT Core の普遍因果層ではない。
 
 formal accounting projection では、physical/resource events、contract / financial events、valuation-only events 等を recognition / valuation rule によって monetary representation へ写像する。
 
 ```text
-underlying K_i / A_i / relations
+underlying K_i / A_i / relations / P references
 ↓ recognition / valuation
 ledger / B/S / P/L
 ```
@@ -165,7 +179,25 @@ accounting profit / loss は指定された actor boundary、period、recognitio
 
 ---
 
-## 9. business / firm projection
+## 10. P scalar approximation
+
+P の真値・内部構造・次元は直接観測できない。
+
+金融・経済 projection では、観測・比較・集約のために、
+
+```text
+P̂_i,t ∈ R
+```
+
+という単一スカラー近似を置いてよい。
+
+これは true P が一-dimensional であるという存在論的主張ではない。
+
+価格、資産価値、信用指標、残高等は P そのものではなく、P を推定・参照するための proxy / representation とする。
+
+---
+
+## 11. business / firm projection
 
 organization / company は actor `i` として扱える。
 
@@ -188,7 +220,7 @@ market share、customer count、transaction volume、distribution coverage 等�
 
 ---
 
-## 10. state / institution projection
+## 12. state / institution projection
 
 制度は ownership、contract、court、sanction、currency rule、custom 等を通じて shared P を安定化し、broader A を成立させる relation structure として扱える。
 
@@ -207,7 +239,7 @@ A_F
 
 ---
 
-## 11. platform projection
+## 13. platform projection
 
 large platform は ranking、recommendation、rule、certification、account control、payment guarantee 等を通じて、参加 actor の P と A に介入できる。
 
@@ -221,7 +253,7 @@ platform usage、transaction volume、ecosystem participation 等は field が�
 
 ---
 
-## 12. 3合理性の projection
+## 14. 3合理性の projection
 
 ### resource-realization
 
@@ -233,13 +265,13 @@ actor / field に応じて、future action range、transaction volume、market s
 
 ### P-downside
 
-default、contract failure、trust loss、customer exit、run、institutional breakdown 等を downside event / proxy として扱える。
+default、contract failure、trust loss、customer exit、run、institutional breakdown 等を downside event / proxy として扱える。金融・経済 projection で scalar `P̂` を用いる場合は `ΔP̂^-` として近似できる。
 
 3合理性は一つの universal utility function へ還元しない。
 
 ---
 
-## 13. Marxian projection
+## 15. Marxian projection
 
 VFT は以下の区別を保持する。
 
@@ -253,7 +285,7 @@ Marx 固有の labor-value theory / surplus-value theory は socially necessary 
 
 ---
 
-## 14. micro / macro projection
+## 16. micro / macro projection
 
 micro と macro は別 primitive を要求しない。
 
@@ -264,6 +296,8 @@ field-level distributions / activity / concentration / continuity
 ```
 
 aggregation rule、boundary、unit、event reconciliation は projection ごとに定義する。
+
+金融・経済集計で P を scalar approximation する場合も、それは true P の内部構造を確定するものではない。
 
 ---
 
