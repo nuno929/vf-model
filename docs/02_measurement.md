@@ -2,440 +2,415 @@
 
 ## 1. 目的
 
-本書は VFT Core を実証・観測・会計へ落とす際の境界を整理する。
+本書は VFT Core を実証・観測へ落とす際の境界を整理する。
 
-計測上は、real-resource / capability state K、actor-specific K_i、structured subjective state P_i、field-derived action sets、actor-side A records、shared event identity / reconciliation、projection-defined endpoint difference ΔK、realized-use outcome、exchange-value representation を区別する。
+計測上は、
 
----
+- resource state `K`
+- actor-specific resource state `K_i`
+- actor-side activity `A_i`
+- unrealized relation に対する credit / reference state `P_i`
+- P を支える observable proxy `X_i`
+- interval resource change `ΔK_i`
+- use / consumption の physical realization
+- surplus と future activity freedom
+- 3つの管理合理性
 
-## 2. K の観測
-
-K は real-resource / capability state である。
-
-候補 observable には原材料量、製品量、設備、稼働可能 capacity、エネルギー、土地等の physical resources に加え、available time budget / remaining workable capacity、技能・人的能力、利用可能 capability 等がある。
-
-calendar time `t` は観測時点の index として扱い、K の resource coordinate にはしない。interval `τ` 内に実際に投入された labor time / hours worked は K の stock observable ではなく、A / labor measure 側の interval observable とする。
-
-K の完全観測は前提とせず、resource / capability coordinates と観測単位は projection ごとに定める。
-
-A を通らない K 変化を扱う必要がある場合、自然劣化、災害、偶発故障等を `Ω_τ` 等の exogenous / environmental process として projection-local に観測する。
+を区別する。
 
 ---
 
-## 3. K_i の計測
+## 2. K / K_i の観測
 
-`K_i` は actor-specific exchange-value / capital stock representation である。
+### 2.1 K
 
-計測には projection に応じて、
+K は対象系に存在する resource / capability state である。
 
-1. ownership / holding / attribution
-2. recognition rule
-3. valuation rule
-4. unit of account / comparison scale
+候補 observable には、原材料量、製品量、設備、稼働可能 capacity、energy、土地、available time、技能・人的能力等がある。
 
-等が必要になる。
+resource coordinate と単位は projection ごとに定める。
 
-`K_i` は K の subset / partition ではない。
+### 2.2 K_i
 
-### valuation の境界
-
-```text
-P_i valuation
-= subjective desirability / appraisal / belief-side evaluation
-
-K_i valuation
-= exchange-value representation under specified
-  recognition / comparison / unit-of-account / valuation rules
-```
-
-### accounting implementation
-
-企業会計等では K_i を ledger / B/S 上の monetary positions として形式化できるが、`K_i ≡ B/S` とはしない。
-
-正式な B/S projection では assets / liabilities / equity 等の account types と accounting identity を representation の定義条件として明示する。
-
-帳簿は actor-specific であり、財務報告・連結・統計は別の external representation とする。
-
----
-
-## 4. realized-use outcome / use-value の計測
-
-`U^use_i(τ)` は resource stock 自体ではなく、**主体が interval `τ` 内に resource を実際に利用・消費し、その経験に帰属される形で ex post に realized した主観的 outcome** である。
-
-resource stock / capability 自体は K として時点観測できるが、それは realized-use outcome ではない。瞬間的な快・満足等を観測できても、それ自体を当該 resource の realized-use outcome と同一視しない。
-
-同じ主体・同じ resource・同じ利用量でも、充足状態、利用順序、文脈、他の経験等によって結果は変わりうる。したがって一般的な再現性や interval 間の加法性を仮定しない。
-
-```text
-actual use over τ=(t0,t1]
-        ↓
-subjective experience / fulfillment
-        ↓
-U^use_i(τ)
-```
-
-離散時間で時点 `t` を置く場合、時点 `t` で参照できる realized-use outcome は前区間までのものとする。将来の利用結果について主体が持つものは P_i,t 上の belief / expectation である。
+`K_i,t` は actor `i` に帰属する resource position である。
 
 計測では少なくとも、
 
-- actor
-- interval
-- actual use / consumption
-- subjective utility / experience proxy
-- attribution to the resource / use episode
-- reference timing
-- 必要に応じて substitute / complement / use category
+1. actor
+2. resource coordinate
+3. quantity / unit
+4. attribution / ownership / access rule
+5. observation time
 
-を指定する。
+を明示する。
 
-異なる interval 間・主体間で比較する場合、同一尺度上で再現可能な真値を測っているとは仮定せず、projection-specific な比較可能性を別途定義する。
-
-### instantaneous rate を使う場合
-
-一般の非加法的 `U^use_i(τ)` から instantaneous rate を直接導出しない。
-
-rate が必要な projection では別途、cumulative realized-use process `C_i(t)` を定義する。その `C_i(t)` が当該 projection で必要な加法性・絶対連続性等の正則性を満たす場合にのみ、
+区間 `τ=(t0,t1]` に対して、
 
 ```text
-u_i(t) = dC_i(t) / dt
+ΔK_i(τ)
+:= δ_K(K_i,t0, K_i,t1)
 ```
 
-等を導入する。
+を観測する。
 
-`use-value quantity` は Marxian category との接続名として用い、数理・計測上は realized-use outcome を優先してよい。
+additive representation では、
+
+```text
+ΔK_i(τ)
+= K_i,t1 - K_i,t0
+```
+
+を使える。
+
+### 2.3 gross flow との区別
+
+`ΔK_i` は net resource-state change であり、production / consumption / exchange / transfer 等の gross activity とは異なる。
+
+区間内の gross activity は `A_i,τ` を用いる。
 
 ---
 
-## 5. exchange-value の計測
+## 3. A の観測
 
-exchange-value は resource を他の resource / money との比較関係から共通尺度へ写像した representation である。
+A は actor-side activity / process record として観測する。
 
-exchange-value は point-in-time position にも interval event valuation にも現れうる。
+候補：
 
-```text
-point-in-time valuation -> capital / asset position
-interval valuation      -> transaction / revenue / expense etc.
-```
+- production
+- consumption / use
+- labor
+- exchange
+- transfer
+- investment
+- contract
+- payment
+- search / learning
+- policy / institutional action
 
-異質な resource stock を共通交換尺度で比較・集計する評価は exchange-value representation として扱う。
-
----
-
-## 6. P / outcome forecast / evaluation の計測
-
-`P_i` は structured subjective state であり、belief / expectation、preference / valuation、trust / reputation、norm recognition 等を含みうる。
-
-候補 proxy には期待調査、選好・評価調査、発話、信用・信頼指標、制度・契約への履行期待、将来見通し等がある。
-
-shared P は actor set 上の共通性・整合性・分布として推定する。
-
-時点 `t` の decision では、少なくとも role 上、
-
-```text
-P_i,t belief / expectation
-        ↓
-Ŷ_i,t(a;I_i,t)
-
-P_i,t preference / valuation
-        ↓ evaluates
-Ŷ_i,t(a;I_i,t)
-```
-
-を区別して観測・推定する。
-
-Core の generic forecast は、
-
-```text
-Y_i^proj(τ)
-:= projection-selected outcome bundle
-
-Ŷ_i,t(a;I_i,t)
-:= forecast of Y_i^proj under candidate action a
-```
-
-とする。
-
-projection が必要とする座標として、例えば、
-
-```text
-ΔK_τ
-K_i,t1
-U^use_i(τ)
-P_i,t1
-activity / continuity outcomes
-```
-
-等を選べる。
-
-`P̂_i,t1(a)` を forecast bundle に含める場合、現在の P_i,t から将来 P_i,t1 を予測していることを明示する。
-
-計測時には、forecast 対象 coordinates、forecast horizon、information set、推定法、確率分布を用いる場合の calibration 等を明示する。
-
----
-
-## 7. field / action-stage の計測
-
-field は、K / K_i / P_i と projection-specified relations / constraints から導かれる action-generating configuration として扱う。
-
-必要に応じて、
-
-```text
-F_t := configuration(...)
-Γ_i^feas(F_t)  := feasible action set
-Γ_i^avail(F_t) := cognitively / behaviorally available action set
-Γ_i^adm(F_t)   := admissible action set
-
-Γ_i^adm(F_t) ⊆ Γ_i^avail(F_t) ⊆ Γ_i^feas(F_t)
-```
-
-を用いる。
-
-### Γ^feas
-
-候補 observable：
-
-- physical capacity
-- resource availability
-- legal / institutional permission
-- budget / access constraints
-- technical compatibility
-
-### Γ^avail
-
-候補 observable：
-
-- consideration set
-- recognized options
-- perceived behavioral availability
-- reachable alternatives
-- option awareness
-
-`Γ^avail` は rationality evaluation 前の behavioral availability とする。
-
-### Γ^adm
-
-候補 observable / operationalization：
-
-- ex ante admissibility rules
-- organizational / policy decision rules
-- threshold / exclusion conditions
-- dominance / comparison rule
-- rationality-dimension filters
-
-stated intention / final choice は `Γ^adm` そのものではなく、`Γ^adm` から selection が行われた後の projection-specific state / record として扱う。
-
-`Γ^avail` / `Γ^adm` は realized action を見て事後的に定義せず、可能な限り action realization 前の情報から operationalize する。
-
----
-
-## 8. A と shared realized event
-
-A は actor-side action / process record である。interval `τ` 内の actual labor time / hours worked は、labor projection では A / labor measure の interval observable として記録する。
-
-複数主体にまたがる交換・移転・契約等では、対応する actor records に shared `event_id` と participant / role relation を記録する。
+multi-actor event では shared event identity を持たせる。
 
 ```text
 event_id(A_i,e) = event_id(A_j,e) = e
 participants(e) = {i,j,...}
 ```
 
-shared realized event は participant-side records を reconcile / compose して構成する。
+必要な分析では participant-side records を reconcile / compose した `E_e^shared` を作る。
 
 ```text
 E_e^shared
 := reconcile({ A_i,e | i ∈ participants(e) })
 ```
 
-buyer の受領・支払、seller の引渡・受取等、同一 event の participant-side components は保持する。
+---
 
-分析目的ごとに、
+## 4. 使用価値の観測
 
-- actor-level analysis：各 `A_i` records
-- shared-event analysis：`E_e^shared`
-- event-count aggregation：event_id 単位の deduplication
-- resource-flow aggregation：`E_e^shared` 内の directed components を使用
+使用価値は resource が use / consumption A を通じて物理的にどの程度利用されたかとして観測する。
 
-と分ける。
+```text
+resource K
+↓
+A^use / A^consumption
+↓
+physical realization
+```
 
-multi-actor event の計測では少なくとも、
+resource `r` の interval `τ` における realized use を、
 
-1. event identity
-2. participant set
-3. participant role / direction
-4. event timing
-5. actor-specific action / position
-6. reconciliation rule
-7. downstream aggregation rule
+```text
+C_i,r(τ)
+= actor i が τ 内に resource r を実際に使用・消費した量
+```
+
+として記録できる。
+
+例：
+
+- food：kg consumed
+- electricity：kWh used
+- machine：operating hours / output
+- land：utilized area / period
+
+異種 resource を一つの use-value scale へ還元することは要求しない。
+
+subjective satisfaction / utility を観測する場合は別の projection として追加する。
+
+---
+
+## 5. surplus の観測
+
+単純な projection では、actor `i` の surplus を、
+
+```text
+S_i,t
+= K_i,t^available - K_i,t^required
+```
+
+として表せる。
+
+`required` は生存、維持、再生産等、対象 projection が指定する基準である。
+
+重要なのは単一時点の surplus 量だけではなく、**surplus が反復的に生成されているか**である。
+
+観測候補：
+
+- repeated surplus amount
+- surplus persistence
+- required K に対する余裕率
+- surplus の用途分布
+- surplus から新たに選択された A
+
+反復的 surplus が future A の選択余地をどの程度広げるかを、projection ごとに activity range / option count / resource-allocation freedom 等で operationalize できる。
+
+---
+
+## 6. P / X の観測
+
+P は直接 observable ではない。
+
+P を支える observable / reference proxy を、
+
+```text
+X_i,t = {x_i,t,1, ..., x_i,t,n}
+```
+
+として扱う。
+
+候補 proxy：
+
+- past production / consumption realization
+- exchange history
+- price / exchange rate
+- deposit balance
+- contract performance
+- default history
+- rating / reputation indicator
+- institutional continuity
+- stated expectation / trust survey
+
+観測上は、
+
+```text
+realized outcome
+→ X_i,t
+→ estimated P_i,t
+```
+
+という関係を置くことができる。
+
+P の真値や標準推定式は Core では固定しない。
+
+shared P は actor set 上の共通性・分布・整合性として推定する。
+
+---
+
+## 7. expected ΔK / realized ΔK
+
+resource-realization を観測する場合、candidate A に対して主体が期待した resource outcome と realized outcome を区別する。
+
+```text
+candidate A
+↓
+expected ΔK_i(a)
+↓ execution
+realized ΔK_i
+```
+
+計測では少なくとも、
+
+1. candidate / chosen A
+2. expectation timing
+3. expected resource coordinates
+4. expected amount / range / distribution
+5. realized amount
+6. forecast horizon
 
 を明示する。
 
----
-
-## 9. ΔK の計測
-
-`ΔK_τ` は projection-defined endpoint resource-state difference とする。
+最も単純には、
 
 ```text
-ΔK_τ := δ_K(K_t0, K_t1)
+E_i(τ)
+= distance(expected ΔK_i, realized ΔK_i)
 ```
 
-K が additive vector space 等で表現される projection では、
+のような予実差を projection-specific metric として置ける。
 
-```text
-δ_K(K_t0, K_t1) = K_t1 - K_t0
-```
-
-を特殊形として使える。
-
-したがって gross activity と ΔK は別 observable である。
-
-multi-actor gross activity を集計する場合は actor-side A records を単純加算せず、shared event reconciliation と対象 coordinate に応じた aggregation rule を用いる。
-
-`ΔK` は accounting entry ではない。
+Core は distance function を固定しない。
 
 ---
 
-## 10. exchange-value residual / surplus の計測
+## 8. activity-flow の観測
 
-Core-level では、指定された economic changes を exchange-value の比較可能尺度へ写像し、specified comparison boundary の下で得られる差分を **exchange-value residual** として扱える。
+activity-flow は現在の activity amount ではなく、次期にも成立可能な `A_(t+1)` の維持・拡張を対象とする。
 
-```text
-specified economic changes
-   ↓ exchange-value representation
-comparable values
-   ↓ comparison under specified boundary
-exchange-value residual
-```
+operationalization 候補：
 
-projection の意味論に応じて surplus / deficit、production surplus、profit、income、valuation gain 等へ解釈する。
-
-少なくとも、
-
-1. actor set / scope
-2. 対象 economic changes
-3. comparison / accounting boundary
-4. unit of account
-5. recognition timing
-6. valuation rule
-7. internal transaction treatment
-8. shared-event reconciliation / elimination rule where relevant
-9. attribution / distribution rule
-
-を明示する。
-
----
-
-## 11. accounting projection
-
-formal accounting を用いる場合、physical/resource events だけでなく、contract / financial events、valuation-only events 等も recognition / valuation を経て accounting entries を形成しうる。
-
-P/L は recognized interval events、B/S は recognized point-in-time positions の monetary / exchange-value representation とする。
-
-accounting identity は当該 projection の representation rule として検証する。
-
----
-
-## 12. business actor / business field / business の計測
-
-organization / company を actor として扱う場合、business actor は actor `i` として観測する。
-
-候補 observable：
-
-- legal / organizational identity
-- decision rights
-- ownership / accounting attribution
-- actor-specific K_i / P_i / A_i
-
-business field は、actor-resource transformation / exchange / service / beneficiary relation 等を反復可能にする局所 field として観測する。
-
-候補 observable：
-
-- recurring action set
-- feasible / available / admissible action ranges
-- customer / beneficiary relations
-- resource replenishment
+- feasible / available action count
+- action-space volume
+- activity range
+- recurring activity count
 - participant retention
-- capability reproduction
-- learning / exploration activity
-- field formation / dissolution
+- customer / supplier / partner continuity
+- market share
+- transaction volume
+- platform usage
+- resource access range
+- strategic options
 
-business は business field を中心として継続する activity system として扱う。
+どれを使うかは actor / field / projection に依存する。
 
-同一 actor が複数 business fields を持つ場合、一つの business field が複数 actors にまたがる場合を区別できるよう、actor boundary と field boundary を別々に定義する。
-
-起業は business-oriented field formation を伴う activity、新規事業開発は既存 field から新しい business field を形成・分岐する過程として測る。
-
-profit は一指標であり、business existence の定義変数とはしない。
-
----
-
-## 13. 3つの管理合理性の計測
-
-3公理は management / decision rationality の必須構成条件とする。
-
-- resource-realization：resource / capital / realized-use outcome に関する比較規則
-- activity-flow：activity continuity / formation / renewal に関する比較規則
-- P-downside：projection-specific future P / viability に関する loss / threshold / exclusion rule
-
-3公理それぞれが `Ŷ_i,t(a;I_i,t)` のどの component を評価するかを明示し、`Γ_i^adm` の形成へ接続する。
-
-評価・判断・実行の担い手は単一 actor に限らず、複数 actor、役割、組織階層、制度へ分業・分散してよい。VFT decision projection では3公理すべてについて少なくとも admissibility / exclusion condition または比較規則を事前に定義する。
+単一の universal metric は置かない。
 
 ---
 
-## 14. Marxian projection の計測
+## 9. P-downside の観測
 
-- VFT-specific use-value quantity / realized-use outcome：主体が interval 内の実利用を通じて ex post に realized した主観的 outcome
-- labor measure：interval 内に実際に投入された labor activity / labor time
-- Marxian labor-value：socially necessary labor time 等の追加条件を伴う specialization
-- exchange-value / price：resource 間の comparison / market / monetary valuation
-- exchange-value residual / surplus：指定 boundary と exchange-value scale 上の差分
-- Marxian surplus value：Marx 固有条件を含む specialization
+P-downside は、将来 A の成立を支える信用・期待・関係に生じる重大な毀損を対象とする。
 
-VFT-specific realized-use outcome と Marxian use-value を自動的に同一視しない。
+候補 observable / proxy：
+
+- default
+- liquidity shortage
+- contract failure
+- customer / partner exit
+- reputation decline
+- institutional trust decline
+- withdrawal / run
+- relationship discontinuation
+
+projection ごとに、
+
+1. 対象 P component / proxy
+2. viability threshold
+3. downside event
+4. observation horizon
+
+を定める。
+
+P を無制限に最大化する metric として扱わない。
 
 ---
 
-## 15. ミクロ／マクロ
+## 10. 3合理性の同時観測
 
-ミクロとマクロは、同じ K と actor-specific K_i / P_i / A records を異なる scope で観測し、必要に応じて shared event reconciliation、external reporting / statistical transformation で接続する。
+3合理性は別々に観測し、単一スカラーへ強制的に集約しない。
 
-主体ごとの帳簿自体が共通化されることは仮定しない。
+```text
+resource-realization
+→ expected / realized ΔK difference
+
+activity-flow
+→ future A viability / range / mass
+
+P-downside
+→ credit / relation downside risk
+```
+
+実証では、それぞれが改善・悪化する組み合わせを見ることで、3合理性間の trade-off を観測できる。
+
+例：
+
+```text
+A expansion ↑
+forecast error ↑
+P downside risk ↑
+```
+
+のような組み合わせを、単一 utility の失敗ではなく複数合理性の競合として扱う。
 
 ---
 
-## 16. 実証上の原則
+## 11. field / action-stage の観測
 
-少なくとも以下を明示する。
+必要な projection では、
 
-1. K の resource / capability coordinates
-2. calendar time index と available time / labor-capacity coordinate の区別
-3. actor set
-4. projection-specified relations / constraints
-5. `Γ^feas` の operationalization
-6. `Γ^avail` の operationalization
-7. `Γ^adm` の admissibility / exclusion rule
-8. A の record unit / ordering
-9. labor projection を使う場合の actual labor time / hours worked の interval measure
-10. multi-actor event の `event_id` / participant / role / reconciliation rule
-11. downstream aggregation rule
-12. `δ_K` の endpoint difference rule
-13. exogenous K change を扱う場合の `Ω` 等の定義
-14. realized-use outcome の actor / interval / subjective proxy / attribution / reference timing
-15. instantaneous rate を使う場合の `C_i(t)` と正則性条件
-16. exchange-value / valuation rule
-17. K_i の representation rule
-18. P / shared P の proxy
-19. current P belief / valuation role の識別
-20. outcome bundle `Y_i^proj` の coordinates
-21. generic forecast `Ŷ_i` の推定法
-22. exchange-value residual / surplus の対象 economic changes / comparison boundary
-23. accounting projection を用いる場合の recognition / identity rule
-24. business actor boundary / business field boundary
-25. 3公理それぞれの operationalization と役割分担
-26. P-downside の projection-specific viability criterion
-27. micro / macro reporting / aggregation rule
-28. 欠測・測定誤差・情報損失
+```text
+F_t := configuration(...)
+Γ_i^feas(F_t)
+Γ_i^avail(F_t)
+Γ_i^adm(F_t)
+```
+
+を operationalize する。
+
+### Γ^feas
+
+候補：physical capacity、resource availability、legal permission、technical compatibility 等。
+
+### Γ^avail
+
+候補：recognized options、consideration set、reachable alternatives、option awareness 等。
+
+### Γ^adm
+
+候補：organizational decision rule、threshold、exclusion condition、comparison rule 等。
+
+これらは realized action を見て事後的に定義するのではなく、可能な限り action realization 前の情報から構成する。
+
+---
+
+## 12. exchange-value / accounting projection
+
+exchange-value は K_i そのものではない。
+
+resource quantity や exchange activity を、指定された common exchange measure / unit of account へ写像した representation として扱う。
+
+```text
+K_i / A_i
+↓ valuation / exchange mapping
+exchange-value representation
+```
+
+money が成立した projection では、異種 resource / exchange を共通単位で比較・集約しやすくなる。
+
+formal accounting を用いる場合、B/S・P/L・複式簿記は制度的な recognition / valuation / reporting rule を持つ projection とする。
+
+---
+
+## 13. 制度主体による P 介入の観測
+
+国家・宗教・platform 等について、
+
+```text
+A_F
+→ ΔP_i
+→ ΔA_i
+```
+
+の経路を観測できる。
+
+候補 event：
+
+- policy announcement
+- legal change
+- guarantee / sanction
+- certification
+- ranking / recommendation change
+- platform suspension
+
+即時的な P proxy の変化と、その後の A / ΔK の変化を分けて観測する。
+
+---
+
+## 14. 実証時に最低限明示するもの
+
+1. actor set / field boundary
+2. K / K_i の resource coordinates と単位
+3. attribution / access rule
+4. interval definition
+5. `δ_K` / ΔK measurement rule
+6. A record unit / event identity
+7. use / consumption quantity
+8. required K / surplus definition
+9. P proxy `X`
+10. expected ΔK の observation timing
+11. resource-realization metric
+12. `A_(t+1)` operationalization
+13. P-downside criterion
+14. exchange-value mapping を使う場合の unit / valuation rule
+15. accounting projection を使う場合の recognition rule
+16. missingness / measurement error / aggregation rule
 
 ---
 
