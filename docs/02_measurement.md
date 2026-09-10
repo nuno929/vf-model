@@ -14,6 +14,7 @@
 - interval resource change `ΔK_i`
 - use / consumption の physical realization
 - surplus と future activity freedom
+- capital valuation / accumulation の projection
 - 3つの管理合理性
 
 を区別する。
@@ -168,7 +169,7 @@ S_i,t
 
 P は直接 observable ではない。
 
-P を支える observable / reference proxy を、
+P の真値・内部構造・次元は不明であり、observable / reference proxy を、
 
 ```text
 X_i,t = {x_i,t,1, ..., x_i,t,n}
@@ -198,7 +199,15 @@ realized outcome
 
 という関係を置くことができる。
 
-P の真値や標準推定式は Core では固定しない。
+金融・経済 projection では、観測と集約を単純化するため、
+
+```text
+P̂_i,t ∈ R
+```
+
+という scalar approximation を置いてよい。
+
+これは true P が本質的に一-dimensional であることを意味しない。P の真値や標準推定式は Core では固定しない。
 
 shared P は actor set 上の共通性・分布・整合性として推定する。
 
@@ -281,14 +290,14 @@ P-downside は、将来 A の成立を支える信用・期待・関係に生じ
 
 projection ごとに、
 
-1. 対象 P component / proxy
+1. 対象 P projection / proxy
 2. viability threshold
 3. downside event
 4. observation horizon
 
 を定める。
 
-P を無制限に最大化する metric として扱わない。
+金融・経済 projection で scalar `P̂` を用いる場合には `ΔP̂^-` として近似してよいが、P の真の内部構造を前提とはしない。
 
 ---
 
@@ -350,7 +359,7 @@ F_t := configuration(...)
 
 ---
 
-## 12. exchange-value / accounting projection
+## 12. exchange-value / capital valuation / accounting projection
 
 exchange-value は K_i そのものではない。
 
@@ -364,11 +373,45 @@ exchange-value representation
 
 money が成立した projection では、異種 resource / exchange を共通単位で比較・集約しやすくなる。
 
+capital valuation を行う場合も、actual resource / capability 側の K と、未実現の将来価値・信用側の P を区別する。
+
+```text
+actual capital side
+→ K
+
+valuation including future value
+→ K + P を参照する projection
+```
+
+book value、market value、enterprise value 等は projection-specific representation である。
+
 formal accounting を用いる場合、B/S・P/L・複式簿記は制度的な recognition / valuation / reporting rule を持つ projection とする。
 
 ---
 
-## 13. 制度主体による P 介入の観測
+## 13. capital accumulation の観測
+
+capital accumulation / formation を扱う場合は、capital という一義的 stock を新たに置くのではなく、surplus の再投入とその結果を見る。
+
+```text
+repeated surplus
+→ reinvestment A
+→ ΔK / K reconfiguration
+→ P update
+→ future A expansion
+```
+
+観測候補：
+
+- surplus retention
+- reinvestment amount / destination
+- productive K / capability の増減
+- future activity range / volume の変化
+- reinvestment 後の P proxy / scalar approximation の変化
+
+---
+
+## 14. 制度主体による P 介入の観測
 
 国家・宗教・platform 等について、
 
@@ -393,7 +436,7 @@ A_F
 
 ---
 
-## 14. 実証時に最低限明示するもの
+## 15. 実証時に最低限明示するもの
 
 1. actor set / field boundary
 2. K / K_i の resource coordinates と単位
@@ -404,13 +447,14 @@ A_F
 7. use / consumption quantity
 8. required K / surplus definition
 9. P proxy `X`
-10. expected ΔK の observation timing
-11. resource-realization metric
-12. `A_(t+1)` operationalization
-13. P-downside criterion
-14. exchange-value mapping を使う場合の unit / valuation rule
-15. accounting projection を使う場合の recognition rule
-16. missingness / measurement error / aggregation rule
+10. P を scalar approximation する場合の推定ルール
+11. expected ΔK の observation timing
+12. resource-realization metric
+13. `A_(t+1)` operationalization
+14. P-downside criterion
+15. exchange-value / capital valuation mapping を使う場合の unit / valuation rule
+16. accounting projection を使う場合の recognition rule
+17. missingness / measurement error / aggregation rule
 
 ---
 
