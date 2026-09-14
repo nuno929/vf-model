@@ -12,10 +12,12 @@
 
 - standard resource coordinates
 - physical resource と capability の境界
-- actor attribution / ownership / access rule
+- actor attribution / ownership / current realized access rule
 - overlapping / joint attribution
 - heterogeneous K に対する `δ_K`
 - exogenous change `Ω` の標準化要否
+
+将来アクセスできるという期待・信用は K_i ではなく P_i 側に置く。
 
 ---
 
@@ -35,7 +37,14 @@
 
 ## 3. surplus / degree of freedom
 
-現行整理では、required K を超える surplus が反復的に生成されることで future A に対する abstract degree of freedom が生まれる。
+現行整理では、resource `r` ごとの required K を超える surplus が反復的に生成されることで future A に対する abstract degree of freedom が生まれる。
+
+```text
+S_i(r)
+= K_i^available(r) - K_i^required(r)
+```
+
+貨幣以前の surplus は resource-specific とし、異種 resource をそのまま加算しない。
 
 今後の検討候補：
 
@@ -61,7 +70,9 @@ P の真値・内部構造・次元は不明とし、金融・経済 projection 
 - proxy set X の増加・下方硬直性
 - forecast calibration と P update
 - policy / institution による `A_F → ΔP_i` の因果識別
-- P downside の empirical criterion
+- P downside の empirical criterion / direction
+
+`ΔP^-` を用いる場合は、true P に universal ordering を仮定せず、projection-specific な downside direction / viability criterion の略記として扱う。
 
 ---
 
@@ -148,9 +159,11 @@ P-downside
 現行整理では capital を独立した一義的 primitive として置かない。
 
 - actual / realized capital side：K
-- future value を含む capital valuation：K を基礎に P を含む projection
+- future value を含む capital valuation：K を基礎に P を参照する projection
 - book / market / enterprise value：valuation / accounting representation
 - surplus reinvestment：capital accumulation / formation
+
+K と P の数値的加算は仮定しない。
 
 今後の検討候補：
 
@@ -181,10 +194,10 @@ P-downside
 - A event schema
 - P / X proxy design
 - scalar `P̂` approximation
-- surplus persistence
+- resource-specific surplus persistence
 - action-space / activity-flow metric
 - expected / realized ΔK error
-- P-downside criterion
+- P-downside criterion / direction
 - micro-to-macro aggregation
 - historical / panel data による3合理性の検証
 
