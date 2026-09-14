@@ -51,6 +51,8 @@ K_i(t)
 = time t における actor i の resource position
 ```
 
+ここで K_i に含める利用可能性は、時点 `t` で現に成立している current / realized access に限る。将来アクセスできるという期待・信用は P_i 側に置く。
+
 基本的には stock として扱い、区間 `τ=(t0,t1]` を取ることで flow を表現する。
 
 ```text
@@ -204,15 +206,14 @@ land     → utilized area / period
 
 主体が再生産・生存・維持等に必要な resource を超えて K を持つ場合、余剰が成立する。
 
-単純には、
+貨幣以前の基本形は resource-specific に、
 
 ```text
-surplus
-= available K
-- required K
+S_i(r)
+= K_i^available(r) - K_i^required(r)
 ```
 
-と表現できる。
+と表現できる。異種 resource の surplus をそのまま加算することは前提としない。
 
 重要なのは余剰が一度発生することではなく、**必要量を超える K が反復的に生成されること**である。
 
@@ -401,7 +402,7 @@ A_F
 
 ## 13. 3つの管理合理性
 
-VFT では、経済発展の各段階を通じて、管理・意思決定に少なくとも3つの異なる合理性が反復して現れると考える。
+VFT では、経済発展の各段階を通じて、管理・意思決定に3つの異なる合理性が反復して現れると考える。
 
 ### 13.1 resource-realization
 
@@ -448,6 +449,8 @@ maximize / maintain A_(t+1)
 ```text
 minimize ΔP^-
 ```
+
+ここで `ΔP^-` は true P に universal ordering を仮定した負方向ではなく、projection が定義した downside direction / viability criterion の略記である。金融・経済 projection で scalar `P̂` を用いる場合は、`ΔP̂^-` として近似できる。
 
 貸倒れ、流動性不足、契約未達、信用毀損、顧客離脱、制度への信頼喪失、将来 A を成立させる関係の破壊等が対象になる。
 
