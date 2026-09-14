@@ -40,10 +40,12 @@ resource coordinate と単位は projection ごとに定める。
 1. actor
 2. resource coordinate
 3. quantity / unit
-4. attribution / ownership / access rule
+4. attribution / ownership / current realized access rule
 5. observation time
 
 を明示する。
+
+ここで access は観測時点で現に成立している利用可能性に限る。将来アクセスできるという期待・信用は P_i 側に置く。
 
 区間 `τ=(t0,t1]` に対して、
 
@@ -140,16 +142,18 @@ subjective satisfaction / utility を観測する場合は別の projection と�
 
 ## 5. surplus の観測
 
-単純な projection では、actor `i` の surplus を、
+単純な projection では、actor `i` の resource `r` ごとの surplus を、
 
 ```text
-S_i,t
-= K_i,t^available - K_i,t^required
+S_i,t(r)
+= K_i,t^available(r) - K_i,t^required(r)
 ```
 
 として表せる。
 
 `required` は生存、維持、再生産等、対象 projection が指定する基準である。
+
+貨幣以前の surplus は resource-specific であり、異種 resource をそのまま加算しない。共通尺度での集約が必要な場合は exchange-value / money projection 側で定義する。
 
 重要なのは単一時点の surplus 量だけではなく、**surplus が反復的に生成されているか**である。
 
@@ -292,12 +296,12 @@ projection ごとに、
 
 1. 対象 P projection / proxy
 2. viability threshold
-3. downside event
+3. downside event / downside direction
 4. observation horizon
 
 を定める。
 
-金融・経済 projection で scalar `P̂` を用いる場合には `ΔP̂^-` として近似してよいが、P の真の内部構造を前提とはしない。
+`ΔP^-` は true P に universal ordering を仮定した負方向ではなく、この projection-specific downside を表す略記とする。金融・経済 projection で scalar `P̂` を用いる場合には `ΔP̂^-` として近似してよい。
 
 ---
 
@@ -380,8 +384,10 @@ actual capital side
 → K
 
 valuation including future value
-→ K + P を参照する projection
+→ K を基礎に P を参照する projection
 ```
+
+ここでは K と P の数値的加算を仮定しない。
 
 book value、market value、enterprise value 等は projection-specific representation である。
 
@@ -440,18 +446,18 @@ A_F
 
 1. actor set / field boundary
 2. K / K_i の resource coordinates と単位
-3. attribution / access rule
+3. attribution / ownership / current realized access rule
 4. interval definition
 5. `δ_K` / ΔK measurement rule
 6. A record unit / event identity
 7. use / consumption quantity
-8. required K / surplus definition
+8. resource-specific required K / surplus definition
 9. P proxy `X`
 10. P を scalar approximation する場合の推定ルール
 11. expected ΔK の observation timing
 12. resource-realization metric
 13. `A_(t+1)` operationalization
-14. P-downside criterion
+14. P-downside criterion / direction
 15. exchange-value / capital valuation mapping を使う場合の unit / valuation rule
 16. accounting projection を使う場合の recognition rule
 17. missingness / measurement error / aggregation rule
