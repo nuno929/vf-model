@@ -40,6 +40,8 @@ field は、ある時点でどの A が成立しうるかを規定する action-
 
 とする。
 
+K_i に含める利用可能性は、観測時点で現に成立している current / realized access に限る。将来アクセスできるという期待・信用は P_i に置く。
+
 exchange-value、monetary valuation、accounting representation は `K_i / A_i` を共通交換尺度へ写像する projection として分離する。
 
 K_i は基本的に stock として扱い、区間差分 `ΔK_i` と actor-side activity `A_i,τ` によって flow を記述する。
@@ -110,12 +112,14 @@ E_e^shared
 
 以前は physical surplus、exchange residual、profit 等を別々に強く型分けする方向があった。
 
-現在は、surplus の基本構造を、required K を満たした後に残る available K として置く。
+現在は、surplus の基本構造を、actor `i` の resource `r` ごとに required K を満たした後に残る available K として置く。
 
 ```text
-surplus
-= available K - required K
+S_i(r)
+= K_i^available(r) - K_i^required(r)
 ```
+
+貨幣以前の surplus は resource-specific であり、異種 resource をそのまま加算しない。
 
 重要なのは単発の余りではなく、surplus が反復的に生成されることである。
 
@@ -161,6 +165,8 @@ activity-flow
 P-downside
 = 将来 A を支える P の重大な毀損回避
 ```
+
+`ΔP^-` を用いる場合、その負方向は true P の universal ordering ではなく、projection-specific な downside direction / viability criterion の略記とする。
 
 これらを単一目的関数へ還元しない。
 
