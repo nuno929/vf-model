@@ -46,7 +46,7 @@ K は制度、契約、信用、期待そのものを含む一般的 external wo
 
 `K_i,t` は actor `i` に帰属する resource position を表す。
 
-所有・保有・利用可能性等、どの relation を「帰属」とみなすかは projection で定める。
+所有・保有・時点 `t` で現に成立している利用可能性等、どの relation を「帰属」とみなすかは projection で定める。将来アクセスできるという期待・信用は P_i 側に置く。
 
 K_i は基本的に stock として扱う。区間差分は、
 
@@ -208,14 +208,16 @@ subjective satisfaction / utility を測定する projection を追加するこ�
 
 ## 8. 余剰と自由度
 
-actor `i` の required resource level を `K_i^req` と書けば、単純な projection では、
+actor `i` の resource `r` について、単純な projection では、
 
 ```text
-S_i
-= K_i^avail - K_i^req
+S_i(r)
+= K_i^available(r) - K_i^required(r)
 ```
 
 として surplus を表せる。
+
+貨幣以前の surplus は resource-specific であり、異種 resource をそのまま加算しない。
 
 重要なのは surplus の単発発生ではなく、required K を満たした後の surplus が反復的に生成されることである。
 
@@ -287,7 +289,7 @@ production、consumption、labor、investment、career choice 等を同じ resou
 
 ## 11. 3つの管理合理性
 
-VFT では、管理・意思決定に少なくとも次の3合理性が反復して現れると考える。
+VFT では、管理・意思決定に次の3合理性が反復して現れると考える。
 
 ### 11.1 resource-realization
 
@@ -317,7 +319,7 @@ minimize ΔP^-
 
 将来 A の成立を支える信用・期待・関係の重大な毀損を避ける合理性。
 
-P の真の内部構造を Core で固定しないため、downside の具体的な projection / proxy / viability criterion は projection 側で定める。
+`ΔP^-` は true P に universal ordering を仮定した負方向ではなく、projection が定義する downside direction / viability criterion の略記とする。金融・経済 projection で scalar `P̂` を用いる場合は `ΔP̂^-` として近似できる。
 
 ### 11.4 非還元性
 
