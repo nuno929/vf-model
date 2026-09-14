@@ -57,16 +57,16 @@ exchange-value は `K_i` 自体ではない。
 
 ## 4. surplus projection
 
-surplus の基本構造は、required K を満たした後に残る available resource とする。
+surplus の基本構造は、actor `i` の resource `r` ごとに、required K を満たした後に残る available resource とする。
 
 ```text
-surplus
-= available K - required K
+S_i(r)
+= K_i^available(r) - K_i^required(r)
 ```
 
 required K の境界は projection に依存する。
 
-自給自足でも surplus は成立する。交換が成立すると resource-specific surplus を他 resource へ変換可能になり、貨幣が成立するとその exchangeability をより一般的に保存・計量できる。
+貨幣以前の surplus は resource-specific であり、異種 resource をそのまま加算しない。自給自足でも surplus は成立する。交換が成立すると resource-specific surplus を他 resource へ変換可能になり、貨幣が成立するとその exchangeability をより一般的に保存・計量できる。
 
 money projection で surplus を共通尺度へ写像して集約することはできるが、これは surplus の別種類ではなく representation の変化である。
 
@@ -265,7 +265,7 @@ actor / field に応じて、future action range、transaction volume、market s
 
 ### P-downside
 
-default、contract failure、trust loss、customer exit、run、institutional breakdown 等を downside event / proxy として扱える。金融・経済 projection で scalar `P̂` を用いる場合は `ΔP̂^-` として近似できる。
+default、contract failure、trust loss、customer exit、run、institutional breakdown 等を downside event / proxy として扱える。真の P に universal ordering を仮定せず、downside の方向は projection-specific に定義する。金融・経済 projection で scalar `P̂` を用いる場合は `ΔP̂^-` として近似できる。
 
 3合理性は一つの universal utility function へ還元しない。
 
