@@ -53,6 +53,14 @@ K_i(t)
 
 ここで K_i に含める利用可能性は、時点 `t` で現に成立している current / realized access に限る。将来アクセスできるという期待・信用は P_i 側に置く。
 
+`K_i` は `K` の排他的な partition を意味しない。共同所有、共同利用、同一 resource への複数主体の current / realized access 等により、複数の `K_i` が同一 resource を重複して含みうる。
+
+```text
+K ≠ necessarily Σ_i K_i
+```
+
+したがって `K_i` は、系全体の K を主体ごとに機械的に分割したものではなく、actor-indexed な resource state / attribution view として扱う。
+
 基本的には stock として扱い、区間 `τ=(t0,t1]` を取ることで flow を表現する。
 
 ```text
@@ -141,6 +149,8 @@ next realized ΔK
 ```
 
 となる。
+
+これは P 更新の唯一の経路ではなく、resource realization を介した代表的な feedback path である。
 
 過去に実現した resource change は直接または proxy を通じて P を支持する。P は未実現の将来関係を現在の判断で利用可能にし、その P に基づいて A が実行される。A の結果として新しい `ΔK` が生じ、その結果が再び P を更新する。
 
@@ -402,7 +412,9 @@ A_F
 
 ## 13. 3つの管理合理性
 
-VFT では、経済発展の各段階を通じて、管理・意思決定に3つの異なる合理性が反復して現れると考える。
+VFT は、経済発展の各段階を通じた主体・組織の反復的な管理・意思決定に、次の3つの非還元的合理性が現れるという一般行動仮説を置く。
+
+これらは `K / K_i / P / A / field` の存在論的な定義条件ではなく、VFT が経済・経営現象を説明する際の **Core behavioral hypotheses** として扱う。
 
 ### 13.1 resource-realization
 
@@ -419,6 +431,10 @@ execution
 ↓
 realized ΔK
 ```
+
+`expected ΔK_i(a)` は、主体 `i` が時点 `t` の resource state、制約、参照情報等のもとで candidate action `a` を実行した場合に実現すると事前に見込む resource-state change を表す。
+
+これは新しい primitive ではなく、candidate A、主体固有の preference / expectation、現在状態等から導出される projection-specific な derived quantity である。その普遍的な生成規則・関数形は Core では固定しない。
 
 第1の合理性は、期待した resource outcome と実際の resource outcome の乖離を抑えることにある。
 
